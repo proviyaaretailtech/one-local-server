@@ -1,0 +1,2258 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "back": "Back",
+    "goBack": "Go back",
+    "next": "Next",
+    "done": "Done",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "close": "Close",
+    "continue": "Continue",
+    "retry": "Try again",
+    "loading": "Loading…",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "skip": "Skip",
+    "or": "or",
+    "optional": "Optional",
+    "required": "Required",
+    "all": "All",
+    "none": "None",
+    "seeAll": "See all",
+    "soon": "Soon",
+    "free": "Free",
+    "offline": "No internet connection",
+    "somethingWrong": "Something went wrong. Please try again.",
+    "dismiss": "Dismiss"
+  },
+  "language": {
+    "title": "Language",
+    "subtitle": "Choose the language the app speaks. It changes right away.",
+    "changeLater": "You can change this any time in Profile → Language.",
+    "storeNames": "Product and store names stay exactly as the shop wrote them.",
+    "previewTitle": "Preview",
+    "previewOrder": "Order total {{amount}} · arriving in {{eta}}",
+    "previewDate": "Placed on {{date}}",
+    "changedAnnouncement": "Language changed to {{language}}",
+    "error": {
+      "timeout": "{{language}} is taking too long to load. The app is still in {{current}}.",
+      "load": "{{language}} could not be loaded. The app is still in {{current}}."
+    }
+  },
+  "format": {
+    "distanceM": "{{value}} m",
+    "distanceKm": "{{value}} km",
+    "minutes_one": "{{value}} min",
+    "minutes_other": "{{value}} min",
+    "hours_one": "{{value}} hr",
+    "hours_other": "{{value}} hr",
+    "hoursMinutes": "{{h}} hr {{m}} min",
+    "etaRange": "{{from}}–{{to}} min",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow"
+  },
+  "status": {
+    "order": {
+      "placed": "Order placed",
+      "accepted": "Accepted",
+      "packed": "Packed",
+      "out": "Out for delivery",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "unknown": "Status updating"
+    },
+    "payment": {
+      "not_charged": "Not charged",
+      "pending": "Payment pending",
+      "paid": "Paid",
+      "failed": "Payment failed",
+      "refunded": "Refunded",
+      "unknown": "Payment status updating"
+    },
+    "method": {
+      "cod": "Cash on delivery",
+      "upi": "UPI",
+      "card": "Card",
+      "netbanking": "Net banking",
+      "wallet": "Wallet",
+      "paylater": "Pay later",
+      "emi": "EMI",
+      "unknown": "Payment method"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "code": {
+      "validation": "Please check what you entered and try again.",
+      "invalid_payload": "Please check what you entered and try again.",
+      "invalid_request": "Please check what you entered and try again.",
+      "not_found": "We could not find that. It may have been removed.",
+      "unauthorized": "Please sign in to continue.",
+      "rate_limited": "Too many attempts. Please wait a minute and try again.",
+      "wrong_state": "That cannot be done at this stage of the order.",
+      "conflict": "This was just changed somewhere else. Please refresh and try again.",
+      "version_conflict": "This was just changed somewhere else. Please refresh and try again.",
+      "idempotency_mismatch": "This request clashes with an earlier one. Please start again.",
+      "database_unavailable": "Something went wrong on our side. Please try again in a moment.",
+      "server_error": "Something went wrong on our side. Please try again in a moment.",
+      "not_configured": "This is not switched on yet. Please try again later.",
+      "provider_not_configured": "This is not switched on yet. Please try again later.",
+      "coming_soon": "Coming soon.",
+      "outside_delivery_area": "That address is outside our delivery area.",
+      "out_of_zone": "That address is outside our delivery area.",
+      "address_needs_point": "Please pick your delivery address on the map before paying.",
+      "merchant_unavailable": "This store cannot take your order right now. Nothing was charged.",
+      "switched_to_cash": "This order was switched to cash on delivery.",
+      "order_not_deliverable": "This order cannot be delivered yet.",
+      "upload_unavailable": "The photo could not be uploaded. Please try again.",
+      "upload_missing": "The photo could not be uploaded. Please try again.",
+      "offline": "No internet connection. Check your connection and try again.",
+      "timeout": "This is taking too long. Please try again.",
+      "choose_method": "Please choose how you want to pay.",
+      "phone_required": "Add your 10-digit mobile number to pay online.",
+      "price_changed": "Prices changed. Please check your cart and try again.",
+      "payment_in_progress": "An earlier payment is still being confirmed. Please do not pay again.",
+      "gateway_unavailable": "Payment is not available right now. No money was taken.",
+      "online_payments_off": "Online payment is not available right now. Please choose cash on delivery.",
+      "session_expired": "This payment session ended. Please try again.",
+      "upi_id_invalid": "That UPI ID does not look right. Check it and try again.",
+      "upi_direct_unavailable": "Direct UPI is not available. Use the secure payment page.",
+      "update_required": "Please update OneLocal to continue.",
+      "maintenance": "OneLocal is taking a short break. Please try again in a few minutes."
+    }
+  },
+  "auth": {
+    "skipForNow": "Skip for now",
+    "eyebrow": {
+      "checkout": "ALMOST THERE",
+      "signin": "WELCOME BACK",
+      "signup": "NEW HERE?"
+    },
+    "heroTitle": {
+      "checkout": "Sign in to place\nyour order.",
+      "signin": "Your whole city,\none sign-in away.",
+      "signup": "Make OneLocal\nfeel like yours."
+    },
+    "heroSub": {
+      "checkout": "Your bag is saved. Sign in once and we’ll take you straight back to pay.",
+      "default": "Orders that follow you to any phone, saved addresses, and OneLocal Coins when they arrive."
+    },
+    "consent": {
+      "notice": "We use your name, number, email and address only to run your account and deliver your orders.",
+      "privacyLink": "Read the privacy notice",
+      "adult": "I am {{age}} or older",
+      "marketingOn": "You get offers and updates. Change this any time in Privacy & your data.",
+      "marketing": "Send me offers and updates (optional)",
+      "marketingHint": "You can switch this off any time.",
+      "under": "Under {{age}}?"
+    },
+    "minor": {
+      "title": "Ask a parent or guardian",
+      "body": "One Local accounts are for adults. A parent or guardian can sign in with their own account and order for you. We don’t track children or show them targeted ads. You can keep browsing without an account.",
+      "browse": "Keep browsing"
+    },
+    "method": {
+      "phone": "Mobile number",
+      "email": "Email"
+    },
+    "signIn": "Sign in",
+    "createAccount": "Create account",
+    "createMyAccount": "Create my account",
+    "verify": "Verify and continue",
+    "sendCode": "Send code",
+    "changeNumber": "Change number",
+    "resend": "Resend code",
+    "resendIn": "Resend code in {{seconds}}s",
+    "placeholder": {
+      "mobile": "10-digit mobile number",
+      "code": "6-digit code",
+      "name": "Your name",
+      "email": "Email address",
+      "password": "Password",
+      "createPassword": "Create a password (6+ characters)"
+    },
+    "hidePassword": "Hide password",
+    "showPassword": "Show password",
+    "google": {
+      "continue": "Continue with Google",
+      "hint": "Google sign-in switches on as soon as its keys are added."
+    },
+    "legal": "We never share your details with stores beyond what an order needs.",
+    "privacyNotice": "Privacy notice",
+    "noticeVersion": "version {{version}}",
+    "notice": {
+      "codeSent": "We sent a code by SMS to +91 {{number}}.",
+      "confirmEmail": "Almost there — confirm your email from the link we sent, then sign in."
+    },
+    "error": {
+      "confirmAdult": "Please confirm you are {{age}} or older to continue.",
+      "mobileInvalid": "Enter a valid 10-digit mobile number.",
+      "codeShort": "Enter the 6-digit code from the SMS.",
+      "nameShort": "Tell us your name (at least two letters).",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordShort": "Your password needs at least 6 characters.",
+      "googleUnfinished": "Google sign-in did not finish.",
+      "googleUnfinishedRetry": "Google sign-in did not finish. Please try again.",
+      "googleOff": "Google sign-in is not switched on yet. Please try again later.",
+      "googleStart": "Could not start Google sign-in.",
+      "notConfigured": "Sign-in is not configured for this build.",
+      "invalidCredentials": "That email and password don’t match. Check them and try again.",
+      "alreadyRegistered": "An account with this email already exists. Sign in instead.",
+      "passwordWeak": "Choose a password with at least 6 characters.",
+      "emailNotConfirmed": "Please confirm your email first — check your inbox for the link.",
+      "codeWrong": "That code is wrong or has expired. Check it, or send a new one.",
+      "waitSeconds": "Please wait {{seconds}} seconds before asking for another code.",
+      "phoneOff": "Sign-in by mobile number isn’t switched on yet. Please use your email for now.",
+      "smsFailed": "We couldn’t send the code. Check the number and try again in a minute.",
+      "codeMissing": "Enter the code we sent you.",
+      "signOut": "Couldn’t sign out right now. Check your connection and try again.",
+      "appleOff": "Apple sign-in is not switched on yet. Please try again later.",
+      "appleStart": "Could not start Apple sign-in.",
+      "appleUnfinishedRetry": "Apple sign-in did not finish. Please try again.",
+      "appleUnfinished": "Apple sign-in did not finish."
+    },
+    "apple": {
+      "continue": "Continue with Apple"
+    },
+    "switch": {
+      "toSignup": "New here? Create an account",
+      "toSignin": "Already have an account? Sign in"
+    }
+  },
+  "account": {
+    "language": "Language",
+    "languageRow": "Language: {{language}}",
+    "avatarChange": "Change profile photo",
+    "guestName": "Hello, neighbour",
+    "guestSub": "Browsing as a guest",
+    "signedInPill": "Signed in · orders follow you to any phone",
+    "signInOrCreate": "Sign in or create an account",
+    "stat": {
+      "orders": "Orders",
+      "saved": "Saved",
+      "addresses": "Addresses"
+    },
+    "coinsSub": "Earn on every order. Spend on movie nights, events and treats around Latur.",
+    "coinsTeaser_one": "Your {{count}} order so far would have earned about <bold>{{coins}} coins</bold>.",
+    "coinsTeaser_other": "Your {{count}} orders so far would have earned about <bold>{{coins}} coins</bold>.",
+    "preferences": "Your preferences",
+    "foodPreference": "Food preference",
+    "diet": {
+      "any": "Anything",
+      "veg": "Veg",
+      "egg": "Egg",
+      "nonveg": "Non-veg"
+    },
+    "notifyAbout": "Notify me about",
+    "notifyLabel": {
+      "orders": "Order updates",
+      "offers": "Offers near me",
+      "bookings": "Booking reminders"
+    },
+    "notifySub": {
+      "orders": "Packed, on the way, delivered",
+      "offers": "Deals from Latur stores you follow",
+      "bookings": "Movie and event reminders"
+    },
+    "group": {
+      "orders": "Orders & bookings",
+      "account": "Account",
+      "rewards": "Rewards",
+      "help": "Help"
+    },
+    "rowLabel": {
+      "orders": "My Orders",
+      "bookings": "My Bookings",
+      "wishlist": "Wishlist",
+      "profile": "Edit profile",
+      "addresses": "Saved Addresses",
+      "payments": "Payment Preferences",
+      "privacy": "Privacy & your data",
+      "refer": "Refer & Earn",
+      "wallet": "OneLocal Wallet",
+      "help": "Help & Support",
+      "about": "About OneLocal"
+    },
+    "rowSub": {
+      "orders": "Track a delivery or order again",
+      "bookings": "Your movie and event requests",
+      "wishlist": "All your little favourites",
+      "profile": "Photo, name, birthday and contact",
+      "addresses": "Home, work and everywhere in between",
+      "payments": "Choose how you prefer to pay",
+      "privacy": "Consents, download or delete your data",
+      "refer": "Good things are better shared",
+      "wallet": "Store credit and refunds, in one place",
+      "help": "Find answers and save a request",
+      "about": "A little closer to your city"
+    },
+    "signedInTitle": "Signed in",
+    "yourAccount": "Your account",
+    "signOut": "Sign out",
+    "signedOutNotice": "You’re signed out. Your cart and preferences stay on this phone.",
+    "guestPitch": "Sign in so your orders, addresses and bookings follow you to any phone.",
+    "signOutTitle": "Sign out of One Local?",
+    "signOutBody": "Your cart and preferences stay on this phone. Sign in again any time to see your orders.",
+    "signOutBodyWho": "You’re signed in as {{who}}. Your cart and preferences stay on this phone. Sign in again any time to see your orders.",
+    "signOutEverywhere": "Sign out of all devices",
+    "deviceNoticeUser": "Your orders are linked to your account. Profile and preferences are saved on this device for now.",
+    "deviceNoticeGuest": "Your profile and preferences are saved on this device.",
+    "storageLoadError": "Could not load your saved preferences. Please reopen this screen.",
+    "storageSaveError": "Could not save your changes. Please try again.",
+    "profileLoading": "Your profile is still loading",
+    "coinsTitle": "OneLocal Coins"
+  },
+  "profile": {
+    "title": "Make it yours",
+    "subtitle": "Your photo and details, saved on this device.",
+    "choosePhoto": "Choose photo",
+    "takePhoto": "Take photo",
+    "avatarChoice": {
+      "person": "Choose person avatar",
+      "happy": "Choose happy avatar",
+      "flower": "Choose flower avatar",
+      "rocket": "Choose rocket avatar"
+    },
+    "label": {
+      "name": "Full name",
+      "email": "Email address · optional",
+      "phone": "Mobile number · optional",
+      "birthday": "Birthday · optional"
+    },
+    "placeholder": {
+      "name": "What should we call you?",
+      "birthday": "DD/MM — for a little treat"
+    },
+    "saveChanges": "Save changes",
+    "saved": "Saved. Your profile looks great.",
+    "error": {
+      "camera": "Camera access is off. Allow it in settings, or choose a photo instead.",
+      "photoTooLarge": "That photo is too large. Try a smaller one.",
+      "photoOpen": "Could not open your photos. Please try again.",
+      "name": "Please enter a name with at least two characters.",
+      "email": "Please enter a valid email address.",
+      "phone": "Please enter a valid 10-digit Indian mobile number.",
+      "birthday": "Enter your birthday as DD/MM, for example 14/08.",
+      "save": "Could not save your profile. Please try again."
+    }
+  },
+  "help": {
+    "title": "A little help, right here",
+    "subtitle": "Quick answers and a place to leave your questions.",
+    "faq": {
+      "q1": "Where is my order?",
+      "a1": "Open Profile → My Orders to see your saved order and its illustrative delivery story. This sample app does not dispatch a real rider.",
+      "q2": "Will I be charged at checkout?",
+      "a2": "No. Checkout creates a sample order. Payment-method selection saves your preference but does not collect money or bank details.",
+      "q3": "How do I save my favourites?",
+      "a3": "Tap the heart on any product. Your favourites appear under Profile → Wishlist and remain saved on this device.",
+      "q4": "How do referral rewards work?",
+      "a4": "You can copy or share your invite code. Referral tracking and rewards are not active yet, so sharing does not earn money."
+    },
+    "requestTitle": "Leave a support request",
+    "serviceNotice": "Your request is saved in OneLocal. Live chat, email delivery and response times are not connected yet. Do not include passwords, card details or sensitive information.",
+    "topic": {
+      "order": "order",
+      "payment": "payment",
+      "profile": "profile",
+      "other": "other"
+    },
+    "referenceLabel": "Order reference, optional",
+    "referencePlaceholder": "Order reference · optional",
+    "messageLabel": "Your question",
+    "messagePlaceholder": "Tell us a little more…",
+    "submit": "Save support request",
+    "receipt": "Request saved. Reference: {{reference}}",
+    "error": {
+      "short": "Please describe your question in at least 10 characters.",
+      "save": "Could not save your request. Your message is still here; please try again."
+    }
+  },
+  "about": {
+    "title": "One city. Endless possibilities.",
+    "madeIn": "OneLocal · Made in Latur",
+    "story": "A little closer to home.",
+    "storyBody": "Food you crave. Essentials you need. Local finds you love. OneLocal brings shopping and discovery together in one place, for Latur.",
+    "experienceTitle": "About this experience",
+    "sampleNotice": "This is a sample shopping experience. Catalogue prices, delivery estimates, orders, bookings and wallet balances are demonstrations, not live merchant services. No payments are collected.",
+    "privacyNotice": "Your profile, saved addresses, wishlist, referral code and payment preference stay on this device. No login or cross-device profile sync is connected. Do not enter sensitive payment information.",
+    "version": "OneLocal · Version 1.0"
+  },
+  "refer": {
+    "title": "Good finds. Better together.",
+    "subtitle": "Invite your favourite people to your favourite little city.",
+    "heroTitle": "One for you.\nOne for your people.",
+    "codeLabel": "Your personal invite code",
+    "share": "Share an invite",
+    "copy": "Copy code",
+    "copied": "Invite code copied. Share it with a friend!",
+    "copyFailed": "Could not copy. You can select and copy the code below.",
+    "shareMessage": "Discover little local favourites with OneLocal, made for Latur. My invite code is {{code}}. Referral rewards are not active yet.",
+    "shareReady": "Invite ready to share.",
+    "shareFailed": "Sharing is unavailable here. Use Copy code instead.",
+    "statusTitle": "Rewards are coming later",
+    "terms": "You can share your invite code now. Referral tracking, rewards and cash payouts are not active. No earnings are promised or credited for sharing. This code is stored on this device."
+  },
+  "wallet": {
+    "title": "Your little city wallet",
+    "demoBadge": "DEMO WALLET",
+    "balanceLabel": "A little something for later",
+    "balanceFoot": "OneLocal · Sample balance only",
+    "addDemo": "Add {{amount}} demo",
+    "adding": "Adding…",
+    "explore": "Explore the city",
+    "disclaimer": "This is a demo, not a real-money wallet. Credits cannot be paid in, withdrawn, transferred or used at checkout.",
+    "activity": "A little activity",
+    "entryMeta": "{{date}} · Demo transaction",
+    "welcomeCredit": "Sample welcome credit",
+    "sampleTopUp": "Sample top-up",
+    "added": "{{amount}} demo credit added. No real money was used.",
+    "loadFailed": "Could not load your demo wallet.",
+    "saveFailed": "Could not save the demo credit. Please try again."
+  },
+  "wishlist": {
+    "title": "Saved with love",
+    "subtitle_one": "{{count}} favourite. A little inspiration for later.",
+    "subtitle_other": "{{count}} favourites. A little inspiration for later.",
+    "emptyTitle": "Your next favourite is out there",
+    "emptyBody": "Tap a heart on any product to save it here.",
+    "browse": "Discover your favourites"
+  },
+  "payments": {
+    "title": "Your way to pay",
+    "subtitle": "Choose a preferred method for your next sample order.",
+    "save": "Save payment preference",
+    "saved": "Your preferred payment method is saved for checkout.",
+    "saveFailed": "Could not save your preference.",
+    "sampleNotice": "Payment-method selection only. This app does not charge you or collect card numbers, CVV, bank logins or UPI PINs. The demo wallet is not spendable at checkout."
+  },
+  "unitPrice": {
+    "per100": "{{price}}/100 {{unit}}",
+    "perPiece": "{{price}}/piece"
+  },
+  "product": {
+    "loadFailed": "Couldn’t load this product.",
+    "pauseImages": "Pause images",
+    "playImages": "Play images",
+    "pause": "Pause",
+    "watch": "Watch",
+    "moreInCategory": "More in {{name}}",
+    "off": "{{pct}} OFF",
+    "gstAdded": "5% GST added at checkout",
+    "taxIncluded": "Inclusive of all taxes",
+    "inCompare": "In compare",
+    "addToCompare": "Add to compare",
+    "removeFromWishlist": "Remove from wishlist",
+    "saveToWishlist": "Save to wishlist",
+    "saved": "Saved",
+    "compareFull": "You can compare up to {{limit}} items. Remove one first.",
+    "compareAddOne": "Add one more to compare",
+    "compareItems": "Compare {{n}} items",
+    "storeFallback": "Your neighbourhood store",
+    "moreLikeThis": "More like this",
+    "footerTagline": "A little closer to your city",
+    "footerSub": "{{name}} · delivered across Latur",
+    "openCart": "Open cart",
+    "bagSummary": "{{n}} in bag · {{price}}",
+    "viewBag": "View bag →",
+    "mrpPrice": "MRP {{price}}",
+    "addToBag": "Add to bag",
+    "removeOne": "Remove one",
+    "addOneMore": "Add one more",
+    "closeVideo": "Close video",
+    "viewItem": "View {{name}}",
+    "viewItemDetails": "View {{name}} details",
+    "saveItem": "Save {{name}}",
+    "unsaveItem": "Unsave {{name}}",
+    "addItem": "Add {{name}}",
+    "removeOneItem": "Remove one {{name}}",
+    "addOneItem": "Add one {{name}}",
+    "add": "ADD",
+    "moreFromBrand": "More from {{name}}"
+  },
+  "store": {
+    "loading": "Loading store...",
+    "sampleBadge": "Sample store",
+    "following": "Following",
+    "follow": "Follow store",
+    "allItems": "All Items",
+    "allProducts": "All Products",
+    "emptyCategory": "No products in this category",
+    "notFound": "This store isn’t here.",
+    "backHome": "Back to OneLocal"
+  },
+  "category": {
+    "notFound": "Category not found",
+    "dismissMessage": "Dismiss message",
+    "filterBudget": "Under {{price}}",
+    "filterOffers": "Offers & discounts",
+    "filterSaved": "My saved items",
+    "sortRecommended": "Recommended",
+    "sortLow": "Price: low to high",
+    "sortHigh": "Price: high to low",
+    "sortRating": "Highest rated",
+    "allBrands": "All brands",
+    "allPacks": "All pack sizes",
+    "filters": "Filters",
+    "filtersCount": "Filters · {{n}}",
+    "sort": "Sort",
+    "brand": "Brand",
+    "type": "Type",
+    "chooseFilters": "Choose filters",
+    "chooseSort": "Choose sort",
+    "chooseBrand": "Choose brand",
+    "chooseType": "Choose type",
+    "saveFailed": "Could not save your favourites. Please try again.",
+    "empty": "No matching items",
+    "clearFilters": "Clear filters",
+    "browse": "Browse categories",
+    "count_one": "{{value}} item · sample catalogue",
+    "count_other": "{{value}} items · sample catalogue",
+    "estimateNote": "Delivery times are sample estimates.",
+    "sortBy": "Sort by",
+    "chooseABrand": "Choose a brand",
+    "packSize": "Pack size",
+    "linkCopied": "Category link copied",
+    "shareFailed": "Could not share this category. Please try again.",
+    "shareMessage": "{{title}} on OneLocal: {{url}}",
+    "searchThis": "Search this category",
+    "searchPlaceholder": "Search these items",
+    "changeAddress": "Change delivery address, {{location}}",
+    "deliveringTo": "Delivering to Home:",
+    "shareCategory": "Share category",
+    "closeSearch": "Close search",
+    "searchCategory": "Search category",
+    "closeFilters": "Close filters",
+    "reset": "Reset",
+    "showItems": "Show items",
+    "offOnMrp": "{{pct}} OFF on MRP",
+    "ratedA11y": "Rated {{rating}} out of 5, sample rating",
+    "deliveryA11y_one": "Estimated delivery {{value}} minute, sample estimate",
+    "deliveryA11y_other": "Estimated delivery {{value}} minutes, sample estimate",
+    "viewDetailsOf": "View details of {{name}}"
+  },
+  "collection": {
+    "notFound": "This little store isn’t here.",
+    "explore": "Explore categories",
+    "sparkleNavratri": "A little sparkle for Navratri",
+    "poweredBy": "Powered by your favourites",
+    "demoBrands": "Demo brand collections · explore every little find",
+    "yourFinds": "Your finds",
+    "celebration": "Everything for your celebration",
+    "count_one": "{{value}} find · sample catalogue",
+    "count_other": "{{value}} finds · sample catalogue",
+    "clearFilters": "Clear filters",
+    "emptyTitle": "No finds just yet",
+    "emptyHint": "Try another search or clear your filters.",
+    "detour": "Your next little detour",
+    "demoNote": "Illustrative product artwork. Sample prices and listings. No live brand affiliation or delivery availability implied."
+  },
+  "brand": {
+    "notFound": "Brand not found",
+    "backHome": "Back to OneLocal",
+    "eyebrow": "THE BRAND EDIT",
+    "storeProfile": "Store profile",
+    "following": "Following",
+    "follow": "Follow brand",
+    "finds_one": "{{value}} find",
+    "finds_other": "{{value}} finds",
+    "moreFrom": "More from {{name}}",
+    "countLine_one": "{{value}} little find, delivered across Latur",
+    "countLine_other": "{{value}} little finds, delivered across Latur",
+    "sampleNotice": "Sample brand collection. Listings, product imagery and prices are for exploring the app, not an official brand partnership."
+  },
+  "compare": {
+    "emptyNone": "Nothing to compare yet",
+    "emptyOne": "Add one more item",
+    "emptyBody": "Open any product and tap “Add to compare”. Put up to three side by side — price, pack size, price per 100 g, rating and delivery time.",
+    "browse": "Browse products",
+    "pickAnother": "Pick another",
+    "rowPrice": "Price",
+    "rowMrp": "MRP",
+    "rowPack": "Pack",
+    "rowUnit": "Unit price",
+    "rowRating": "Rating",
+    "rowDelivery": "Delivery",
+    "pctOff": "{{pct}} off",
+    "removeItem": "Remove {{name}}",
+    "bestValue": "BEST VALUE",
+    "inBagAdd": "{{n}} in bag · add",
+    "title": "Compare",
+    "clearAll": "Clear all",
+    "subSame": "Best value is the lowest price for the same amount.",
+    "subDifferent": "These come in different units, so best value goes to the lowest price."
+  },
+  "booking": {
+    "errorSlot": "Please choose a show time.",
+    "errorName": "Please enter your name.",
+    "errorPhone": "Enter a valid 10-digit Indian mobile number.",
+    "errorSave": "Couldn’t save your enquiry. Please try again.",
+    "notFound": "Experience not found",
+    "exploreBookIt": "Explore Book It",
+    "saved": "Your plan is saved.",
+    "guests_one": "{{value}} guest",
+    "guests_other": "{{value}} guests",
+    "reference": "Reference: {{ref}}",
+    "demoNotice": "This is a demo enquiry, not a confirmed ticket. No payment was taken and no venue was contacted.",
+    "viewEnquiries": "View my enquiries",
+    "keepExploring": "Keep exploring",
+    "planTitle": "Plan something good",
+    "demo": "DEMO",
+    "pickDay": "Pick a day",
+    "chooseTime": "Choose a time",
+    "howManyGuests": "How many guests?",
+    "yourDetails": "Your details",
+    "fullName": "Full name",
+    "phonePlaceholder": "10-digit mobile number",
+    "indicativeTotal": "Indicative total · {{guests}}",
+    "sampleNotice": "Sample listing. Save an enquiry to try the experience. No real tickets, payment or venue contact.",
+    "saveDemo": "Save demo enquiry"
+  },
+  "enquiries": {
+    "title": "Your plans, in one place.",
+    "sub": "Saved demo enquiries · no confirmed tickets",
+    "guestsRef": "{{guests}} · Ref {{ref}}",
+    "badge": "DEMO ENQUIRY SAVED",
+    "emptyTitle": "Your next good time starts here."
+  },
+  "india": {
+    "all": "All of India",
+    "filterStates": "Filter states",
+    "filterDistricts": "Filter districts",
+    "filterPlaces": "Filter towns and villages",
+    "chooseState": "Choose a state",
+    "chooseDistrict": "Choose a district",
+    "placesHint": "Cities and towns first, then villages A–Z",
+    "loadFailed": "Couldn’t load this list. Tap to try again.",
+    "kindCity": "City",
+    "kindTown": "Town",
+    "kindLocality": "Area",
+    "kindVillage": "Village",
+    "kindPeople": "{{kind}} · {{value}} people"
+  },
+  "reel": {
+    "videoUnavailable": "Video unavailable. You can still shop this find.",
+    "likeFailed": "Could not save your like. Please try again.",
+    "copyFailed": "Select the link to copy it manually.",
+    "shareMessage": "Found on OneLocal: {{name}} — {{link}}",
+    "backToDiscover": "Back to Discover grid",
+    "title": "‹ City finds.",
+    "tagline": "LITTLE ADS. LOVELY DISCOVERIES.",
+    "viewCart": "View cart",
+    "play": "Play video",
+    "pause": "Pause video",
+    "like": "Like product",
+    "unlike": "Unlike product",
+    "shareProduct": "Share product",
+    "share": "Share",
+    "unmute": "Unmute video",
+    "mute": "Mute video",
+    "soundOff": "Sound off",
+    "soundOn": "Sound on",
+    "exploreCreator": "Explore {{creator}} products",
+    "sampleAd": "Sample brand ad · Explore collection",
+    "addToCartA11y": "Add {{name}} to cart",
+    "added": "Added · {{n}}",
+    "addToCart": "Add to cart",
+    "shopNow": "Shop Now",
+    "swipeNext": "Swipe up for your next find",
+    "shareTitle": "Share a good find",
+    "linkCopied": "Link copied",
+    "copyLink": "Copy product link"
+  },
+  "location": {
+    "title": {
+      "choose": "Choose a location",
+      "first": "Where are you?"
+    },
+    "lede": "One Local works across India. Pick your city, town or village to see what’s near you.",
+    "searchMaps": "Search city, village, area or street",
+    "searchPlain": "Search city, town or village",
+    "openSettings": "Open Settings",
+    "noPlaces": "No places found. Check the spelling, or try the nearest town.",
+    "section": {
+      "streets": "ADDRESSES & LANDMARKS",
+      "saved": "SAVED ADDRESSES",
+      "recent": "RECENT PLACES",
+      "live": "WE DELIVER IN",
+      "popular": "POPULAR CITIES"
+    },
+    "useCurrent": "Use current location",
+    "addAddress": "Add delivery address",
+    "selected": "SELECTED",
+    "optionsFor": "Options for {{label}}",
+    "current": "Current location",
+    "liveBlurb": "Food, groceries, shops and care, delivered",
+    "browse": {
+      "title": "Browse all of India",
+      "sub": "By state and district, down to every village"
+    },
+    "kind": {
+      "city": "City",
+      "town": "Town",
+      "locality": "Area",
+      "village": "Village"
+    },
+    "webOff": "Location access is off for this site. Allow it in your browser’s site settings, or search for your town above.",
+    "off": {
+      "canAsk": "Location access is off. Allow it to use your current location, or search for your town above.",
+      "settings": "Location access is turned off for OneLocal. Turn it on in Settings, or search for your town above."
+    },
+    "cannotFind": "Couldn’t find where you are right now. Check that location is switched on, or search for your town above."
+  },
+  "address": {
+    "kind": {
+      "home": "Home",
+      "work": "Work",
+      "other": "Other"
+    },
+    "save": "Save address",
+    "editTitle": "Edit address",
+    "list": {
+      "title": "Your favourite places",
+      "subtitle": "Save delivery details for home, work or someone special. Sample delivery service in Latur.",
+      "emptyTitle": "A place for every delivery",
+      "emptyHint": "Add your first address to get started.",
+      "remove": "Remove",
+      "confirmRemove": "Remove this saved address?",
+      "yesRemove": "Yes, remove",
+      "keep": "Keep address",
+      "selected": "Selected for delivery",
+      "deliverHere": "Deliver here",
+      "addTitle": "Add an address",
+      "receiverName": "Receiver name",
+      "mobile": "Mobile number",
+      "flat": "Flat / building / street",
+      "areaCity": "Area / city",
+      "pin": "PIN code",
+      "add": "Add a new address",
+      "errRequired": "Add your name, a complete street address and area.",
+      "errPhone": "Enter a valid 10-digit mobile number.",
+      "errPin": "Enter a valid 6-digit PIN code.",
+      "saveFailed": "Could not save this address.",
+      "removeFailed": "Could not remove this address.",
+      "selectFailed": "Could not select this address.",
+      "saved": "Address saved.",
+      "removed": "Address removed.",
+      "deliveringTo": "Delivering to {{label}}."
+    },
+    "form": {
+      "addTitle": "Add address details",
+      "name": "Name *",
+      "mobile": "Mobile number *",
+      "mobileHelp": "Our delivery partner calls this number if they can't find you.",
+      "building": "House / flat / building & floor *",
+      "street": "Street or landmark (recommended)",
+      "area": "Area / locality *",
+      "pincode": "Pincode",
+      "saveAs": "Save address as *",
+      "change": "Change",
+      "directionsHint": "E.g. Ring the bell twice, blue gate opposite the temple",
+      "saving": "Saving…",
+      "errName": "Add the receiver's name.",
+      "errPhone": "Add a 10-digit mobile number for the delivery partner.",
+      "errBuilding": "Add your house, flat or building and floor.",
+      "errArea": "Add your area or locality.",
+      "errPin": "Pincode should have 6 digits.",
+      "errSaveAs": "Give this address a name, like \"Mom's place\".",
+      "saveFailed": "Could not save this address. Please try again.",
+      "locationDetails": "Location details",
+      "receiverDetails": "Receiver details",
+      "areaLabel": "Area",
+      "noStreetFound": "We couldn't find a street address for this pin. Add your area below.",
+      "instructions": "Delivery instructions (recommended)",
+      "instructionsRow": "Instructions to reach your door",
+      "addAction": "Add"
+    },
+    "map": {
+      "hint": "Move the map to place the pin on your door",
+      "searchAnother": "Search another area",
+      "finding": "Finding this address…",
+      "pinned": "Pinned location",
+      "pinnedAt": "Pinned at {{latitude}}, {{longitude}}. You'll type the street and area on the next step.",
+      "notServiceable": "OneLocal doesn't deliver here yet. We're live in {{city}} — move the pin inside the city.",
+      "missingTitle": "The map is not switched on yet",
+      "missingBody": "It needs a Google Maps key. You can still search for your area or type your address.",
+      "deliveredHere": "Order will be delivered here",
+      "distanceAway": "This is {{distance}} away from your current location.",
+      "meters": "{{count}} m",
+      "km": "{{count}} km",
+      "noStreet": "No street address found here. You can add it on the next step.",
+      "confirmProceed": "Confirm & proceed"
+    }
+  },
+  "search": {
+    "title": {
+      "budget": "Little finds under {{amount}}",
+      "trending": "Trending in Latur",
+      "picks": "Top picks for you",
+      "default": "Find your next favourite"
+    },
+    "near": {
+      "placeholder": "Search food, shops, pharmacies near {{town}}",
+      "placeholderYou": "Search food, shops, pharmacies near you",
+      "places": "Places near {{town}}",
+      "placesYou": "Places near you",
+      "around": "Around {{town}}",
+      "aroundYou": "Around you",
+      "finding": "Finding places near {{town}}…",
+      "findingYou": "Finding places near you…"
+    },
+    "everything": "Everything",
+    "dept": {
+      "food": "Food",
+      "grocery": "Groceries",
+      "shops": "Shops",
+      "care": "Pharmacy\n& Beauty"
+    },
+    "finds": "{{value}} finds for you",
+    "creditGoogle": "Listings from Google Maps.",
+    "creditOsm": "Listings © OpenStreetMap contributors.",
+    "noResults": "No finds for “{{query}}”",
+    "noResultsHint": "Try another word, or a department like Food or Shops.",
+    "clear": "Clear search",
+    "smart": {
+      "titleVoice": "Say it. Find it.",
+      "titleImage": "See it. Find it.",
+      "subtitle": "A little help from OneLocal AI",
+      "descVoice": "Tell us what’s on your shopping list. We’ll look through the catalogue for you.",
+      "descImage": "Snap a product or pick a photo. We’ll help you find it, or something similar.",
+      "takePhoto": "Take a photo",
+      "choosePhoto": "Choose photo",
+      "privacyVoice": "Audio is sent to our AI provider, then discarded after transcription. Record up to 20 seconds.",
+      "privacyImage": "Photos are sent to our AI provider and stored privately for processing. Avoid personal documents or sensitive images.",
+      "loadingVoice": "Listening to your request and finding products…",
+      "loadingImage": "Looking for a little match…",
+      "cancel": "Cancel search",
+      "retryPhoto": "Try photo again",
+      "youSaid": "You said: “{{text}}”",
+      "noMatches": "No matching products in this sample catalogue yet. Try another photo or search word.",
+      "mistakes": "AI can make mistakes. Check the product details before adding.",
+      "typeInstead": "Prefer to type? Search here",
+      "timeout": "Search took too long. Please try again.",
+      "unavailable": "Search unavailable. Please try again.",
+      "cameraOff": "Camera access is off. Enable it in settings or choose a photo instead.",
+      "photoFailed": "Could not open that photo. Please choose another."
+    }
+  },
+  "voice": {
+    "stopA11y": "Stop and search",
+    "startA11y": "Start voice search",
+    "listening": "Listening · {{seconds}}s / 20s",
+    "opening": "Opening your microphone…",
+    "idle": "Tap, speak, and find your favourites.",
+    "tipRecording": "Tap the square when you’ve finished.",
+    "tipIdle": "Try “Amul cheese and milk” in English, Hindi or Marathi.",
+    "errFinish": "Could not finish the recording. Please try again.",
+    "errMicOff": "Microphone access is off. Allow it in device settings, or use text search.",
+    "errMicStart": "Microphone could not start. Check permission or use text search."
+  },
+  "assistant": {
+    "title": "One, for you.",
+    "tagline": "YOUR CITY’S SHOPPING SIDEKICK",
+    "newChat": "Start a new conversation",
+    "cartA11y": "Cart with {{value}} items",
+    "welcomeA": "Big plans.",
+    "welcomeB": "Little help?",
+    "welcomeCopy": "From your next meal to your smartest buy.\nTell One what’s on your mind.",
+    "disclaimer": "AI can make mistakes. Catalogue prices are samples; live retailer prices aren’t connected. Meal ideas are general guidance.",
+    "thinking": "One is finding a little goodness for you…",
+    "loadFailed": "Could not load your conversation. Tap retry.",
+    "retry": "Retry",
+    "transcribeFailed": "Could not transcribe. Please type instead.",
+    "hideMic": "Hide microphone",
+    "speak": "Speak to One",
+    "messageLabel": "Message One",
+    "placeholder": "Ask anything. Make it a One thing.",
+    "send": "Send message",
+    "starter": {
+      "festiveTitle": "Plan my festive basket",
+      "festivePrompt": "Build a Ganesh Chaturthi shopping list with sweets and puja essentials. Choose a few affordable items and show their total.",
+      "fitnessTitle": "Fuel my fitness routine",
+      "fitnessPrompt": "Suggest a budget-friendly fitness shopping list and balanced meal ideas.",
+      "pantryTitle": "Restock my pantry",
+      "pantryPrompt": "Build a useful everyday pantry restock basket. Prefer value and give the combined price.",
+      "vegTitle": "Veggie meal plan",
+      "vegPrompt": "Recommend a vegetarian high-protein meal plan and matching products.",
+      "swapsTitle": "Find better-value swaps",
+      "swapsPrompt": "Review my current cart and suggest less expensive catalogue alternatives where relevant. Explain the price difference honestly."
+    },
+    "analysePrompt": "Review my current cart, tell me the subtotal, suggest value swaps, and identify useful missing essentials. Do not change my cart.",
+    "catalogueLabel": "FROM OUR SAMPLE CATALOGUE",
+    "compareTitle": "Check prices elsewhere",
+    "compareNote": "External searches, not live quotes. Check pack size, delivery fees and availability.",
+    "searchMerchant": "Search {{merchant}}",
+    "openFailed": "Could not open this retailer. Please try again.",
+    "basket": {
+      "label": "YOUR SUGGESTED BASKET",
+      "oneEach": "one of each",
+      "withinBudget": "{{amount}} within budget",
+      "note": "Sample prices. Delivery fees calculated in cart. Items already in your bag won’t be added twice.",
+      "add_one": "Add {{value}} missing item · {{amount}}",
+      "add_other": "Add {{value}} missing items · {{amount}}",
+      "allIn": "All picks are in your bag"
+    },
+    "tools": {
+      "budget": "BASKET BUDGET",
+      "vegetarian": "Vegetarian",
+      "review": "Review my bag ({{value}})"
+    },
+    "err": {
+      "interrupted": "The reply was interrupted. Please try again.",
+      "unreachable": "Could not reach One. Please try again.",
+      "connection": "Connection lost. Your message is ready to retry.",
+      "timeout": "One took too long to reply. Please try again."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "discover": "Discover",
+    "discoverButton": "Discover. Hold for One AI",
+    "discoverHint": "Tap to discover reels. Long press to ask the shopping assistant."
+  },
+  "departments": {
+    "food": {
+      "name": "Food"
+    },
+    "grocery": {
+      "name": "Groceries"
+    },
+    "shops": {
+      "name": "Shops"
+    },
+    "care": {
+      "name": "Pharmacy\n& Beauty"
+    },
+    "bookIt": {
+      "name": "Book It",
+      "moviesTitle": "A date with the big screen",
+      "moviesSubtitle": "Sample movie listings · choose your show",
+      "eventsTitle": "Be there. Feel it live.",
+      "eventsSubtitle": "Music, culture and something different",
+      "activitiesTitle": "A little adventure awaits",
+      "activitiesSubtitle": "Make your next weekend count",
+      "enquiriesTitle": "Your saved enquiries",
+      "enquiriesSub": "Keep your plans in one place",
+      "demoNotice": "Demo experiences only. Enquiries are saved in the app; no tickets are issued, payments taken or venues contacted."
+    },
+    "filters": {
+      "burgers": "Burgers",
+      "pizza": "Pizza",
+      "coffee": "Coffee",
+      "chicken": "Chicken",
+      "fruitsVeggies": "Fruits & Veggies",
+      "dairyEggs": "Dairy & Eggs",
+      "snacks": "Snacks",
+      "bakery": "Bakery",
+      "fashion": "Fashion",
+      "electronics": "Electronics",
+      "homeware": "Homeware",
+      "wellness": "Wellness",
+      "hygiene": "Hygiene",
+      "skincare": "Skincare",
+      "makeup": "Makeup",
+      "haircare": "Haircare",
+      "explore": "Explore",
+      "movies": "Movies",
+      "events": "Events",
+      "activities": "Activities"
+    },
+    "screen": {
+      "brandsTitleShops": "A few names you’ll love",
+      "brandsTitle": "Good brands. Lovely finds.",
+      "brandsSubtitle": "Tap a brand to find your favourites",
+      "pickedForYou": "Picked for you",
+      "productsCare": "Your daily dose of feel-good",
+      "productsShops": "A little something for you",
+      "productsFood": "Made for your cravings",
+      "productsDefault": "Fresh in your neighbourhood",
+      "clearBrand": "Clear brand",
+      "exploreBrand": "Explore brand",
+      "noResults": "No finds with these filters, just yet.",
+      "showAll": "Show all products",
+      "noteCare": "Sample wellness and beauty catalogue. Not medical advice. No prescription medicines are dispensed.",
+      "noteDefault": "Sample brand listings, prices and illustrative photography."
+    }
+  },
+  "home": {
+    "fromPrice": "From {{price}}",
+    "seeAllLabel": "See all {{title}}",
+    "loadFailed": "Couldn’t load this right now",
+    "shopStore": "Shop {{name}}",
+    "followedTitle": "Your local favourites",
+    "followedSubtitle": "The stores you follow, always first.",
+    "storesTitle": "A little world for every mood",
+    "storesSubtitle": "SHOP BY STORE · Five edits, made for you.",
+    "trendingTitle": "Trending in Latur",
+    "trendingSubtitle": "Good finds. Everyone’s talking.",
+    "picksTitle": "Top picks for you",
+    "picksSubtitle": "A few things we think you’ll love.",
+    "foodTitle": "What are you craving?",
+    "foodSubtitle": "FOOD · The names you know. The bites you love.",
+    "groceryTitle": "A fresh start, every day",
+    "grocerySubtitle": "GROCERY SHOP · Your everyday essentials.",
+    "shopsTitle": "A little city shopping",
+    "shopsSubtitle": "SHOPS · Style, sound & lovely little spaces.",
+    "pharmacyTitle": "A little care goes a long way",
+    "pharmacySubtitle": "PHARMACY & BEAUTY · Feel good, inside and out.",
+    "beautyTitle": "Find your everyday glow",
+    "beautySubtitle": "Your next little obsession.",
+    "bookTitle": "Make room for good times",
+    "bookSubtitle": "BOOK IT · Movies, events & little adventures.",
+    "neighbourhoodTitle": "Meet your neighbourhood",
+    "neighbourhoodSubtitle": "Independent stores. A little closer to home.",
+    "storeMeta": "{{time}} · {{rating}} rating",
+    "budgetTitle": "Little prices. Lots to love.",
+    "budgetSubtitle": "Everything here under {{amount}}",
+    "brandsTitle": "Meet your next favourite brand",
+    "brandsSubtitle": "{{value}} demo brands, one little city",
+    "footerTitle": "One city. Endless possibilities.",
+    "footerSub": "Made for Latur. Made for you.",
+    "sampleNotice": "Explore our sample catalogue. Brand listings, prices and booking experiences are for demonstration.",
+    "categories": {
+      "eyebrow": "LITTLE FINDS. ENDLESS POSSIBILITIES.",
+      "title": "Your city, by category.",
+      "searchLabel": "Search categories and products",
+      "storeTitle": "Shop by Store",
+      "storeSubtitle": "Five little worlds. Which one is yours?",
+      "festiveEyebrow": "THE CELEBRATION EDIT",
+      "festiveTitle": "Big festive energy. Little joyful finds.",
+      "festiveLink": "Step into Festive Time",
+      "groups": {
+        "fresh": {
+          "title": "Fresh little beginnings",
+          "subtitle": "From the farm to your everyday."
+        },
+        "pantry": {
+          "title": "Grocery & kitchen",
+          "subtitle": "A well-stocked kind of happy."
+        },
+        "snacks": {
+          "title": "Snacks, sips & sweet things",
+          "subtitle": "For the in-between moments."
+        },
+        "festive": {
+          "title": "Celebrate a little more",
+          "subtitle": "Bappa’s favourites to garba-night essentials."
+        },
+        "food": {
+          "title": "Cravings, taken care of",
+          "subtitle": "A delicious detour."
+        },
+        "fitness": {
+          "title": "Move. Fuel. Feel good.",
+          "subtitle": "Find your everyday strong."
+        },
+        "care": {
+          "title": "Your feel-good routine",
+          "subtitle": "A little care, from head to toe."
+        },
+        "home": {
+          "title": "Home, health & little upgrades",
+          "subtitle": "All the useful things, together."
+        }
+      },
+      "quickTitle": "Small prices. Lovely finds.",
+      "quickSubtitle": "Every pick under {{amount}} · sample prices",
+      "brandsTitle": "The brands you keep coming back to",
+      "brandsSubtitle": "{{value}} demo brand collections to explore",
+      "moreBrands": "More brands, more favourites",
+      "bookTitle": "Make a little time for fun",
+      "bookSubtitle": "Movies, music and a change of scene.",
+      "assistantTitle": "Not sure where to start?",
+      "assistantText": "Tell One your budget. Find your little favourites.",
+      "note": "Made for Latur. Curated for you. Demo brand listings, illustrative images and sample prices."
+    },
+    "promos": {
+      "heading": "A LITTLE LOCAL. A LOT TO LOVE.",
+      "featured": "FEATURED",
+      "fresh": {
+        "tag": "FRESH FINDS. LITTLE PRICES.",
+        "title": "Good things.\nAt your doorstep.",
+        "subtitle": "Fresh groceries. Everyday happiness.",
+        "cta": "Fill your basket",
+        "dot": "Show fresh offer"
+      },
+      "food": {
+        "tag": "HAPPINESS, SERVED HOT.",
+        "title": "Big cravings.\nBigger flavours.",
+        "subtitle": "Your favourite bites, all in one place.",
+        "cta": "Explore food",
+        "dot": "Show food offer"
+      },
+      "beauty": {
+        "tag": "A LITTLE EVERYDAY LUXURY.",
+        "title": "Meet your\nnew favourites.",
+        "subtitle": "Beauty essentials you’ll love.",
+        "cta": "Find your glow",
+        "dot": "Show beauty offer"
+      },
+      "mostLoved": "MOST LOVED",
+      "localFavourite": "LOCAL FAVOURITE"
+    },
+    "foodSpotlight": {
+      "eyebrow": "FRESH CRAVINGS. FAMILIAR FAVOURITES.",
+      "mcdonalds": {
+        "title": "Burgers, brownies,\nbig smiles.",
+        "copy": "NIKS: stacked burgers and gooey brownies, made in Latur.",
+        "cta": "Find my bite"
+      },
+      "kfc": {
+        "title": "All day.\nEvery craving.",
+        "copy": "Rooftop All Day Kitchen: crispy chicken to iced coffee.",
+        "cta": "See the menu"
+      },
+      "starbucks": {
+        "title": "A little scoop.\nA lot of happy.",
+        "copy": "Baskin Robbins ice creams, delivered cold.",
+        "cta": "Pick my scoop"
+      },
+      "burgerking": {
+        "title": "A full thali.\nA full heart.",
+        "copy": "Shri Shyam Bhoj: home-style thali, served warm.",
+        "cta": "Order a thali"
+      },
+      "dominos": {
+        "title": "Pav bhaji, pizza,\ngood times.",
+        "copy": "MH 12: buttery pav bhaji and cheesy pizzas.",
+        "cta": "Pick my plate"
+      },
+      "show": "Show {{name}} spotlight",
+      "note": "Tap a logo to change the mood · sample brand spotlights"
+    },
+    "spotlight": {
+      "home": {
+        "eyebrow": "THE LITTLE JOYS OF EVERYDAY",
+        "title": "Everyday, a little\nmore delicious.",
+        "copy": "A slice of goodness. A whole lot of happy.",
+        "tag": "Amul goodness",
+        "detail": "Cheese favourites · from {{price}}",
+        "cta": "Shop Amul",
+        "badge": "made for\nhappy bites"
+      },
+      "grocery": {
+        "eyebrow": "FRESH FINDS, FAMILIAR FAVOURITES",
+        "title": "Little slices.\nBig happiness.",
+        "copy": "Your daily basket deserves a little Amul.",
+        "tag": "The dairy edit",
+        "detail": "Milk, butter, cheese & more",
+        "cta": "Explore Amul",
+        "badge": "daily\ngoodness"
+      },
+      "food": {
+        "eyebrow": "FRESH CRAVINGS, GOLDEN MOMENTS",
+        "title": "A good mood,\nwith a side of fries.",
+        "copy": "Your favourite bites are just around the corner.",
+        "detail": "Your next craving · from {{price}}",
+        "cta": "Find my bite",
+        "badge": "a little\ncrave-worthy"
+      },
+      "shops": {
+        "eyebrow": "NEW FINDS. YOUR KIND OF STYLE.",
+        "title": "A little fresh air\nfor your wardrobe.",
+        "copy": "Find something that feels a little more you.",
+        "tag": "The style edit",
+        "detail": "Nike favourites · from {{price}}",
+        "cta": "Find my style",
+        "badge": "step into\nsomething new"
+      },
+      "care": {
+        "eyebrow": "SLOW DOWN. GLOW A LITTLE.",
+        "title": "Your everyday\ncare, elevated.",
+        "copy": "Beauty favourites & feel-good essentials.",
+        "tag": "The NIVEA edit",
+        "detail": "Soft care · from {{price}}",
+        "cta": "Find my glow",
+        "badge": "a little\nself-love"
+      },
+      "bookIt": {
+        "eyebrow": "YOUR CITY. A LITTLE MORE ALIVE.",
+        "title": "Good times,\noutside your feed.",
+        "copy": "Big screens, live scenes & new memories.",
+        "detail": "Live music · sample experience",
+        "cta": "Make a plan",
+        "badge": "make room\nfor memories"
+      },
+      "explore": "Explore {{tag}}",
+      "switchHome": "Daily goodness",
+      "switchShops": "Fresh style",
+      "switchCare": "A little self-care",
+      "sample": "A sample brand spotlight · curated for you"
+    },
+    "collection": {
+      "caption": "A ONECITY LITTLE WORLD",
+      "askLabel": "Ask One about this store",
+      "askPrompt": "Help me shop the {{name}} collection within {{amount}}.",
+      "searchLabel": "Search this store",
+      "searchPlaceholder": "Search {{name}}",
+      "budgetFilter": "Under {{amount}}",
+      "ganesh": {
+        "title": "Bappa’s here.\nSo is the joy.",
+        "subtitle": "Modaks, little rituals & a whole lot of love.",
+        "season": "GANPATI BAPPA MORYA",
+        "image": "Lord Ganesha with modak sweets",
+        "chip": "Ganesh Chaturthi"
+      },
+      "navratri": {
+        "title": "Nine nights.\nEndless colour.",
+        "subtitle": "Twirl into the joy of garba nights.",
+        "season": "LET’S CELEBRATE",
+        "image": "Navratri garba dancer",
+        "chip": "Navratri nights"
+      },
+      "fitnessTitle": "Find your\neveryday strong.",
+      "trendingTitle": "Good finds.\nGreat mood.",
+      "gourmetTitle": "A little sip.\nA lot of bliss.",
+      "defaultTitle": "Little things.\nLife, sorted.",
+      "seasonDefault": "CURATED WITH LOVE",
+      "footer": "A FEW LITTLE FINDS. A WHOLE NEW MOOD."
+    },
+    "character": {
+      "bappa": "Bappa",
+      "shopping_character": "Shopping Buddy",
+      "rider": "Your Rider",
+      "store": "Store"
+    },
+    "hero": {
+      "eyebrow": "GOOD FOOD · BRIGHTER DAYS",
+      "title": "Fresh choices\nfor a happier you.",
+      "searchPlaceholder": "Search for food, groceries, shops…",
+      "photoLabel": "A fresh salad bowl"
+    },
+    "offers": {
+      "groceryTitle": "Up to {{pct}} off",
+      "grocerySub": "on daily groceries",
+      "careTitle": "Pharmacy & Beauty",
+      "careSub": "Up to {{pct}} off"
+    },
+    "essentialsTitle": "Your daily essentials"
+  },
+  "shell": {
+    "goPrevious": "Go to previous page",
+    "home": "OneLocal home",
+    "wallet": "wallet",
+    "cart": "cart",
+    "profile": "profile",
+    "changeLocation": "Change location",
+    "searchProducts": "Search products",
+    "searchPlaceholder": "A little search. A lovely find.",
+    "searchVoice": "Search with voice",
+    "searchPhoto": "Search with a photo",
+    "backToTop": "Back to top",
+    "compactPlaceholder": "Search food, groceries, shops…",
+    "searchByVoice": "Search by voice",
+    "cartBar": {
+      "open_one": "View cart, {{count}} items, {{total}}",
+      "open_other": "View cart, {{count}} items, {{total}}",
+      "view": "View cart",
+      "items_one": "{{count}} item",
+      "items_other": "{{count}} items",
+      "inBag_one": "{{count}} item in your bag",
+      "inBag_other": "{{count}} items in your bag",
+      "fees": "+ fees at checkout",
+      "freeDelivery": "Free delivery unlocked · Saving {{amount}}",
+      "awayFromFree": "{{amount}} away from free delivery"
+    },
+    "introLoading": "OneLocal is loading",
+    "introTagline": "YOUR CITY · AT YOUR DOORSTEP",
+    "introMade": "Made in Latur",
+    "panel": {
+      "headline": "Latur,\nin minutes.",
+      "copy": "Groceries, food, shops, care and good times — one city, one app.",
+      "care": "Care"
+    }
+  },
+  "comingSoon": {
+    "badge": "COMING SOON",
+    "cta": "Use text search for now",
+    "aiSearch": {
+      "title": "Photo & voice search",
+      "body": "Snap a product or just say it — in English, Hindi or Marathi — and we’ll find it in Latur stores.",
+      "point1": "Point your camera at anything",
+      "point2": "Speak a whole shopping list",
+      "point3": "Matches from real local stock"
+    },
+    "assistant": {
+      "title": "One AI, your shopping helper",
+      "body": "Ask for “a birthday party for 10 under {{amount}}” and get a ready basket from stores near you.",
+      "point1": "Plans baskets and parties",
+      "point2": "Knows what’s in stock nearby",
+      "point3": "Adds everything in one tap"
+    },
+    "wallet": {
+      "title": "OneLocal Wallet",
+      "body": "Refunds, store credit and OneLocal Coins in one place, spendable at checkout.",
+      "point1": "Instant refunds to your wallet",
+      "point2": "Pay with one tap",
+      "point3": "Works across every store"
+    }
+  },
+  "explore": {
+    "kind": {
+      "food": "Food",
+      "grocery": "Groceries",
+      "shops": "Shops",
+      "care": "Pharmacy & care"
+    },
+    "outsideTitle": "One Local is made for India",
+    "outsideBody": "Choose a city, town or village in India to see what’s around.",
+    "choosePlace": "Choose a place",
+    "eyebrow": "EXPLORE {{place}}",
+    "yourTown": "Your town",
+    "statusEmpty": "Stores in {{place}} are joining One Local. Until they’re in, here’s what’s around you.",
+    "statusEmptyNoPlace": "Stores in your city are joining One Local. Until they’re in, here’s what’s around you.",
+    "statusNoDelivery": "We don’t deliver here yet. Here’s what’s around you.",
+    "statusNearest": "We don’t deliver here yet. Here’s what’s around you · we deliver in {{city}}, {{distance}} away.",
+    "launchDone": "Thanks. We’ve noted {{place}} — each request moves it up our list.",
+    "launchDoneNoPlace": "Thanks. We’ve noted your town — each request moves it up our list.",
+    "launchCta": "Bring One Local to {{place}}",
+    "launchCtaNoPlace": "Bring One Local to my town",
+    "launchError": "That didn’t go through. Please try again in a minute.",
+    "loading": "Finding places near {{place}}… The first look at a new town can take up to half a minute.",
+    "loadingNoPlace": "Finding places near you… The first look at a new town can take up to half a minute.",
+    "loadError": "Couldn’t load local places right now.",
+    "empty": {
+      "food": "No food places are listed within {{distance}} yet.",
+      "grocery": "No groceries places are listed within {{distance}} yet.",
+      "shops": "No shops places are listed within {{distance}} yet.",
+      "care": "No pharmacy & care places are listed within {{distance}} yet."
+    },
+    "creditGoogle": "Listings from Google Maps. Details can be out of date; call before you go.",
+    "creditOsm": "Listings © OpenStreetMap contributors. Details can be out of date; call before you go.",
+    "another": "Explore another place",
+    "openNow": "Open now",
+    "closedNow": "Closed now",
+    "callLabel": "Call {{name}}, {{phone}}",
+    "directions": "Directions",
+    "directionsLabel": "Directions to {{name}}"
+  },
+  "discover": {
+    "title": "Discover",
+    "subtitle": "Your city, worth a closer look.",
+    "askLabel": "Ask One AI",
+    "askAi": "Ask AI",
+    "filter": {
+      "reels": "Reels",
+      "fresh": "Fresh",
+      "care": "Care"
+    },
+    "notice": "Curated sample reels & catalogue photo ads · tap to explore",
+    "empty": "No discoveries in this filter yet. Try All.",
+    "openReel": "Open {{name}} reel",
+    "openPhotoAd": "Open {{name}} photo ad",
+    "forYou": "FOR YOU",
+    "shop": "Shop",
+    "photoCaption": "{{name}}. A little find for your everyday."
+  },
+  "errorBoundary": {
+    "title": "Something went wrong",
+    "message": "Please reload the app to continue.",
+    "reload": "Reload app"
+  },
+  "cart": {
+    "title": "Your little bag",
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "kindTab": {
+      "food": "Food · {{n}}",
+      "shopping": "Shopping · {{n}}"
+    },
+    "kindNote": "Food and shopping are paid for separately.",
+    "tab": {
+      "cart": "Cart",
+      "saver": "One Saver"
+    },
+    "empty": {
+      "title": "Your cart is empty",
+      "sub": "Add fresh items to get started",
+      "browse": "Browse products"
+    },
+    "address": {
+      "deliverTo": "Deliver to",
+      "deliverToLabel": "Deliver to: {{label}}",
+      "a11y": "Deliver to {{label}} {{address}}. Change address",
+      "a11yChoose": "Choose where to deliver",
+      "whereTitle": "Where should we deliver?",
+      "notice": "Choose or add your full address before you pay",
+      "noticeNear": "Shopping near {{address}}. Choose or add your full address before you pay",
+      "notesPlaceholder": "Instructions for the delivery partner (optional)",
+      "chooseFirst": "Choose your address first, so the store knows where to send your order.",
+      "choose": "Choose"
+    },
+    "store": {
+      "yourRestaurant": "Your restaurant",
+      "fallback": "Store",
+      "metaFree": "free delivery",
+      "metaFee": "delivery {{fee}}",
+      "metaTimeFree": "Delivery in about {{time}} · free delivery",
+      "metaTimeFee": "Delivery in about {{time}} · delivery {{fee}}"
+    },
+    "topUp": {
+      "away": "{{amount}} away from free delivery",
+      "awayStore": "{{amount}} away from free delivery from {{store}}",
+      "smart": "Smart top-up · one tap closes the gap",
+      "freeAbove": "Free on orders above {{amount}} from one store",
+      "net": "· {{amount}} net",
+      "addA11y": "Add {{name}} for {{price}} and unlock free delivery"
+    },
+    "freeUnlocked": "Free delivery unlocked · you save {{amount}}",
+    "coupon": {
+      "title": "Apply Coupon",
+      "remove": "Remove",
+      "placeholder": "Enter code (try LATUR10)",
+      "apply": "Apply",
+      "applying": "Applying…",
+      "applied": "Coupon applied",
+      "invalid": "Invalid coupon",
+      "failed": "Could not apply coupon",
+      "notUsable": "This coupon cannot be used on this order.",
+      "addMore": "Add {{amount}} more to reactivate this coupon.",
+      "suggestLatur10": "LATUR10 — 10% off above {{min}}",
+      "suggestFresh50": "FRESH50 — {{off}} off above {{min}}"
+    },
+    "bill": {
+      "title": "Bill details",
+      "itemTotal": "Item total",
+      "deliveryStores": "Delivery fee · {{n}} stores",
+      "deliveryFee": "Delivery fee",
+      "free": "FREE",
+      "storeFree": "{{store}} free",
+      "eachStore": "Each store delivers on its own · {{stores}}",
+      "deliveryNoteWaived": "Free on orders above {{amount}}",
+      "deliveryNote": "Free above {{amount}}",
+      "handling": "Handling fee",
+      "platform": "Platform fee",
+      "gstFood": "GST on food ({{rate}}%)",
+      "gstHide": "Hide breakdown",
+      "gstShow": "CGST + SGST · tap for breakdown",
+      "cgst": "CGST {{rate}}% on {{amount}}",
+      "sgst": "SGST {{rate}}% on {{amount}}",
+      "coupon": "Coupon {{code}}",
+      "toPay": "To pay",
+      "onePayment": "One payment · {{n}} store orders",
+      "gstIncludedOpen": "Item prices include GST:",
+      "gstIncludedClosed": "Item prices include GST · tap to see how much",
+      "gstIncludedRow": "{{rate}}% items — CGST {{half}}% + SGST {{half}}%",
+      "savings": "You save {{amount}} on this order",
+      "error": "Could not work out your bill."
+    },
+    "vendor": {
+      "veggiesName": "Raju Bhaiya",
+      "veggiesMessage": "will handpick your fresh veggies.",
+      "veggiesPacked": "packed your fresh veggies.",
+      "dairyName": "Your dairy crew",
+      "dairyMessage": "will pack your dairy goodness.",
+      "dairyPacked": "packed your dairy goodness.",
+      "foodName": "Chef’s kitchen",
+      "foodMessage": "will prepare your happy bites.",
+      "foodPacked": "packed your happy bites.",
+      "careName": "Your care specialist",
+      "careMessage": "will wrap your everyday care.",
+      "carePacked": "packed your everyday care.",
+      "shopsName": "Your city shopkeeper",
+      "shopsMessage": "will wrap your lovely finds.",
+      "shopsPacked": "packed your lovely finds.",
+      "amulName": "Amul’s dairy crew",
+      "placed": "received your sample order.",
+      "delivered": "says enjoy your lovely finds!",
+      "note": "Illustrated sample packing crew",
+      "waveA11y": "Wave to your packing crew",
+      "nextA11y": "Meet next packing crew"
+    },
+    "replace": {
+      "title": "Replace cart?",
+      "message": "Your cart has items from {{from}}. Start a new cart with {{to}}?",
+      "note": "Food comes from one restaurant per order. Your shopping cart stays as it is.",
+      "keep": "Keep current",
+      "keepA11y": "Keep current cart",
+      "start": "Start new",
+      "anotherRestaurant": "another restaurant",
+      "thisRestaurant": "this restaurant"
+    },
+    "added": {
+      "dismissA11y": "Dismiss added confirmation",
+      "title": "Great pick!",
+      "body": "{{name}} is in your bag.",
+      "viewA11y_one": "View cart with {{count}} item",
+      "viewA11y_other": "View cart with {{count}} items",
+      "view": "View bag · {{n}}"
+    },
+    "character": {
+      "a11y": "A smiling 3D-style OneLocal helper waving hello"
+    },
+    "celebration": {
+      "added": "Added to Cart!",
+      "continue": "Continue Shopping",
+      "view": "View Cart"
+    }
+  },
+  "checkout": {
+    "error": {
+      "place": "Could not place your order. Please try again.",
+      "confirm": "We could not confirm your payment. If money was taken, it will be matched to your order or refunded."
+    },
+    "retry": {
+      "text": "Payment didn’t go through. No money was taken. Try again or choose another way to pay.",
+      "other": "Another way to pay"
+    },
+    "chooseA11y": "Choose how to pay",
+    "payUsing": "PAY USING",
+    "placeOrder": "Place order · {{amount}}",
+    "pay": "Pay {{amount}}",
+    "sampleNotice": "Sample order · no charge",
+    "placing": "Placing...",
+    "placeSample": "Place sample order",
+    "slideToPay": "Slide to pay {{amount}}",
+    "slideToPlace": "Slide to order · {{amount}}",
+    "slideHint": "Slide the button all the way to the right to pay"
+  },
+  "payment": {
+    "upiId": "UPI ID",
+    "upiWithApp": "{{app}} UPI",
+    "upi": {
+      "title": "UPI",
+      "sub": "Google Pay, PhonePe, Paytm & other UPI apps"
+    },
+    "card": {
+      "title": "Credit / Debit card",
+      "sub": "Visa, Mastercard, RuPay & more"
+    },
+    "netbanking": {
+      "title": "Net banking",
+      "sub": "Pay using your preferred bank"
+    },
+    "wallet": {
+      "title": "Wallets",
+      "sub": "PhonePe, Amazon Pay & more"
+    },
+    "paylater": {
+      "title": "Pay Later & EMI",
+      "sub": "Where your bank or card offers it"
+    },
+    "cod": {
+      "title": "Cash on delivery",
+      "sub": "Pay when your order arrives"
+    },
+    "comingSoon": "Coming soon — pay cash on delivery for now",
+    "soonBadge": "SOON",
+    "saveError": "Could not save your selection. Please try again.",
+    "chooseA11y": "Choose payment method",
+    "method": "Payment method",
+    "noteSample": "Sample order · you won’t be charged",
+    "noteCash": "Pay cash when your order arrives",
+    "change": "Change",
+    "sheetTitle": "Your way to pay",
+    "closeA11y": "Close payment options",
+    "explain": "Choose a method for this sample order. No payment is processed and no financial details are collected.",
+    "saving": "Saving your choice…",
+    "cancelA11y": "Cancel payment",
+    "secure": "Secure payment by Razorpay",
+    "sheet": {
+      "title": "Payment Options",
+      "backA11y": "Back to cart",
+      "summary_one": "{{count}} item · Total: {{total}}",
+      "summary_other": "{{count}} items · Total: {{total}}",
+      "savings": "· Savings of {{amount}}",
+      "routeEta": "Delivery in 10–15 mins",
+      "deliverTo": "Deliver to",
+      "offers": "Save more with payment offers",
+      "offersNone": "No bank or UPI offers are running right now. Any offer set up with Razorpay shows on the payment page automatically.",
+      "walletNote": "Can’t be used at checkout yet",
+      "walletA11y": "Use wallet balance (not available yet)",
+      "sectionPreferred": "Preferred Payment",
+      "lastUsed": "Last used",
+      "sectionUpi": "Pay by any UPI App",
+      "addUpiId": "Add UPI ID",
+      "upiIdNote": "You’ll enter it on the secure payment page",
+      "sectionCards": "Credit & Debit Cards",
+      "addCard": "Add New Card",
+      "cardNote": "Save and pay via cards",
+      "sectionMore": "More Payment Options",
+      "laterTitle": "Pay Later",
+      "laterSub": "Simpl, LazyPay, card EMI & more, where you are eligible",
+      "netbankingTitle": "Netbanking",
+      "netbankingSub": "Select from a list of banks",
+      "codTitle": "Pay on Delivery",
+      "codSub": "Pay in cash when your order arrives",
+      "cashNote": "Keep cash ready for the delivery partner.",
+      "onlineNote": "You finish paying on Razorpay’s secure page. We never see your card, UPI PIN or bank login."
+    }
+  },
+  "saver": {
+    "title": "One Saver",
+    "tagline": "A little smarter. A lot more saved.",
+    "alreadySaved": "already saved on MRP",
+    "noMembership": "Your cart’s savings hub. No membership fee.",
+    "freeUnlocked": "Free delivery unlocked",
+    "toFree": "{{amount}} to free delivery",
+    "freeRule": "Free delivery on baskets of {{amount}} or more.",
+    "bestOffers": "Your best offers",
+    "couponPolicy": "One coupon per order. Sorted by what saves you most.",
+    "best": "BEST FOR YOU",
+    "save": "Save {{amount}}",
+    "addMore": "Add {{amount}} more to use",
+    "addItems": "Add {{amount}} in items to use"
+  },
+  "orders": {
+    "title": "My Orders",
+    "count_one": "{{count}} order",
+    "count_other": "{{count}} orders",
+    "loadError": "Could not load your orders. Please try again.",
+    "emptyTitle": "No orders yet",
+    "emptySub": "Your past orders will appear here",
+    "startShopping": "Start shopping",
+    "track": "Track",
+    "cardStores": "#{{id}} · {{n}} stores",
+    "storeFallback": "Store",
+    "storeMeta_one": "{{total}} · {{count}} item",
+    "storeMeta_other": "{{total}} · {{count}} items",
+    "items_one": "{{count}} item",
+    "items_other": "{{count}} items",
+    "itemsTogether_one": "{{count}} item · paid together",
+    "itemsTogether_other": "{{count}} items · paid together",
+    "reorder": "Reorder",
+    "reordered": "Added",
+    "signedOutTitle": "You’re not signed in",
+    "signedOutSub": "Orders placed on this phone show here. Sign in to see your account’s orders on any phone.",
+    "signIn": "Sign in"
+  },
+  "tracking": {
+    "title": "Your delivery story",
+    "sampleNotice": "Sample tracking · #{{id}}",
+    "sampleNoticeStore": "Sample tracking · #{{id}} · {{store}}",
+    "loadError": "Could not load this order. Please try again.",
+    "paymentNote": {
+      "not_charged": "sample order, not charged",
+      "paid": "paid online",
+      "pending": "payment being confirmed",
+      "failed": "payment did not go through",
+      "refunded": "refunded"
+    },
+    "placed": "Order placed!",
+    "placedSub": "{{amount}} · the store has your order",
+    "deliveringTo": "Delivering to",
+    "deliveringToLabel": "Delivering to: {{label}}",
+    "partnerNote": "Note for the delivery partner: {{notes}}",
+    "paidTogether_one": "Paid together with {{count}} more store order",
+    "paidTogether_other": "Paid together with {{count}} more store orders",
+    "siblingRow_one": "{{store}} · {{count}} item · {{total}}",
+    "siblingRow_other": "{{store}} · {{count}} items · {{total}}",
+    "countdown": "SAMPLE DELIVERY COUNTDOWN",
+    "routeNotice": "Illustrative route · not live GPS",
+    "markerStore": "Store",
+    "markerYou": "You",
+    "riderMeta": "Your sample delivery partner",
+    "infoA11y": "Delivery information",
+    "sampleHelp": "This is a sample order. No real rider is assigned or available to call.",
+    "statusTitle": "Order status",
+    "step": {
+      "packedAtStore": "Packed at store",
+      "beingPacked": "Being Packed"
+    },
+    "now": "In progress · just now",
+    "itemsTitle_one": "Your order · {{count}} item",
+    "itemsTitle_other": "Your order · {{count}} items",
+    "itemMeta": "{{weight}} · x{{qty}}",
+    "moreItems_one": "+ {{count}} more item",
+    "moreItems_other": "+ {{count}} more items",
+    "grandTotal": "Grand total",
+    "continueShopping": "Continue shopping",
+    "etaTitle": "Estimated Delivery",
+    "etaMinutes_one": "{{count}} minute",
+    "etaMinutes_other": "{{count}} minutes",
+    "itemsHeading": "Items ({{n}})",
+    "orderTotal": "Order Total",
+    "live": {
+      "subtitle": "Order #{{id}}",
+      "subtitleStore": "Order #{{id}} · {{store}}",
+      "loading": "Checking on your delivery",
+      "etaLabel": "ARRIVING IN",
+      "statusLabel": "ORDER STATUS",
+      "etaAbout": "About {{time}}",
+      "etaUnknown": "Working it out",
+      "arrivesBy": "Arrives by {{time}}",
+      "arrivesAround": "Around {{time}}",
+      "sourceRoad": "Live GPS and traffic",
+      "sourceEstimate": "Estimated from distance, may change",
+      "sourcePromise": "Estimated delivery time",
+      "reconnecting": "Can't refresh right now. Showing the last update.",
+      "mapA11y": "Live map of your order: the store, your address and your rider",
+      "mapUnavailable": "Street map unavailable. Showing positions only.",
+      "staleHint": "Rider's location is a little out of date",
+      "riderMarkerA11y": "Rider {{name}}",
+      "storeMarkerA11y": "The store",
+      "dropMarkerA11y": "Your delivery address",
+      "riderFallback": "Your rider",
+      "riderMeta": "Delivering by {{vehicle}}",
+      "riderMetaPlain": "Your delivery partner",
+      "noRiderTitle": "Finding a rider for you",
+      "noRiderMeta": "Your rider will show up here as soon as one accepts.",
+      "help": "Your rider's phone number is kept private. The map and arrival time refresh by themselves.",
+      "payAtDoor": "pay at your door"
+    },
+    "phase": {
+      "preparing": "Store is preparing your order",
+      "finding_rider": "Finding a rider",
+      "to_store": "Rider heading to the store",
+      "at_store": "Rider at the store",
+      "on_the_way": "On the way to you",
+      "at_door": "At your door",
+      "delivered": "Delivered",
+      "cancelled": "Order cancelled"
+    },
+    "phaseNow": {
+      "preparing": "The store is getting your order ready",
+      "finding_rider": "Looking for a rider nearby",
+      "to_store": "{{name}} is heading to the store",
+      "at_store": "{{name}} is at the store picking up your order",
+      "on_the_way": "{{name}} is on the way to you",
+      "at_door": "{{name}} is at your door",
+      "delivered": "Delivered. Enjoy!",
+      "cancelled": "This order was cancelled"
+    },
+    "vehicle": {
+      "bike": "bike",
+      "scooter": "scooter",
+      "cycle": "cycle",
+      "car": "car"
+    },
+    "getHelp": "Get help with this order"
+  },
+  "notifications": {
+    "placed": {
+      "title": "Order placed",
+      "body": "The store has your order."
+    },
+    "packed": {
+      "title": "Being packed",
+      "body": "Your items are being packed right now."
+    },
+    "out": {
+      "title": "On the way",
+      "body": "Your order is out for delivery."
+    },
+    "delivered": {
+      "title": "Delivered",
+      "body": "Enjoy! Your order has arrived."
+    },
+    "yourOrder": "Your order",
+    "summaryMore": "{{name}} + {{n}} more · {{total}}"
+  },
+  "privacy": {
+    "title": "Privacy & your data",
+    "subtitle": "Your choices, your data, and your rights under India’s data protection law. Changes save as you tap.",
+    "reference": "Reference {{reference}}",
+    "officerHours": "Monday to Saturday, 10 am to 6 pm",
+    "erased": {
+      "title": "Your account is deleted",
+      "deleted": "Your account and personal details have been deleted. Records the law makes us keep no longer point to you.",
+      "loginKept": "Your personal details have been removed and you are signed out everywhere. Our team will close your login within {{days}} days; quote {{reference}} if you contact us."
+    },
+    "who": {
+      "signedIn": "Signed in",
+      "guest": "Browsing as a guest",
+      "signedInNote": "{{who}}. Your choices and requests are kept with your account.",
+      "guestNote": "What this phone keeps is listed below. Orders placed without an account are on our servers under this phone’s private key: sign in on this phone to download or delete them too.",
+      "signInButton": "Sign in to download, correct or delete account data"
+    },
+    "group": {
+      "choices": "Your choices",
+      "data": "Your data",
+      "phone": "Stored on this phone"
+    },
+    "choiceOn": "Switched on {{when}} · notice {{version}}",
+    "choiceOff": "Switched off {{when}} · notice {{version}}",
+    "choicesNote": {
+      "unsent_one": "Saved on this phone; {{count}} change will reach your account when you are online.",
+      "unsent_other": "Saved on this phone; {{count}} changes will reach your account when you are online.",
+      "synced": "Saved on this phone and with your account.",
+      "phoneOnly": "Saved on this phone. Sign in to keep them with your account.",
+      "needed": "Everything needed to deliver your orders works whatever you choose here."
+    },
+    "rows": {
+      "downloadTitle": "Download my data",
+      "downloadSubUser": "Everything we hold about you, plus what is on this phone, as one file.",
+      "downloadSubGuest": "What this phone keeps, as one file.",
+      "correctTitle": "Correct my details",
+      "correctSub": "Edit your name, phone, email, photo and birthday.",
+      "correctAskTitle": "Ask us to correct something else",
+      "correctAskSub": "For example an old order or your sign-in email.",
+      "nomineeTitle": "Nominate someone",
+      "nomineeSub": "Who can use these rights for you if you die or cannot act.",
+      "grievanceTitle": "Raise a privacy grievance",
+      "grievanceSub": "We answer within {{days}} days, with a reference number.",
+      "noticeTitle": "Read the privacy notice",
+      "noticeSub": "Version {{version}} · {{date}}",
+      "lockBadge": "Sign in",
+      "lockHint": "Sign in first"
+    },
+    "note": {
+      "ready": "Your data is ready: {{name}}. Reference {{reference}}.",
+      "readyPhone": "What this phone keeps is ready: {{name}}.",
+      "cleared": "Cleared. Everything One Local kept on this phone is gone; the place you shop for resets when you reopen the app."
+    },
+    "err": {
+      "prepare": "Couldn’t prepare your data. Please try again.",
+      "clear": "Couldn’t clear everything. Please try again.",
+      "delete": "Couldn’t delete your account right now. Please try again.",
+      "send": "Couldn’t send this. Your message is still here; please try again.",
+      "nominee": "Couldn’t save your nominee. Please try again.",
+      "describe": "Please describe it in at least 10 characters.",
+      "nomineeName": "Enter your nominee’s full name.",
+      "nomineeRelation": "Choose how they are related to you.",
+      "nomineeContact": "Give a mobile number or an email so we can reach them."
+    },
+    "server": {
+      "signInDownload": "Please sign in to download your data.",
+      "signInDelete": "Please sign in to delete your account.",
+      "signInGrievance": "Please sign in to raise a privacy concern.",
+      "signInNominee": "Please sign in to nominate someone.",
+      "orderOnTheWay": "You have an order on its way. Once it is delivered or cancelled, you can delete your account.",
+      "describeLength": "Please describe it in 10 to 2,000 characters.",
+      "nomineeRelation": "Choose how your nominee is related to you.",
+      "nomineePhone": "Enter a valid 10-digit mobile number for your nominee.",
+      "nomineeEmail": "Enter a valid email for your nominee.",
+      "nomineeContact": "Give a mobile number or an email so we can reach your nominee."
+    },
+    "phone": {
+      "empty": "Nothing from One Local is stored on this phone.",
+      "private": "private",
+      "clear": "Clear everything on this phone",
+      "signedInNote": "Signing out keeps these on this phone; deleting your account below removes them too."
+    },
+    "phoneItem": {
+      "profile": "Profile, saved addresses, payment preference and invite code",
+      "wishlist": "Wishlist",
+      "carts": "Food and shopping carts",
+      "cartOld": "Cart (older app version)",
+      "place": "The place you shop for",
+      "placePoint": "Map point of that place",
+      "recentPlaces": "Places you picked recently",
+      "followed": "Stores you follow",
+      "bookings": "Your booking requests",
+      "demoWallet": "Demo wallet (no real money)",
+      "aiSession": "AI assistant conversation id",
+      "locationAsked": "Whether we asked where you are",
+      "privacyChoices": "Your privacy choices",
+      "reelLikes": "Reels you liked",
+      "launchAsked": "Towns you asked us to launch in",
+      "deviceKey": "Device key (keeps orders placed without an account private to this phone)",
+      "session": "Sign-in session",
+      "language": "Your language choice"
+    },
+    "deleteAccount": "Delete my account",
+    "deleteCard": {
+      "body": "Removes your personal details from One Local and signs you out everywhere. Some records must be kept by law; they stop pointing to you."
+    },
+    "deleteSheet": {
+      "title": "Delete your account?",
+      "undone": "This cannot be undone.",
+      "signedInAs": "You are signed in as {{who}}.",
+      "nowHead": "Deleted now",
+      "nowAddresses": "Delivery addresses and notes on your orders",
+      "nowRequests": "Your help messages and booking requests",
+      "nowPhone": "Your profile, saved addresses, wishlist and cart on this phone",
+      "nowConsents": "Your optional consents (switched off)",
+      "nowLogin": "Your login: closed by our team, and you are signed out everywhere at once",
+      "keptHead": "Kept because the law requires it (no longer linked to you)",
+      "keep": "Keep my account"
+    },
+    "clearSheet": {
+      "title": "Clear this phone?",
+      "body": "Removes your profile, saved addresses, wishlist, cart, recent places and privacy choices from this phone. Orders you placed without an account will no longer show here.",
+      "confirm": "Clear everything"
+    },
+    "contact": {
+      "title": "Questions about your data?",
+      "officer": "Grievance officer:",
+      "email": "Email:",
+      "phone": "Phone:",
+      "board": "Not satisfied with our answer? You can complain to the {{board}}."
+    },
+    "form": {
+      "correctionTitle": "Ask us to correct something",
+      "describeLabel": "Describe it",
+      "correctionPlaceholder": "What is wrong, and what should it say?",
+      "grievancePlaceholder": "Tell us what happened…",
+      "noCardDetails": "Please don’t include card numbers, passwords or bank details.",
+      "sendCorrection": "Send correction request",
+      "sendGrievance": "Send grievance"
+    },
+    "about": {
+      "consent": "My consent",
+      "marketing": "Messages I didn’t want",
+      "access": "Seeing my data",
+      "erasure": "Deleting my data",
+      "security": "Safety of my data",
+      "other": "Something else"
+    },
+    "nominee": {
+      "intro": "If you die or cannot act for yourself, this person can ask us to show, correct or delete your data. Tell them you have named them. A new nomination replaces the old one.",
+      "name": "Nominee’s full name",
+      "phoneLabel": "Nominee’s mobile number",
+      "phonePlaceholder": "Mobile number",
+      "emailLabel": "Nominee’s email",
+      "emailPlaceholder": "Email (optional if you gave a number)",
+      "save": "Save my nominee"
+    },
+    "relation": {
+      "spouse": "Spouse",
+      "parent": "Parent",
+      "child": "Child",
+      "sibling": "Brother or sister",
+      "relative": "Other relative",
+      "friend": "Friend",
+      "other": "Someone else"
+    },
+    "receipt": {
+      "grievance": "We have your grievance.",
+      "correction": "We have your correction request.",
+      "nomination": "We have your nomination.",
+      "answerBy": "We will answer by {{date}}, within {{days}} days at the latest.",
+      "answerNoDate": "We will answer, within {{days}} days at the latest.",
+      "quote": "Quote the reference if you contact us."
+    },
+    "purpose": {
+      "marketingTitle": "Offers and updates",
+      "marketingBody": "Messages about offers, new stores and events near you, by notification, SMS, WhatsApp or email.",
+      "personalisationTitle": "Personalised suggestions",
+      "personalisationBody": "Suggestions based on what you ordered and saved before. Off means everyone sees the same lists.",
+      "locationSuggestionsTitle": "Use my location for nearby suggestions",
+      "locationSuggestionsBody": "Uses the location your phone already knows to sort places by distance. Tapping “Use current location” always works, whatever this says."
+    },
+    "file": {
+      "about": "What {{brand}} keeps on this phone. Nothing about you is on our servers unless you signed in or placed an order.",
+      "secret": "Stored on this phone; not included in this file, for your safety.",
+      "photo": "A photo is saved on this phone ({{kb}} KB); not included."
+    }
+  },
+  "privacyNotice": {
+    "title": "Privacy notice",
+    "subtitle": "How {{brand}} uses your personal data, why, and how you stay in control. Written to be read in two minutes.",
+    "version": "Version {{version}} · {{date}}",
+    "draft": "Draft: highlighted details are still being filled in.",
+    "boardName": "Data Protection Board of India",
+    "hosting": "Supabase (database and sign-in), Mumbai region, India",
+    "bulletTitle": "{{title}}.",
+    "s1": {
+      "title": "Who we are",
+      "p1": "{{brand}} is run by {{entity}}, {{address}}. We decide why and how your data is used, so under India’s Digital Personal Data Protection Act, 2023 we are the “Data Fiduciary” and you are the “Data Principal”."
+    },
+    "s2": {
+      "title": "What we collect, and why",
+      "needed": "Needed for orders",
+      "kept": "Kept: {{value}}",
+      "p1": "We collect only what these purposes need, and use it only for them.",
+      "accountData": "Name, mobile number and email",
+      "accountWhy": "To create your account, sign you in, and reach you about your orders.",
+      "accountKept": "While your account is open.",
+      "addressesData": "Delivery addresses and map pins",
+      "addressesWhy": "To deliver your orders and check that we deliver there.",
+      "addressesKept": "Saved addresses: until you delete them. On an order: with the order.",
+      "ordersData": "Orders: items, prices, taxes, coupons, store",
+      "ordersWhy": "To fulfil, bill and refund orders, and to keep the tax records the law requires.",
+      "ordersKept": "As tax law requires (see “{{section}}”).",
+      "paymentsData": "Payment references: Razorpay order and payment ids, method, status",
+      "paymentsWhy": "To confirm payments and refunds. Card numbers, UPI PINs and bank logins are typed on Razorpay’s page and never reach us.",
+      "paymentsKept": "As payment and tax law require.",
+      "locationData": "Location: the town you pick, or your current location when you tap “Use current location”",
+      "locationWhy": "To show what One Local offers where you are.",
+      "locationKept": "On your phone only, until you change it.",
+      "locationSuggestionsData": "Location for nearby suggestions",
+      "locationSuggestionsWhy": "To sort nearby places by distance without asking each time.",
+      "locationSuggestionsKept": "Not stored; used on your phone.",
+      "profileExtrasData": "Profile extras: photo, birthday, food preference, language",
+      "profileExtrasWhy": "To make the app feel like yours. You choose whether to add them.",
+      "profileExtrasKept": "On your phone only, today.",
+      "requestsData": "Help requests, privacy requests, booking enquiries, “launch here” requests",
+      "requestsWhy": "To answer you and to learn where people want One Local.",
+      "requestsKept": "Until answered, then as our retention schedule says.",
+      "deviceKeyData": "A random device key",
+      "deviceKeyWhy": "Keeps orders placed without an account private to this phone. We store only a scrambled (hashed) form.",
+      "deviceKeyKept": "While the app is on your phone.",
+      "voicePhotoData": "Voice and photo searches",
+      "voicePhotoWhy": "Switched off today. If switched on, used only to find products, and not kept.",
+      "voicePhotoKept": "Not kept.",
+      "marketingData": "Marketing messages",
+      "marketingWhy": "Only if you say yes.",
+      "marketingKept": "Your choice is recorded, with the date and notice version.",
+      "personalisationData": "Personalised suggestions",
+      "personalisationWhy": "Only if you say yes.",
+      "personalisationKept": "Your choice is recorded, with the date and notice version."
+    },
+    "s3": {
+      "title": "Who we share it with",
+      "where": "Where:",
+      "p1": "We never sell your data. Anyone who handles it for us may use it only on our instructions, and must keep it safe.",
+      "storeWho": "The store or restaurant fulfilling your order",
+      "storeWhat": "The items, and the delivery address and notes for that order only.",
+      "storeWhere": "India",
+      "riderWho": "The delivery rider",
+      "riderWhat": "The delivery address, map pin and notes for the order they carry.",
+      "riderWhere": "India",
+      "supabaseWho": "Supabase",
+      "supabaseWhat": "Hosts our database and sign-in (account, orders, requests).",
+      "supabaseWhere": "Mumbai region, India",
+      "razorpayWho": "Razorpay",
+      "razorpayWhat": "Takes online payments; holds card, UPI and bank details under its own licence.",
+      "razorpayWhere": "India",
+      "smsWho": "SMS provider (through Supabase sign-in)",
+      "smsWhat": "Your mobile number, to send sign-in codes.",
+      "googleMapsWho": "Google Maps (when switched on)",
+      "googleMapsWhat": "Address searches and map positions, to find your address.",
+      "googleMapsWhere": "Google’s servers, may be outside India",
+      "osmWho": "OpenStreetMap servers",
+      "osmWhat": "A town-sized map area (no name or phone), to list local shops.",
+      "osmWhere": "Europe"
+    },
+    "s4": {
+      "title": "Your choices, and taking them back",
+      "p1": "What is needed to deliver an order does not need a separate yes. Everything else is off until you switch it on:",
+      "p2": "To withdraw a consent, go to You → {{screen}} and switch it off: one tap, as easy as giving it. We stop within a reasonable time and tell anyone handling it for us to stop too. Withdrawing does not undo what was lawfully done before, and never affects your orders.",
+      "open": "Open {{screen}}"
+    },
+    "s5": {
+      "title": "Your rights",
+      "seeTitle": "See your data",
+      "seeBody": "Download everything we hold about you, with who we shared it with.",
+      "correctTitle": "Correct it",
+      "correctBody": "Edit your profile any time, or ask us to fix anything else.",
+      "deleteTitle": "Delete it",
+      "deleteBody": "Delete your account. We erase what we can at once and tell you what the law makes us keep.",
+      "nominateTitle": "Nominate someone",
+      "nominateBody": "Name a person who can use these rights for you if you die or cannot act.",
+      "complainTitle": "Complain",
+      "complainBody": "Raise a grievance with us; we answer within {{days}} days.",
+      "p1": "All of these are in You → {{screen}}. We may ask you to sign in first, so we know it is you."
+    },
+    "s6": {
+      "title": "What we must keep",
+      "taxLine": "Tax invoices and order amounts (GST records): kept for the statutory period — under the GST law, 72 months from the due date of that year’s annual return. Your name, address and notes are removed from them.",
+      "paymentsLine": "Payment and refund records (Razorpay references, amounts, dates): kept as payment and tax law require. They no longer point to you.",
+      "consentLine": "Your consent history and privacy requests (what you agreed to, when, and what you asked us): kept so we can show we followed your choices.",
+      "securityLine": "Security logs: kept for one year, as the DPDP Rules require, then deleted.",
+      "p1": "Everything else is erased once it is no longer needed for the purpose you gave it for, or when you withdraw consent."
+    },
+    "s7": {
+      "title": "Children",
+      "p1": "Accounts are for people aged {{age}} or older. A child can use One Local only through a parent’s or guardian’s own account. We do not track children’s behaviour or show them targeted advertising."
+    },
+    "s8": {
+      "title": "Keeping it safe",
+      "p1": "Your data travels encrypted, is stored with {{hosting}}, and only our servers can read the database; the app on your phone cannot. Access is logged and the logs are kept for a year. If a breach ever affects your data, we will tell you and the {{board}} without delay, with what happened and what you can do."
+    },
+    "s9": {
+      "title": "Questions and complaints",
+      "p1": "Our grievance officer answers questions about your personal data:",
+      "p2": "We reply within {{days}} days. If you are not satisfied, you can complain to the {{board}}: {{link}}. Please use our grievance process first; the Act asks for that.",
+      "email": "Email {{email}}"
+    },
+    "s10": {
+      "title": "Changes and languages",
+      "p1": "When this notice changes, the version above changes, and we ask again wherever your consent is needed. You can ask us for this notice in Marathi, Hindi or any language in the Eighth Schedule to the Constitution."
+    }
+  },
+  "orderCancel": {
+    "action": "Cancel order",
+    "title": "Cancel this order?",
+    "items_one": "{{count}} item",
+    "items_other": "{{count}} items",
+    "orderTotal": "Order total",
+    "paidOnline": "Paid online",
+    "refundLine": "You get back {{amount}} ({{pct}}%)",
+    "feeLine": "Cancellation fee {{amount}}",
+    "fullRefund": "Full refund of {{amount}}, no fee.",
+    "noRefund": "No refund is due at this stage: the food is already prepared.",
+    "cashNote": "You have not paid online, so there is nothing to refund and no fee.",
+    "reasonLabel": "Why are you cancelling?",
+    "reason": {
+      "changedMind": "I changed my mind",
+      "wrongItems": "I ordered the wrong items",
+      "tooSlow": "It is taking too long",
+      "other": "Another reason"
+    },
+    "confirm": "Yes, cancel order",
+    "keep": "Keep my order",
+    "working": "Cancelling…",
+    "loading": "Checking the cancellation terms…",
+    "previewError": "Could not check the cancellation terms. Please try again.",
+    "tooLate": "This order is already on its way and can no longer be cancelled.",
+    "doneTitle": "Order cancelled",
+    "doneRefund": "{{amount}} is on its way back to your original payment method.",
+    "doneNoRefund": "No money was refunded for this cancellation.",
+    "doneNothingPaid": "Nothing was charged, so there is nothing to refund.",
+    "banner": "This order was cancelled.",
+    "close": "Close",
+    "holdToConfirm": "Keep holding to cancel",
+    "holdHint": "Press and hold until the bar fills to cancel the order"
+  },
+  "payui": {
+    "test": "Test mode: no real money is charged",
+    "loading": "Loading payment options…",
+    "loadError": "Could not load payment options. Check your connection and try again.",
+    "lastUsed": "Last used",
+    "secure": "Secure payment",
+    "online": "You pay on a secure page. Nothing is charged until you approve.",
+    "cashNote": "You pay the rider when your order arrives.",
+    "starting": "Starting payment…",
+    "upi": {
+      "title": "UPI",
+      "sub": "Google Pay, PhonePe, Paytm, BHIM",
+      "pickApp": "Choose your UPI app",
+      "other": "Other UPI apps",
+      "qr": "Scan QR code",
+      "qrSub": "Scan with any UPI app on your phone",
+      "more": "More UPI options",
+      "useId": "Pay with a UPI ID instead",
+      "idLabel": "UPI ID",
+      "idPlaceholder": "name@bank",
+      "idInvalid": "Enter a valid UPI ID like name@bank",
+      "idNote": "We send a request to your UPI app and you approve it there. It may not work on some Android phones.",
+      "appA11y": "Pay with {{app}}"
+    },
+    "card": {
+      "title": "Credit or debit card",
+      "sub": "Visa, Mastercard, RuPay. You type the card on the secure bank page. We do not save it."
+    },
+    "net": {
+      "title": "Netbanking and wallets",
+      "sub": "Pick your bank or wallet on the secure page."
+    },
+    "cod": {
+      "title": "Cash on delivery",
+      "sub": "Pay cash to the rider at your door. Please keep exact change.",
+      "over": "Not available for orders above {{max}}.",
+      "off": "Cash on delivery is not available right now."
+    },
+    "phone": {
+      "label": "Mobile number for this payment",
+      "placeholder": "10-digit mobile number",
+      "invalid": "Enter a 10-digit mobile number"
+    },
+    "open": {
+      "title": "Complete your payment",
+      "web": "Finish paying in the secure window that opened. This screen updates by itself.",
+      "blocked": "Your browser blocked the payment window. Tap the button to open it.",
+      "reopen": "Open payment window"
+    },
+    "wait": {
+      "title": "Approve in your UPI app",
+      "body": "Open your UPI app and approve the payment of {{amount}}. Keep this screen open.",
+      "timer": "Time left {{time}}",
+      "timerEnded": "Time is up. Checking your payment…",
+      "timerA11y": "Time left to approve: {{time}}"
+    },
+    "qr": {
+      "title": "Scan to pay {{amount}}",
+      "body": "Open any UPI app on your phone, tap Scan and scan this code.",
+      "a11y": "UPI QR code for {{amount}}"
+    },
+    "collect": {
+      "title": "Request sent to {{id}}",
+      "body": "Approve it in your UPI app within 5 minutes."
+    },
+    "confirm": {
+      "title": "Confirming your payment",
+      "body": "We are confirming with your bank. Please do not pay again. This can take a minute.",
+      "offline": "Connection lost. We keep checking and will update as soon as you are back online."
+    },
+    "stuck": {
+      "title": "Still confirming with your bank",
+      "body": "Please do not pay again. If money was taken, your order will be confirmed or the money returned automatically.",
+      "check": "Check again",
+      "back": "Back to cart"
+    },
+    "paid": {
+      "title": "Payment received",
+      "body": "Placing your order…"
+    },
+    "failed": {
+      "title": "Payment did not go through",
+      "body": "Your cart is safe and nothing is lost. If any money left your account, it is returned to you.",
+      "generic": "The bank or UPI app could not complete this payment.",
+      "expired": "This payment session ended before it was completed.",
+      "refunded": "This payment was returned to you.",
+      "other": "Try another method",
+      "again": "Try again",
+      "cash": "Pay cash on delivery instead"
+    },
+    "dropped": {
+      "title": "Payment cancelled",
+      "body": "You did not finish paying. Your cart is safe and nothing was charged.",
+      "choose": "Choose a payment method"
+    },
+    "pending": {
+      "title": "A payment is still being confirmed",
+      "body": "Please do not pay again.",
+      "check": "Check status"
+    },
+    "refund": {
+      "eta": "3-5 working days",
+      "initiated": "Refund of {{amount}} initiated. It goes to your original payment method in {{eta}}.",
+      "initiatedCredit": "Refund of {{amount}} initiated as store credit.",
+      "initiatedManual": "Refund of {{amount}} is being arranged by our team.",
+      "processed": "Refund of {{amount}} completed. It was sent to your original payment method.",
+      "processedCredit": "Refund of {{amount}} completed as store credit.",
+      "processedManual": "Refund of {{amount}} was paid out by our team.",
+      "failed": "Refund of {{amount}} is delayed. Our team is retrying it.",
+      "support": "Contact support"
+    }
+  },
+  "updates": {
+    "ready": "A new version of OneLocal is ready.",
+    "restart": "Restart"
+  },
+  "network": {
+    "offline": "You're offline. Showing what was saved.",
+    "retry": "Retry",
+    "checking": "Checking…",
+    "backOnline": "Back online",
+    "update": {
+      "title": "Update OneLocal to keep ordering",
+      "body": "This version of the app is too old to place orders. Updating takes about a minute.",
+      "button": "Update now",
+      "reload": "Reload"
+    },
+    "maintenance": {
+      "title": "OneLocal is taking a short break",
+      "body": "We are doing some quick upkeep. Please try again in a few minutes.",
+      "retry": "Try again",
+      "still": "Still on a break. Please try again in a few minutes."
+    }
+  },
+  "popups": {
+    "ad": "Ad",
+    "close": "Close",
+    "closeA11y": "Close this offer",
+    "skip": "Skip",
+    "open": "Open",
+    "dialogA11y": "Offer",
+    "comingSoon": {
+      "stamp": "COMING SOON",
+      "kind": "KIND",
+      "city": "CITY",
+      "status": "STATUS",
+      "opening": "OPENING SOON",
+      "thanks": "THANK YOU FOR WAITING",
+      "page": "Store {{n}} of {{total}}",
+      "menuSoon": "{{name}} is joining OneLocal. Its menu will be here soon.",
+      "explore": "See what’s open now",
+      "soon": "Soon"
+    }
+  },
+  "notFound": {
+    "title": "This page took a wrong turn.",
+    "body": "The link may be old or mistyped. Let’s get you back.",
+    "home": "Go to home"
+  }
+}

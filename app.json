@@ -1,0 +1,80 @@
+{
+  "expo": {
+    "name": "OneLocal",
+    "slug": "frontend",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "onecity",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "Find products using a photo",
+        "NSMicrophoneUsageDescription": "Search for products with your voice",
+        "NSPhotoLibraryUsageDescription": "Choose product photos for visual search",
+        "NSLocationWhenInUseUsageDescription": "OneLocal uses your location to find your delivery address.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.proviyaa.onelatur"
+    },
+    "android": {
+      "permissions": [
+        "CAMERA",
+        "RECORD_AUDIO"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#0B0F0C"
+      },
+      "package": "com.proviyaa.onelatur"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "server",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/brand/onelocal-logo-on-dark.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#050605"
+        }
+      ],
+      "expo-font",
+      "expo-image",
+      "expo-secure-store",
+      "expo-web-browser",
+      "expo-status-bar",
+      "@react-native-vector-icons/ionicons",
+      "expo-video",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Search for products with your voice"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "Find products using a photo",
+          "photosPermission": "Choose product photos for visual search",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "OneLocal uses your location to find your delivery address."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

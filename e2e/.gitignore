@@ -1,0 +1,4 @@
+# Playwright's transient output (traces, per-test attachments, HTML report).
+test-results/
+playwright-report/
+# Kept on purpose: screenshots/ and results/ are the evidence cited in REPORT.md.

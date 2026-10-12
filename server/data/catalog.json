@@ -1,0 +1,4123 @@
+{
+ "categories": [
+  {
+   "id": "c1",
+   "name": "Fruits & Veggies",
+   "emoji": "🥦",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/fruit"
+  },
+  {
+   "id": "c2",
+   "name": "Dairy & Eggs",
+   "emoji": "🥛",
+   "color": "pastelYellow",
+   "department": "grocery",
+   "image": "/api/media/milk"
+  },
+  {
+   "id": "c3",
+   "name": "Snacks",
+   "emoji": "🍿",
+   "color": "pastelRed",
+   "department": "grocery",
+   "image": "/api/media/fries"
+  },
+  {
+   "id": "c4",
+   "name": "Cold Drinks",
+   "emoji": "🥤",
+   "color": "pastelBlue",
+   "department": "grocery",
+   "image": "/api/media/coffee"
+  },
+  {
+   "id": "c5",
+   "name": "Bakery",
+   "emoji": "🍞",
+   "color": "pastelOrange",
+   "department": "grocery",
+   "image": "/api/media/bread"
+  },
+  {
+   "id": "c6",
+   "name": "Instant Food",
+   "emoji": "🍜",
+   "color": "pastelPurple",
+   "department": "grocery",
+   "image": "/api/media/pasta"
+  },
+  {
+   "id": "c7",
+   "name": "Personal Care",
+   "emoji": "🧴",
+   "color": "pastelPink",
+   "department": "grocery",
+   "image": "/api/media/skincare"
+  },
+  {
+   "id": "c8",
+   "name": "Home Needs",
+   "emoji": "🧺",
+   "color": "pastelMint",
+   "department": "grocery",
+   "image": "/api/media/fresh"
+  },
+  {
+   "id": "c9",
+   "name": "Burgers",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "food",
+   "image": "/api/media/burger"
+  },
+  {
+   "id": "c10",
+   "name": "Chicken & Sides",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "food",
+   "image": "/api/media/chicken"
+  },
+  {
+   "id": "c11",
+   "name": "Coffee & Drinks",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "food",
+   "image": "/api/media/coffee"
+  },
+  {
+   "id": "c12",
+   "name": "Pizza",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "food",
+   "image": "/api/media/pizza"
+  },
+  {
+   "id": "c13",
+   "name": "Wellness",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "pharmacy",
+   "image": "/api/media/wellness"
+  },
+  {
+   "id": "c14",
+   "name": "Hygiene",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "pharmacy",
+   "image": "/api/media/skincare"
+  },
+  {
+   "id": "c15",
+   "name": "Skincare",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "beauty",
+   "image": "/api/media/skincare"
+  },
+  {
+   "id": "c16",
+   "name": "Makeup",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "beauty",
+   "image": "/api/media/beauty"
+  },
+  {
+   "id": "c17",
+   "name": "Haircare",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "beauty",
+   "image": "/api/media/skincare"
+  },
+  {
+   "id": "c18",
+   "name": "Fashion",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "shops",
+   "image": "/api/media/sneakers"
+  },
+  {
+   "id": "c19",
+   "name": "Electronics",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "shops",
+   "image": "/api/media/headphones"
+  },
+  {
+   "id": "c20",
+   "name": "Homeware",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "shops",
+   "image": "/api/media/lamp"
+  },
+  {
+   "id": "c21",
+   "name": "Indian Sweets",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-sweets"
+  },
+  {
+   "id": "c22",
+   "name": "Puja & Festive",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "shops",
+   "image": "/api/media/item-diya"
+  },
+  {
+   "id": "c23",
+   "name": "Dry Fruits & Nuts",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-nuts"
+  },
+  {
+   "id": "c24",
+   "name": "Breakfast & Cereals",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-cereal"
+  },
+  {
+   "id": "c25",
+   "name": "Atta, Rice & Dal",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-rice"
+  },
+  {
+   "id": "c26",
+   "name": "Oils & Ghee",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-oil"
+  },
+  {
+   "id": "c27",
+   "name": "Protein & Nutrition",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-protein"
+  },
+  {
+   "id": "c28",
+   "name": "Sports & Fitness",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "shops",
+   "image": "/api/media/item-dumbbell"
+  },
+  {
+   "id": "c29",
+   "name": "Tea & Coffee",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-coffee-jar"
+  },
+  {
+   "id": "c30",
+   "name": "Cleaning Essentials",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-detergent"
+  },
+  {
+   "id": "c31",
+   "name": "Bath & Body",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "beauty",
+   "image": "/api/media/item-bodywash"
+  },
+  {
+   "id": "c32",
+   "name": "Chocolates & Gifts",
+   "emoji": "",
+   "color": "pastelGreen",
+   "department": "grocery",
+   "image": "/api/media/item-chocolate"
+  }
+ ],
+ "discover_chips": [
+  {
+   "id": "d1",
+   "label": "Trending",
+   "emoji": "🔥",
+   "color": "pastelRed"
+  },
+  {
+   "id": "d2",
+   "label": "New",
+   "emoji": "✨",
+   "color": "pastelYellow"
+  },
+  {
+   "id": "d3",
+   "label": "Fresh",
+   "emoji": "🥬",
+   "color": "pastelGreen"
+  },
+  {
+   "id": "d4",
+   "label": "Bestseller",
+   "emoji": "⭐",
+   "color": "pastelOrange"
+  },
+  {
+   "id": "d5",
+   "label": "Under ₹99",
+   "emoji": "💸",
+   "color": "pastelBlue"
+  },
+  {
+   "id": "d6",
+   "label": "Local",
+   "emoji": "📍",
+   "color": "pastelMint"
+  },
+  {
+   "id": "d7",
+   "label": "Organic",
+   "emoji": "🌿",
+   "color": "pastelPurple"
+  },
+  {
+   "id": "d8",
+   "label": "Combo",
+   "emoji": "🎁",
+   "color": "pastelPink"
+  }
+ ],
+ "banners": [
+  {
+   "id": "b1",
+   "title": "10 min grocery",
+   "subtitle": "Fresh at your door",
+   "image": "/api/media/legacy-13e5b54b9b56fb34",
+   "bg": "pastelGreen"
+  },
+  {
+   "id": "b2",
+   "title": "Snacks Sale",
+   "subtitle": "Up to 40% off",
+   "image": "/api/media/legacy-faf8c1d6d6327b99",
+   "bg": "pastelYellow"
+  },
+  {
+   "id": "b3",
+   "title": "Fresh Delivery",
+   "subtitle": "Rider on the way",
+   "image": "/api/media/legacy-54993e68076a5751",
+   "bg": "pastelRed"
+  }
+ ],
+ "coupons": [
+  {
+   "code": "LATUR10",
+   "label": "10% OFF",
+   "kind": "pct",
+   "value": 10.0,
+   "min_order": 99.0,
+   "description": "Save 10% on orders above ₹99"
+  },
+  {
+   "code": "FRESH50",
+   "label": "₹50 OFF",
+   "kind": "flat",
+   "value": 50.0,
+   "min_order": 199.0,
+   "description": "Flat ₹50 off on orders above ₹199"
+  },
+  {
+   "code": "WELCOME",
+   "label": "₹25 OFF",
+   "kind": "flat",
+   "value": 25.0,
+   "min_order": 0.0,
+   "description": "Welcome offer for new shoppers"
+  }
+ ],
+ "stores": [
+  {
+   "id": "s1",
+   "name": "Purushottam Super Market",
+   "logo": "/api/media/store-purushottam-icon",
+   "tagline": "Your neighbourhood supermarket",
+   "delivery_time": "10 min",
+   "rating": 4.7,
+   "tags": [
+    "Grocery",
+    "Fresh",
+    "Organic"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/legacy-48436f45ac43eede",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/legacy-3a41450b5a6be03a",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/legacy-8ed5a9b2ad27bc2b",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/legacy-9c62b1711cee2522",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "s2",
+   "name": "Green Basket",
+   "logo": "/api/media/legacy-964ce4edd80190a9",
+   "tagline": "Handpicked veggies daily",
+   "delivery_time": "12 min",
+   "rating": 4.6,
+   "tags": [
+    "Vegetables",
+    "Fruits"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/legacy-5ee10ab93c6456a4",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/legacy-ed4fc6c17a1b287e",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/legacy-e9c682c949a96d78",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/legacy-2dca9612b59dc351",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "s3",
+   "name": "Snack Junction",
+   "logo": "/api/media/legacy-f9534db56aee9a27",
+   "tagline": "Chips, biscuits & more",
+   "delivery_time": "15 min",
+   "rating": 4.5,
+   "tags": [
+    "Snacks",
+    "Chocolates"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/legacy-e46ff3711fc26f3d",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/snacks",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/legacy-5eae104f0e62ead0",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/legacy-5c9dcf53956dbcf5",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "mcdonalds",
+   "name": "NIKS Brownies & Burger",
+   "logo": "/api/media/brand-niks",
+   "tagline": "Burgers, brownies, big smiles",
+   "delivery_time": "25 min",
+   "rating": 4.6,
+   "tags": [
+    "Food",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-burger",
+     "thumbnail": "/api/media/burger",
+     "video_web": "/api/media/reel-burger-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/burger",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/burger",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/burger",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "food"
+  },
+  {
+   "id": "kfc",
+   "name": "Rooftop All Day Kitchen",
+   "logo": "/api/media/brand-rooftop",
+   "tagline": "All day, every craving",
+   "delivery_time": "25 min",
+   "rating": 4.6,
+   "tags": [
+    "Food",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-burger",
+     "thumbnail": "/api/media/chicken",
+     "video_web": "/api/media/reel-burger-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/chicken",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/chicken",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/chicken",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "food"
+  },
+  {
+   "id": "starbucks",
+   "name": "Baskin Robbins",
+   "logo": "/api/media/brand-baskin-robbins",
+   "tagline": "A little scoop of happy",
+   "delivery_time": "25 min",
+   "rating": 4.6,
+   "tags": [
+    "Food",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-burger",
+     "thumbnail": "/api/media/coffee",
+     "video_web": "/api/media/reel-burger-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/coffee",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/coffee",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/coffee",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "food"
+  },
+  {
+   "id": "burgerking",
+   "name": "Shri Shyam Bhoj",
+   "logo": "/api/media/brand-shri-shyam-bhoj",
+   "tagline": "A full thali, a full heart",
+   "delivery_time": "25 min",
+   "rating": 4.6,
+   "tags": [
+    "Food",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-burger",
+     "thumbnail": "/api/media/burger",
+     "video_web": "/api/media/reel-burger-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/burger",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/burger",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/burger",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "food"
+  },
+  {
+   "id": "dominos",
+   "name": "MH 12 Pav Bhaji",
+   "logo": "/api/media/brand-mh12-pav-bhaji",
+   "tagline": "Pav bhaji, pizza and good times",
+   "delivery_time": "25 min",
+   "rating": 4.6,
+   "tags": [
+    "Food",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-burger",
+     "thumbnail": "/api/media/pizza",
+     "video_web": "/api/media/reel-burger-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/pizza",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/pizza",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/pizza",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "food"
+  },
+  {
+   "id": "himalaya",
+   "name": "Himalaya",
+   "logo": "/api/media/wellness",
+   "tagline": "Everyday wellness essentials",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Pharmacy",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/wellness",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/wellness",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/wellness",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/wellness",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "pharmacy"
+  },
+  {
+   "id": "dettol",
+   "name": "Dettol",
+   "logo": "/api/media/skincare",
+   "tagline": "Care for the whole family",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Pharmacy",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/skincare",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/skincare",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/skincare",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/skincare",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "pharmacy"
+  },
+  {
+   "id": "volini",
+   "name": "Volini",
+   "logo": "/api/media/wellness",
+   "tagline": "Your everyday care cabinet",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Pharmacy",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/wellness",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/wellness",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/wellness",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/wellness",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "pharmacy"
+  },
+  {
+   "id": "nivea",
+   "name": "NIVEA",
+   "logo": "/api/media/skincare",
+   "tagline": "A little care goes a long way",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/skincare",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/skincare",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/skincare",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/skincare",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "lakme",
+   "name": "Lakmé",
+   "logo": "/api/media/beauty",
+   "tagline": "Find your everyday glow",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/beauty",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/beauty",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/beauty",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/beauty",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "loreal",
+   "name": "L’Oréal",
+   "logo": "/api/media/beauty",
+   "tagline": "Because you are worth it",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/beauty",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/beauty",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/beauty",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/beauty",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "maybelline",
+   "name": "Maybelline",
+   "logo": "/api/media/beauty",
+   "tagline": "Make it your own",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/beauty",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/beauty",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/beauty",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/beauty",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "amul",
+   "name": "Amul",
+   "logo": "/api/media/amul-logo",
+   "tagline": "A little goodness in every day",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/amul-cheese",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/amul-cheese",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/amul-cheese",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/amul-cheese",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "nike",
+   "name": "Nike",
+   "logo": "/api/media/nike-logo",
+   "tagline": "Find your next everyday favourite",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/sneakers",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/sneakers",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/sneakers",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/sneakers",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "boat",
+   "name": "boAt",
+   "logo": "/api/media/boat-logo",
+   "tagline": "Turn the everyday up",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/headphones",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/headphones",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/headphones",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/headphones",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "home-edit",
+   "name": "The Home Edit",
+   "logo": "/api/media/lamp",
+   "tagline": "Little things. Lovely spaces.",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/lamp",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/lamp",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/lamp",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/lamp",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "haldirams",
+   "name": "Haldiram’s",
+   "logo": "/api/media/item-sweets",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-sweets",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-sweets",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-sweets",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-sweets",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "bikaji",
+   "name": "Bikaji",
+   "logo": "/api/media/item-sweets",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-sweets",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-sweets",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-sweets",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-sweets",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "chitale",
+   "name": "Chitale Bandhu",
+   "logo": "/api/media/item-sweets",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-sweets",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-sweets",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-sweets",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-sweets",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "mangaldeep",
+   "name": "Mangaldeep",
+   "logo": "/api/media/item-diya",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-diya",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-diya",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-diya",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-diya",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "latur-artisans",
+   "name": "Latur Artisans",
+   "logo": "/api/media/item-dandiya",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-dandiya",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-dandiya",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-dandiya",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-dandiya",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "farmley",
+   "name": "Farmley",
+   "logo": "/api/media/item-nuts",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-nuts",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-nuts",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-nuts",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-nuts",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "happilo",
+   "name": "Happilo",
+   "logo": "/api/media/item-nuts",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-nuts",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-nuts",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-nuts",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-nuts",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "quaker",
+   "name": "Quaker",
+   "logo": "/api/media/item-cereal",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-cereal",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-cereal",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-cereal",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-cereal",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "kelloggs",
+   "name": "Kellogg’s",
+   "logo": "/api/media/item-cereal",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-cereal",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-cereal",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-cereal",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-cereal",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "saffola",
+   "name": "Saffola",
+   "logo": "/api/media/item-oil",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-oil",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-oil",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-oil",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-oil",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "aashirvaad",
+   "name": "Aashirvaad",
+   "logo": "/api/media/item-rice",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-rice",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-rice",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-rice",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-rice",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "india-gate",
+   "name": "India Gate",
+   "logo": "/api/media/item-rice",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-rice",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-rice",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-rice",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-rice",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "fortune",
+   "name": "Fortune",
+   "logo": "/api/media/item-oil",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-oil",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-oil",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-oil",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-oil",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "muscleblaze",
+   "name": "MuscleBlaze",
+   "logo": "/api/media/item-protein",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-protein",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-protein",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-protein",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-protein",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "yogabar",
+   "name": "Yoga Bar",
+   "logo": "/api/media/item-protein",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-protein",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-protein",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-protein",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-protein",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "boldfit",
+   "name": "Boldfit",
+   "logo": "/api/media/item-yoga",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-yoga",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-yoga",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-yoga",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-yoga",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "nivia",
+   "name": "Nivia",
+   "logo": "/api/media/item-dumbbell",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-dumbbell",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-dumbbell",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-dumbbell",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-dumbbell",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "yonex",
+   "name": "Yonex",
+   "logo": "/api/media/item-badminton",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Shops",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-badminton",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-badminton",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-badminton",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-badminton",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "shops"
+  },
+  {
+   "id": "nescafe",
+   "name": "Nescafé",
+   "logo": "/api/media/item-coffee-jar",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-coffee-jar",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-coffee-jar",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-coffee-jar",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-coffee-jar",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "tata-tea",
+   "name": "Tata Tea",
+   "logo": "/api/media/item-coffee-jar",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-coffee-jar",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-coffee-jar",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-coffee-jar",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-coffee-jar",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "surf-excel",
+   "name": "Surf Excel",
+   "logo": "/api/media/item-detergent",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-detergent",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-detergent",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-detergent",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-detergent",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "lizol",
+   "name": "Lizol",
+   "logo": "/api/media/item-detergent",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-detergent",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-detergent",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-detergent",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-detergent",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "dove",
+   "name": "Dove",
+   "logo": "/api/media/item-bodywash",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-bodywash",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-bodywash",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-bodywash",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-bodywash",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "plum",
+   "name": "Plum",
+   "logo": "/api/media/item-facecream",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-facecream",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-facecream",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-facecream",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-facecream",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "minimalist",
+   "name": "Minimalist",
+   "logo": "/api/media/item-facecream",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Beauty",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-facecream",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-facecream",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-facecream",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-facecream",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "beauty"
+  },
+  {
+   "id": "cadbury",
+   "name": "Cadbury",
+   "logo": "/api/media/item-chocolate",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-chocolate",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-chocolate",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chocolate",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chocolate",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "nestle",
+   "name": "Nestlé",
+   "logo": "/api/media/item-chocolate",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-chocolate",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-chocolate",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chocolate",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chocolate",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "lays",
+   "name": "Lay’s",
+   "logo": "/api/media/item-chips",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-chips",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-chips",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chips",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chips",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "bingo",
+   "name": "Bingo!",
+   "logo": "/api/media/item-chips",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/item-chips",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/item-chips",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chips",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/item-chips",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "britannia",
+   "name": "Britannia",
+   "logo": "/api/media/bread",
+   "tagline": "Discover the collection · demo brand listing",
+   "delivery_time": "15 min",
+   "rating": 4.6,
+   "tags": [
+    "Grocery",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "video",
+     "url": "/api/media/reel-tomato",
+     "thumbnail": "/api/media/bread",
+     "video_web": "/api/media/reel-tomato-webm"
+    },
+    {
+     "type": "video",
+     "url": "/api/media/reel-pasta",
+     "thumbnail": "/api/media/bread",
+     "video_web": "/api/media/reel-pasta-webm"
+    },
+    {
+     "type": "image",
+     "url": "/api/media/bread",
+     "thumbnail": null,
+     "video_web": null
+    },
+    {
+     "type": "image",
+     "url": "/api/media/bread",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "grocery"
+  },
+  {
+   "id": "alpaharam",
+   "name": "Alpaharam",
+   "logo": "/api/media/brand-alpaharam",
+   "tagline": "Pure veg, made fresh",
+   "delivery_time": "25 min",
+   "rating": 4.5,
+   "tags": [
+    "Food",
+    "Pure veg",
+    "Sample brand"
+   ],
+   "media": [
+    {
+     "type": "image",
+     "url": "/api/media/vendor-food-v2",
+     "thumbnail": null,
+     "video_web": null
+    }
+   ],
+   "department": "food"
+  }
+ ],
+ "products": [
+  {
+   "id": "p1",
+   "name": "Fresh Tomatoes",
+   "weight": "500 g",
+   "price": 25.0,
+   "mrp": 40.0,
+   "image": "/api/media/tomatoes",
+   "category_id": "c1",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": 37,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p2",
+   "name": "Onions",
+   "weight": "1 kg",
+   "price": 32.0,
+   "mrp": 45.0,
+   "image": "/api/media/legacy-293f22549776263d",
+   "category_id": "c1",
+   "store_id": "s2",
+   "delivery_min": 10,
+   "discount_pct": 28,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p3",
+   "name": "Bananas",
+   "weight": "1 dozen",
+   "price": 48.0,
+   "mrp": 60.0,
+   "image": "/api/media/bananas",
+   "category_id": "c1",
+   "store_id": "s2",
+   "delivery_min": 10,
+   "discount_pct": 20,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p4",
+   "name": "Amul Milk",
+   "weight": "500 ml",
+   "price": 28.0,
+   "mrp": 30.0,
+   "image": "/api/media/milk",
+   "category_id": "c2",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p5",
+   "name": "Farm Eggs",
+   "weight": "6 pcs",
+   "price": 55.0,
+   "mrp": 72.0,
+   "image": "/api/media/eggs",
+   "category_id": "c2",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": 23,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p6",
+   "name": "Lays Classic",
+   "weight": "52 g",
+   "price": 20.0,
+   "mrp": 20.0,
+   "image": "/api/media/snacks",
+   "category_id": "c3",
+   "store_id": "s3",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p7",
+   "name": "Kurkure Masala",
+   "weight": "80 g",
+   "price": 20.0,
+   "mrp": 20.0,
+   "image": "/api/media/legacy-84cf39f4276352f9",
+   "category_id": "c3",
+   "store_id": "s3",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p8",
+   "name": "Coca Cola",
+   "weight": "750 ml",
+   "price": 40.0,
+   "mrp": 45.0,
+   "image": "/api/media/legacy-0f8d6f5e814842cc",
+   "category_id": "c4",
+   "store_id": "s3",
+   "delivery_min": 10,
+   "discount_pct": 11,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p9",
+   "name": "Sprite",
+   "weight": "750 ml",
+   "price": 40.0,
+   "mrp": 45.0,
+   "image": "/api/media/legacy-ece09aa4b0afb865",
+   "category_id": "c4",
+   "store_id": "s3",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p10",
+   "name": "Brown Bread",
+   "weight": "400 g",
+   "price": 45.0,
+   "mrp": 50.0,
+   "image": "/api/media/bread",
+   "category_id": "c5",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p11",
+   "name": "Maggi Noodles",
+   "weight": "4 pack",
+   "price": 56.0,
+   "mrp": 60.0,
+   "image": "/api/media/legacy-7baa4060f1876de2",
+   "category_id": "c6",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p12",
+   "name": "Dettol Handwash",
+   "weight": "200 ml",
+   "price": 99.0,
+   "mrp": 125.0,
+   "image": "/api/media/legacy-d93f33e2e63f62d3",
+   "category_id": "c7",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": 20,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p13",
+   "name": "Apples",
+   "weight": "1 kg",
+   "price": 180.0,
+   "mrp": 220.0,
+   "image": "/api/media/legacy-1e3d5cd73a458d69",
+   "category_id": "c1",
+   "store_id": "s2",
+   "delivery_min": 10,
+   "discount_pct": 18,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p14",
+   "name": "Paneer",
+   "weight": "200 g",
+   "price": 95.0,
+   "mrp": 110.0,
+   "image": "/api/media/legacy-fd3c5eb667be9abe",
+   "category_id": "c2",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": 13,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p15",
+   "name": "Dark Chocolate",
+   "weight": "80 g",
+   "price": 180.0,
+   "mrp": 220.0,
+   "image": "/api/media/legacy-f150edf07186dcfe",
+   "category_id": "c3",
+   "store_id": "s3",
+   "delivery_min": 10,
+   "discount_pct": 18,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "p16",
+   "name": "Butter",
+   "weight": "100 g",
+   "price": 52.0,
+   "mrp": 58.0,
+   "image": "/api/media/legacy-1d029f4626f66302",
+   "category_id": "c2",
+   "store_id": "s1",
+   "delivery_min": 10,
+   "discount_pct": null,
+   "rating": 4.5,
+   "department": "grocery",
+   "brand_id": ""
+  },
+  {
+   "id": "f1",
+   "name": "Classic Cheeseburger",
+   "weight": "NIKS · 1 burger",
+   "price": 129.0,
+   "mrp": 159.0,
+   "image": "/api/media/burger",
+   "category_id": "c9",
+   "store_id": "mcdonalds",
+   "delivery_min": 25,
+   "discount_pct": 19,
+   "rating": 4.6,
+   "department": "food",
+   "brand_id": "mcdonalds"
+  },
+  {
+   "id": "f2",
+   "name": "Crispy Chicken Bucket",
+   "weight": "Rooftop · 6 pieces",
+   "price": 399.0,
+   "mrp": 499.0,
+   "image": "/api/media/chicken",
+   "category_id": "c10",
+   "store_id": "kfc",
+   "delivery_min": 25,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "food",
+   "brand_id": "kfc"
+  },
+  {
+   "id": "f3",
+   "name": "Iced Caramel Latte",
+   "weight": "Rooftop · 350 ml",
+   "price": 249.0,
+   "mrp": 295.0,
+   "image": "/api/media/coffee",
+   "category_id": "c11",
+   "store_id": "kfc",
+   "delivery_min": 25,
+   "discount_pct": 16,
+   "rating": 4.6,
+   "department": "food",
+   "brand_id": "kfc"
+  },
+  {
+   "id": "f4",
+   "name": "Double Cheese Burger Meal",
+   "weight": "NIKS · burger + fries",
+   "price": 199.0,
+   "mrp": 259.0,
+   "image": "/api/media/burger",
+   "category_id": "c9",
+   "store_id": "mcdonalds",
+   "delivery_min": 25,
+   "discount_pct": 23,
+   "rating": 4.6,
+   "department": "food",
+   "brand_id": "mcdonalds"
+  },
+  {
+   "id": "f5",
+   "name": "Farmhouse Pizza",
+   "weight": "MH 12 · regular",
+   "price": 249.0,
+   "mrp": 329.0,
+   "image": "/api/media/pizza",
+   "category_id": "c12",
+   "store_id": "dominos",
+   "delivery_min": 25,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "food",
+   "brand_id": "dominos"
+  },
+  {
+   "id": "f6",
+   "name": "Loaded Cheese Fries",
+   "weight": "NIKS · 1 portion",
+   "price": 119.0,
+   "mrp": 149.0,
+   "image": "/api/media/fries",
+   "category_id": "c10",
+   "store_id": "mcdonalds",
+   "delivery_min": 25,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "food",
+   "brand_id": "mcdonalds"
+  },
+  {
+   "id": "h1",
+   "name": "Himalaya Wellness Tablets",
+   "weight": "60 tablets · sample listing",
+   "price": 180.0,
+   "mrp": 220.0,
+   "image": "/api/media/wellness",
+   "category_id": "c13",
+   "store_id": "himalaya",
+   "delivery_min": 15,
+   "discount_pct": 18,
+   "rating": 4.6,
+   "department": "pharmacy",
+   "brand_id": "himalaya"
+  },
+  {
+   "id": "h2",
+   "name": "Dettol Hand Sanitizer",
+   "weight": "200 ml",
+   "price": 95.0,
+   "mrp": 120.0,
+   "image": "/api/media/skincare",
+   "category_id": "c14",
+   "store_id": "dettol",
+   "delivery_min": 15,
+   "discount_pct": 21,
+   "rating": 4.6,
+   "department": "pharmacy",
+   "brand_id": "dettol"
+  },
+  {
+   "id": "h3",
+   "name": "Volini Relief Gel",
+   "weight": "30 g · sample listing",
+   "price": 115.0,
+   "mrp": 145.0,
+   "image": "/api/media/wellness",
+   "category_id": "c13",
+   "store_id": "volini",
+   "delivery_min": 15,
+   "discount_pct": 21,
+   "rating": 4.6,
+   "department": "pharmacy",
+   "brand_id": "volini"
+  },
+  {
+   "id": "b1",
+   "name": "NIVEA Soft Moisturiser",
+   "weight": "100 ml",
+   "price": 189.0,
+   "mrp": 249.0,
+   "image": "/api/media/skincare",
+   "category_id": "c15",
+   "store_id": "nivea",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "nivea"
+  },
+  {
+   "id": "b2",
+   "name": "Lakmé Matte Lipstick",
+   "weight": "Rose crush · 3.6 g",
+   "price": 299.0,
+   "mrp": 399.0,
+   "image": "/api/media/beauty",
+   "category_id": "c16",
+   "store_id": "lakme",
+   "delivery_min": 15,
+   "discount_pct": 25,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "lakme"
+  },
+  {
+   "id": "b3",
+   "name": "L’Oréal Hyaluron Shampoo",
+   "weight": "180 ml",
+   "price": 199.0,
+   "mrp": 259.0,
+   "image": "/api/media/skincare",
+   "category_id": "c17",
+   "store_id": "loreal",
+   "delivery_min": 15,
+   "discount_pct": 23,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "loreal"
+  },
+  {
+   "id": "b4",
+   "name": "Maybelline Fit Me",
+   "weight": "Natural buff · 30 ml",
+   "price": 449.0,
+   "mrp": 599.0,
+   "image": "/api/media/beauty",
+   "category_id": "c16",
+   "store_id": "maybelline",
+   "delivery_min": 15,
+   "discount_pct": 25,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "maybelline"
+  },
+  {
+   "id": "g1",
+   "name": "Italian Spaghetti",
+   "weight": "500 g",
+   "price": 99.0,
+   "mrp": 130.0,
+   "image": "/api/media/pasta",
+   "category_id": "c6",
+   "store_id": "s1",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "s1"
+  },
+  {
+   "id": "a1",
+   "name": "Amul Pure Milk Cheese",
+   "weight": "1 kg · sample pack",
+   "price": 550.0,
+   "mrp": 580.0,
+   "image": "/api/media/amul-cheese",
+   "category_id": "c2",
+   "store_id": "amul",
+   "delivery_min": 15,
+   "discount_pct": 5,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "amul"
+  },
+  {
+   "id": "a2",
+   "name": "Amul Pasteurised Butter",
+   "weight": "100 g · illustrative pack",
+   "price": 60.0,
+   "mrp": 65.0,
+   "image": "/api/media/amul-butter-pack",
+   "category_id": "c2",
+   "store_id": "amul",
+   "delivery_min": 15,
+   "discount_pct": 8,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "amul"
+  },
+  {
+   "id": "a3",
+   "name": "Amul Taaza Milk",
+   "weight": "1 litre",
+   "price": 72.0,
+   "mrp": 78.0,
+   "image": "/api/media/amul-milk",
+   "category_id": "c2",
+   "store_id": "amul",
+   "delivery_min": 15,
+   "discount_pct": 8,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "amul"
+  },
+  {
+   "id": "a4",
+   "name": "Amul Cheese Cubes",
+   "weight": "200 g · 8 cubes",
+   "price": 145.0,
+   "mrp": 160.0,
+   "image": "/api/media/amul-cream",
+   "category_id": "c2",
+   "store_id": "amul",
+   "delivery_min": 15,
+   "discount_pct": 9,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "amul"
+  },
+  {
+   "id": "sneak1",
+   "name": "Nike Everyday Sneakers",
+   "weight": "Red · sample size UK 8",
+   "price": 3499.0,
+   "mrp": 4499.0,
+   "image": "/api/media/sneakers",
+   "category_id": "c18",
+   "store_id": "nike",
+   "delivery_min": 15,
+   "discount_pct": 22,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "nike"
+  },
+  {
+   "id": "sneak2",
+   "name": "Nike Essential Tee",
+   "weight": "Cotton · sample size M",
+   "price": 899.0,
+   "mrp": 1299.0,
+   "image": "/api/media/tshirt",
+   "category_id": "c18",
+   "store_id": "nike",
+   "delivery_min": 15,
+   "discount_pct": 31,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "nike"
+  },
+  {
+   "id": "audio1",
+   "name": "boAt Wireless Headphones",
+   "weight": "Over-ear · sample model",
+   "price": 1499.0,
+   "mrp": 2499.0,
+   "image": "/api/media/headphones",
+   "category_id": "c19",
+   "store_id": "boat",
+   "delivery_min": 15,
+   "discount_pct": 40,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "boat"
+  },
+  {
+   "id": "home1",
+   "name": "The Home Edit Table Lamp",
+   "weight": "Warm white · 1 piece",
+   "price": 1199.0,
+   "mrp": 1599.0,
+   "image": "/api/media/lamp",
+   "category_id": "c20",
+   "store_id": "home-edit",
+   "delivery_min": 15,
+   "discount_pct": 25,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "home-edit"
+  },
+  {
+   "id": "sf1",
+   "name": "Haldiram’s Modak Selection",
+   "weight": "200 g",
+   "price": 149.0,
+   "mrp": 180.0,
+   "image": "/api/media/item-sweets",
+   "category_id": "c21",
+   "store_id": "haldirams",
+   "delivery_min": 15,
+   "discount_pct": 17,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "haldirams"
+  },
+  {
+   "id": "sf2",
+   "name": "Bikaji Besan Laddoo",
+   "weight": "250 g",
+   "price": 129.0,
+   "mrp": 160.0,
+   "image": "/api/media/item-sweets",
+   "category_id": "c21",
+   "store_id": "bikaji",
+   "delivery_min": 15,
+   "discount_pct": 19,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "bikaji"
+  },
+  {
+   "id": "sf3",
+   "name": "Chitale Kesar Modak",
+   "weight": "12 pieces",
+   "price": 249.0,
+   "mrp": 299.0,
+   "image": "/api/media/item-sweets",
+   "category_id": "c21",
+   "store_id": "chitale",
+   "delivery_min": 15,
+   "discount_pct": 17,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "chitale"
+  },
+  {
+   "id": "sf4",
+   "name": "Brass Diya Set",
+   "weight": "2 pieces",
+   "price": 119.0,
+   "mrp": 159.0,
+   "image": "/api/media/item-diya",
+   "category_id": "c22",
+   "store_id": "mangaldeep",
+   "delivery_min": 15,
+   "discount_pct": 25,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "mangaldeep"
+  },
+  {
+   "id": "sf5",
+   "name": "Marigold Toran",
+   "weight": "1 garland",
+   "price": 79.0,
+   "mrp": 99.0,
+   "image": "/api/media/item-marigold",
+   "category_id": "c22",
+   "store_id": "latur-artisans",
+   "delivery_min": 15,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "latur-artisans"
+  },
+  {
+   "id": "sf6",
+   "name": "Navratri Dandiya Sticks",
+   "weight": "1 pair",
+   "price": 99.0,
+   "mrp": 149.0,
+   "image": "/api/media/item-dandiya",
+   "category_id": "c22",
+   "store_id": "latur-artisans",
+   "delivery_min": 15,
+   "discount_pct": 34,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "latur-artisans"
+  },
+  {
+   "id": "sf7",
+   "name": "Festive Diya Gift Box",
+   "weight": "4 pieces",
+   "price": 199.0,
+   "mrp": 249.0,
+   "image": "/api/media/item-diya",
+   "category_id": "c22",
+   "store_id": "mangaldeep",
+   "delivery_min": 15,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "mangaldeep"
+  },
+  {
+   "id": "sf8",
+   "name": "Chitale Celebration Sweets",
+   "weight": "500 g",
+   "price": 349.0,
+   "mrp": 420.0,
+   "image": "/api/media/item-sweets",
+   "category_id": "c21",
+   "store_id": "chitale",
+   "delivery_min": 15,
+   "discount_pct": 17,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "chitale"
+  },
+  {
+   "id": "sn1",
+   "name": "Farmley Premium Almonds",
+   "weight": "200 g",
+   "price": 189.0,
+   "mrp": 249.0,
+   "image": "/api/media/item-nuts",
+   "category_id": "c23",
+   "store_id": "farmley",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "farmley"
+  },
+  {
+   "id": "sn2",
+   "name": "Happilo Mixed Nuts",
+   "weight": "200 g",
+   "price": 199.0,
+   "mrp": 269.0,
+   "image": "/api/media/item-nuts",
+   "category_id": "c23",
+   "store_id": "happilo",
+   "delivery_min": 15,
+   "discount_pct": 26,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "happilo"
+  },
+  {
+   "id": "sn3",
+   "name": "Farmley Roasted Cashews",
+   "weight": "100 g",
+   "price": 129.0,
+   "mrp": 169.0,
+   "image": "/api/media/item-nuts",
+   "category_id": "c23",
+   "store_id": "farmley",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "farmley"
+  },
+  {
+   "id": "sn4",
+   "name": "Happilo Festive Nut Mix",
+   "weight": "400 g",
+   "price": 399.0,
+   "mrp": 499.0,
+   "image": "/api/media/item-nuts",
+   "category_id": "c23",
+   "store_id": "happilo",
+   "delivery_min": 15,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "happilo"
+  },
+  {
+   "id": "sg1",
+   "name": "Quaker Rolled Oats",
+   "weight": "400 g",
+   "price": 99.0,
+   "mrp": 130.0,
+   "image": "/api/media/item-cereal",
+   "category_id": "c24",
+   "store_id": "quaker",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "quaker"
+  },
+  {
+   "id": "sg2",
+   "name": "Kellogg’s Corn Flakes",
+   "weight": "250 g",
+   "price": 149.0,
+   "mrp": 175.0,
+   "image": "/api/media/item-cereal",
+   "category_id": "c24",
+   "store_id": "kelloggs",
+   "delivery_min": 15,
+   "discount_pct": 15,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "kelloggs"
+  },
+  {
+   "id": "sg3",
+   "name": "Saffola Masala Oats",
+   "weight": "500 g",
+   "price": 179.0,
+   "mrp": 220.0,
+   "image": "/api/media/item-cereal",
+   "category_id": "c24",
+   "store_id": "saffola",
+   "delivery_min": 15,
+   "discount_pct": 19,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "saffola"
+  },
+  {
+   "id": "sg4",
+   "name": "Aashirvaad Whole Wheat Atta",
+   "weight": "1 kg",
+   "price": 59.0,
+   "mrp": 68.0,
+   "image": "/api/media/item-rice",
+   "category_id": "c25",
+   "store_id": "aashirvaad",
+   "delivery_min": 15,
+   "discount_pct": 13,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "aashirvaad"
+  },
+  {
+   "id": "sg5",
+   "name": "India Gate Basmati Rice",
+   "weight": "1 kg",
+   "price": 129.0,
+   "mrp": 169.0,
+   "image": "/api/media/item-rice",
+   "category_id": "c25",
+   "store_id": "india-gate",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "india-gate"
+  },
+  {
+   "id": "sg6",
+   "name": "Fortune Toor Dal",
+   "weight": "500 g",
+   "price": 79.0,
+   "mrp": 95.0,
+   "image": "/api/media/item-rice",
+   "category_id": "c25",
+   "store_id": "fortune",
+   "delivery_min": 15,
+   "discount_pct": 17,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "fortune"
+  },
+  {
+   "id": "sg7",
+   "name": "Fortune Sunflower Oil",
+   "weight": "1 litre",
+   "price": 149.0,
+   "mrp": 180.0,
+   "image": "/api/media/item-oil",
+   "category_id": "c26",
+   "store_id": "fortune",
+   "delivery_min": 15,
+   "discount_pct": 17,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "fortune"
+  },
+  {
+   "id": "sg8",
+   "name": "Saffola Gold Oil",
+   "weight": "1 litre",
+   "price": 189.0,
+   "mrp": 220.0,
+   "image": "/api/media/item-oil",
+   "category_id": "c26",
+   "store_id": "saffola",
+   "delivery_min": 15,
+   "discount_pct": 14,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "saffola"
+  },
+  {
+   "id": "sp1",
+   "name": "MuscleBlaze Whey Protein",
+   "weight": "500 g · illustrative pack",
+   "price": 1299.0,
+   "mrp": 1599.0,
+   "image": "/api/media/item-protein",
+   "category_id": "c27",
+   "store_id": "muscleblaze",
+   "delivery_min": 15,
+   "discount_pct": 19,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "muscleblaze"
+  },
+  {
+   "id": "sp2",
+   "name": "Yoga Bar Protein Mix",
+   "weight": "400 g",
+   "price": 349.0,
+   "mrp": 449.0,
+   "image": "/api/media/item-protein",
+   "category_id": "c27",
+   "store_id": "yogabar",
+   "delivery_min": 15,
+   "discount_pct": 22,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "yogabar"
+  },
+  {
+   "id": "sp3",
+   "name": "Yoga Bar Breakfast Muesli",
+   "weight": "400 g",
+   "price": 249.0,
+   "mrp": 329.0,
+   "image": "/api/media/item-cereal",
+   "category_id": "c24",
+   "store_id": "yogabar",
+   "delivery_min": 15,
+   "discount_pct": 24,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "yogabar"
+  },
+  {
+   "id": "sp4",
+   "name": "Boldfit Yoga Mat",
+   "weight": "1 piece · sage",
+   "price": 499.0,
+   "mrp": 699.0,
+   "image": "/api/media/item-yoga",
+   "category_id": "c28",
+   "store_id": "boldfit",
+   "delivery_min": 15,
+   "discount_pct": 29,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "boldfit"
+  },
+  {
+   "id": "sp5",
+   "name": "Nivia Dumbbell Pair",
+   "weight": "2 × 2 kg",
+   "price": 699.0,
+   "mrp": 899.0,
+   "image": "/api/media/item-dumbbell",
+   "category_id": "c28",
+   "store_id": "nivia",
+   "delivery_min": 15,
+   "discount_pct": 22,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "nivia"
+  },
+  {
+   "id": "sp6",
+   "name": "Yonex Badminton Set",
+   "weight": "1 racket + shuttle",
+   "price": 899.0,
+   "mrp": 1199.0,
+   "image": "/api/media/item-badminton",
+   "category_id": "c28",
+   "store_id": "yonex",
+   "delivery_min": 15,
+   "discount_pct": 25,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "yonex"
+  },
+  {
+   "id": "sp7",
+   "name": "Boldfit Training Dumbbells",
+   "weight": "2 × 1 kg",
+   "price": 399.0,
+   "mrp": 549.0,
+   "image": "/api/media/item-dumbbell",
+   "category_id": "c28",
+   "store_id": "boldfit",
+   "delivery_min": 15,
+   "discount_pct": 27,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "boldfit"
+  },
+  {
+   "id": "sp8",
+   "name": "Nivia Exercise Mat",
+   "weight": "1 piece",
+   "price": 449.0,
+   "mrp": 599.0,
+   "image": "/api/media/item-yoga",
+   "category_id": "c28",
+   "store_id": "nivia",
+   "delivery_min": 15,
+   "discount_pct": 25,
+   "rating": 4.6,
+   "department": "shops",
+   "brand_id": "nivia"
+  },
+  {
+   "id": "sc1",
+   "name": "Nescafé Classic Coffee",
+   "weight": "50 g",
+   "price": 179.0,
+   "mrp": 210.0,
+   "image": "/api/media/item-coffee-jar",
+   "category_id": "c29",
+   "store_id": "nescafe",
+   "delivery_min": 15,
+   "discount_pct": 15,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "nescafe"
+  },
+  {
+   "id": "sc2",
+   "name": "Tata Tea Premium",
+   "weight": "250 g",
+   "price": 119.0,
+   "mrp": 145.0,
+   "image": "/api/media/item-coffee-jar",
+   "category_id": "c29",
+   "store_id": "tata-tea",
+   "delivery_min": 15,
+   "discount_pct": 18,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "tata-tea"
+  },
+  {
+   "id": "sc3",
+   "name": "Nescafé Gold Coffee",
+   "weight": "100 g",
+   "price": 449.0,
+   "mrp": 549.0,
+   "image": "/api/media/item-coffee-jar",
+   "category_id": "c29",
+   "store_id": "nescafe",
+   "delivery_min": 15,
+   "discount_pct": 18,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "nescafe"
+  },
+  {
+   "id": "se1",
+   "name": "Surf Excel Liquid Detergent",
+   "weight": "1 litre",
+   "price": 199.0,
+   "mrp": 250.0,
+   "image": "/api/media/item-detergent",
+   "category_id": "c30",
+   "store_id": "surf-excel",
+   "delivery_min": 15,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "surf-excel"
+  },
+  {
+   "id": "se2",
+   "name": "Lizol Floor Cleaner",
+   "weight": "500 ml",
+   "price": 99.0,
+   "mrp": 125.0,
+   "image": "/api/media/item-detergent",
+   "category_id": "c30",
+   "store_id": "lizol",
+   "delivery_min": 15,
+   "discount_pct": 21,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "lizol"
+  },
+  {
+   "id": "se3",
+   "name": "Dove Nourishing Body Wash",
+   "weight": "250 ml",
+   "price": 179.0,
+   "mrp": 225.0,
+   "image": "/api/media/item-bodywash",
+   "category_id": "c31",
+   "store_id": "dove",
+   "delivery_min": 15,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "dove"
+  },
+  {
+   "id": "se4",
+   "name": "Plum Body Wash",
+   "weight": "240 ml",
+   "price": 249.0,
+   "mrp": 299.0,
+   "image": "/api/media/item-bodywash",
+   "category_id": "c31",
+   "store_id": "plum",
+   "delivery_min": 15,
+   "discount_pct": 17,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "plum"
+  },
+  {
+   "id": "se5",
+   "name": "Minimalist Daily Moisturiser",
+   "weight": "50 g",
+   "price": 299.0,
+   "mrp": 349.0,
+   "image": "/api/media/item-facecream",
+   "category_id": "c15",
+   "store_id": "minimalist",
+   "delivery_min": 15,
+   "discount_pct": 14,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "minimalist"
+  },
+  {
+   "id": "se6",
+   "name": "Plum Green Tea Cream",
+   "weight": "50 ml",
+   "price": 349.0,
+   "mrp": 449.0,
+   "image": "/api/media/item-facecream",
+   "category_id": "c15",
+   "store_id": "plum",
+   "delivery_min": 15,
+   "discount_pct": 22,
+   "rating": 4.6,
+   "department": "beauty",
+   "brand_id": "plum"
+  },
+  {
+   "id": "se7",
+   "name": "Lizol Home Care Starter Pack",
+   "weight": "2 × 500 ml",
+   "price": 179.0,
+   "mrp": 230.0,
+   "image": "/api/media/item-detergent",
+   "category_id": "c8",
+   "store_id": "lizol",
+   "delivery_min": 15,
+   "discount_pct": 22,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "lizol"
+  },
+  {
+   "id": "st1",
+   "name": "Cadbury Dairy Milk",
+   "weight": "55 g",
+   "price": 49.0,
+   "mrp": 60.0,
+   "image": "/api/media/item-chocolate",
+   "category_id": "c32",
+   "store_id": "cadbury",
+   "delivery_min": 15,
+   "discount_pct": 18,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "cadbury"
+  },
+  {
+   "id": "st2",
+   "name": "Nestlé Dark Chocolate",
+   "weight": "90 g",
+   "price": 99.0,
+   "mrp": 125.0,
+   "image": "/api/media/item-chocolate",
+   "category_id": "c32",
+   "store_id": "nestle",
+   "delivery_min": 15,
+   "discount_pct": 21,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "nestle"
+  },
+  {
+   "id": "st3",
+   "name": "Cadbury Celebration Box",
+   "weight": "150 g",
+   "price": 199.0,
+   "mrp": 250.0,
+   "image": "/api/media/item-chocolate",
+   "category_id": "c32",
+   "store_id": "cadbury",
+   "delivery_min": 15,
+   "discount_pct": 20,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "cadbury"
+  },
+  {
+   "id": "st4",
+   "name": "Lay’s Classic Salted",
+   "weight": "90 g",
+   "price": 35.0,
+   "mrp": 40.0,
+   "image": "/api/media/item-chips",
+   "category_id": "c3",
+   "store_id": "lays",
+   "delivery_min": 15,
+   "discount_pct": 12,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "lays"
+  },
+  {
+   "id": "st5",
+   "name": "Bingo! Masala Crunch",
+   "weight": "100 g",
+   "price": 30.0,
+   "mrp": 35.0,
+   "image": "/api/media/item-chips",
+   "category_id": "c3",
+   "store_id": "bingo",
+   "delivery_min": 15,
+   "discount_pct": 14,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "bingo"
+  },
+  {
+   "id": "st6",
+   "name": "Haldiram’s Namkeen",
+   "weight": "200 g",
+   "price": 59.0,
+   "mrp": 75.0,
+   "image": "/api/media/item-chips",
+   "category_id": "c3",
+   "store_id": "haldirams",
+   "delivery_min": 15,
+   "discount_pct": 21,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "haldirams"
+  },
+  {
+   "id": "st7",
+   "name": "Britannia Milk Bread",
+   "weight": "400 g",
+   "price": 45.0,
+   "mrp": 50.0,
+   "image": "/api/media/bread",
+   "category_id": "c5",
+   "store_id": "britannia",
+   "delivery_min": 15,
+   "discount_pct": 10,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "britannia"
+  },
+  {
+   "id": "st8",
+   "name": "Britannia Breakfast Toast",
+   "weight": "200 g",
+   "price": 39.0,
+   "mrp": 50.0,
+   "image": "/api/media/bread",
+   "category_id": "c5",
+   "store_id": "britannia",
+   "delivery_min": 15,
+   "discount_pct": 22,
+   "rating": 4.6,
+   "department": "grocery",
+   "brand_id": "britannia"
+  }
+ ],
+ "brands": [
+  {
+   "id": "mcdonalds",
+   "name": "NIKS Brownies & Burger",
+   "department": "food",
+   "logo": "/api/media/brand-niks",
+   "image": "/api/media/burger",
+   "tagline": "Burgers, brownies, big smiles"
+  },
+  {
+   "id": "kfc",
+   "name": "Rooftop All Day Kitchen",
+   "department": "food",
+   "logo": "/api/media/brand-rooftop",
+   "image": "/api/media/chicken",
+   "tagline": "All day, every craving"
+  },
+  {
+   "id": "starbucks",
+   "name": "Baskin Robbins",
+   "department": "food",
+   "logo": "/api/media/brand-baskin-robbins",
+   "image": "/api/media/coffee",
+   "tagline": "A little scoop of happy"
+  },
+  {
+   "id": "burgerking",
+   "name": "Shri Shyam Bhoj",
+   "department": "food",
+   "logo": "/api/media/brand-shri-shyam-bhoj",
+   "image": "/api/media/burger",
+   "tagline": "A full thali, a full heart"
+  },
+  {
+   "id": "dominos",
+   "name": "MH 12 Pav Bhaji",
+   "department": "food",
+   "logo": "/api/media/brand-mh12-pav-bhaji",
+   "image": "/api/media/pizza",
+   "tagline": "Pav bhaji, pizza and good times"
+  },
+  {
+   "id": "himalaya",
+   "name": "Himalaya",
+   "department": "pharmacy",
+   "logo": "",
+   "image": "/api/media/wellness",
+   "tagline": "Everyday wellness essentials"
+  },
+  {
+   "id": "dettol",
+   "name": "Dettol",
+   "department": "pharmacy",
+   "logo": "",
+   "image": "/api/media/skincare",
+   "tagline": "Care for the whole family"
+  },
+  {
+   "id": "volini",
+   "name": "Volini",
+   "department": "pharmacy",
+   "logo": "",
+   "image": "/api/media/wellness",
+   "tagline": "Your everyday care cabinet"
+  },
+  {
+   "id": "nivea",
+   "name": "NIVEA",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/skincare",
+   "tagline": "A little care goes a long way"
+  },
+  {
+   "id": "lakme",
+   "name": "Lakmé",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/beauty",
+   "tagline": "Find your everyday glow"
+  },
+  {
+   "id": "loreal",
+   "name": "L’Oréal",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/beauty",
+   "tagline": "Because you are worth it"
+  },
+  {
+   "id": "maybelline",
+   "name": "Maybelline",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/beauty",
+   "tagline": "Make it your own"
+  },
+  {
+   "id": "amul",
+   "name": "Amul",
+   "department": "grocery",
+   "logo": "/api/media/amul-logo",
+   "image": "/api/media/amul-cheese",
+   "tagline": "A little goodness in every day"
+  },
+  {
+   "id": "nike",
+   "name": "Nike",
+   "department": "shops",
+   "logo": "/api/media/nike-logo",
+   "image": "/api/media/sneakers",
+   "tagline": "Find your next everyday favourite"
+  },
+  {
+   "id": "boat",
+   "name": "boAt",
+   "department": "shops",
+   "logo": "/api/media/boat-logo",
+   "image": "/api/media/headphones",
+   "tagline": "Turn the everyday up"
+  },
+  {
+   "id": "home-edit",
+   "name": "The Home Edit",
+   "department": "shops",
+   "logo": "",
+   "image": "/api/media/lamp",
+   "tagline": "Little things. Lovely spaces."
+  },
+  {
+   "id": "haldirams",
+   "name": "Haldiram’s",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-sweets",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "bikaji",
+   "name": "Bikaji",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-sweets",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "chitale",
+   "name": "Chitale Bandhu",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-sweets",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "mangaldeep",
+   "name": "Mangaldeep",
+   "department": "shops",
+   "logo": "",
+   "image": "/api/media/item-diya",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "latur-artisans",
+   "name": "Latur Artisans",
+   "department": "shops",
+   "logo": "",
+   "image": "/api/media/item-dandiya",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "farmley",
+   "name": "Farmley",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-nuts",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "happilo",
+   "name": "Happilo",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-nuts",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "quaker",
+   "name": "Quaker",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-cereal",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "kelloggs",
+   "name": "Kellogg’s",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-cereal",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "saffola",
+   "name": "Saffola",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-oil",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "aashirvaad",
+   "name": "Aashirvaad",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-rice",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "india-gate",
+   "name": "India Gate",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-rice",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "fortune",
+   "name": "Fortune",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-oil",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "muscleblaze",
+   "name": "MuscleBlaze",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-protein",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "yogabar",
+   "name": "Yoga Bar",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-protein",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "boldfit",
+   "name": "Boldfit",
+   "department": "shops",
+   "logo": "",
+   "image": "/api/media/item-yoga",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "nivia",
+   "name": "Nivia",
+   "department": "shops",
+   "logo": "",
+   "image": "/api/media/item-dumbbell",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "yonex",
+   "name": "Yonex",
+   "department": "shops",
+   "logo": "",
+   "image": "/api/media/item-badminton",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "nescafe",
+   "name": "Nescafé",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-coffee-jar",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "tata-tea",
+   "name": "Tata Tea",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-coffee-jar",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "surf-excel",
+   "name": "Surf Excel",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-detergent",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "lizol",
+   "name": "Lizol",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-detergent",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "dove",
+   "name": "Dove",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/item-bodywash",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "plum",
+   "name": "Plum",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/item-facecream",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "minimalist",
+   "name": "Minimalist",
+   "department": "beauty",
+   "logo": "",
+   "image": "/api/media/item-facecream",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "cadbury",
+   "name": "Cadbury",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-chocolate",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "nestle",
+   "name": "Nestlé",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-chocolate",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "lays",
+   "name": "Lay’s",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-chips",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "bingo",
+   "name": "Bingo!",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/item-chips",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "britannia",
+   "name": "Britannia",
+   "department": "grocery",
+   "logo": "",
+   "image": "/api/media/bread",
+   "tagline": "Discover the collection · demo brand listing"
+  },
+  {
+   "id": "alpaharam",
+   "name": "Alpaharam",
+   "department": "food",
+   "logo": "/api/media/brand-alpaharam",
+   "image": "/api/media/vendor-food-v2",
+   "tagline": "Pure veg, made fresh"
+  }
+ ],
+ "events": [
+  {
+   "id": "e1",
+   "title": "The Last Orbit",
+   "kind": "movies",
+   "subtitle": "Sci-fi adventure · Hindi · 2h 15m",
+   "venue": "Sample cinema, Latur",
+   "price": 180,
+   "image": "/api/media/cinema",
+   "tag": "ON THE BIG SCREEN",
+   "slots": [
+    "11:00 AM",
+    "2:30 PM",
+    "7:00 PM"
+   ]
+  },
+  {
+   "id": "e2",
+   "title": "A Little More Love",
+   "kind": "movies",
+   "subtitle": "Romance · Marathi · 2h 05m",
+   "venue": "Sample cinema, Latur",
+   "price": 150,
+   "image": "/api/media/cinema",
+   "tag": "A STORY TO FALL FOR",
+   "slots": [
+    "12:30 PM",
+    "4:00 PM",
+    "8:30 PM"
+   ]
+  },
+  {
+   "id": "e3",
+   "title": "Latur After Hours",
+   "kind": "events",
+   "subtitle": "Live music · Acoustic evening",
+   "venue": "Sample open-air venue, Latur",
+   "price": 499,
+   "image": "/api/media/concert",
+   "tag": "FEEL IT LIVE",
+   "slots": [
+    "6:00 PM",
+    "8:00 PM"
+   ]
+  },
+  {
+   "id": "e4",
+   "title": "Weekend Trail Club",
+   "kind": "activities",
+   "subtitle": "Outdoor adventure · Guided walk",
+   "venue": "Sample trail, Latur outskirts",
+   "price": 299,
+   "image": "/api/media/adventure",
+   "tag": "MAKE A DAY OF IT",
+   "slots": [
+    "6:30 AM",
+    "8:00 AM"
+   ]
+  }
+ ],
+ "themed_stores": [
+  {
+   "id": "festive",
+   "name": "Festive Time",
+   "subtitle": "Little rituals. Big celebrations.",
+   "eyebrow": "THE FESTIVE EDIT",
+   "categories": [
+    "c21",
+    "c22",
+    "c23",
+    "c32"
+   ],
+   "icon": "sparkles-outline",
+   "image": "/api/media/store-festive",
+   "sections": [
+    "Treats for Bappa, with love",
+    "A little sparkle for Navratri"
+   ]
+  },
+  {
+   "id": "fitness",
+   "name": "Sports & Fitness",
+   "subtitle": "Show up. Get stronger. Repeat.",
+   "eyebrow": "FIND YOUR STRONG",
+   "categories": [
+    "c28",
+    "c27",
+    "c24",
+    "c23"
+   ],
+   "icon": "barbell-outline",
+   "image": "/api/media/store-fitness",
+   "sections": [
+    "Your next personal best",
+    "Fuel the everyday athlete"
+   ]
+  },
+  {
+   "id": "trending",
+   "name": "Trending Now",
+   "subtitle": "Good finds. Main-character energy.",
+   "eyebrow": "THE CITY IS TALKING",
+   "categories": [
+    "c19",
+    "c18",
+    "c15",
+    "c31",
+    "c32"
+   ],
+   "icon": "trending-up-outline",
+   "image": "/api/media/store-trending",
+   "sections": [
+    "The most-wanted edit",
+    "Small upgrades. Big mood."
+   ]
+  },
+  {
+   "id": "gourmet",
+   "name": "Gourmet Treats",
+   "subtitle": "A little indulgence, just for you.",
+   "eyebrow": "SAVOUR THE LITTLE THINGS",
+   "categories": [
+    "c29",
+    "c32",
+    "c3",
+    "c5",
+    "c21"
+   ],
+   "icon": "cafe-outline",
+   "image": "/api/media/store-gourmet",
+   "sections": [
+    "Made for your coffee break",
+    "Something sweet. Something crunchy."
+   ]
+  },
+  {
+   "id": "everyday",
+   "name": "Everyday Essentials",
+   "subtitle": "Your daily list. Beautifully sorted.",
+   "eyebrow": "LITTLE THINGS, TAKEN CARE OF",
+   "categories": [
+    "c1",
+    "c2",
+    "c25",
+    "c26",
+    "c30",
+    "c31"
+   ],
+   "icon": "leaf-outline",
+   "image": "/api/media/store-everyday",
+   "sections": [
+    "Fresh starts here",
+    "Restock your happy place"
+   ]
+  }
+ ],
+ "reels": [
+  {
+   "id": "r-amul",
+   "product_id": "a1",
+   "video": "/api/media/reel-amul-v2",
+   "caption": "A little slice of happiness. Make every bite a little more Amul.",
+   "creator": "Amul",
+   "likes": 243,
+   "tag": "THE DAILY GOODNESS EDIT",
+   "brand_id": "amul"
+  },
+  {
+   "id": "r1",
+   "product_id": "f1",
+   "video": "/api/media/reel-burger",
+   "caption": "Big cravings, golden moments. Explore the McDonald’s collection.",
+   "creator": "McDonald’s",
+   "likes": 128,
+   "tag": "YOUR NEXT CRAVING",
+   "brand_id": "mcdonalds"
+  },
+  {
+   "id": "r-beauty",
+   "product_id": "b1",
+   "video": "/api/media/reel-nivea",
+   "caption": "A little care, a little glow. Discover your NIVEA essentials.",
+   "creator": "NIVEA",
+   "likes": 186,
+   "tag": "THE CARE EDIT",
+   "brand_id": "nivea"
+  }
+ ]
+}

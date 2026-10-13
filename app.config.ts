@@ -18,7 +18,10 @@ const easProjectId = process.env.EAS_PROJECT_ID || '08ae9031-c338-4b72-82a9-4b65
 export default {
   ...config.expo,
   name: 'OneLocal',
-  runtimeVersion: { policy: 'fingerprint' },
+  // The app version (app.json "version") is the runtime version: identical on every machine, so a build made from a
+  // folder whose node_modules is a link, or that also holds a generated android/ project, matches on EAS. Raise the
+  // version whenever native code changes, before sending an over-the-air update to that build.
+  runtimeVersion: { policy: 'appVersion' },
   updates: easProjectId
     ? { enabled: true, url: `https://u.expo.dev/${easProjectId}`, checkAutomatically: 'ON_LOAD', fallbackToCacheTimeout: 0 }
     : { enabled: false },

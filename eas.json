@@ -1,10 +1,56 @@
 {
-  "cli": { "version": ">= 16.0.0", "appVersionSource": "remote" },
-  "build": {
-    "development": { "developmentClient": true, "distribution": "internal", "channel": "internal" },
-    "internal": { "distribution": "internal", "channel": "internal" },
-    "pilot": { "distribution": "internal", "channel": "pilot" },
-    "production": { "channel": "stable", "autoIncrement": true }
+  "cli": {
+    "version": ">= 16.0.0",
+    "appVersionSource": "remote"
   },
-  "submit": { "production": {} }
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "channel": "internal",
+      "env": {
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
+      },
+      "node": "24.11.1"
+    },
+    "internal": {
+      "distribution": "internal",
+      "channel": "internal",
+      "environment": "preview",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "BACKEND_URL": "https://one-local-server.vercel.app",
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
+      },
+      "node": "24.11.1"
+    },
+    "pilot": {
+      "distribution": "internal",
+      "channel": "pilot",
+      "environment": "preview",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "BACKEND_URL": "https://one-local-server.vercel.app",
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
+      },
+      "node": "24.11.1"
+    },
+    "production": {
+      "channel": "stable",
+      "autoIncrement": true,
+      "environment": "production",
+      "env": {
+        "BACKEND_URL": "https://one-local-server.vercel.app",
+        "NPM_CONFIG_LEGACY_PEER_DEPS": "true"
+      },
+      "node": "24.11.1"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
 }

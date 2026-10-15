@@ -1,0 +1,215 @@
+{
+  "screen": "food",
+  "route": "/food",
+  "finalUrl": "/food",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "global-back-button"
+  ],
+  "screenshots": [
+    "food.png",
+    "food-bottom.png",
+    "food-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "department-screen-food",
+    "scrollHeight": 1850,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/food",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "department-screen-food",
+    "stats": {
+      "testids": 153,
+      "visibleTextChars": 501,
+      "visibleImages": 2,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "Latur, Maharashtra A little search. A lovely find. Food Groceries Shops Pharmacy & Beauty Book It FRESH CRAVINGS. FAMILIAR FAVOURITES. A good mood, with a side of fries. Golden little moments. Made for your cravings. Find my bite  McDonald's KFC Starbucks Burger King Domino's Tap a logo to change t"
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 101,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "food-filter-all",
+        "text": "All",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "20,824 44.6x44",
+        "cy": 100.2
+      },
+      {
+        "id": "food-filter-burgers",
+        "text": "Burgers",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "71.6,824 70.6x44",
+        "cy": 100.2
+      },
+      {
+        "id": "food-filter-pizza",
+        "text": "Pizza",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "149.3,824 58.3x44",
+        "cy": 100.2
+      },
+      {
+        "id": "food-filter-coffee",
+        "text": "Coffee",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "214.6,824 64.9x44",
+        "cy": 100.2
+      },
+      {
+        "id": "food-filter-chicken",
+        "text": "Chicken",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "286.5,824 71.5x44",
+        "cy": 100.2
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "global-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/food",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "department-screen-food",
+    "stats": {
+      "testids": 157,
+      "visibleTextChars": 358,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It   Explore  Search OneCity FRESH CRAVINGS. FAMILIAR FAVOURITES. A good mood, with a side of fries. Golden little moments. Made for your cravings. Find my bite  McDonald's KFC Starbu"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "add-btn-food-f1",
+        "text": "Add Classic Cheeseburger",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "27,1 155x44",
+        "cy": 2.7
+      },
+      {
+        "id": "add-btn-food-f2",
+        "text": "Add Crispy Chicken Bucket",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "208,1 155x44",
+        "cy": 2.7
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "add-btn-food-f1 > …",
+        "text": "ADD",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-food-f1 > …",
+        "text": "",
+        "by": "compact-expand-header > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-food-f2 > …",
+        "text": "ADD",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-food-f2 > …",
+        "text": "",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "product-image-food-f1",
+        "text": "",
+        "fill": 81,
+        "frame": "167x112",
+        "natural": "900x748",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-food-f4",
+        "text": "",
+        "fill": 81,
+        "frame": "167x112",
+        "natural": "900x748",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "compact-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

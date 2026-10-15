@@ -1,0 +1,35 @@
+{
+  "journey": "profile-payments",
+  "title": "Profile edit and payment preference save",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open Edit profile from the account screen",
+      "ok": true,
+      "ms": 68567,
+      "shot": "journey-profile-payments-01.png"
+    },
+    {
+      "name": "an invalid phone number is rejected",
+      "ok": true,
+      "ms": 132,
+      "shot": "journey-profile-payments-02.png"
+    },
+    {
+      "name": "save a valid profile and see it on the account screen",
+      "ok": true,
+      "ms": 347,
+      "shot": "journey-profile-payments-03.png"
+    },
+    {
+      "name": "save a payment preference",
+      "ok": true,
+      "ms": 349,
+      "shot": "journey-profile-payments-04.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

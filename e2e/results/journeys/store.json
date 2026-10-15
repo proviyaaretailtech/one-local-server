@@ -1,0 +1,41 @@
+{
+  "journey": "store",
+  "title": "store page: open from home, filter, follow, add, back",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open home and the Latur Fresh Mart store card",
+      "ok": true,
+      "ms": 68748,
+      "shot": "journey-store-01.png"
+    },
+    {
+      "name": "follow the store",
+      "ok": true,
+      "ms": 166,
+      "shot": "journey-store-02.png"
+    },
+    {
+      "name": "filter by a category chip",
+      "ok": true,
+      "ms": 699,
+      "shot": "journey-store-03.png"
+    },
+    {
+      "name": "add a product from the store",
+      "ok": true,
+      "ms": 173,
+      "shot": "journey-store-04.png"
+    },
+    {
+      "name": "back returns home, where the followed store now appears first",
+      "ok": true,
+      "ms": 922,
+      "shot": "journey-store-05.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

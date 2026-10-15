@@ -1,0 +1,92 @@
+{
+  "screen": "sign-in-welcome-deep-link-store",
+  "route": "/sign-in?welcome=1",
+  "finalUrl": "/sign-in?welcome=1",
+  "screenshots": [
+    "first-launch-deep-link-store-sign-in.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "backButtons": [],
+  "top": {
+    "url": "/sign-in?welcome=1",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 117,
+      "visibleTextChars": 320,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "neCity Skip for now WELCOME BACK Your whole city, one sign-in away. Orders that follow you to any phone, saved addresses, and OneLocal Coins when they arrive. Sign in Create account    Sign in  or G Continue with Google SOON Google sign-in switches on as soon as its keys are added. By continuing"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "sign-in-skip",
+        "text": "Skip for now",
+        "by": "sign-in-screen > …",
+        "overlayRoot": "sign-in-screen > …",
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "289.5,12 78.5x44",
+        "cy": 4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/sign-in?welcome=1",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 117,
+      "visibleTextChars": 320,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "neCity Skip for now WELCOME BACK Your whole city, one sign-in away. Orders that follow you to any phone, saved addresses, and OneLocal Coins when they arrive. Sign in Create account    Sign in  or G Continue with Google SOON Google sign-in switches on as soon as its keys are added. By continuing"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "sign-in-skip",
+        "text": "Skip for now",
+        "by": "sign-in-screen > …",
+        "overlayRoot": "sign-in-screen > …",
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "289.5,12 78.5x44",
+        "cy": 4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "readyError": ""
+}

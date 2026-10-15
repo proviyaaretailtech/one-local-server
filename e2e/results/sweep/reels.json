@@ -1,0 +1,199 @@
+{
+  "screen": "reels",
+  "route": "/reels",
+  "finalUrl": "/reels",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "page-back-button",
+    "reel-back-discover-r-amul"
+  ],
+  "screenshots": [
+    "reels.png",
+    "reels-bottom.png",
+    "reels-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "reels-list",
+    "scrollHeight": 8652,
+    "clientHeight": 721,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/reels",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "reels-list",
+    "stats": {
+      "testids": 51,
+      "visibleTextChars": 340,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity  ‹ City finds. LITTLE ADS. LOVELY DISCOVERIES.   243  Share  Sound off Amul Sample brand ad · Explore collection  A little slice of happiness. Make every bite a little more Amul. Amul Pure Milk Cheese ₹550 ₹580  Add to cart Shop Now   Swipe up for your next find ‹ City finds. LITT"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "reel-mute-r-amul",
+        "text": "Unmute video",
+        "by": "reel-brand-r-amul",
+        "overlayRoot": "reel-card-r-amul > …",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "326,465 50x60",
+        "cy": 58.6
+      },
+      {
+        "id": "reel-back-discover-r1",
+        "text": "Back to Discover grid",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "22,781 178.5x47",
+        "cy": 95.3
+      },
+      {
+        "id": "reel-cart-r1",
+        "text": "View cart",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "324,782.5 44x44",
+        "cy": 95.3
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "reel-brand-logo-r-amul",
+        "text": "",
+        "fill": 55,
+        "frame": "35x25",
+        "natural": "600x237",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "reel-brand-logo-r1",
+        "text": "",
+        "fill": 71,
+        "frame": "35x25",
+        "natural": "240x240",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button",
+      "reel-back-discover-r-amul"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/reels",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "reels-list",
+    "stats": {
+      "testids": 82,
+      "visibleTextChars": 298,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity  ‹ City finds. LITTLE ADS. LOVELY DISCOVERIES.   243  Share  Sound off Amul Sample brand ad · Explore collection  A little slice of happiness. Make every bite a little more Amul. Amul Pure Milk Cheese ₹550 ₹580  Add to cart Shop Now   Swipe up for your next find ‹ City finds. LITT"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "reel-next-photo-h2",
+        "text": " Swipe up for your next find",
+        "by": "DIV",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "18,-10 354x44",
+        "cy": 1.4
+      },
+      {
+        "id": "reel-mute-photo-a3",
+        "text": "Unmute video",
+        "by": "reel-brand-photo-a3",
+        "overlayRoot": "reel-card-photo-a3 > …",
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "326,465 50x60",
+        "cy": 58.6
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "reel-next-photo-h2 > …",
+        "text": "",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "reel-next-photo-h2 > …",
+        "text": "Swipe up for your next find",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "reel-mute-photo-a3 > …",
+        "text": "Sound off",
+        "by": "reel-brand-photo-a3",
+        "overlayRoot": "reel-card-photo-a3 > …",
+        "positioned": true,
+        "cy": 60
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "reel-brand-logo-r-amul",
+        "text": "",
+        "fill": 55,
+        "frame": "35x25",
+        "natural": "600x237",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "reel-brand-logo-photo-a3",
+        "text": "",
+        "fill": 55,
+        "frame": "35x25",
+        "natural": "600x237",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button",
+      "reel-back-discover-photo-a3"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

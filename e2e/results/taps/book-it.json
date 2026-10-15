@@ -1,0 +1,152 @@
+{
+  "screen": "book-it",
+  "route": "/book-it",
+  "candidates": 10,
+  "tested": 10,
+  "outcomes": [
+    {
+      "id": "spotlight-shop-book-it",
+      "label": "Make a plan",
+      "phase": "top",
+      "pattern": "spotlight-shop-book-it",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/booking/e3"
+    },
+    {
+      "id": "spotlight-brand-book-it",
+      "label": "Explore Latur After Hours",
+      "phase": "top",
+      "pattern": "spotlight-brand-book-it",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/booking/e3"
+    },
+    {
+      "id": "book-filter-all",
+      "label": " Explore",
+      "phase": "top",
+      "pattern": "book-filter-all",
+      "selected": false,
+      "result": "already-selected",
+      "changed": [],
+      "urlAfter": "/book-it"
+    },
+    {
+      "id": "book-filter-movies",
+      "label": " Movies",
+      "phase": "top",
+      "pattern": "book-filter-movies",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/book-it"
+    },
+    {
+      "id": "book-filter-events",
+      "label": " Events",
+      "phase": "top",
+      "pattern": "book-filter-events",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/book-it"
+    },
+    {
+      "id": "book-filter-activities",
+      "label": " Activities",
+      "phase": "top",
+      "pattern": "book-filter-activities",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/book-it"
+    },
+    {
+      "id": "book-movies-event-e1",
+      "label": "MOVIES The Last Orbit Sci-fi adventure · Hindi · 2",
+      "phase": "top",
+      "pattern": "book-movies-event-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/booking/e1"
+    },
+    {
+      "id": "book-events-event-e3",
+      "label": "EVENTS Latur After Hours Live music · Acoustic eve",
+      "phase": "bottom",
+      "pattern": "book-events-event-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/booking/e3"
+    },
+    {
+      "id": "book-activities-event-e4",
+      "label": "ACTIVITIES Weekend Trail Club Outdoor adventure · ",
+      "phase": "bottom",
+      "pattern": "book-activities-event-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/booking/e4"
+    },
+    {
+      "id": "book-view-enquiries",
+      "label": " Your saved enquiries Keep your plans in one plac",
+      "phase": "bottom",
+      "pattern": "book-view-enquiries",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/enquiries"
+    }
+  ]
+}

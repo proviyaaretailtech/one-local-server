@@ -1,0 +1,123 @@
+{
+  "screen": "orders-with-order",
+  "route": "/orders",
+  "finalUrl": "/orders",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "orders-back-btn"
+  ],
+  "screenshots": [
+    "orders-with-order.png",
+    "orders-with-order-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/orders",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 16,
+      "visibleTextChars": 117,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " My Orders 1 order #89B027BB 24 Sept 2026, 3:01 am Placed ₹918.9 3 items  Track  Reorder  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "orders-back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "track-89b027bb-0d77-46cc-92cb-3e8a62d899ed",
+        "text": " Track",
+        "w": 78.5,
+        "h": 33,
+        "tag": "div"
+      },
+      {
+        "id": "reorder-89b027bb-0d77-46cc-92cb-3e8a62d899ed",
+        "text": " Reorder",
+        "w": 91.2,
+        "h": 33,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "orders-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/orders",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 16,
+      "visibleTextChars": 117,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " My Orders 1 order #89B027BB 24 Sept 2026, 3:01 am Placed ₹918.9 3 items  Track  Reorder  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "orders-back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "track-89b027bb-0d77-46cc-92cb-3e8a62d899ed",
+        "text": " Track",
+        "w": 78.5,
+        "h": 33,
+        "tag": "div"
+      },
+      {
+        "id": "reorder-89b027bb-0d77-46cc-92cb-3e8a62d899ed",
+        "text": " Reorder",
+        "w": 91.2,
+        "h": 33,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "orders-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

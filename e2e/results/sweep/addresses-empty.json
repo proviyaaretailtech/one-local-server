@@ -1,0 +1,79 @@
+{
+  "screen": "addresses-empty",
+  "route": "/addresses",
+  "finalUrl": "/addresses",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "addresses-back"
+  ],
+  "screenshots": [
+    "addresses-empty.png",
+    "addresses-empty-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/addresses",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 19,
+      "visibleTextChars": 211,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your favourite places Save delivery details for home, work or someone special. Sample delivery service in Latur.  A place for every delivery Add your first address to get started. Add a new address  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "addresses-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/addresses",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 19,
+      "visibleTextChars": 211,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your favourite places Save delivery details for home, work or someone special. Sample delivery service in Latur.  A place for every delivery Add your first address to get started. Add a new address  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "addresses-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

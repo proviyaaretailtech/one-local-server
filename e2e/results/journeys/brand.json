@@ -1,0 +1,35 @@
+{
+  "journey": "brand",
+  "title": "brand page: open from home rail, follow brand, open its store profile",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open home and tap the boAt brand tile",
+      "ok": true,
+      "ms": 68212,
+      "shot": "journey-brand-01.png"
+    },
+    {
+      "name": "follow the brand",
+      "ok": true,
+      "ms": 139,
+      "shot": "journey-brand-02.png"
+    },
+    {
+      "name": "open the brand’s store profile",
+      "ok": true,
+      "ms": 399,
+      "shot": "journey-brand-03.png"
+    },
+    {
+      "name": "home lists the followed brand under “Your local favourites”",
+      "ok": true,
+      "ms": 3267,
+      "shot": "journey-brand-04.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

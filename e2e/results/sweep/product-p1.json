@@ -1,0 +1,128 @@
+{
+  "screen": "product-p1",
+  "route": "/product/p1",
+  "finalUrl": "/product/p1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "pd-back-btn"
+  ],
+  "screenshots": [
+    "product-p1.png",
+    "product-p1-bottom.png",
+    "product-p1-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 1559,
+    "clientHeight": 844,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/product/p1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 122,
+      "visibleTextChars": 226,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Play images  Watch  10 MINS  4.5 More in Fruits & Veggies  Fresh Tomatoes 500 g ₹25 ₹40 38% OFF ₹5/100 g · Inclusive of all taxes  Add to compare  Save Latur Fresh Mart Farm to home in 10 mins · 10 min  More like this  28% OFF Onions 1 kg ₹32 ₹45 ADD   20% OFF Bananas 1 dozen ₹48 ₹60 ADD"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "pd-store-card > …",
+        "text": "",
+        "fill": 67,
+        "frame": "46x46",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-detail > …",
+        "text": "",
+        "fill": 70,
+        "frame": "110x110",
+        "natural": "695x1000",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "pd-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/product/p1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 122,
+      "visibleTextChars": 243,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Play images  Watch  10 MINS  4.5 More in Fruits & Veggies  Fresh Tomatoes 500 g ₹25 ₹40 38% OFF ₹5/100 g · Inclusive of all taxes  Add to compare  Save Latur Fresh Mart Farm to home in 10 mins · 10 min  More like this  28% OFF Onions 1 kg ₹32 ₹45 ADD   20% OFF Bananas 1 dozen ₹48 ₹60 ADD"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "pd-store-card > …",
+        "text": "",
+        "by": "pd-open-cart",
+        "overlayRoot": "product-detail > …",
+        "positioned": true,
+        "cy": 5
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "pd-store-card > …",
+        "text": "",
+        "fill": 67,
+        "frame": "46x46",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-detail > …",
+        "text": "",
+        "fill": 70,
+        "frame": "110x110",
+        "natural": "695x1000",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "pd-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -77,7 +77,7 @@ function businessType(b: { partner_type: string; category_family?: string; categ
   return 'retail';
 }
 
-export type ApplicationReceipt = { reference: string; status: string; existing: boolean; login?: 'created' | 'exists' | 'confirm_email' | 'failed' };
+export type ApplicationReceipt = { reference: string | null; status: string; existing: boolean; login?: 'created' | 'exists' | 'confirm_email' | 'failed' };
 
 // Creates the partner's login through Supabase's normal sign-up (so the project's own rules apply: password strength,
 // email confirmation when switched on). Returns the new account id, or null when the email already has an account
@@ -150,7 +150,8 @@ export async function submitPartnerApplication(request: Request, raw: unknown): 
     // An open application (draft or submitted) already exists for this phone: answer with that one, so the owner keeps one reference.
     const { data: open } = await db().from('ol_partner_applications').select('reference, status')
       .eq('city_id', city).eq('phone', b.phone).in('status', ['draft', 'submitted', 'reviewing']).limit(1).maybeSingle();
-    if (open) return { reference: open.reference as string, status: open.status as string, existing: true };
+    // The reference is also the app sign-in code, so someone who only knows the phone number must not get it (migration 0347).
+    if (open) return { reference: null, status: open.status as string, existing: true };
   }
   fromDbError(error);
 }

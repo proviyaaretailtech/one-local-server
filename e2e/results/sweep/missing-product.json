@@ -1,0 +1,82 @@
+{
+  "screen": "missing-product",
+  "route": "/product/does-not-exist",
+  "finalUrl": "/product/does-not-exist",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": true,
+  "stuckLoading": false,
+  "backMissing": true,
+  "backButtons": [],
+  "screenshots": [
+    "missing-product.png",
+    "missing-product-full.png"
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "pageErrors": [],
+  "apiFailures": [
+    {
+      "method": "GET",
+      "url": "/api/products/does-not-exist/story",
+      "status": 404,
+      "kind": "failure"
+    }
+  ],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/product/does-not-exist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 2,
+      "visibleTextChars": 35,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Couldn’t load this product. Go back"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/product/does-not-exist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 2,
+      "visibleTextChars": 35,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Couldn’t load this product. Go back"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

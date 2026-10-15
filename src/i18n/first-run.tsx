@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { OneGlyph } from '../components/one-button';
+import { BrandLogo } from '../components/brand-logo';
 import { colors } from '../theme';
 import { LanguagePicker } from './language-picker';
 import { useLanguage } from './provider';
@@ -28,7 +28,7 @@ export function LanguageFirstRun() {
   if (!show) return null;
   return <View testID="language-first-run" accessibilityViewIsModal aria-modal style={s.screen}>
     <ScrollView contentContainerStyle={[s.content, { paddingTop: insets.top + 28, paddingBottom: insets.bottom + 24 }]} keyboardShouldPersistTaps="handled">
-      <View style={s.brand}><OneGlyph size={30} /><Text style={s.brandWord}>neCity</Text></View>
+      <View style={s.brand}><BrandLogo tone="dark" height={30} testID="first-run-logo" /></View>
       <View style={s.hero}>
         {locales.filter(l => !l.dev).map(l => <Text key={l.code} accessibilityLanguage={l.code} style={s.title}>{l.chooser}</Text>)}
       </View>
@@ -46,7 +46,6 @@ const s = StyleSheet.create({
   screen: { ...StyleSheet.absoluteFill, zIndex: 900, backgroundColor: '#050605' },
   content: { paddingHorizontal: 22, flexGrow: 1 },
   brand: { flexDirection: 'row', alignItems: 'flex-end', gap: 1 },
-  brandWord: { color: '#fff', fontSize: 20, fontWeight: '800', letterSpacing: -0.6, marginBottom: 1 },
   hero: { marginTop: 30, marginBottom: 22, gap: 6 },
   title: { color: '#fff', fontSize: 28, lineHeight: 40, fontWeight: '800' },
   note: { color: 'rgba(255,255,255,0.62)', fontSize: 12, lineHeight: 19, marginTop: 16 },

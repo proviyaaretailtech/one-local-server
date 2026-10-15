@@ -19,7 +19,7 @@ import { CancelOrderCard } from '@/src/components/cancel-order-card';
 import { RefundStatus } from '@/src/components/refund-status';
 import { orderStatusKey, useFormat, useTranslation } from '@/src/i18n';
 import { useLiveTracking } from '@/src/use-live-tracking';
-import { TrackingMap } from '@/src/components/tracking-map';
+import { TrackingMap, trackingMapAvailable } from '@/src/components/tracking-map';
 import { activityStepFor, describeEta, LIVE_TIMELINE, riderInitial, timelineIndex, vehicleCode, type TrackingLive, type TrackingPhase } from '@/src/utils/tracking';
 import { etaCopy } from '@/src/utils/tracking-copy';
 
@@ -250,7 +250,7 @@ export default function OrderTrackingScreen() {
 
         {/* Map illustration */}
         <View style={styles.mapCard} testID="tracking-map">
-          {live ? <TrackingMap tracking={live} animate={motion} /> : trackingPending ? (
+          {live && trackingMapAvailable ? <TrackingMap tracking={live} animate={motion} /> : trackingPending ? (
             <View style={styles.mapPending}><ActivityIndicator testID="tracking-map-loading" accessibilityLabel={t('tracking.live.loading')} color={colors.forest} /></View>
           ) : <>
           <Svg width={MAP_W} height={MAP_H}>

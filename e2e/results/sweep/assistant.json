@@ -1,0 +1,79 @@
+{
+  "screen": "assistant",
+  "route": "/assistant",
+  "finalUrl": "/assistant",
+  "blocked": "AI key",
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "coming-soon-back"
+  ],
+  "screenshots": [
+    "assistant.png",
+    "assistant-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/assistant",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 14,
+      "visibleTextChars": 254,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " COMING SOON  One AI, your shopping helper Ask for “a birthday party for 10 under ₹2,000” and get a ready basket from stores near you.  Plans baskets and parties  Knows what’s in stock nearby  Adds everything in one tap  Use text search for now  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "coming-soon-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/assistant",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 14,
+      "visibleTextChars": 254,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " COMING SOON  One AI, your shopping helper Ask for “a birthday party for 10 under ₹2,000” and get a ready basket from stores near you.  Plans baskets and parties  Knows what’s in stock nearby  Adds everything in one tap  Use text search for now  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "coming-soon-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

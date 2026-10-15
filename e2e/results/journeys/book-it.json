@@ -1,0 +1,47 @@
+{
+  "journey": "book-it",
+  "title": "Book It: enquiry form validates, saves, and appears in My Bookings",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open Book It from the bottom navigation",
+      "ok": true,
+      "ms": 68483,
+      "shot": "journey-book-it-01.png"
+    },
+    {
+      "name": "open a movie",
+      "ok": true,
+      "ms": 298,
+      "shot": "journey-book-it-02.png"
+    },
+    {
+      "name": "submitting empty shows a validation message",
+      "ok": true,
+      "ms": 124,
+      "shot": "journey-book-it-03.png"
+    },
+    {
+      "name": "choose time, 2 guests, name and phone",
+      "ok": true,
+      "ms": 249,
+      "shot": "journey-book-it-04.png"
+    },
+    {
+      "name": "save the enquiry",
+      "ok": true,
+      "ms": 424,
+      "shot": "journey-book-it-05.png"
+    },
+    {
+      "name": "view it in My Bookings",
+      "ok": true,
+      "ms": 171,
+      "shot": "journey-book-it-06.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

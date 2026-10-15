@@ -1,0 +1,94 @@
+{
+  "screen": "addresses-saved",
+  "route": "/addresses",
+  "finalUrl": "/addresses",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "addresses-back"
+  ],
+  "screenshots": [
+    "addresses-saved.png",
+    "addresses-saved-bottom.png",
+    "addresses-saved-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "addresses-scroll",
+    "scrollHeight": 752,
+    "clientHeight": 701,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/addresses",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "addresses-scroll",
+    "stats": {
+      "testids": 32,
+      "visibleTextChars": 340,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your favourite places Save delivery details for home, work or someone special. Sample delivery service in Latur.  Home Asha Patil · 9876543210 Flat 4, Shivaji Apartments, Ausa Road, Latur · 413512 Edit Remove Deliver here  Work Asha Patil · 9876543210 Office 12, Main Market Complex, Latur · 4135"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "addresses-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/addresses",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "addresses-scroll",
+    "stats": {
+      "testids": 32,
+      "visibleTextChars": 340,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your favourite places Save delivery details for home, work or someone special. Sample delivery service in Latur.  Home Asha Patil · 9876543210 Flat 4, Shivaji Apartments, Ausa Road, Latur · 413512 Edit Remove Deliver here  Work Asha Patil · 9876543210 Office 12, Main Market Complex, Latur · 4135"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "addresses-subtitle",
+        "text": "Save delivery details for home, work or someone special. Sample delive",
+        "by": "addresses-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 6
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "addresses-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

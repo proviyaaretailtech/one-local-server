@@ -1,0 +1,125 @@
+{
+  "screen": "store-himalaya",
+  "route": "/store/himalaya",
+  "finalUrl": "/store/himalaya",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "back-btn"
+  ],
+  "screenshots": [
+    "store-himalaya.png",
+    "store-himalaya-bottom.png",
+    "store-himalaya-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 1122,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/store/himalaya",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 176,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "  VIDEO  VIDEO Himalaya Everyday wellness essentials  15 min  4.6  Sample store Pharmacy Sample brand  Follow store 🛒 All Items Wellness All Products  18% OFF Himalaya Wellness Tablets 60 tablets · sample listing ₹180 ₹220 ADD   Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "follow-btn",
+        "text": " Follow store",
+        "w": 140.6,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-all",
+        "text": "🛒 All Items",
+        "w": 104.1,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c13",
+        "text": "Wellness",
+        "w": 83.9,
+        "h": 36,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "save-product-h1",
+        "text": "Save Himalaya Wellness Tablets",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "111,825 44x44",
+        "cy": 100.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/store/himalaya",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 235,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "  VIDEO  VIDEO Himalaya Everyday wellness essentials  15 min  4.6  Sample store Pharmacy Sample brand  Follow store 🛒 All Items Wellness All Products  18% OFF Himalaya Wellness Tablets 60 tablets · sample listing ₹180 ₹220 ADD   Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "adds": 9,
+  "mascotShowsInFirstVisit": 1,
+  "mascotShowsAfterReload": 1,
+  "timeline": [
+    {
+      "action": "ADD p1 on /grocery",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "1 item in your bag"
+    },
+    {
+      "action": "ADD p2 on /grocery",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "2 items in your bag"
+    },
+    {
+      "action": "ADD p3 on /grocery",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "3 items in your bag"
+    },
+    {
+      "action": "ADD p4 on /grocery",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "4 items in your bag"
+    },
+    {
+      "action": "ADD p5 on /grocery",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "5 items in your bag"
+    },
+    {
+      "action": "ADD p6 on /grocery",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "6 items in your bag"
+    },
+    {
+      "action": "+1 on p1 stepper",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "7 items in your bag"
+    },
+    {
+      "action": "Add to Cart on product page p7",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "product page cart bar"
+    },
+    {
+      "action": "ADD p8 after a page reload",
+      "cartItems": 0,
+      "mascotShowsSoFar": 1,
+      "floatingCart": "9 items in your bag"
+    }
+  ],
+  "popups": [
+    {
+      "at": 1791626094303,
+      "text": "Great pick!Coca Cola is in your bag.View bag · 9"
+    }
+  ],
+  "pageErrors": []
+}

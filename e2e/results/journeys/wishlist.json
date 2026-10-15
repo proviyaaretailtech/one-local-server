@@ -1,0 +1,41 @@
+{
+  "journey": "wishlist",
+  "title": "wishlist: save from a product card, see it in Wishlist, remove it",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open Groceries",
+      "ok": true,
+      "ms": 70833,
+      "shot": "journey-wishlist-01.png"
+    },
+    {
+      "name": "tap the heart on Fresh Tomatoes",
+      "ok": true,
+      "ms": 216,
+      "shot": "journey-wishlist-02.png"
+    },
+    {
+      "name": "open Wishlist from the profile",
+      "ok": true,
+      "ms": 1077,
+      "shot": "journey-wishlist-03.png"
+    },
+    {
+      "name": "un-heart it from the Wishlist",
+      "ok": true,
+      "ms": 217,
+      "shot": "journey-wishlist-04.png"
+    },
+    {
+      "name": "save from the product page heart",
+      "ok": true,
+      "ms": 2998,
+      "shot": "journey-wishlist-05.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

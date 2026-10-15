@@ -1,0 +1,94 @@
+{
+  "screen": "payments",
+  "route": "/payments",
+  "finalUrl": "/payments",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "payments-back"
+  ],
+  "screenshots": [
+    "payments.png",
+    "payments-bottom.png",
+    "payments-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "payments-scroll",
+    "scrollHeight": 733,
+    "clientHeight": 701,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/payments",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "payments-scroll",
+    "stats": {
+      "testids": 28,
+      "visibleTextChars": 419,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your way to pay Choose a preferred method for your next sample order.  UPI Coming soon — pay cash on delivery for now SOON  Credit / Debit card Coming soon — pay cash on delivery for now SOON  Net banking Coming soon — pay cash on delivery for now SOON  Cash on delivery Pay when your order arr"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "payments-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/payments",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "payments-scroll",
+    "stats": {
+      "testids": 28,
+      "visibleTextChars": 419,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your way to pay Choose a preferred method for your next sample order.  UPI Coming soon — pay cash on delivery for now SOON  Credit / Debit card Coming soon — pay cash on delivery for now SOON  Net banking Coming soon — pay cash on delivery for now SOON  Cash on delivery Pay when your order arr"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "payments-subtitle",
+        "text": "Choose a preferred method for your next sample order.",
+        "by": "payments-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 7
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "payments-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

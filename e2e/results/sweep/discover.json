@@ -1,0 +1,232 @@
+{
+  "screen": "discover",
+  "route": "/discover",
+  "finalUrl": "/discover",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "page-back-button"
+  ],
+  "screenshots": [
+    "discover.png",
+    "discover-bottom.png",
+    "discover-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "discover-grid",
+    "scrollHeight": 975,
+    "clientHeight": 606,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/discover",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "discover-grid",
+    "stats": {
+      "testids": 73,
+      "visibleTextChars": 461,
+      "visibleImages": 10,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity  Discover. Your city, worth a closer look. Ask AI All Reels Food Fresh Care Curated sample reels & catalogue photo ads · tap to explore  FOR YOU Amul Pure Milk Cheese ₹550 · Shop  Classic Cheeseburger ₹129 · Shop  NIVEA Soft Moisturiser ₹189 · Shop  Whopper Meal ₹199 · Shop  Lakmé Ma"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "discover-tile-photo-p3",
+        "text": "Open Bananas photo ad",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "4,795.2 125.3x200.5",
+        "cy": 106.1
+      },
+      {
+        "id": "discover-tile-photo-h2",
+        "text": "Open Dettol Hand Sanitizer photo ad",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "132.3,795.2 125.3x200.5",
+        "cy": 106.1
+      },
+      {
+        "id": "discover-tile-photo-a3",
+        "text": "Open Amul Taaza Milk photo ad",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "260.7,795.2 125.3x200.5",
+        "cy": 106.1
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": [
+      {
+        "id": "discover-filter-all",
+        "text": "All",
+        "by": "discover-screen > …",
+        "cut": "10.4px vertically",
+        "size": "49.7x44"
+      },
+      {
+        "id": "discover-filter-reels",
+        "text": "Reels",
+        "by": "discover-screen > …",
+        "cut": "10.4px vertically",
+        "size": "65.1x44"
+      },
+      {
+        "id": "discover-filter-food",
+        "text": "Food",
+        "by": "discover-screen > …",
+        "cut": "10.4px vertically",
+        "size": "62.8x44"
+      },
+      {
+        "id": "discover-filter-fresh",
+        "text": "Fresh",
+        "by": "discover-screen > …",
+        "cut": "10.4px vertically",
+        "size": "65.9x44"
+      },
+      {
+        "id": "discover-filter-care",
+        "text": "Care",
+        "by": "discover-screen > …",
+        "cut": "10.4px vertically",
+        "size": "61.1x44"
+      }
+    ]
+  },
+  "bottom": {
+    "url": "/discover",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "discover-grid",
+    "stats": {
+      "testids": 73,
+      "visibleTextChars": 402,
+      "visibleImages": 12,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity  Discover. Your city, worth a closer look. Ask AI All Reels Food Fresh Care Curated sample reels & catalogue photo ads · tap to explore  FOR YOU Amul Pure Milk Cheese ₹550 · Shop  Classic Cheeseburger ₹129 · Shop  NIVEA Soft Moisturiser ₹189 · Shop  Whopper Meal ₹199 · Shop  Lakmé Ma"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "discover-tile-photo-f4",
+        "text": "Open Whopper Meal photo ad",
+        "by": "discover-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "4,19.1 125.3x200.5",
+        "cy": 14.1
+      },
+      {
+        "id": "discover-tile-photo-b2",
+        "text": "Open Lakmé Matte Lipstick photo ad",
+        "by": "discover-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "132.3,19.1 125.3x200.5",
+        "cy": 14.1
+      },
+      {
+        "id": "discover-tile-photo-p1",
+        "text": "Open Fresh Tomatoes photo ad",
+        "by": "discover-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "260.7,19.1 125.3x200.5",
+        "cy": 14.1
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "discover-price-r-amul",
+        "text": "₹550 · Shop",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "discover-price-r1",
+        "text": "₹129 · Shop",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "discover-price-r-beauty",
+        "text": "₹189 · Shop",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "discover-tile-photo-f4 > …",
+        "text": "",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 5
+      },
+      {
+        "id": "discover-tile-photo-b2 > …",
+        "text": "",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 5
+      },
+      {
+        "id": "discover-tile-photo-p1 > …",
+        "text": "",
+        "by": "page-search-button",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 5
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

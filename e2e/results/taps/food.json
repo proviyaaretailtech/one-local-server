@@ -1,0 +1,169 @@
+{
+  "screen": "food",
+  "route": "/food",
+  "candidates": 11,
+  "tested": 11,
+  "outcomes": [
+    {
+      "id": "spotlight-shop-food",
+      "label": "Find my bite ",
+      "phase": "top",
+      "pattern": "spotlight-shop-food",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/brand/mcdonalds"
+    },
+    {
+      "id": "food-spotlight-select-mcdonalds",
+      "label": "Show McDonald's spotlight",
+      "phase": "top",
+      "pattern": "food-spotlight-select-*",
+      "selected": false,
+      "result": "already-selected",
+      "changed": [],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "food-page-brand-burgerking",
+      "label": "Burger King",
+      "phase": "top",
+      "pattern": "food-page-brand-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "food-filter-all",
+      "label": "All",
+      "phase": "top",
+      "pattern": "food-filter-all",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "food-filter-burgers",
+      "label": "Burgers",
+      "phase": "top",
+      "pattern": "food-filter-burgers",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "food-filter-pizza",
+      "label": "Pizza",
+      "phase": "top",
+      "pattern": "food-filter-pizza",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "food-filter-coffee",
+      "label": "Coffee",
+      "phase": "top",
+      "pattern": "food-filter-coffee",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "food-filter-chicken",
+      "label": "Chicken",
+      "phase": "top",
+      "pattern": "food-filter-chicken",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "add-btn-food-f1",
+      "label": "Add Classic Cheeseburger",
+      "phase": "bottom",
+      "pattern": "add-btn-food-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll",
+        "storage"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "save-product-food-f3",
+      "label": "Save Iced Caramel Latte",
+      "phase": "bottom",
+      "pattern": "save-product-food-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "storage"
+      ],
+      "urlAfter": "/food"
+    },
+    {
+      "id": "product-name-open-food-f3",
+      "label": "View Iced Caramel Latte details",
+      "phase": "bottom",
+      "pattern": "product-name-open-food-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/product/f3"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "screen": "missing-category",
+  "route": "/category/does-not-exist",
+  "finalUrl": "/category/does-not-exist",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "cat-back-btn"
+  ],
+  "screenshots": [
+    "missing-category.png",
+    "missing-category-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/category/does-not-exist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 31,
+      "visibleTextChars": 233,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Category not found Delivering to Home: Latur, Maharashtra     Filters   Sort  Brand  Type   No matching items Clear filters Browse categories 0 items · sample catalogue Delivery times are sample estimates.  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "category-type-filter",
+        "text": "Choose type",
+        "w": 41.5,
+        "h": 44,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/category/does-not-exist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 31,
+      "visibleTextChars": 233,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Category not found Delivering to Home: Latur, Maharashtra     Filters   Sort  Brand  Type   No matching items Clear filters Browse categories 0 items · sample catalogue Delivery times are sample estimates.  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "category-type-filter",
+        "text": "Choose type",
+        "w": 41.5,
+        "h": 44,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

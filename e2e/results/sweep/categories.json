@@ -1,0 +1,385 @@
+{
+  "screen": "categories",
+  "route": "/categories",
+  "finalUrl": "/categories",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "global-back-button"
+  ],
+  "screenshots": [
+    "categories.png",
+    "categories-bottom.png",
+    "categories-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "categories-screen",
+    "scrollHeight": 3705,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/categories",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "categories-screen",
+    "stats": {
+      "testids": 415,
+      "visibleTextChars": 435,
+      "visibleImages": 7,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It LITTLE FINDS. ENDLESS POSSIBILITIES. Your city, by category.  Shop by Store Five little worlds. Which one is yours? 01  Festive Time 02  Sports & Fitness 03  Trending Now 04  Gour"
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 124,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [
+      {
+        "id": "categories-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "categories-more-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "categories-more-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "shown": "Chitale Ban…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "categories-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "categories-brands-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "categories-more-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "categories-more-brand-home-edit",
+        "spill": 5.5
+      },
+      {
+        "id": "categories-more-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "tile": "categories-more-brand-chitale",
+        "spill": 8.4
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "grid-fresh-category-c1",
+        "text": "Fruits & Veggies",
+        "by": "tab-home",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "16,795 89.5x119.5",
+        "cy": 101.3
+      },
+      {
+        "id": "grid-fresh-category-c2",
+        "text": "Dairy & Eggs",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "105.5,795 89.5x119.5",
+        "cy": 101.3
+      },
+      {
+        "id": "grid-fresh-category-c5",
+        "text": "Bakery",
+        "by": "discover-tab-label",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "195,795 89.5x119.5",
+        "cy": 101.3
+      },
+      {
+        "id": "grid-fresh-category-c24",
+        "text": "Breakfast & Cereals",
+        "by": "tab-food",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "284.5,795 89.5x119.5",
+        "cy": 101.3
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "grid-fresh-category-image-c2",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "667x1000",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "global-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/categories",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "categories-screen",
+    "stats": {
+      "testids": 419,
+      "visibleTextChars": 458,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It   Explore  Search OneCity LITTLE FINDS. ENDLESS POSSIBILITIES. Your city, by category.  Shop by Store Five little worlds. Which one is yours? 01  Festive Time 02  Sports & Fitnes"
+    },
+    "smallTargets": [],
+    "truncated": [
+      {
+        "id": "categories-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "categories-more-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "categories-more-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "shown": "Chitale Ban…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "categories-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "categories-brands-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "categories-more-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "categories-more-brand-home-edit",
+        "spill": 5.5
+      },
+      {
+        "id": "categories-more-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "tile": "categories-more-brand-chitale",
+        "spill": 8.4
+      }
+    ],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "categories-more-brands-heading",
+        "text": "More brands, more favourites",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 4
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "grid-fresh-category-image-c1",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-fresh-category-image-c2",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "grid-fresh-category-image-c5",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-pantry-category-image-c6",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-budget-sg4",
+        "text": "",
+        "fill": 81,
+        "frame": "138x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-budget-sg6",
+        "text": "",
+        "fill": 81,
+        "frame": "138x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-budget-st1",
+        "text": "",
+        "fill": 81,
+        "frame": "138x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-budget-st4",
+        "text": "",
+        "fill": 81,
+        "frame": "138x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-budget-st5",
+        "text": "",
+        "fill": 81,
+        "frame": "138x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-budget-st6",
+        "text": "",
+        "fill": 81,
+        "frame": "138x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-budget-st7",
+        "text": "",
+        "fill": 82,
+        "frame": "138x112",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-budget-st8",
+        "text": "",
+        "fill": 82,
+        "frame": "138x112",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-snacks-category-image-c3",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-snacks-category-image-c4",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-food-category-image-c9",
+        "text": "",
+        "fill": 83,
+        "frame": "81.5x81.5",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-food-category-image-c10",
+        "text": "",
+        "fill": 66,
+        "frame": "81.5x81.5",
+        "natural": "900x598",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-food-category-image-c11",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "grid-food-category-image-c12",
+        "text": "",
+        "fill": 67,
+        "frame": "81.5x81.5",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "compact-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

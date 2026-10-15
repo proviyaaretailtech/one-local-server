@@ -1,0 +1,35 @@
+{
+  "journey": "help",
+  "title": "Help & Support: FAQ opens, form validates and saves a request",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open Help from the profile",
+      "ok": true,
+      "ms": 67945,
+      "shot": "journey-help-01.png"
+    },
+    {
+      "name": "expand an FAQ",
+      "ok": true,
+      "ms": 99,
+      "shot": "journey-help-02.png"
+    },
+    {
+      "name": "a too-short message is rejected",
+      "ok": true,
+      "ms": 189,
+      "shot": "journey-help-03.png"
+    },
+    {
+      "name": "a proper message is saved with a reference",
+      "ok": true,
+      "ms": 307,
+      "shot": "journey-help-04.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

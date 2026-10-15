@@ -1,0 +1,152 @@
+{
+  "screen": "collection-fitness",
+  "route": "/collection/fitness",
+  "finalUrl": "/collection/fitness",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "collection-back"
+  ],
+  "screenshots": [
+    "collection-fitness.png",
+    "collection-fitness-bottom.png",
+    "collection-fitness-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "collection-scroll",
+    "scrollHeight": 3613,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/collection/fitness",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "collection-scroll",
+    "stats": {
+      "testids": 328,
+      "visibleTextChars": 469,
+      "visibleImages": 10,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "        Sports & Fitness A ONECITY LITTLE WORLD   Under ₹199 FIND YOUR STRONG Find your everyday strong. Show up. Get stronger. Repeat.  CURATED WITH LOVE A FEW LITTLE FINDS. A WHOLE NEW MOOD. Sports & Fitness Protein & Nutrition Breakfast & Cereals Dry Fruits & Nuts Your next personal be"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "add-btn-collection-featured-fitness-sp6",
+        "text": "Add Yonex Badminton Set",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "1/1",
+        "rect": "331,817 126x44",
+        "cy": 99.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "collection-hero-image-fitness",
+        "text": "",
+        "fill": 73,
+        "frame": "227.2x228.4",
+        "natural": "222x163",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "collection-floating-product-0",
+        "text": "",
+        "fill": 63,
+        "frame": "70x70",
+        "natural": "145x230",
+        "bars": "left/right"
+      },
+      {
+        "id": "collection-floating-product-1",
+        "text": "",
+        "fill": 69,
+        "frame": "71.8x71.8",
+        "natural": "241x166",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "collection-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/collection/fitness",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "collection-scroll",
+    "stats": {
+      "testids": 328,
+      "visibleTextChars": 249,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "        Sports & Fitness A ONECITY LITTLE WORLD   Under ₹199 FIND YOUR STRONG Find your everyday strong. Show up. Get stronger. Repeat.  CURATED WITH LOVE A FEW LITTLE FINDS. A WHOLE NEW MOOD. Sports & Fitness Protein & Nutrition Breakfast & Cereals Dry Fruits & Nuts Your next personal be"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [
+      {
+        "id": "store-particle-fitness-4 > …",
+        "text": "",
+        "axis": "y",
+        "by": "store-animation-fitness",
+        "overflow": 5.1
+      }
+    ],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "collection-hero-image-fitness",
+        "text": "",
+        "fill": 73,
+        "frame": "216.3x217.5",
+        "natural": "222x163",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "collection-floating-product-0",
+        "text": "",
+        "fill": 63,
+        "frame": "67.6x67.6",
+        "natural": "145x230",
+        "bars": "left/right"
+      },
+      {
+        "id": "collection-floating-product-1",
+        "text": "",
+        "fill": 69,
+        "frame": "64.2x64.2",
+        "natural": "241x166",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "629194088005",
+    "project_id": "onelocal-play",
+    "storage_bucket": "onelocal-play.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:629194088005:android:0cd791283136a733f6cd2c",
+        "android_client_info": {
+          "package_name": "com.proviyaa.onelatur"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "629194088005-s5bm6u9amamjn270facnf0o2enjnpsr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6zq6Zxu4wVsn4lSoYiVn16nGoIRtt6BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "629194088005-s5bm6u9amamjn270facnf0o2enjnpsr0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

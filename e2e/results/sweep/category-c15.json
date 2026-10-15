@@ -1,0 +1,217 @@
+{
+  "screen": "category-c15",
+  "route": "/category/c15",
+  "finalUrl": "/category/c15",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "cat-back-btn"
+  ],
+  "screenshots": [
+    "category-c15.png",
+    "category-c15-bottom.png",
+    "category-c15-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "category-products-scroll",
+    "scrollHeight": 855,
+    "clientHeight": 647,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/category/c15",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "category-products-scroll",
+    "stats": {
+      "testids": 82,
+      "visibleTextChars": 451,
+      "visibleImages": 7,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Skincare Delivering to Home: Latur, Maharashtra    Skincare Makeup Haircare Bath & Body  Filters   Sort  Brand  Type   100 ml ADD ₹189/100 ml ₹189 ₹249 24% OFF on MRP NIVEA Soft Moisturiser      4.6  15 mins  50 g ADD ₹598/100 g ₹299 ₹349 14% OFF on MRP Minimalist Daily Moisturise"
+    },
+    "smallTargets": [
+      {
+        "id": "category-type-filter",
+        "text": "Choose type",
+        "w": 41.5,
+        "h": 44,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "sidebar-image-c15",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "sidebar-image-c17",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-b1",
+        "text": "",
+        "fill": 67,
+        "frame": "134x134",
+        "natural": "667x1000",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/category/c15",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "category-products-scroll",
+    "stats": {
+      "testids": 82,
+      "visibleTextChars": 410,
+      "visibleImages": 7,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Skincare Delivering to Home: Latur, Maharashtra    Skincare Makeup Haircare Bath & Body  Filters   Sort  Brand  Type   100 ml ADD ₹189/100 ml ₹189 ₹249 24% OFF on MRP NIVEA Soft Moisturiser      4.6  15 mins  50 g ADD ₹598/100 g ₹299 ₹349 14% OFF on MRP Minimalist Daily Moisturise"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-open-category-b1",
+        "text": "View NIVEA Soft Moisturiser",
+        "by": "category-title",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "100,-85 134x134",
+        "cy": -2.1
+      },
+      {
+        "id": "add-btn-category-b1",
+        "text": "Add NIVEA Soft Moisturiser",
+        "by": "category-sort",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "175,46 59x44",
+        "cy": 8.1
+      },
+      {
+        "id": "product-open-category-se5",
+        "text": "View Minimalist Daily Moisturiser",
+        "by": "category-title",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "246,-85 134x134",
+        "cy": -2.1
+      },
+      {
+        "id": "add-btn-category-se5",
+        "text": "Add Minimalist Daily Moisturiser",
+        "by": "category-type-filter",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "321,46 59x44",
+        "cy": 8.1
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "product-weight-category-b1",
+        "text": "100 ml",
+        "by": "category-filters",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      },
+      {
+        "id": "add-btn-category-b1 > …",
+        "text": "ADD",
+        "by": "category-sort",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      },
+      {
+        "id": "product-weight-category-se5",
+        "text": "50 g",
+        "by": "category-brand-filter",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      },
+      {
+        "id": "add-btn-category-se5 > …",
+        "text": "ADD",
+        "by": "category-type-filter",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "sidebar-image-c15",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "sidebar-image-c17",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-b1",
+        "text": "",
+        "fill": 67,
+        "frame": "134x134",
+        "natural": "667x1000",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

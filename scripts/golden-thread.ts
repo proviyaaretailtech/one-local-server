@@ -148,7 +148,12 @@ async function main() {
       assert(bIns.status >= 400, "another organization's owner cannot insert menu items into this org", bIns);
       ctx.store = `gt-store-${RUN}`;
       must(await d.from('ol_stores').insert({ id: ctx.store, name: `Golden Kitchen ${RUN}`, organization_id: ctx.org, is_demo: false, city_id: 'latur' }), 'ol_stores');
-      must(await d.from('ol_merchant_channels').update({ accepting: true, store_id: ctx.store, address: 'Main Road, Latur', lat: 18.4088, lng: 76.5604, city_id: 'latur' }).eq('organization_id', ctx.org), 'channel');
+      must(await d.from('ol_merchant_channels').update({ accepting: true, store_id: ctx.store, city_id: 'latur' }).eq('organization_id', ctx.org), 'channel');
+      // The owner confirms the pickup point in the partner app (specs/restaurant-pickup-location); checkout trusts only a confirmed point.
+      const pickup = await import('../app/api/partner/pickup-location/index+api');
+      const pr: Response = await pickup.PUT(new Request('http://localhost/api/partner/pickup-location', { method: 'PUT', headers: { authorization: `Bearer ${ctx.ownerToken}`, 'content-type': 'application/json', 'idempotency-key': `gt-pickup-${RUN}` }, body: JSON.stringify({ lat: 18.4088, lng: 76.5604, formatted_address: 'Main Road, Latur', source: 'map_pin', confirm: true }) }), {});
+      const pj = await pr.json();
+      assert(pr.status === 200 && pj.status === 'verified', 'owner confirms the pickup point', pj);
       ctx.prod = ctx.menu.map((m: any, i: number) => ({ id: `gt-prod-${RUN}-${i}`, menu: m }));
       must(await d.from('ol_products').insert(ctx.prod.map((p: any) => ({ id: p.id, name: p.menu.name, price: Number(p.menu.price), mrp: Number(p.menu.price), department: 'food', store_id: ctx.store, menu_item_id: p.menu.id, city_id: 'latur', is_demo: false }))), 'ol_products');
       const ch = must(await d.from('ol_merchant_channels').select('accepting').eq('organization_id', ctx.org).single());

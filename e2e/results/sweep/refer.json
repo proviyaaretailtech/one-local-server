@@ -1,0 +1,94 @@
+{
+  "screen": "refer",
+  "route": "/refer",
+  "finalUrl": "/refer",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "refer-back"
+  ],
+  "screenshots": [
+    "refer.png",
+    "refer-bottom.png",
+    "refer-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "refer-scroll",
+    "scrollHeight": 796,
+    "clientHeight": 701,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/refer",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "refer-scroll",
+    "stats": {
+      "testids": 24,
+      "visibleTextChars": 312,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Good finds. Better together. Invite your favourite people to your favourite little city.  One for you. One for your people. Your personal invite code ONE2GPNIES Share an invite Copy code Rewards are coming later You can share your invite code now. Referral tracking, rewards and cash payouts are n"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "refer-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/refer",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "refer-scroll",
+    "stats": {
+      "testids": 24,
+      "visibleTextChars": 312,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Good finds. Better together. Invite your favourite people to your favourite little city.  One for you. One for your people. Your personal invite code ONE2GPNIES Share an invite Copy code Rewards are coming later You can share your invite code now. Referral tracking, rewards and cash payouts are n"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "refer-subtitle",
+        "text": "Invite your favourite people to your favourite little city.",
+        "by": "refer-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "refer-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

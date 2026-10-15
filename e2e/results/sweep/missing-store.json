@@ -1,0 +1,82 @@
+{
+  "screen": "missing-store",
+  "route": "/store/does-not-exist",
+  "finalUrl": "/store/does-not-exist",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": true,
+  "backMissing": true,
+  "backButtons": [],
+  "screenshots": [
+    "missing-store.png",
+    "missing-store-full.png"
+  ],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "pageErrors": [],
+  "apiFailures": [
+    {
+      "method": "GET",
+      "url": "/api/stores/does-not-exist",
+      "status": 404,
+      "kind": "failure"
+    }
+  ],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/store/does-not-exist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 11,
+      "visibleTextChars": 53,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": true,
+      "bodyText": "Loading store...  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/store/does-not-exist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 11,
+      "visibleTextChars": 53,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": true,
+      "bodyText": "Loading store...  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

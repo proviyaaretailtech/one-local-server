@@ -1,0 +1,211 @@
+{
+  "screen": "category-c9",
+  "route": "/category/c9",
+  "finalUrl": "/category/c9",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "cat-back-btn"
+  ],
+  "screenshots": [
+    "category-c9.png",
+    "category-c9-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/category/c9",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 66,
+      "visibleTextChars": 354,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Burgers Delivering to Home: Latur, Maharashtra    Burgers Chicken & Sides Coffee & Drinks Pizza  Filters   Sort  Brand  Type   1 burger ADD ₹129 ₹159 19% OFF on MRP Classic Cheeseburger      4.6  25 mins  burger + fries ADD ₹199 ₹259 23% OFF on MRP Whopper Meal      4.6  25 "
+    },
+    "smallTargets": [
+      {
+        "id": "category-type-filter",
+        "text": "Choose type",
+        "w": 41.5,
+        "h": 44,
+        "tag": "div"
+      }
+    ],
+    "truncated": [
+      {
+        "id": "product-weight-category-f4",
+        "text": "burger + fries",
+        "shown": "burger +…",
+        "kind": "single-line",
+        "midWord": false,
+        "w": 52.2
+      }
+    ],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "sidebar-image-c9",
+        "text": "",
+        "fill": 83,
+        "frame": "49x49",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c10",
+        "text": "",
+        "fill": 66,
+        "frame": "49x49",
+        "natural": "900x598",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c11",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c12",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-f1",
+        "text": "",
+        "fill": 83,
+        "frame": "134x134",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-f4",
+        "text": "",
+        "fill": 83,
+        "frame": "134x134",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/category/c9",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 66,
+      "visibleTextChars": 354,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Burgers Delivering to Home: Latur, Maharashtra    Burgers Chicken & Sides Coffee & Drinks Pizza  Filters   Sort  Brand  Type   1 burger ADD ₹129 ₹159 19% OFF on MRP Classic Cheeseburger      4.6  25 mins  burger + fries ADD ₹199 ₹259 23% OFF on MRP Whopper Meal      4.6  25 "
+    },
+    "smallTargets": [
+      {
+        "id": "category-type-filter",
+        "text": "Choose type",
+        "w": 41.5,
+        "h": 44,
+        "tag": "div"
+      }
+    ],
+    "truncated": [
+      {
+        "id": "product-weight-category-f4",
+        "text": "burger + fries",
+        "shown": "burger +…",
+        "kind": "single-line",
+        "midWord": false,
+        "w": 52.2
+      }
+    ],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "sidebar-image-c9",
+        "text": "",
+        "fill": 83,
+        "frame": "49x49",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c10",
+        "text": "",
+        "fill": 66,
+        "frame": "49x49",
+        "natural": "900x598",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c11",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c12",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-f1",
+        "text": "",
+        "fill": 83,
+        "frame": "134x134",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-f4",
+        "text": "",
+        "fill": 83,
+        "frame": "134x134",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

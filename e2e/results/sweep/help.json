@@ -1,0 +1,113 @@
+{
+  "screen": "help",
+  "route": "/help",
+  "finalUrl": "/help",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "help-back"
+  ],
+  "screenshots": [
+    "help.png",
+    "help-bottom.png",
+    "help-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "help-scroll",
+    "scrollHeight": 904,
+    "clientHeight": 701,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/help",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "help-scroll",
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 339,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " A little help, right here Quick answers and a place to leave your questions. Where is my order?  Will I be charged at checkout?  How do I save my favourites?  How do referral rewards work?  Leave a support request Your request is saved in OneCity. Live chat, email delivery and response times a"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "help-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/help",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "help-scroll",
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 290,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " A little help, right here Quick answers and a place to leave your questions. Where is my order?  Will I be charged at checkout?  How do I save my favourites?  How do referral rewards work?  Leave a support request Your request is saved in OneCity. Live chat, email delivery and response times a"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "help-faq-1",
+        "text": "Will I be charged at checkout? ",
+        "by": "help-title",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "40,8 310x48",
+        "cy": 3.8
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "help-faq-1 > …",
+        "text": "Will I be charged at checkout?",
+        "by": "help-title",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "help-faq-1 > …",
+        "text": "",
+        "by": "help-title",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "help-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

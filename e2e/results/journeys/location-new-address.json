@@ -1,0 +1,24 @@
+{
+  "journey": "location-new-address",
+  "title": "Location picker: add a new address without a map (Maps key missing)",
+  "passed": false,
+  "steps": [
+    {
+      "name": "open home and tap the location line",
+      "ok": true,
+      "ms": 68694,
+      "shot": "journey-location-new-address-01.png"
+    },
+    {
+      "name": "typing in place search explains that search is unavailable (Maps key missing)",
+      "ok": false,
+      "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed |  | Locator: locator('[data-testid=\"location-error\"]').visible().first().or(getByText(/No places found/).visible().first()) | Expected: visible | Timeout: 15000ms | Error: element(s) not found",
+      "ms": 15039,
+      "shot": "journey-location-new-address-02-FAILED.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

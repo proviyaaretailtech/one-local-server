@@ -1,0 +1,112 @@
+{
+  "screen": "product-f1",
+  "route": "/product/f1",
+  "finalUrl": "/product/f1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "pd-back-btn"
+  ],
+  "screenshots": [
+    "product-f1.png",
+    "product-f1-bottom.png",
+    "product-f1-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 1559,
+    "clientHeight": 844,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/product/f1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 71,
+      "visibleTextChars": 231,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Play images  Watch  25 MINS  4.6 More in Burgers  Classic Cheeseburger McDonald’s · 1 burger ₹129 ₹159 19% OFF 5% GST added at checkout  Add to compare  Save McDonald's A little bite of happiness · 25 min  More like this  23% OFF Whopper Meal Burger King · burger + fries ₹199 ₹259 ADD   "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "product-detail > …",
+        "text": "",
+        "fill": 83,
+        "frame": "110x110",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "pd-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/product/f1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 71,
+      "visibleTextChars": 315,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Play images  Watch  25 MINS  4.6 More in Burgers  Classic Cheeseburger McDonald’s · 1 burger ₹129 ₹159 19% OFF 5% GST added at checkout  Add to compare  Save McDonald's A little bite of happiness · 25 min  More like this  23% OFF Whopper Meal Burger King · burger + fries ₹199 ₹259 ADD   "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "pd-store-card > …",
+        "text": "",
+        "by": "pd-open-cart",
+        "overlayRoot": "product-detail > …",
+        "positioned": true,
+        "cy": 5
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "product-detail > …",
+        "text": "",
+        "fill": 83,
+        "frame": "110x110",
+        "natural": "900x748",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "pd-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

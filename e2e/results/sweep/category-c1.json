@@ -1,0 +1,374 @@
+{
+  "screen": "category-c1",
+  "route": "/category/c1",
+  "finalUrl": "/category/c1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "cat-back-btn"
+  ],
+  "screenshots": [
+    "category-c1.png",
+    "category-c1-bottom.png",
+    "category-c1-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "category-products-scroll",
+    "scrollHeight": 855,
+    "clientHeight": 647,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/category/c1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "category-products-scroll",
+    "stats": {
+      "testids": 134,
+      "visibleTextChars": 511,
+      "visibleImages": 13,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Fruits & Veggies Delivering to Home: Latur, Maharashtra    Fruits & Veggies Dairy & Eggs Snacks Cold Drinks Bakery Instant Food Personal Care Home Needs Indian Sweets Dry Fruits & Nuts Breakfast & Cereals Atta, Rice & Dal Oils & Ghee Protein & Nutrition Tea & Coffee Cleaning Essentials Chocolat"
+    },
+    "smallTargets": [
+      {
+        "id": "category-type-filter",
+        "text": "Choose type",
+        "w": 41.5,
+        "h": 44,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "sidebar-c8",
+        "text": "Home Needs",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "0,723 89x94",
+        "cy": 91.2
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "sidebar-image-c1",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c2",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "sidebar-image-c3",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c4",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c5",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c6",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c7",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "sidebar-image-c8",
+        "text": "",
+        "fill": 75,
+        "frame": "49x49",
+        "natural": "900x675",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-p1",
+        "text": "",
+        "fill": 70,
+        "frame": "134x134",
+        "natural": "695x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-p2",
+        "text": "",
+        "fill": 67,
+        "frame": "134x134",
+        "natural": "400x267",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-p13",
+        "text": "",
+        "fill": 67,
+        "frame": "134x134",
+        "natural": "400x267",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/category/c1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "category-products-scroll",
+    "stats": {
+      "testids": 134,
+      "visibleTextChars": 470,
+      "visibleImages": 13,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Fruits & Veggies Delivering to Home: Latur, Maharashtra    Fruits & Veggies Dairy & Eggs Snacks Cold Drinks Bakery Instant Food Personal Care Home Needs Indian Sweets Dry Fruits & Nuts Breakfast & Cereals Atta, Rice & Dal Oils & Ghee Protein & Nutrition Tea & Coffee Cleaning Essentials Chocolat"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "sidebar-c21",
+        "text": "Indian Sweets",
+        "by": "tab-home",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "0,804 89x94",
+        "cy": 100.8
+      },
+      {
+        "id": "product-open-category-p1",
+        "text": "View Fresh Tomatoes",
+        "by": "category-title",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "100,-85 134x134",
+        "cy": -2.1
+      },
+      {
+        "id": "add-btn-category-p1",
+        "text": "Add Fresh Tomatoes",
+        "by": "category-sort",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "175,46 59x44",
+        "cy": 8.1
+      },
+      {
+        "id": "product-open-category-p2",
+        "text": "View Onions",
+        "by": "category-title",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "246,-85 134x134",
+        "cy": -2.1
+      },
+      {
+        "id": "add-btn-category-p2",
+        "text": "Add Onions",
+        "by": "category-type-filter",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "321,46 59x44",
+        "cy": 8.1
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "sidebar-label-c8",
+        "text": "Home Needs",
+        "by": "tab-home > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 93
+      },
+      {
+        "id": "product-weight-category-p1",
+        "text": "500 g",
+        "by": "category-filters",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      },
+      {
+        "id": "add-btn-category-p1 > …",
+        "text": "ADD",
+        "by": "category-sort",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      },
+      {
+        "id": "product-weight-category-p2",
+        "text": "1 kg",
+        "by": "category-brand-filter",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      },
+      {
+        "id": "add-btn-category-p2 > …",
+        "text": "ADD",
+        "by": "category-type-filter",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 8
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "sidebar-image-c1",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c2",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "sidebar-image-c3",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c4",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c5",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c6",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "sidebar-image-c7",
+        "text": "",
+        "fill": 67,
+        "frame": "49x49",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "sidebar-image-c8",
+        "text": "",
+        "fill": 75,
+        "frame": "49x49",
+        "natural": "900x675",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-p1",
+        "text": "",
+        "fill": 70,
+        "frame": "134x134",
+        "natural": "695x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-category-p2",
+        "text": "",
+        "fill": 67,
+        "frame": "134x134",
+        "natural": "400x267",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-category-p13",
+        "text": "",
+        "fill": 67,
+        "frame": "134x134",
+        "natural": "400x267",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "cat-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

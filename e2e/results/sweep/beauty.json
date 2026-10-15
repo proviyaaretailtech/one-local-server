@@ -1,0 +1,352 @@
+{
+  "screen": "beauty",
+  "route": "/beauty",
+  "finalUrl": "/beauty",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "global-back-button"
+  ],
+  "screenshots": [
+    "beauty.png",
+    "beauty-bottom.png",
+    "beauty-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "department-screen-care",
+    "scrollHeight": 2568,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/beauty",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "department-screen-care",
+    "stats": {
+      "testids": 207,
+      "visibleTextChars": 501,
+      "visibleImages": 9,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It SLOW DOWN. GLOW A LITTLE. Your everyday care, elevated. Beauty favourites & feel-good essentials. Find my glow   a little self-love The NIVEA edit Soft care · from ₹189  A sample br"
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 124,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "care-filter-hygiene",
+        "text": "Hygiene",
+        "by": "tab-reels > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "154.5,741 72.2x44",
+        "cy": 90.4
+      },
+      {
+        "id": "product-open-care-h1",
+        "text": "View Himalaya Wellness Tablets",
+        "by": "tab-home",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "21,804 167x112",
+        "cy": 101.9
+      },
+      {
+        "id": "save-product-care-h1",
+        "text": "Save Himalaya Wellness Tablets",
+        "by": "bottom-navigation > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "144,804 44x44",
+        "cy": 97.9
+      },
+      {
+        "id": "product-open-care-h2",
+        "text": "View Dettol Hand Sanitizer",
+        "by": "tab-food",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "202,804 167x112",
+        "cy": 101.9
+      },
+      {
+        "id": "save-product-care-h2",
+        "text": "Save Dettol Hand Sanitizer",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "325,804 44x44",
+        "cy": 97.9
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "product-image-care-h2",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b1",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b3",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "global-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": [
+      {
+        "id": "spotlight-brand-care",
+        "text": "Explore The NIVEA edit",
+        "by": "spotlight-care > …",
+        "cut": "3.5px vertically",
+        "size": "136.8x51"
+      }
+    ]
+  },
+  "bottom": {
+    "url": "/beauty",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "department-screen-care",
+    "stats": {
+      "testids": 211,
+      "visibleTextChars": 276,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It   Explore  Search OneCity SLOW DOWN. GLOW A LITTLE. Your everyday care, elevated. Beauty favourites & feel-good essentials. Find my glow   a little self-love The NIVEA edit Soft c"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "add-btn-care-b4",
+        "text": "Add Maybelline Fit Me",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "27,-14 155x44",
+        "cy": 0.9
+      },
+      {
+        "id": "add-btn-care-se3",
+        "text": "Add Dove Nourishing Body Wash",
+        "by": "compact-search",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "208,-14 155x44",
+        "cy": 0.9
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "add-btn-care-b4 > …",
+        "text": "ADD",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "add-btn-care-b4 > …",
+        "text": "",
+        "by": "compact-expand-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "add-btn-care-se3 > …",
+        "text": "ADD",
+        "by": "compact-search",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "add-btn-care-se3 > …",
+        "text": "",
+        "by": "compact-search",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 1
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "product-image-care-h2",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b1",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b3",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-b4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-care-se6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "compact-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

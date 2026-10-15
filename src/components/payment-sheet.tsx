@@ -13,6 +13,7 @@ import { colors } from '../theme';
 import { useFeatures } from '../features';
 import { useDeliveryLocation } from '../delivery-location';
 import { paymentLabel, UPI_APPS } from './payment-options';
+import { isPayBrand, METHOD_LOGOS, PayLogoStrip, PayTile, type PayBrand } from './pay-logo';
 import { useFormat, useTranslation } from '@/src/i18n';
 
 export type PaymentChoice = { method: PaymentMethod; app?: UpiApp };
@@ -43,15 +44,15 @@ export function PaymentSheet({ onClose, choice, onPay, paying, itemCount, total,
 
   // One row; when it is the selected one it opens with its own Pay button. A plain render function
   // (not a component), so rows keep their identity between renders.
-  const row = ({ c, title, sub, icon, badge, testID }: { c: PaymentChoice; title: string; sub?: string; icon?: string; badge?: { text: string; tint: string }; testID: string }) => {
+  const row = ({ c, title, sub, icon, brand, logos, testID }: { c: PaymentChoice; title: string; sub?: string; icon?: string; brand?: PayBrand; logos?: PayBrand[]; testID: string }) => {
     const on = same(picked, c);
     // The last-used method also appears in its own section; only the Preferred row opens there.
     const showPay = on && (testID === 'payment-preferred' || !same(c, choice));
     return <View key={testID} style={[s.row, on && s.rowOn]}>
       <Pressable testID={testID} accessibilityRole="radio" accessibilityState={{ checked: on }} onPress={() => setPicked(c)} style={s.rowHead}>
-        {badge ? <View style={[s.badge, { backgroundColor: badge.tint }]}><Text style={s.badgeText}>{badge.text}</Text></View>
+        {brand ? <PayTile brand={brand} width={44} height={40} />
           : <View style={s.badge}><Icon name={(icon ?? 'card-outline') as any} size={20} color={colors.forest} /></View>}
-        <View style={s.copy}><Text style={s.rowTitle}>{title}</Text>{!!sub && <Text style={s.rowSub}>{sub}</Text>}</View>
+        <View style={s.copy}><Text style={s.rowTitle}>{title}</Text>{!!sub && <Text style={s.rowSub}>{sub}</Text>}{!!logos && <PayLogoStrip brands={logos} />}</View>
         <Icon name={on ? 'radio-button-on' : 'radio-button-off'} size={22} color={colors.forest} />
       </Pressable>
       {showPay && <View style={s.payWrap}>
@@ -63,7 +64,6 @@ export function PaymentSheet({ onClose, choice, onPay, paying, itemCount, total,
     </View>;
   };
 
-  const initials = (name: string) => name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
   return <Modal visible animationType="slide" presentationStyle="fullScreen" onRequestClose={onClose}>
     <View testID="payment-options-screen" style={[s.screen, { paddingTop: insets.top }]}>
@@ -94,14 +94,14 @@ export function PaymentSheet({ onClose, choice, onPay, paying, itemCount, total,
         </View>}
 
         <Text style={s.section}>{t('payment.sheet.sectionPreferred')}</Text>
-        {row({ testID: "payment-preferred", c: choice, title: paymentLabel(choice.method, choice.method === 'upi' ? choice.app : undefined), sub: t('payment.sheet.lastUsed'), icon: MORE.find(m => m.method === choice.method)?.icon ?? (choice.method === 'card' ? 'card-outline' : 'phone-portrait-outline') })}
+        {row({ testID: "payment-preferred", c: choice, title: paymentLabel(choice.method, choice.method === 'upi' ? choice.app : undefined), sub: t('payment.sheet.lastUsed'), brand: choice.method === 'upi' && choice.app && isPayBrand(choice.app) ? choice.app : undefined, icon: MORE.find(m => m.method === choice.method)?.icon ?? (choice.method === 'card' ? 'card-outline' : 'phone-portrait-outline') })}
 
         <Text style={s.section}>{t('payment.sheet.sectionUpi')}</Text>
-        {UPI_APPS.map(a => row({ testID: `payment-upi-${a.id}`, c: { method: 'upi', app: a.id }, title: a.title, badge: { text: initials(a.title), tint: a.tint } }))}
+        {UPI_APPS.map(a => row({ testID: `payment-upi-${a.id}`, c: { method: 'upi', app: a.id }, title: a.title, brand: isPayBrand(a.id) ? a.id : undefined, icon: 'phone-portrait-outline' }))}
         {row({ testID: "payment-upi-id", c: { method: 'upi', app: 'id' }, title: t('payment.sheet.addUpiId'), sub: t('payment.sheet.upiIdNote'), icon: "add-circle-outline" })}
 
         <Text style={s.section}>{t('payment.sheet.sectionCards')}</Text>
-        {row({ testID: "payment-card", c: { method: 'card' }, title: t('payment.sheet.addCard'), sub: t('payment.sheet.cardNote'), icon: "add-circle-outline" })}
+        {row({ testID: "payment-card", c: { method: 'card' }, title: t('payment.sheet.addCard'), sub: t('payment.sheet.cardNote'), icon: "add-circle-outline", logos: METHOD_LOGOS.card })}
 
         <Text style={s.section}>{t('payment.sheet.sectionMore')}</Text>
         {MORE.map(m => row({ testID: `payment-more-${m.method}`, c: { method: m.method }, title: t(m.title), sub: t(m.sub), icon: m.icon }))}
@@ -129,7 +129,6 @@ const s = StyleSheet.create({
   walletRow: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14 },
   rowHead: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, minHeight: 56 },
   badge: { width: 40, height: 40, borderRadius: 12, backgroundColor: colors.limeSoft, alignItems: 'center', justifyContent: 'center' },
-  badgeText: { fontSize: 12, fontWeight: '800', color: colors.onSurface },
   copy: { flex: 1 },
   rowTitle: { fontSize: 14, fontWeight: '700', color: colors.onSurface }, rowSub: { fontSize: 11, color: colors.muted, marginTop: 3, lineHeight: 16 },
   payWrap: { paddingHorizontal: 14, paddingBottom: 14, gap: 8 },

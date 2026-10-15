@@ -1,0 +1,48 @@
+{
+  "journey": "checkout",
+  "title": "shop: home → department → category → product → cart → LATUR10 → order → tracking → My orders",
+  "passed": false,
+  "steps": [
+    {
+      "name": "open home",
+      "ok": true,
+      "ms": 70651,
+      "shot": "journey-checkout-01.png"
+    },
+    {
+      "name": "tap the Groceries department",
+      "ok": true,
+      "ms": 505,
+      "shot": "journey-checkout-02.png"
+    },
+    {
+      "name": "tap the Fruits & Veggies category",
+      "ok": true,
+      "ms": 295,
+      "shot": "journey-checkout-03.png"
+    },
+    {
+      "name": "open the Fresh Tomatoes product page",
+      "ok": true,
+      "ms": 1268,
+      "shot": "journey-checkout-04.png"
+    },
+    {
+      "name": "add to cart and raise the quantity to 5",
+      "ok": true,
+      "ms": 918,
+      "shot": "journey-checkout-05.png"
+    },
+    {
+      "name": "open the cart from the product page",
+      "ok": false,
+      "error": "\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed |  | Locator: locator('[data-testid=\"checkout-total\"]').visible().first() | Expected pattern: \u001b[32m/₹\\d/\u001b[39m | Timeout: 20000ms | Error: element(s) not found",
+      "ms": 20311,
+      "shot": "journey-checkout-06-FAILED.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

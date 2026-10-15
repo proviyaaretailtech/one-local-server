@@ -3,6 +3,7 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 import Icon from '@react-native-vector-icons/ionicons';
 import { PaymentMethod, UpiApp } from '../customer';
 import { colors } from '../theme';
+import { METHOD_LOGOS, PayLogoStrip, PayTile } from './pay-logo';
 import { useFeatures } from '../features';
 import { paymentMethodKey, t as translate, useTranslation } from '@/src/i18n';
 // The option rows hold catalogue KEYS, not words: the words are looked up while rendering, in the current language.
@@ -15,10 +16,10 @@ export const paymentOptions: { id: PaymentMethod; title: ParseKeys; subtitle: Pa
   { id: 'paylater', title: 'payment.paylater.title', subtitle: 'payment.paylater.sub', icon: 'calendar-outline', onlineOnly: true },
   { id: 'cod', title: 'payment.cod.title', subtitle: 'payment.cod.sub', icon: 'cash-outline' },
 ];
-export const UPI_APPS: { id: UpiApp; title: string; tint: string }[] = [
+export const UPI_APPS: { id: UpiApp; title: string }[] = [
   // i18n-ignore: UPI app names are brand names
-  { id: 'google_pay', title: 'Google Pay', tint: '#E6F0FF' }, { id: 'phonepe', title: 'PhonePe', tint: '#F0E6FF' },
-  { id: 'paytm', title: 'Paytm', tint: '#E6F5FB' }, { id: 'bhim', title: 'BHIM', tint: '#FFEDD6' }, { id: 'whatsapp', title: 'WhatsApp', tint: '#DDF5EA' },
+  { id: 'google_pay', title: 'Google Pay' }, { id: 'phonepe', title: 'PhonePe' },
+  { id: 'paytm', title: 'Paytm' }, { id: 'bhim', title: 'BHIM' }, { id: 'whatsapp', title: 'WhatsApp' },
 ];
 // The method's name in the current language. A plain function (call it while rendering, in a component that uses
 // useTranslation so it redraws on a language change). Razorpay can also report 'emi' / 'cardless_emi' for a paid
@@ -33,6 +34,6 @@ export function PaymentOptions({ value, onChange, scope, disabled }: { value: Pa
   const { online_payments } = useFeatures();
   const { t } = useTranslation();
   const shown = online_payments || value === 'cod' ? value : 'cod';
-  return <View testID={`${scope}-options`} style={s.options}>{paymentOptions.filter(p => online_payments || !p.onlineOnly).map(p => { const soon = p.id !== 'cod' && !online_payments; return <Pressable key={p.id} testID={`${scope}-method-${p.id}`} accessibilityRole="radio" accessibilityState={{ checked: shown === p.id, disabled: soon }} disabled={disabled || soon} onPress={() => onChange(p.id)} style={({ pressed }) => [s.option, shown === p.id && s.selected, soon && s.soonOption, pressed && s.pressed]}><View style={s.icon}><Icon name={p.icon as any} size={24} color={colors.forest} /></View><View style={s.copy}><Text testID={`${scope}-label-${p.id}`} style={s.title}>{t(p.title)}</Text><Text style={s.sub}>{soon ? t('payment.comingSoon') : t(p.subtitle)}</Text></View>{soon ? <View style={s.soon}><Text style={s.soonText}>{t('payment.soonBadge')}</Text></View> : <Icon name={shown === p.id ? 'radio-button-on' : 'radio-button-off'} size={22} color={colors.forest} />}</Pressable>; })}</View>;
+  return <View testID={`${scope}-options`} style={s.options}>{paymentOptions.filter(p => online_payments || !p.onlineOnly).map(p => { const soon = p.id !== 'cod' && !online_payments; return <Pressable key={p.id} testID={`${scope}-method-${p.id}`} accessibilityRole="radio" accessibilityState={{ checked: shown === p.id, disabled: soon }} disabled={disabled || soon} onPress={() => onChange(p.id)} style={({ pressed }) => [s.option, shown === p.id && s.selected, soon && s.soonOption, pressed && s.pressed]}><View style={s.icon}>{p.id === 'upi' ? <PayTile brand="upi" width={40} height={34} /> : <Icon name={p.icon as any} size={24} color={colors.forest} />}</View><View style={s.copy}><Text testID={`${scope}-label-${p.id}`} style={s.title}>{t(p.title)}</Text><Text style={s.sub}>{soon ? t('payment.comingSoon') : t(p.subtitle)}</Text>{!!METHOD_LOGOS[p.id] && <PayLogoStrip brands={METHOD_LOGOS[p.id]!} />}</View>{soon ? <View style={s.soon}><Text style={s.soonText}>{t('payment.soonBadge')}</Text></View> : <Icon name={shown === p.id ? 'radio-button-on' : 'radio-button-off'} size={22} color={colors.forest} />}</Pressable>; })}</View>;
 }
 const s = StyleSheet.create({ options: { gap: 12 }, option: { flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: colors.surface, borderRadius: 20, padding: 16, borderWidth: 1, borderColor: colors.border }, selected: { borderColor: colors.forest, backgroundColor: colors.limeSoft }, soonOption: { opacity: 0.6 }, soon: { backgroundColor: colors.surfaceSecondary, borderRadius: 8, paddingHorizontal: 7, paddingVertical: 3 }, soonText: { fontSize: 9, fontWeight: '800', color: colors.muted, letterSpacing: 1 }, icon: { width: 40, height: 44, justifyContent: 'center' }, copy: { flex: 1 }, title: { fontSize: 14, fontWeight: '700', color: colors.onSurface }, sub: { fontSize: 11, color: colors.muted, lineHeight: 17, marginTop: 4 }, pressed: { opacity: 0.65 } });

@@ -1,0 +1,264 @@
+{
+  "screen": "search-q-milk",
+  "route": "/search?q=milk",
+  "finalUrl": "/search?q=milk",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "search-back"
+  ],
+  "screenshots": [
+    "search-q-milk.png",
+    "search-q-milk-bottom.png",
+    "search-q-milk-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 914,
+    "clientHeight": 528,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/search?q=milk",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 75,
+      "visibleTextChars": 288,
+      "visibleImages": 5,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Find your next favourite   Everything Food Groceries Shops Pharmacy & Beauty 5 finds for you  Amul Milk 500 ml ₹28 ₹30 ADD   5% OFF Amul Pure Milk Cheese 1 kg · sample pack ₹550 ₹580 ADD   8% OFF Amul Taaza Milk 1 litre ₹72 ₹78 ADD   18% OFF Cadbury Dairy Milk 55 g ₹49 ₹60 ADD   10% OFF"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-open-search-st7",
+        "text": "View Britannia Milk Bread",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "21,762 167x112",
+        "cy": 96.9
+      },
+      {
+        "id": "save-product-search-st7",
+        "text": "Save Britannia Milk Bread",
+        "by": "bottom-navigation > …",
+        "overlayRoot": "bottom-navigation > …",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "144,762 44x44",
+        "cy": 92.9
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "search-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/search?q=milk",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 75,
+      "visibleTextChars": 322,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Find your next favourite   Everything Food Groceries Shops Pharmacy & Beauty 5 finds for you  Amul Milk 500 ml ₹28 ₹30 ADD   5% OFF Amul Pure Milk Cheese 1 kg · sample pack ₹550 ₹580 ADD   8% OFF Amul Taaza Milk 1 litre ₹72 ₹78 ADD   18% OFF Cadbury Dairy Milk 55 g ₹49 ₹60 ADD   10% OFF"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-name-open-search-p4",
+        "text": "View Amul Milk details",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "21,-36 167x55",
+        "cy": -1
+      },
+      {
+        "id": "add-btn-search-p4",
+        "text": "Add Amul Milk",
+        "by": "search-input",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "27,51 155x44",
+        "cy": 8.6
+      },
+      {
+        "id": "product-name-open-search-a1",
+        "text": "View Amul Pure Milk Cheese details",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "202,-36 167x55",
+        "cy": -1
+      },
+      {
+        "id": "add-btn-search-a1",
+        "text": "Add Amul Pure Milk Cheese",
+        "by": "search-input",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "208,51 155x44",
+        "cy": 8.6
+      },
+      {
+        "id": "product-open-search-a3",
+        "text": "View Amul Taaza Milk",
+        "by": "search-filter-all",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "21,114 167x112",
+        "cy": 20.1
+      },
+      {
+        "id": "product-open-search-st1",
+        "text": "View Cadbury Dairy Milk",
+        "by": "search-filter-shops",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "202,114 167x112",
+        "cy": 20.1
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "product-name-search-p4",
+        "text": "Amul Milk",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "product-weight-search-p4",
+        "text": "500 ml",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "product-price-search-p4",
+        "text": "₹28",
+        "by": "search-back > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "product-mrp-search-p4",
+        "text": "₹30",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "add-btn-search-p4 > …",
+        "text": "ADD",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      },
+      {
+        "id": "add-btn-search-p4 > …",
+        "text": "",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      },
+      {
+        "id": "product-name-search-a1",
+        "text": "Amul Pure Milk Cheese",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "product-weight-search-a1",
+        "text": "1 kg · sample pack",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "product-price-search-a1",
+        "text": "₹550",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "product-mrp-search-a1",
+        "text": "₹580",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "add-btn-search-a1 > …",
+        "text": "ADD",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      },
+      {
+        "id": "add-btn-search-a1 > …",
+        "text": "",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "search-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

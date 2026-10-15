@@ -11,10 +11,11 @@ import { useMapFrame } from '../use-map-frame';
 import { decodePolyline } from '../utils/polyline';
 import { glideDurationMs } from '../utils/tracking';
 import { PinBadge, RiderBadge, StaleHint, type TrackingMapProps } from './tracking-parts';
+import { nativeMapsReady } from '../native-maps';
 
 export type { TrackingMapProps } from './tracking-parts';
 /** Phones always have a map; whether Android's tiles load depends on the build's Maps SDK key. */
-export const trackingMapAvailable = true;
+export const trackingMapAvailable = nativeMapsReady;
 
 const EDGE = { top: 56, right: 48, bottom: 56, left: 48 };
 

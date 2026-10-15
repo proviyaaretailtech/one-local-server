@@ -48,6 +48,8 @@ export const ERROR_CODES = [
   'validation', 'invalid_payload', 'invalid_request', 'not_found', 'unauthorized', 'rate_limited', 'wrong_state', 'conflict', 'version_conflict',
   'idempotency_mismatch', 'database_unavailable', 'server_error', 'not_configured', 'provider_not_configured', 'coming_soon',
   'outside_delivery_area', 'out_of_zone', 'address_needs_point', 'merchant_unavailable', 'switched_to_cash', 'order_not_deliverable',
+  // A restaurant without a confirmed pickup point (specs/restaurant-pickup-location)
+  'pickup_location_missing', 'pickup_location_unverified',
   'upload_unavailable', 'upload_missing', 'offline', 'timeout',
   // Online payment (docs/PAYMENTS.md "App API (Cashfree)")
   'choose_method', 'phone_required', 'price_changed', 'payment_in_progress', 'gateway_unavailable', 'online_payments_off',

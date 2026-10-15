@@ -1,0 +1,216 @@
+{
+  "screen": "collection-festive",
+  "route": "/collection/festive",
+  "finalUrl": "/collection/festive",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "collection-back"
+  ],
+  "screenshots": [
+    "collection-festive.png",
+    "collection-festive-bottom.png",
+    "collection-festive-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "collection-scroll",
+    "scrollHeight": 3652,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/collection/festive",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "collection-scroll",
+    "stats": {
+      "testids": 316,
+      "visibleTextChars": 459,
+      "visibleImages": 10,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "        Festive Time A ONECITY LITTLE WORLD   Under ₹199 THE FESTIVE EDIT Bappa’s here. So is the joy. Modaks, little rituals & a whole lot of love.  GANPATI BAPPA MORYA  Ganesh Chaturthi  Navratri nights Indian Sweets Puja & Festive Dry Fruits & Nuts Chocolates & Gifts Treats for Bappa"
+    },
+    "smallTargets": [],
+    "truncated": [
+      {
+        "id": "collection-festive-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "shown": "Chitale Ban…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "collection-festive-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "collection-festive-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "tile": "collection-festive-brand-chitale",
+        "spill": 8.4
+      },
+      {
+        "id": "collection-festive-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "collection-festive-brand-latur-artisans",
+        "spill": 3.3
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-name-open-collection-featured-festive-sf1",
+        "text": "View Haldiram’s Modak Selection details",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "21,769 138x55",
+        "cy": 94.4
+      },
+      {
+        "id": "product-name-open-collection-featured-festive-sf3",
+        "text": "View Chitale Kesar Modak details",
+        "by": "tab-food",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "173,769 138x55",
+        "cy": 94.4
+      },
+      {
+        "id": "product-name-open-collection-featured-festive-sf8",
+        "text": "View Chitale Celebration Sweets details",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "325,769 138x55",
+        "cy": 94.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "collection-hero-image-festive",
+        "text": "",
+        "fill": 78,
+        "frame": "208.5x209.8",
+        "natural": "490x636",
+        "bars": "left/right"
+      },
+      {
+        "id": "collection-floating-product-0",
+        "text": "",
+        "fill": 79,
+        "frame": "65.3x65.3",
+        "natural": "283x223",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "collection-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/collection/festive",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "collection-scroll",
+    "stats": {
+      "testids": 316,
+      "visibleTextChars": 250,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "        Festive Time A ONECITY LITTLE WORLD   Under ₹199 THE FESTIVE EDIT Bappa’s here. So is the joy. Modaks, little rituals & a whole lot of love.  GANPATI BAPPA MORYA  Ganesh Chaturthi  Navratri nights Indian Sweets Puja & Festive Dry Fruits & Nuts Chocolates & Gifts Treats for Bappa"
+    },
+    "smallTargets": [],
+    "truncated": [
+      {
+        "id": "collection-festive-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "shown": "Chitale Ban…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "collection-festive-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [
+      {
+        "id": "store-particle-festive-4 > …",
+        "text": "",
+        "axis": "y",
+        "by": "store-animation-festive",
+        "overflow": 5.8
+      }
+    ],
+    "spills": [
+      {
+        "id": "collection-festive-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "tile": "collection-festive-brand-chitale",
+        "spill": 8.4
+      },
+      {
+        "id": "collection-festive-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "collection-festive-brand-latur-artisans",
+        "spill": 3.3
+      }
+    ],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "collection-hero-image-festive",
+        "text": "",
+        "fill": 78,
+        "frame": "207.6x208.9",
+        "natural": "490x636",
+        "bars": "left/right"
+      },
+      {
+        "id": "collection-floating-product-0",
+        "text": "",
+        "fill": 79,
+        "frame": "66.7x66.7",
+        "natural": "283x223",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

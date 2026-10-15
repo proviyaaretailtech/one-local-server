@@ -97,7 +97,12 @@ async function main() {
       ctx.store = 'demo-spice';
       ctx.prod = menu.map((m: any) => ({ id: `demo-spice-${m.id}`, menu: m }));
       must(await d.from('ol_products').upsert(ctx.prod.map((p: any) => ({ id: p.id, name: p.menu.name, price: Number(p.menu.price), mrp: Number(p.menu.price), department: 'food', store_id: ctx.store, menu_item_id: p.menu.id, city_id: 'latur', is_demo: false }))), 'ol_products');
-      must(await d.from('ol_merchant_channels').update({ accepting: true, store_id: ctx.store, city_id: 'latur', address: 'Gandhi Chowk, Latur', lat: 18.4088, lng: 76.5604 }).eq('organization_id', ctx.org), 'channel');
+      must(await d.from('ol_merchant_channels').update({ accepting: true, store_id: ctx.store, city_id: 'latur' }).eq('organization_id', ctx.org), 'channel');
+      // The owner confirms the pickup point in the partner app (specs/restaurant-pickup-location); checkout trusts only a confirmed point.
+      const pickup = await import('../app/api/partner/pickup-location/index+api');
+      const pr: Response = await pickup.PUT(new Request('http://localhost/api/partner/pickup-location', { method: 'PUT', headers: { authorization: `Bearer ${ctx.ownerToken}`, 'content-type': 'application/json' }, body: JSON.stringify({ lat: 18.4088, lng: 76.5604, formatted_address: 'Gandhi Chowk, Latur', source: 'map_pin', confirm: true }) }), {});
+      const pj = await pr.json();
+      assert(pr.status === 200 && pj.status === 'verified', 'owner confirms the pickup point', pj);
     });
 
     // ---------- rider + restaurant device prepared before the order (a rider must be online for the offer) ----------

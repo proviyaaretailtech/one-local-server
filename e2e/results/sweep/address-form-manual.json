@@ -1,0 +1,138 @@
+{
+  "screen": "address-form-manual",
+  "route": "/address-form?manual=1",
+  "finalUrl": "/address-form?manual=1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "address-form-back"
+  ],
+  "screenshots": [
+    "address-form-manual.png",
+    "address-form-manual-bottom.png",
+    "address-form-manual-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 954,
+    "clientHeight": 786,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/address-form?manual=1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 12,
+      "visibleTextChars": 281,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Add address details Receiver Name * Mobile number * Our delivery partner calls this number if they can't find you. Address  Home  Work  Other House / flat / building & floor * Street or landmark (recommended) Area / locality * Pincode Directions for the delivery partner (optional) Save address"
+    },
+    "smallTargets": [
+      {
+        "id": "address-kind-home",
+        "text": " Home",
+        "w": 101.3,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "address-kind-work",
+        "text": " Work",
+        "w": 101.3,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "address-kind-other",
+        "text": " Other",
+        "w": 101.3,
+        "h": 40,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "address-instructions",
+        "text": "",
+        "by": "save-address",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "31,807 328x80",
+        "cy": 100.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "address-form-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/address-form?manual=1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 12,
+      "visibleTextChars": 267,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Add address details Receiver Name * Mobile number * Our delivery partner calls this number if they can't find you. Address  Home  Work  Other House / flat / building & floor * Street or landmark (recommended) Area / locality * Pincode Directions for the delivery partner (optional) Save address"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "receiver-name",
+        "text": "",
+        "by": "DIV",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "31,-24 328x48",
+        "cy": 0
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": null,
+        "text": "Mobile number *",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 5
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "address-form-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

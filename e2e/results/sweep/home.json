@@ -1,0 +1,743 @@
+{
+  "screen": "home",
+  "route": "/",
+  "finalUrl": "/",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [],
+  "screenshots": [
+    "home.png",
+    "home-bottom.png",
+    "home-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "home-screen",
+    "scrollHeight": 5936,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "home-screen",
+    "stats": {
+      "testids": 642,
+      "visibleTextChars": 500,
+      "visibleImages": 10,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "    Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It THE LITTLE JOYS OF EVERYDAY Everyday, a little more delicious. A slice of goodness. A whole lot of happy. Shop Amul   made for happy bites Amul goodness Cheese favourites · from ₹145 "
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 124,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [
+      {
+        "id": "product-weight-food-home-f4",
+        "text": "Burger King · burger + fries",
+        "shown": "Burger King · burger…",
+        "kind": "single-line",
+        "midWord": false,
+        "w": 98
+      },
+      {
+        "id": "home-shops-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "home-shops-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "product-weight-shops-home-sneak1",
+        "text": "Red · sample size UK 8",
+        "shown": "Red · sample size U…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 98
+      },
+      {
+        "id": "product-weight-shops-home-audio1",
+        "text": "Over-ear · sample model",
+        "shown": "Over-ear · sample m…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 98
+      },
+      {
+        "id": "product-weight-pharmacy-home-h1",
+        "text": "60 tablets · sample listing",
+        "shown": "60 tablets · sample li…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 98
+      },
+      {
+        "id": "product-name-home-budget-sg4",
+        "text": "Aashirvaad Whole Wheat Atta",
+        "kind": "clamp-2",
+        "midWord": null,
+        "w": 98
+      },
+      {
+        "id": "home-new-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "home-new-brands-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [
+      {
+        "id": "product-weight-food-home-f4",
+        "text": "Burger King · burger + fries",
+        "axis": "x",
+        "by": "product-card-food-home-f4",
+        "overflow": 14
+      },
+      {
+        "id": "product-weight-shops-home-audio1",
+        "text": "Over-ear · sample model",
+        "axis": "x",
+        "by": "product-card-shops-home-audio1",
+        "overflow": 2.3
+      },
+      {
+        "id": "product-weight-pharmacy-home-h1",
+        "text": "60 tablets · sample listing",
+        "axis": "x",
+        "by": "product-card-pharmacy-home-h1",
+        "overflow": 7.6
+      }
+    ],
+    "spills": [
+      {
+        "id": "product-weight-food-home-f4",
+        "text": "Burger King · burger + fries",
+        "tile": "product-name-open-food-home-f4",
+        "spill": 15
+      },
+      {
+        "id": "home-shops-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "home-shops-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "home-shops-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "home-shops-brand-home-edit",
+        "spill": 5.5
+      },
+      {
+        "id": "product-weight-shops-home-audio1",
+        "text": "Over-ear · sample model",
+        "tile": "product-name-open-shops-home-audio1",
+        "spill": 3.3
+      },
+      {
+        "id": "product-weight-pharmacy-home-h1",
+        "text": "60 tablets · sample listing",
+        "tile": "product-name-open-pharmacy-home-h1",
+        "spill": 8.6
+      },
+      {
+        "id": "home-new-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "home-new-brands-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "home-new-brands-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "home-new-brands-brand-home-edit",
+        "spill": 5.5
+      }
+    ],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "spotlight-image-home",
+        "text": "",
+        "fill": 70,
+        "frame": "206.8x205.7",
+        "natural": "549x777",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-trending-home-f5",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-trending-home-b1",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-trending-home-f3",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-trending-home-p3",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-picks-p3",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-picks-f3",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-picks-b1",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-food-home-f5",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-pharmacy-home-h2",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-beauty-home-b3",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": [
+      {
+        "id": "spotlight-brand-home",
+        "text": "Explore Amul goodness",
+        "by": "spotlight-home > …",
+        "cut": "4.3px vertically",
+        "size": "167.9x52.6"
+      }
+    ]
+  },
+  "bottom": {
+    "url": "/",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "home-screen",
+    "stats": {
+      "testids": 645,
+      "visibleTextChars": 343,
+      "visibleImages": 2,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "    Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It  Explore  Search OneCity THE LITTLE JOYS OF EVERYDAY Everyday, a little more delicious. A slice of goodness. A whole lot of happy. Shop Amul   made for happy bites Amul goodness Chee"
+    },
+    "smallTargets": [],
+    "truncated": [
+      {
+        "id": "product-weight-food-home-f4",
+        "text": "Burger King · burger + fries",
+        "shown": "Burger King · burger…",
+        "kind": "single-line",
+        "midWord": false,
+        "w": 98
+      },
+      {
+        "id": "home-shops-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "home-shops-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "product-weight-shops-home-sneak1",
+        "text": "Red · sample size UK 8",
+        "shown": "Red · sample size U…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 98
+      },
+      {
+        "id": "product-weight-shops-home-audio1",
+        "text": "Over-ear · sample model",
+        "shown": "Over-ear · sample m…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 98
+      },
+      {
+        "id": "product-weight-pharmacy-home-h1",
+        "text": "60 tablets · sample listing",
+        "shown": "60 tablets · sample li…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 98
+      },
+      {
+        "id": "product-name-home-budget-sg4",
+        "text": "Aashirvaad Whole Wheat Atta",
+        "kind": "clamp-2",
+        "midWord": null,
+        "w": 98
+      },
+      {
+        "id": "home-new-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "home-new-brands-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [
+      {
+        "id": "product-weight-food-home-f4",
+        "text": "Burger King · burger + fries",
+        "axis": "x",
+        "by": "product-card-food-home-f4",
+        "overflow": 14
+      },
+      {
+        "id": "product-weight-shops-home-audio1",
+        "text": "Over-ear · sample model",
+        "axis": "x",
+        "by": "product-card-shops-home-audio1",
+        "overflow": 2.3
+      },
+      {
+        "id": "product-weight-pharmacy-home-h1",
+        "text": "60 tablets · sample listing",
+        "axis": "x",
+        "by": "product-card-pharmacy-home-h1",
+        "overflow": 7.6
+      }
+    ],
+    "spills": [
+      {
+        "id": "product-weight-food-home-f4",
+        "text": "Burger King · burger + fries",
+        "tile": "product-name-open-food-home-f4",
+        "spill": 15
+      },
+      {
+        "id": "home-shops-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "home-shops-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "home-shops-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "home-shops-brand-home-edit",
+        "spill": 5.5
+      },
+      {
+        "id": "product-weight-shops-home-audio1",
+        "text": "Over-ear · sample model",
+        "tile": "product-name-open-shops-home-audio1",
+        "spill": 3.3
+      },
+      {
+        "id": "product-weight-pharmacy-home-h1",
+        "text": "60 tablets · sample listing",
+        "tile": "product-name-open-pharmacy-home-h1",
+        "spill": 8.6
+      },
+      {
+        "id": "home-new-brands-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "home-new-brands-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "home-new-brands-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "home-new-brands-brand-home-edit",
+        "spill": 5.5
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "save-product-home-budget-st8",
+        "text": "Save Britannia Breakfast Toast",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "85,7 44x44",
+        "cy": 3.4
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "save-product-home-budget-st8 > …",
+        "text": "",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "spotlight-image-home",
+        "text": "",
+        "fill": 70,
+        "frame": "206.8x205.7",
+        "natural": "549x777",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-trending-home-f5",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-trending-home-b1",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-trending-home-f3",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-trending-home-p3",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-trending-home-a1",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "500x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-picks-p3",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-picks-f3",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x601",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-picks-b1",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-picks-p4",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-picks-f6",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-picks-a1",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "500x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-food-home-f2",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x598",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-food-home-f5",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-shops-home-sneak1",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-shops-home-audio1",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-shops-home-home1",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-pharmacy-home-h2",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-pharmacy-home-h1",
+        "text": "",
+        "fill": 80,
+        "frame": "112x98",
+        "natural": "900x629",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-pharmacy-home-h3",
+        "text": "",
+        "fill": 80,
+        "frame": "112x98",
+        "natural": "900x629",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-beauty-home-b2",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-beauty-home-b3",
+        "text": "",
+        "fill": 58,
+        "frame": "112x98",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-beauty-home-b4",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-a3",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "640x640",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-sf5",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-sg4",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-sg6",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-st1",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-st4",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-st5",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-st6",
+        "text": "",
+        "fill": 88,
+        "frame": "112x98",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-home-budget-st7",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-home-budget-st8",
+        "text": "",
+        "fill": 76,
+        "frame": "112x98",
+        "natural": "900x599",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

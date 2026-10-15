@@ -1,0 +1,112 @@
+{
+  "screen": "product-sneak1",
+  "route": "/product/sneak1",
+  "finalUrl": "/product/sneak1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "pd-back-btn"
+  ],
+  "screenshots": [
+    "product-sneak1.png",
+    "product-sneak1-bottom.png",
+    "product-sneak1-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 1559,
+    "clientHeight": 844,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/product/sneak1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 126,
+      "visibleTextChars": 237,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Play images  Watch  15 MINS  4.6 More in Fashion  Nike Everyday Sneakers Red · sample size UK 8 ₹3499 ₹4499 22% OFF Inclusive of all taxes  Add to compare  Save Nike Find your next everyday favourite · 15 min  More like this  31% OFF Nike Essential Tee Cotton · sample size M ₹899 ₹1299 ADD"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "product-detail > …",
+        "text": "",
+        "fill": 67,
+        "frame": "110x110",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "pd-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/product/sneak1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 126,
+      "visibleTextChars": 344,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Play images  Watch  15 MINS  4.6 More in Fashion  Nike Everyday Sneakers Red · sample size UK 8 ₹3499 ₹4499 22% OFF Inclusive of all taxes  Add to compare  Save Nike Find your next everyday favourite · 15 min  More like this  31% OFF Nike Essential Tee Cotton · sample size M ₹899 ₹1299 ADD"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "pd-store-card > …",
+        "text": "",
+        "by": "pd-open-cart",
+        "overlayRoot": "product-detail > …",
+        "positioned": true,
+        "cy": 5
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "product-detail > …",
+        "text": "",
+        "fill": 67,
+        "frame": "110x110",
+        "natural": "900x600",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "pd-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

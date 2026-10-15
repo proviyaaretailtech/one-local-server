@@ -1,0 +1,164 @@
+{
+  "screen": "profile-edit",
+  "route": "/profile-edit",
+  "finalUrl": "/profile-edit",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "profile-edit-back"
+  ],
+  "screenshots": [
+    "profile-edit.png",
+    "profile-edit-bottom.png",
+    "profile-edit-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "profile-edit-scroll",
+    "scrollHeight": 897,
+    "clientHeight": 701,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/profile-edit",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "profile-edit-scroll",
+    "stats": {
+      "testids": 36,
+      "visibleTextChars": 237,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Make it yours Your photo and details, saved on this device.   Choose photo  Take photo     Full name Email address · optional Mobile number · optional Birthday · optional Food preference Anything Veg Egg Non-veg Save changes  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "profile-diet-any",
+        "text": "Anything",
+        "w": 86.9,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "profile-diet-veg",
+        "text": "Veg",
+        "w": 54.1,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "profile-diet-egg",
+        "text": "Egg",
+        "w": 54.2,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "profile-diet-nonveg",
+        "text": "Non-veg",
+        "w": 84.3,
+        "h": 40,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "profile-diet-any",
+        "text": "Anything",
+        "by": "tab-home",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "40,773 86.9x40",
+        "cy": 94
+      },
+      {
+        "id": "profile-diet-veg",
+        "text": "Veg",
+        "by": "bottom-navigation > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "134.9,773 54.1x40",
+        "cy": 94
+      },
+      {
+        "id": "profile-diet-egg",
+        "text": "Egg",
+        "by": "bottom-navigation > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "197,773 54.2x40",
+        "cy": 94
+      },
+      {
+        "id": "profile-diet-nonveg",
+        "text": "Non-veg",
+        "by": "tab-food",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "259.3,773 84.3x40",
+        "cy": 94
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "profile-edit-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/profile-edit",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "profile-edit-scroll",
+    "stats": {
+      "testids": 36,
+      "visibleTextChars": 204,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Make it yours Your photo and details, saved on this device.   Choose photo  Take photo     Full name Email address · optional Mobile number · optional Birthday · optional Food preference Anything Veg Egg Non-veg Save changes  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "profile-edit-scroll > …",
+        "text": "",
+        "by": "profile-edit-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "profile-edit-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

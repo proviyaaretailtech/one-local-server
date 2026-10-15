@@ -18,6 +18,7 @@ import {
 } from '@/src/places';
 import { useErrorMessage, useFormat, useTranslation } from '@/src/i18n';
 import { colors } from '@/src/theme';
+import { CityTile } from '@/src/components/city-tile';
 
 const kindIcon = (a: Address) => (a.kind === 'work' || a.label === 'Work' ? 'briefcase-outline' : a.kind === 'other' || a.label === 'Other' ? 'location-outline' : 'home-outline');
 const mapHref = (p?: Point | null, extra = '') => `/address-map?${p ? `lat=${p.lat}&lng=${p.lng}` : ''}${extra}` as never;
@@ -182,11 +183,7 @@ export default function LocationPicker() {
 
             {!!popular.length && <Text style={styles.section}>{t('location.section.popular')}</Text>}
             <View style={styles.tiles}>
-              {popular.map(p => <Pressable key={p.id} testID={`popular-${p.name.toLowerCase()}`} onPress={() => choosePlace(p)} style={styles.tile}>
-                <Text style={styles.tileMark}>{p.name.slice(0, 1)}</Text>
-                <Text style={styles.tileName} numberOfLines={1}>{p.name}</Text>
-                <Text style={styles.tileState} numberOfLines={1}>{p.state}</Text>
-              </Pressable>)}
+              {popular.map(p => <CityTile key={p.id} testID={`popular-${p.name.toLowerCase()}`} name={p.name} state={p.state} onPress={() => choosePlace(p)} />)}
             </View>
 
             <Pressable testID="browse-india" onPress={() => router.push('/india' as never)} style={styles.browse}>
@@ -242,9 +239,5 @@ const styles = StyleSheet.create({
   live: { flexDirection: 'row', alignItems: 'center', gap: 12, padding: 14, borderRadius: 18, backgroundColor: colors.limeSoft, borderWidth: 1, borderColor: colors.lime },
   liveMark: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface },
   tiles: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  tile: { width: '30%', flexGrow: 1, minHeight: 84, borderRadius: 18, padding: 12, justifyContent: 'flex-end', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-  tileMark: { position: 'absolute', top: 6, right: 10, fontSize: 34, fontWeight: '800', color: colors.cityMid },
-  tileName: { fontSize: 13, fontWeight: '700', color: colors.onSurface },
-  tileState: { fontSize: 11, color: colors.muted },
   browse: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
 });

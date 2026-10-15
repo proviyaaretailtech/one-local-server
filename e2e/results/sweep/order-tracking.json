@@ -1,0 +1,120 @@
+{
+  "screen": "order-tracking",
+  "route": "/order/627c042d-d74b-49fb-ad85-1ac67c6faa81",
+  "finalUrl": "/order/627c042d-d74b-49fb-ad85-1ac67c6faa81",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "track-back-btn"
+  ],
+  "screenshots": [
+    "order-tracking.png",
+    "order-tracking-bottom.png",
+    "order-tracking-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 1218,
+    "clientHeight": 700,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/order/627c042d-d74b-49fb-ad85-1ac67c6faa81",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 30,
+      "visibleTextChars": 405,
+      "visibleImages": 1,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your delivery story Sample tracking · #627C042D Cash on delivery · sample order, not charged Raju Bhaiya received your sample order. Illustrated sample packing crew  1/3 SAMPLE DELIVERY COUNTDOWN 9:58 Illustrative route · not live GPS  Store You  S Sample rider Your sample delivery partner  Or"
+    },
+    "smallTargets": [
+      {
+        "id": "track-back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "vendor-illustration-veggies",
+        "text": "",
+        "fill": 90,
+        "frame": "79.1x88.1",
+        "natural": "384x384",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "track-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/order/627c042d-d74b-49fb-ad85-1ac67c6faa81",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 30,
+      "visibleTextChars": 399,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your delivery story Sample tracking · #627C042D Cash on delivery · sample order, not charged Raju Bhaiya received your sample order. Illustrated sample packing crew  1/3 SAMPLE DELIVERY COUNTDOWN 9:56 Illustrative route · not live GPS  Store You  S Sample rider Your sample delivery partner  Or"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "tracking-map > …",
+        "text": "Store",
+        "by": "order-tracking > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "vendor-illustration-veggies",
+        "text": "",
+        "fill": 90,
+        "frame": "79x88",
+        "natural": "384x384",
+        "bars": "top/bottom"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "track-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "screen": "brand-boat",
+  "route": "/brand/boat",
+  "finalUrl": "/brand/boat",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "brand-back"
+  ],
+  "screenshots": [
+    "brand-boat.png",
+    "brand-boat-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/brand/boat",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 30,
+      "visibleTextChars": 269,
+      "visibleImages": 2,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " THE BRAND EDIT Store profile boAt Turn the everyday up  Follow brand More from boAt 1 little finds  40% OFF boAt Wireless Headphones Over-ear · sample model ₹1499 ₹2499 ADD  Sample brand collection. Listings, product imagery and prices are for exploring the app, not an official brand partnershi"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "brand-logo-boat",
+        "text": "",
+        "fill": 64,
+        "frame": "83x53",
+        "natural": "600x600",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "brand-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/brand/boat",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 30,
+      "visibleTextChars": 269,
+      "visibleImages": 2,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " THE BRAND EDIT Store profile boAt Turn the everyday up  Follow brand More from boAt 1 little finds  40% OFF boAt Wireless Headphones Over-ear · sample model ₹1499 ₹2499 ADD  Sample brand collection. Listings, product imagery and prices are for exploring the app, not an official brand partnershi"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "brand-logo-boat",
+        "text": "",
+        "fill": 64,
+        "frame": "83x53",
+        "natural": "600x600",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "brand-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

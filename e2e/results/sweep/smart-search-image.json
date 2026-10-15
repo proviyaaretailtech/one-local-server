@@ -1,0 +1,79 @@
+{
+  "screen": "smart-search-image",
+  "route": "/smart-search?mode=image",
+  "finalUrl": "/smart-search?mode=image",
+  "blocked": "AI key",
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "coming-soon-back"
+  ],
+  "screenshots": [
+    "smart-search-image.png",
+    "smart-search-image-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/smart-search?mode=image",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 14,
+      "visibleTextChars": 252,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " COMING SOON  Photo & voice search Snap a product or just say it — in English, Hindi or Marathi — and we’ll find it in Latur stores.  Point your camera at anything  Speak a whole shopping list  Matches from real local stock  Use text search for now  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "coming-soon-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/smart-search?mode=image",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 14,
+      "visibleTextChars": 252,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " COMING SOON  Photo & voice search Snap a product or just say it — in English, Hindi or Marathi — and we’ll find it in Latur stores.  Point your camera at anything  Speak a whole shopping list  Matches from real local stock  Use text search for now  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "coming-soon-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

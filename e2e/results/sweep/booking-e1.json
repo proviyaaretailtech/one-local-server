@@ -1,0 +1,94 @@
+{
+  "screen": "booking-e1",
+  "route": "/booking/e1",
+  "finalUrl": "/booking/e1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "booking-back"
+  ],
+  "screenshots": [
+    "booking-e1.png",
+    "booking-e1-bottom.png",
+    "booking-e1-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "booking-screen",
+    "scrollHeight": 1054,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/booking/e1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "booking-screen",
+    "stats": {
+      "testids": 31,
+      "visibleTextChars": 237,
+      "visibleImages": 1,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Plan something good DEMO The Last Orbit Sci-fi adventure · Hindi · 2h 15m  Sample cinema, Latur Pick a day Today 24 Fri 25 Sat 26 Sun 27 Mon 28 Tue 29 Wed 30 Choose a time 11:00 AM 2:30 PM 7:00 PM How many guests?  1  Your details Indicative total · 1 guest ₹180 Sample listing. Save an enquiry "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "booking-phone",
+        "text": "",
+        "by": "tab-reels > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "20,755 350x50",
+        "cy": 92.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "booking-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/booking/e1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "booking-screen",
+    "stats": {
+      "testids": 31,
+      "visibleTextChars": 331,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Plan something good DEMO The Last Orbit Sci-fi adventure · Hindi · 2h 15m  Sample cinema, Latur Pick a day Today 24 Fri 25 Sat 26 Sun 27 Mon 28 Tue 29 Wed 30 Choose a time 11:00 AM 2:30 PM 7:00 PM How many guests?  1  Your details Indicative total · 1 guest ₹180 Sample listing. Save an enquiry "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -17,11 +17,12 @@ import { Trans, useFormat, useLanguage, useTranslation } from '@/src/i18n';
 
 const INK = '#050605';
 // Ids, icons and routes only: the words live in the catalogue (account.group.*, account.rowLabel.*, account.rowSub.*, account.diet.*).
-type RowId = 'orders' | 'bookings' | 'wishlist' | 'profile' | 'addresses' | 'payments' | 'privacy' | 'refer' | 'wallet' | 'help' | 'about';
+type RowId = 'orders' | 'notifications' | 'bookings' | 'wishlist' | 'profile' | 'addresses' | 'payments' | 'privacy' | 'refer' | 'wallet' | 'help' | 'about';
 type Row = { icon: string; id: RowId; route: string; soon?: boolean };
 const GROUPS: { id: 'orders' | 'account' | 'rewards' | 'help'; rows: Row[] }[] = [
   { id: 'orders', rows: [
     { icon: 'receipt-outline', id: 'orders', route: '/orders' },
+    { icon: 'notifications-outline', id: 'notifications', route: '/notifications' },
     { icon: 'ticket-outline', id: 'bookings', route: '/enquiries' },
     { icon: 'heart-outline', id: 'wishlist', route: '/wishlist' },
   ] },

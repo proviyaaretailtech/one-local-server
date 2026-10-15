@@ -22,6 +22,7 @@ import { CheckoutPayment } from '@/src/components/checkout-payment';
 import { PaymentChoice, PaymentSheet } from '@/src/components/payment-sheet';
 import { RazorpayCheckout } from '@/src/components/razorpay-checkout';
 import { PaymentMethodsSheet, useMethodLabel } from '@/src/components/payment-methods';
+import { isPayBrand, PayLogo } from '@/src/components/pay-logo';
 import { PaymentProgress } from '@/src/components/payment-progress';
 import { clearInFlight, readInFlight, readLastUsed, saveLastUsed, startOrder, switchToCash, usePaymentMethods, type CashfreeStart, type InFlight } from '@/src/payments/api';
 import { defaultRow, defaultUpi, normalizePhone, orderMethods, orderPick, toLastUsed, type LastUsed, type PayPick } from '@/src/payments/logic';
@@ -141,6 +142,8 @@ export default function CartScreen() {
   };
   const quick = cfMode ? quickPick() : null;
   const quickLabel = quick ? methodLabel(quick.method, quick.mode === 'intent' ? quick.app : undefined) : '';
+  // The chosen UPI app's own logo next to its name on the PAY USING line.
+  const payApp = cfMode ? (quick?.method === 'upi' && quick.mode === 'intent' ? quick.app : undefined) : choice.method === 'upi' ? choice.app : undefined;
   type CfFlow = { start: CashfreeStart; pick: PayPick; kind: CartKind; resume?: boolean; startedAt?: number };
   const [cfFlow, setCfFlow] = useState<CfFlow | null>(null);        // a Cashfree payment is open
   const [cfWaiting, setCfWaiting] = useState<InFlight | null>(null); // one that was left open (app closed, "back to cart")
@@ -550,7 +553,10 @@ export default function CartScreen() {
             <View testID="checkout-footer" style={[styles.payBar, { marginBottom: 12, marginHorizontal: spacing.lg }]}>
               <Pressable testID="checkout-pay-using" accessibilityRole="button" accessibilityLabel={t('checkout.chooseA11y')} onPress={() => setSheet(true)} style={{ flex: 1, minHeight: 44, justifyContent: 'center' }}>
                 <Text style={styles.payUsing}>{t('checkout.payUsing')} <Icon name="caret-up" size={10} color={colors.muted} /></Text>
-                <Text testID="checkout-selected-payment" style={styles.payMethod}>{cfMode ? quickLabel : paymentLabel(choice.method, choice.method === 'upi' ? choice.app : undefined)}</Text>
+                <View style={styles.payMethodLine}>
+                  {!!payApp && isPayBrand(payApp) && <PayLogo brand={payApp} height={14} />}
+                  <Text testID="checkout-selected-payment" style={styles.payMethod}>{cfMode ? quickLabel : paymentLabel(choice.method, choice.method === 'upi' ? choice.app : undefined)}</Text>
+                </View>
               </Pressable>
               <SlideToConfirm style={styles.payNow} testID="checkout-btn" disabled={!bill || !!session || !!cfFlow || (cfMode && !quick)} busy={placing}
                 thumbColor={colors.onBrandSecondary} arrowColor={colors.brandSecondary} textStyle={[styles.payNowText, styles.slideText]} hint={t('checkout.slideHint')}
@@ -704,6 +710,7 @@ const styles = StyleSheet.create({
   payBar: { backgroundColor: colors.surface, borderRadius: radius.lg, padding: spacing.sm, paddingLeft: spacing.md, flexDirection: "row", alignItems: "center", gap: spacing.md, borderWidth: 1, borderColor: colors.border },
   payUsing: { fontSize: 10, fontWeight: "800", color: colors.muted, letterSpacing: 0.8 },
   payMethod: { fontSize: 14, fontWeight: "800", color: colors.onSurface, marginTop: 2 },
+  payMethodLine: { flexDirection: "row", alignItems: "center", gap: 6 },
   payNow: { flex: 1.3, minHeight: 52, backgroundColor: colors.brandSecondary, borderRadius: radius.pill, alignItems: "center", justifyContent: "center", paddingHorizontal: 16 },
   payNowText: { color: colors.onBrandSecondary, fontWeight: "800", fontSize: 16 },
   slideText: { fontSize: 14 },

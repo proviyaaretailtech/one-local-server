@@ -1,0 +1,79 @@
+{
+  "screen": "brand-himalaya",
+  "route": "/brand/himalaya",
+  "finalUrl": "/brand/himalaya",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "brand-back"
+  ],
+  "screenshots": [
+    "brand-himalaya.png",
+    "brand-himalaya-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/brand/himalaya",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 296,
+      "visibleImages": 1,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " THE BRAND EDIT Store profile Himalaya Himalaya Everyday wellness essentials  Follow brand More from Himalaya 1 little finds  18% OFF Himalaya Wellness Tablets 60 tablets · sample listing ₹180 ₹220 ADD  Sample brand collection. Listings, product imagery and prices are for exploring the app, not "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "brand-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/brand/himalaya",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 296,
+      "visibleImages": 1,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " THE BRAND EDIT Store profile Himalaya Himalaya Everyday wellness essentials  Follow brand More from Himalaya 1 little finds  18% OFF Himalaya Wellness Tablets 60 tablets · sample listing ₹180 ₹220 ADD  Sample brand collection. Listings, product imagery and prices are for exploring the app, not "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "brand-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

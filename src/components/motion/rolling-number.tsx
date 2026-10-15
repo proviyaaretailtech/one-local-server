@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { StyleProp, StyleSheet, Text, TextStyle, View } from 'react-native';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useMotionAllowed } from '../../motion';
-import { duration, easing } from '../../motion-tokens';
+import { duration, reEasing } from '../../motion-tokens';
 
 type Props = { value: number; text: string; style?: StyleProp<TextStyle>; lineHeight: number; testID?: string };
 
@@ -36,7 +36,7 @@ function Slot({ ch, dir, style, h }: { ch: string; dir: number; style?: StylePro
     const old = shown.current; shown.current = ch;
     if (!motion) return;
     setPrev(old); d.value = dir; p.value = 0;
-    p.value = withTiming(1, { duration: duration.quick + 60, easing: easing.standard });
+    p.value = withTiming(1, { duration: duration.quick + 60, easing: reEasing.standard });
     const t = setTimeout(() => setPrev(null), duration.quick + 80);
     return () => clearTimeout(t);
   }, [ch, dir, motion, p, d]);

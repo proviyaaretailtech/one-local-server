@@ -111,6 +111,8 @@
       "out_of_zone": "That address is outside our delivery area.",
       "address_needs_point": "Please pick your delivery address on the map before paying.",
       "merchant_unavailable": "This store cannot take your order right now. Nothing was charged.",
+      "pickup_location_missing": "This restaurant is not ready for delivery yet. Nothing was charged.",
+      "pickup_location_unverified": "This restaurant is not ready for delivery yet. Nothing was charged.",
       "switched_to_cash": "This order was switched to cash on delivery.",
       "order_not_deliverable": "This order cannot be delivered yet.",
       "upload_unavailable": "The photo could not be uploaded. Please try again.",
@@ -191,7 +193,8 @@
     "noticeVersion": "version {{version}}",
     "notice": {
       "codeSent": "We sent a code by SMS to +91 {{number}}.",
-      "confirmEmail": "Almost there — confirm your email from the link we sent, then sign in."
+      "confirmEmail": "Almost there — confirm your email from the link we sent, then sign in.",
+      "emailCodeSent": "We sent a 6-digit code to {{email}}. Enter it here to finish."
     },
     "error": {
       "confirmAdult": "Please confirm you are {{age}} or older to continue.",
@@ -226,7 +229,8 @@
     "switch": {
       "toSignup": "New here? Create an account",
       "toSignin": "Already have an account? Sign in"
-    }
+    },
+    "changeEmail": "Change email"
   },
   "account": {
     "language": "Language",
@@ -280,7 +284,8 @@
       "refer": "Refer & Earn",
       "wallet": "OneLocal Wallet",
       "help": "Help & Support",
-      "about": "About OneLocal"
+      "about": "About OneLocal",
+      "notifications": "Notifications"
     },
     "rowSub": {
       "orders": "Track a delivery or order again",
@@ -293,7 +298,8 @@
       "refer": "Good things are better shared",
       "wallet": "Store credit and refunds, in one place",
       "help": "Find answers and save a request",
-      "about": "A little closer to your city"
+      "about": "A little closer to your city",
+      "notifications": "Order updates and alerts"
     },
     "signedInTitle": "Signed in",
     "yourAccount": "Your account",
@@ -1746,7 +1752,17 @@
       "body": "Enjoy! Your order has arrived."
     },
     "yourOrder": "Your order",
-    "summaryMore": "{{name}} + {{n}} more · {{total}}"
+    "summaryMore": "{{name}} + {{n}} more · {{total}}",
+    "inbox": {
+      "title": "Notifications",
+      "subtitle_one": "{{count}} new",
+      "subtitle_other": "{{count}} new",
+      "subtitleNone": "You're all caught up",
+      "emptyTitle": "Nothing here yet",
+      "emptyBody": "Order updates will show up here as they happen.",
+      "markRead": "Mark all as read",
+      "clear": "Clear all"
+    }
   },
   "privacy": {
     "title": "Privacy & your data",

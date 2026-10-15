@@ -1,0 +1,284 @@
+{
+  "screen": "search",
+  "route": "/search",
+  "finalUrl": "/search",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "search-back"
+  ],
+  "screenshots": [
+    "search.png",
+    "search-bottom.png",
+    "search-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 11132,
+    "clientHeight": 528,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/search",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 935,
+      "visibleTextChars": 249,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Find your next favourite  Everything Food Groceries Shops Pharmacy & Beauty 84 finds for you  37% OFF Fresh Tomatoes 500 g ₹25 ₹40 ADD   28% OFF Onions 1 kg ₹32 ₹45 ADD   20% OFF Bananas 1 dozen ₹48 ₹60 ADD   Amul Milk 500 ml ₹28 ₹30 ADD   23% OFF Farm Eggs 6 pcs ₹55 ₹72 ADD   Lays Cla"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-open-search-p5",
+        "text": "View Farm Eggs",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "21,762 167x112",
+        "cy": 96.9
+      },
+      {
+        "id": "save-product-search-p5",
+        "text": "Save Farm Eggs",
+        "by": "bottom-navigation > …",
+        "overlayRoot": "bottom-navigation > …",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "144,762 44x44",
+        "cy": 92.9
+      },
+      {
+        "id": "product-open-search-p6",
+        "text": "View Lays Classic",
+        "by": "tab-food",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "202,762 167x112",
+        "cy": 96.9
+      },
+      {
+        "id": "save-product-search-p6",
+        "text": "Save Lays Classic",
+        "by": "tab-book-it > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "325,762 44x44",
+        "cy": 92.9
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "search-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/search",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 935,
+      "visibleTextChars": 373,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Find your next favourite  Everything Food Groceries Shops Pharmacy & Beauty 84 finds for you  37% OFF Fresh Tomatoes 500 g ₹25 ₹40 ADD   28% OFF Onions 1 kg ₹32 ₹45 ADD   20% OFF Bananas 1 dozen ₹48 ₹60 ADD   Amul Milk 500 ml ₹28 ₹30 ADD   23% OFF Farm Eggs 6 pcs ₹55 ₹72 ADD   Lays Cla"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-name-open-search-st3",
+        "text": "View Cadbury Celebration Box details",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "21,-36 167x55",
+        "cy": -1
+      },
+      {
+        "id": "add-btn-search-st3",
+        "text": "Add Cadbury Celebration Box",
+        "by": "search-input",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "27,51 155x44",
+        "cy": 8.6
+      },
+      {
+        "id": "product-name-open-search-st4",
+        "text": "View Lay’s Classic Salted details",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "202,-36 167x55",
+        "cy": -1
+      },
+      {
+        "id": "add-btn-search-st4",
+        "text": "Add Lay’s Classic Salted",
+        "by": "search-input",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "208,51 155x44",
+        "cy": 8.6
+      },
+      {
+        "id": "product-open-search-st5",
+        "text": "View Bingo! Masala Crunch",
+        "by": "search-filter-all",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "21,114 167x112",
+        "cy": 20.1
+      },
+      {
+        "id": "product-open-search-st6",
+        "text": "View Haldiram’s Namkeen",
+        "by": "search-filter-shops",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "202,114 167x112",
+        "cy": 20.1
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "product-name-search-st3",
+        "text": "Cadbury Celebration Box",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "product-weight-search-st3",
+        "text": "150 g",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "product-price-search-st3",
+        "text": "₹199",
+        "by": "search-back",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "product-mrp-search-st3",
+        "text": "₹250",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "add-btn-search-st3 > …",
+        "text": "ADD",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      },
+      {
+        "id": "add-btn-search-st3 > …",
+        "text": "",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      },
+      {
+        "id": "product-name-search-st4",
+        "text": "Lay’s Classic Salted",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 0
+      },
+      {
+        "id": "product-weight-search-st4",
+        "text": "90 g",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      },
+      {
+        "id": "product-price-search-st4",
+        "text": "₹35",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "product-mrp-search-st4",
+        "text": "₹40",
+        "by": "search-screen > …",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 4
+      },
+      {
+        "id": "add-btn-search-st4 > …",
+        "text": "ADD",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      },
+      {
+        "id": "add-btn-search-st4 > …",
+        "text": "",
+        "by": "search-input",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 9
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "search-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

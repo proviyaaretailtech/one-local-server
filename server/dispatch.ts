@@ -12,6 +12,7 @@
 // An order never fails because dispatch is down: the hook logs, the order stays, and the sweep
 // (POST /api/dispatch/sweep, also run from rider heartbeats) retries any order that has no job yet.
 import { distanceKm, serviceability } from './catalog';
+import { pickupEnforcement, pickupStatus } from './pickup-location';
 import { db, dbConfigured, fromDbError, rpc } from './db';
 import { isProduction } from './env';
 import { constantTimeEqual, HttpError, hmacHex, readText, sha256, signatureOk } from './http';
@@ -445,6 +446,9 @@ const NOT_ADOPTED: Record<string, string> = {
   merchant_not_accepting: 'The restaurant is not taking orders right now',
   items_not_mapped: 'An item in this order is not on the restaurant\'s menu any more',
   store_not_onboarded: 'This store is not taking One Local orders',
+  // 0344: the pickup point was cleared or changed between checkout and payment; no rider could collect it
+  pickup_location_missing: 'The restaurant has no pickup location for riders',
+  pickup_location_unverified: 'The restaurant has not confirmed its pickup location',
 };
 
 // Brings marketplace orders into the ONE shared orders table (the restaurant, its kitchen ticket and the POS all read
@@ -513,8 +517,9 @@ export async function assertFulfillable(
       throw refuse('it is not set up to receive orders');
     }
     const listed = g.items.map(i => listingMenuItemId(g.store_id, i.id)).filter((m): m is string => !!m);
-    const [{ data: channel, error: channelError }, { data: products, error: productError }, { data: menu, error: menuError }] = await Promise.all([
-      db().from('ol_merchant_channels').select('accepting, lat, lng').eq('organization_id', store.organization_id).maybeSingle(),
+    const [{ data: channel, error: channelError }, pickup, { data: products, error: productError }, { data: menu, error: menuError }] = await Promise.all([
+      db().from('ol_merchant_channels').select('accepting, lat, lng, city_id').eq('organization_id', store.organization_id).maybeSingle(),
+      pickupStatus(store.organization_id),
       db().from('ol_products').select('id, menu_item_id').in('id', g.items.map(i => i.id)),
       listed.length ? db().from('menu_items').select('id').eq('organization_id', store.organization_id).in('id', listed) : Promise.resolve({ data: [] as { id: string }[], error: null }),
     ]);
@@ -522,7 +527,12 @@ export async function assertFulfillable(
     if (productError) fromDbError(productError);
     if (menuError) fromDbError(menuError);
     if (!channel?.accepting) throw refuse('the restaurant is not accepting orders');
-    if (channel.lat == null || channel.lng == null) throw refuse('the restaurant has no map location yet');
+    // Pickup point (specs/restaurant-pickup-location): riders go where the restaurant confirmed. No point, or a point nobody at the
+    // restaurant confirmed (in a city set to 'verified'), or a disputed one, is refused with its own reason code. The database checks
+    // the same again when the payment lands (ol_adopt_marketplace_order, 0344). pickup null = no 0341 table yet: coordinates only.
+    const notReady = (code: string) => new HttpError(409, `${g.store_name || 'This restaurant'} is not ready for delivery yet. Nothing was charged.`, undefined, code);
+    if (channel.lat == null || channel.lng == null || pickup === 'missing') throw notReady('pickup_location_missing');
+    if (pickup === 'disputed' || (pickup && pickup !== 'verified' && (await pickupEnforcement(channel.city_id)) === 'verified')) throw notReady('pickup_location_unverified');
     // An item is "mapped" when the restaurant can find it on its own menu: a catalogue product linked to a menu item (ol_products), or a menu
     // item of this very restaurant sold under its listing (the made-up id above).
     const linked = new Map((products ?? []).map(p => [p.id as string, p.menu_item_id as string | null]));
@@ -579,7 +589,8 @@ export async function createJobForOrder(olOrderId: string, requestId = `order-fl
     payment_mode: cod ? 'cod' : 'online', cash_to_collect: cod ? Number(o.total) : 0,
     items: { count: lines.reduce((n, l) => n + (Number(l.qty) || 1), 0) || 1, temperature: o.organization_id ? 'hot' : 'ambient' },
     prep_minutes: prep, promised_by: new Date(Date.parse(o.created_at) + (Number(o.eta_minutes) || 30) * 60_000).toISOString(),
-    pickup: { name: store?.name ?? 'Store', address: channel?.address ?? null, lat: store?.lat ?? channel?.lat ?? null, lng: store?.lng ?? channel?.lng ?? null, phone: null },
+    // The restaurant's pickup point (channel = the mirror of ol_merchant_locations); the database writes the canonical point onto the job anyway.
+    pickup: { name: store?.name ?? 'Store', address: channel?.address ?? null, lat: channel?.lat ?? null, lng: channel?.lng ?? null, phone: null },
     drop: {
       area: address.area ?? address.locality ?? parts[1] ?? parts[0] ?? null, address: address.text ?? null,
       lat: address.lat ?? null, lng: address.lng ?? null, instructions: address.notes ?? null, customer_first_name: name, customer_phone: phone,

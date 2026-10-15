@@ -15,6 +15,7 @@ import { colors } from '@/src/theme';
 import { CityMotionProvider } from '@/src/motion';
 import { CustomerProvider } from '@/src/customer';
 import { AuthProvider } from '@/src/auth';
+import { PushRegistrar } from '@/src/push-registrar';
 import { IntroSplash } from '@/src/components/intro-splash';
 import { CompareProvider } from '@/src/compare';
 import { AppFrame } from '@/src/layout';
@@ -50,7 +51,7 @@ export default function RootLayout() {
             <CartProvider>
               <StatusBar style="dark" />
               {Platform.OS === "web" && <Head><title>OneLocal</title></Head>}
-              <CustomerProvider><ProfileLanguageSync /><AuthProvider><CompareProvider><CityMotionProvider><AppFrame><AppShell><Stack screenOptions={{ headerShown: false, title: 'OneLocal', animation: 'ios_from_right', gestureEnabled: true, fullScreenGestureEnabled: true, contentStyle: { backgroundColor: colors.surface } }} /></AppShell><LanguageFirstRun /><IntroSplash /><NetworkStatus /><PopupHost /><UpdateGate /></AppFrame></CityMotionProvider></CompareProvider></AuthProvider></CustomerProvider>
+              <CustomerProvider><ProfileLanguageSync /><AuthProvider><CompareProvider><CityMotionProvider><AppFrame><AppShell><Stack screenOptions={{ headerShown: false, title: 'OneLocal', animation: 'ios_from_right', gestureEnabled: true, fullScreenGestureEnabled: true, contentStyle: { backgroundColor: colors.surface } }} /></AppShell><LanguageFirstRun /><PushRegistrar /><IntroSplash /><NetworkStatus /><PopupHost /><UpdateGate /></AppFrame></CityMotionProvider></CompareProvider></AuthProvider></CustomerProvider>
             </CartProvider>
           </QueryClientProvider>
         </ErrorBoundary>

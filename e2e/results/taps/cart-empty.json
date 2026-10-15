@@ -1,0 +1,65 @@
+{
+  "screen": "cart-empty",
+  "route": "/cart",
+  "candidates": 4,
+  "tested": 4,
+  "outcomes": [
+    {
+      "id": "cart-back",
+      "label": "Go back",
+      "phase": "top",
+      "pattern": "cart-back",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/"
+    },
+    {
+      "id": "cart-tab-cart",
+      "label": "Cart",
+      "phase": "top",
+      "pattern": "cart-tab-cart",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text"
+      ],
+      "urlAfter": "/cart"
+    },
+    {
+      "id": "cart-tab-saver",
+      "label": "One Saver",
+      "phase": "top",
+      "pattern": "cart-tab-saver",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/cart"
+    },
+    {
+      "id": "browse-btn",
+      "label": "Browse products",
+      "phase": "top",
+      "pattern": "browse-btn",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/"
+    }
+  ]
+}

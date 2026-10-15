@@ -6,6 +6,7 @@ import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, 
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';
+import { METHOD_LOGOS, PayLogoStrip, PayTile } from './pay-logo';
 import { useFormat, useTranslation } from '@/src/i18n';
 import {
   defaultRow, defaultUpi, normalizePhone, orderMethods, payEnabled, upiOptions, validVpa,
@@ -13,12 +14,11 @@ import {
 } from '../payments/logic';
 
 // i18n-ignore: UPI app names are brand names
-export const UPI_APP_NAMES: Record<UpiAppId, { name: string; tint: string }> = {
-  google_pay: { name: 'Google Pay', tint: '#E6F0FF' }, phonepe: { name: 'PhonePe', tint: '#F0E6FF' },
-  paytm: { name: 'Paytm', tint: '#E6F5FB' }, bhim: { name: 'BHIM', tint: '#FFEDD6' },
+export const UPI_APP_NAMES: Record<UpiAppId, { name: string }> = {
+  google_pay: { name: 'Google Pay' }, phonepe: { name: 'PhonePe' },
+  paytm: { name: 'Paytm' }, bhim: { name: 'BHIM' },
 };
 const ICONS: Record<MethodId, string> = { upi: 'phone-portrait-outline', card: 'card-outline', netbanking: 'business-outline', cod: 'cash-outline' };
-const initials = (name: string) => name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
 
 type Props = {
   methods: MethodsResponse | undefined; loading: boolean; failed: boolean; onReload: () => void;
@@ -72,13 +72,11 @@ export function PaymentMethodsSheet({ methods, loading, failed, onReload, last, 
   const reasonText = (r: typeof rows[number]) => r.reason === 'over_limit' ? t('payui.cod.over', { max: fmt.money(cod?.max_total ?? 0) }) : t('payui.cod.off');
 
   const options = methods ? upiOptions(methods, platform) : null;
-  const tile = (key: string, selected: boolean, onPress: () => void, label: string, a11y: string, glyph: { text?: string; icon?: string; tint?: string }) => (
+  const tile = (key: string, selected: boolean, onPress: () => void, label: string, a11y: string, glyph: { icon?: string; app?: UpiAppId }) => (
     <Pressable key={key} testID={`pay-upi-${key}`} accessibilityRole="radio" accessibilityLabel={a11y} accessibilityState={{ checked: selected }}
       onPress={() => { setUpiPick(key === 'qr' ? { mode: 'qr' } : key === 'hosted' ? { mode: 'hosted' } : { mode: 'intent', app: key as UpiAppId }); }}
       style={[s.tile, selected && s.tileOn]}>
-      <View style={[s.glyph, glyph.tint ? { backgroundColor: glyph.tint } : null]}>
-        {glyph.icon ? <Icon name={glyph.icon as never} size={18} color={colors.forest} /> : <Text style={s.glyphText}>{glyph.text}</Text>}
-      </View>
+      {glyph.app ? <PayTile brand={glyph.app} width={58} height={36} /> : <View style={s.glyph}><Icon name={glyph.icon as never} size={18} color={colors.forest} /></View>}
       <Text numberOfLines={2} style={s.tileText}>{label}</Text>
     </Pressable>
   );
@@ -89,7 +87,7 @@ export function PaymentMethodsSheet({ methods, loading, failed, onReload, last, 
       return <View style={s.body}>
         <Text style={s.hint}>{t('payui.upi.pickApp')}</Text>
         <View style={s.tiles}>
-          {options.apps.map(a => tile(a, !useId && upi.mode === 'intent' && upi.app === a, () => undefined, UPI_APP_NAMES[a].name, t('payui.upi.appA11y', { app: UPI_APP_NAMES[a].name }), { text: initials(UPI_APP_NAMES[a].name), tint: UPI_APP_NAMES[a].tint }))}
+          {options.apps.map(a => tile(a, !useId && upi.mode === 'intent' && upi.app === a, () => undefined, UPI_APP_NAMES[a].name, t('payui.upi.appA11y', { app: UPI_APP_NAMES[a].name }), { app: a }))}
           {options.qr && tile('qr', !useId && upi.mode === 'qr', () => undefined, t('payui.upi.qr'), t('payui.upi.qr'), { icon: 'qr-code-outline' })}
           {options.hosted && tile('hosted', !useId && upi.mode === 'hosted', () => undefined, options.apps.length ? t('payui.upi.other') : t('payui.upi.more'), options.apps.length ? t('payui.upi.other') : t('payui.upi.more'), { icon: 'apps-outline' })}
         </View>
@@ -131,13 +129,14 @@ export function PaymentMethodsSheet({ methods, loading, failed, onReload, last, 
           return <View key={r.id} testID={`pay-method-${r.id}`} style={[s.row, on && s.rowOn, dead && s.rowDead]}>
             <Pressable testID={`pay-method-${r.id}-select`} accessibilityRole="radio" accessibilityLabel={c.title} accessibilityHint={dead ? reasonText(r) : undefined}
               accessibilityState={{ checked: on, disabled: dead }} disabled={dead} onPress={() => setPicked(r.id)} style={s.rowHead}>
-              <View style={s.badge}><Icon name={ICONS[r.id] as never} size={20} color={colors.forest} /></View>
+              {r.id === 'upi' ? <PayTile brand="upi" width={44} height={40} /> : <View style={s.badge}><Icon name={ICONS[r.id] as never} size={20} color={colors.forest} /></View>}
               <View style={s.flex}>
                 <View style={s.titleLine}>
                   <Text style={s.rowTitle}>{c.title}</Text>
                   {r.lastUsed && !dead && <View style={s.chip}><Text style={s.chipText}>{t('payui.lastUsed')}</Text></View>}
                 </View>
                 <Text testID={dead ? 'pay-cod-reason' : undefined} style={dead ? s.reason : s.rowSub}>{dead ? reasonText(r) : c.sub}</Text>
+                {!dead && METHOD_LOGOS[r.id] && <PayLogoStrip brands={METHOD_LOGOS[r.id]!} />}
               </View>
               {!dead && <Icon name={on ? 'radio-button-on' : 'radio-button-off'} size={22} color={colors.forest} />}
             </Pressable>
@@ -191,7 +190,6 @@ const s = StyleSheet.create({
   tile: { flexBasis: '47%', flexGrow: 1, minHeight: 56, flexDirection: 'row', alignItems: 'center', gap: 10, borderWidth: 1, borderColor: colors.border, borderRadius: 14, paddingHorizontal: 10, paddingVertical: 8, backgroundColor: colors.surface },
   tileOn: { borderColor: colors.forest, backgroundColor: colors.limeSoft },
   glyph: { width: 34, height: 34, borderRadius: 10, backgroundColor: colors.limeSoft, alignItems: 'center', justifyContent: 'center' },
-  glyphText: { fontSize: 11, fontWeight: '800', color: colors.onSurface },
   tileText: { flex: 1, fontSize: 13, fontWeight: '700', color: colors.onSurface },
   link: { minHeight: 44, justifyContent: 'center', alignSelf: 'flex-start' },
   linkText: { fontSize: 12, color: colors.onSurfaceTertiary, textDecorationLine: 'underline' },

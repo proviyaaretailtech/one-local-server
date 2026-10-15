@@ -1,0 +1,79 @@
+{
+  "screen": "address-map",
+  "route": "/address-map",
+  "finalUrl": "/address-map",
+  "blocked": "Maps key",
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "address-map-back"
+  ],
+  "screenshots": [
+    "address-map.png",
+    "address-map-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/address-map",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 5,
+      "visibleTextChars": 197,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " The map is not switched on yet It needs a Google Maps key. You can still search for your area or type your address.   Search another area YOUR ORDER WILL BE DELIVERED HERE Finding this address… Confirm & add details"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "address-map-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/address-map",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 5,
+      "visibleTextChars": 197,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " The map is not switched on yet It needs a Google Maps key. You can still search for your area or type your address.   Search another area YOUR ORDER WILL BE DELIVERED HERE Finding this address… Confirm & add details"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "address-map-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "screen": "categories",
+  "route": "/categories",
+  "candidates": 8,
+  "tested": 8,
+  "outcomes": [
+    {
+      "id": "categories-search",
+      "label": "Search categories and products",
+      "phase": "top",
+      "pattern": "categories-search",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/search"
+    },
+    {
+      "id": "categories-store-festive",
+      "label": "Shop Festive Time",
+      "phase": "top",
+      "pattern": "categories-store-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/collection/festive"
+    },
+    {
+      "id": "categories-festive-banner",
+      "label": "THE CELEBRATION EDIT Big festive energy. Little jo",
+      "phase": "top",
+      "pattern": "categories-*-banner",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states"
+      ],
+      "urlAfter": "/collection/festive"
+    },
+    {
+      "id": "grid-fresh-category-c1",
+      "label": "Fruits & Veggies",
+      "phase": "top",
+      "pattern": "grid-fresh-category-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/category/c1"
+    },
+    {
+      "id": "categories-more-brand-nescafe",
+      "label": "N Nescafé",
+      "phase": "bottom",
+      "pattern": "categories-more-brand-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/brand/nescafe"
+    },
+    {
+      "id": "categories-book-see-all",
+      "label": "See all Make a little time for fun",
+      "phase": "bottom",
+      "pattern": "categories-book-see-all",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/book-it"
+    },
+    {
+      "id": "categories-book-event-e1",
+      "label": "MOVIES The Last Orbit Sci-fi adventure · Hindi · 2",
+      "phase": "bottom",
+      "pattern": "categories-book-event-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/booking/e1"
+    },
+    {
+      "id": "categories-ask-one",
+      "label": " Not sure where to start? Tell One your budget. F",
+      "phase": "bottom",
+      "pattern": "categories-ask-one",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/assistant"
+    }
+  ]
+}

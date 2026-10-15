@@ -1,0 +1,444 @@
+{
+  "screen": "shops",
+  "route": "/shops",
+  "finalUrl": "/shops",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "global-back-button"
+  ],
+  "screenshots": [
+    "shops.png",
+    "shops-bottom.png",
+    "shops-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "department-screen-shops",
+    "scrollHeight": 2815,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/shops",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "department-screen-shops",
+    "stats": {
+      "testids": 221,
+      "visibleTextChars": 528,
+      "visibleImages": 11,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It NEW FINDS. YOUR KIND OF STYLE. A little fresh air for your wardrobe. Find something that feels a little more you. Find my style   step into something new The style edit Nike favourit"
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 124,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [
+      {
+        "id": "shops-page-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "shops-page-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "shops-page-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "shops-page-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "shops-page-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "shops-page-brand-home-edit",
+        "spill": 5.5
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "shops-filter-electronics",
+        "text": "Electronics",
+        "by": "tab-reels > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "148.6,741 86.9x44",
+        "cy": 90.4
+      },
+      {
+        "id": "product-open-shops-sneak1",
+        "text": "View Nike Everyday Sneakers",
+        "by": "tab-home",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "21,804 167x112",
+        "cy": 101.9
+      },
+      {
+        "id": "save-product-shops-sneak1",
+        "text": "Save Nike Everyday Sneakers",
+        "by": "bottom-navigation > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "144,804 44x44",
+        "cy": 97.9
+      },
+      {
+        "id": "product-open-shops-sneak2",
+        "text": "View Nike Essential Tee",
+        "by": "tab-food",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "202,804 167x112",
+        "cy": 101.9
+      },
+      {
+        "id": "save-product-shops-sneak2",
+        "text": "Save Nike Essential Tee",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "325,804 44x44",
+        "cy": 97.9
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "product-image-shops-sneak2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-home1",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp8",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "global-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": [
+      {
+        "id": "spotlight-brand-shops",
+        "text": "Explore The style edit",
+        "by": "spotlight-shops > …",
+        "cut": "4.1px vertically",
+        "size": "158.5x52.1"
+      }
+    ]
+  },
+  "bottom": {
+    "url": "/shops",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "department-screen-shops",
+    "stats": {
+      "testids": 225,
+      "visibleTextChars": 285,
+      "visibleImages": 3,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It   Explore  Search OneCity NEW FINDS. YOUR KIND OF STYLE. A little fresh air for your wardrobe. Find something that feels a little more you. Find my style   step into something new"
+    },
+    "smallTargets": [],
+    "truncated": [
+      {
+        "id": "shops-page-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "shown": "Latur Artisa…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      },
+      {
+        "id": "shops-page-brand-name-home-edit",
+        "text": "The Home Edit",
+        "shown": "The Home E…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "shops-page-brand-name-latur-artisans",
+        "text": "Latur Artisans",
+        "tile": "shops-page-brand-latur-artisans",
+        "spill": 3.3
+      },
+      {
+        "id": "shops-page-brand-name-home-edit",
+        "text": "The Home Edit",
+        "tile": "shops-page-brand-home-edit",
+        "spill": 5.5
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "add-btn-shops-sp4",
+        "text": "Add Boldfit Yoga Mat",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "27,1 155x44",
+        "cy": 2.7
+      },
+      {
+        "id": "add-btn-shops-sp5",
+        "text": "Add Nivia Dumbbell Pair",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "208,1 155x44",
+        "cy": 2.7
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "add-btn-shops-sp4 > …",
+        "text": "ADD",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-shops-sp4 > …",
+        "text": "",
+        "by": "compact-expand-header > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-shops-sp5 > …",
+        "text": "ADD",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-shops-sp5 > …",
+        "text": "",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "product-image-shops-sneak2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-home1",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sf7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-shops-sp8",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "compact-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

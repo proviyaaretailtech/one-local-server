@@ -1,0 +1,79 @@
+{
+  "screen": "wishlist-empty",
+  "route": "/wishlist",
+  "finalUrl": "/wishlist",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "wishlist-back"
+  ],
+  "screenshots": [
+    "wishlist-empty.png",
+    "wishlist-empty-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/wishlist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 19,
+      "visibleTextChars": 198,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Saved with love 0 favourites. A little inspiration for later.  Your next favourite is out there Tap a heart on any product to save it here. Discover your favourites  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "wishlist-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/wishlist",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 19,
+      "visibleTextChars": 198,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Saved with love 0 favourites. A little inspiration for later.  Your next favourite is out there Tap a heart on any product to save it here. Discover your favourites  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "wishlist-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

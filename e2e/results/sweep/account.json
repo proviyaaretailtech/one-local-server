@@ -1,0 +1,172 @@
+{
+  "screen": "account",
+  "route": "/account",
+  "finalUrl": "/account",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "page-back-button"
+  ],
+  "screenshots": [
+    "account.png",
+    "account-bottom.png",
+    "account-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "account-screen",
+    "scrollHeight": 1902,
+    "clientHeight": 721,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/account",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "account-screen",
+    "stats": {
+      "testids": 58,
+      "visibleTextChars": 415,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity    Hello, neighbour Browsing as a guest  Sign in or create an account  0 Orders 0 Saved 0 Addresses OneLocal Coins Earn on every order. Spend on movie nights, events and treats around Latur. SOON YOUR PREFERENCES Food preference Anything Veg Egg Non-veg Language English मराठी SOON हिन"
+    },
+    "smallTargets": [
+      {
+        "id": "pref-diet-any",
+        "text": "Anything",
+        "w": 86.9,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "pref-diet-veg",
+        "text": "Veg",
+        "w": 72.1,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "pref-diet-egg",
+        "text": "Egg",
+        "w": 72.2,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "pref-diet-nonveg",
+        "text": "Non-veg",
+        "w": 102.3,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "pref-lang-en",
+        "text": "English",
+        "w": 76.1,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "pref-notify-orders > …",
+        "text": "",
+        "w": 40,
+        "h": 20,
+        "tag": "input"
+      },
+      {
+        "id": "pref-notify-offers > …",
+        "text": "",
+        "w": 40,
+        "h": 20,
+        "tag": "input"
+      },
+      {
+        "id": "pref-notify-bookings > …",
+        "text": "",
+        "w": 40,
+        "h": 20,
+        "tag": "input"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "pref-notify-orders > …",
+        "text": "",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "318,755 40x20",
+        "cy": 90.6
+      },
+      {
+        "id": "pref-notify-offers > …",
+        "text": "",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "318,807 40x20",
+        "cy": 96.8
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/account",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "account-screen",
+    "stats": {
+      "testids": 58,
+      "visibleTextChars": 480,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity    Hello, neighbour Browsing as a guest  Sign in or create an account  0 Orders 0 Saved 0 Addresses OneLocal Coins Earn on every order. Spend on movie nights, events and treats around Latur. SOON YOUR PREFERENCES Food preference Anything Veg Egg Non-veg Language English मराठी SOON हिन"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [
+      {
+        "id": "account-screen > …",
+        "text": "ACCOUNT",
+        "by": "DIV",
+        "overlayRoot": null,
+        "positioned": true,
+        "cy": 1
+      }
+    ],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

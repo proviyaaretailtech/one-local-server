@@ -1,0 +1,133 @@
+{
+  "screen": "book-it",
+  "route": "/book-it",
+  "finalUrl": "/book-it",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "global-back-button"
+  ],
+  "screenshots": [
+    "book-it.png",
+    "book-it-bottom.png",
+    "book-it-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "department-screen-book-it",
+    "scrollHeight": 1862,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/book-it",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "department-screen-book-it",
+    "stats": {
+      "testids": 60,
+      "visibleTextChars": 506,
+      "visibleImages": 9,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It YOUR CITY. A LITTLE MORE ALIVE. Good times, outside your feed. Big screens, live scenes & new memories. Make a plan   make room for memories Latur After Hours Live music · sample exp"
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 124,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "book-movies-event-e1",
+        "text": "MOVIES The Last Orbit Sci-fi adventure · Hindi · 2h 15m From ₹180 ",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "1/3",
+        "rect": "20,682 230x243",
+        "cy": 95.2
+      },
+      {
+        "id": "book-movies-event-e2",
+        "text": "MOVIES A Little More Love Romance · Marathi · 2h 05m From ₹150 ",
+        "by": "tab-book-it",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "1/2",
+        "rect": "262,682 230x243",
+        "cy": 95.2
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "global-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": [
+      {
+        "id": "spotlight-brand-book-it",
+        "text": "Explore Latur After Hours",
+        "by": "spotlight-book-it > …",
+        "cut": "4.4px vertically",
+        "size": "171.6x52.8"
+      }
+    ]
+  },
+  "bottom": {
+    "url": "/book-it",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "department-screen-book-it",
+    "stats": {
+      "testids": 64,
+      "visibleTextChars": 359,
+      "visibleImages": 2,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It   Explore  Search OneCity YOUR CITY. A LITTLE MORE ALIVE. Good times, outside your feed. Big screens, live scenes & new memories. Make a plan   make room for memories Latur After "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "book-events-event-e3",
+        "text": "EVENTS Latur After Hours Live music · Acoustic evening From ₹499 ",
+        "by": "compact-expand-header",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "1/3",
+        "rect": "20,-93 230x243",
+        "cy": 3.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "compact-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

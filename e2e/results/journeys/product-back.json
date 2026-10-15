@@ -1,0 +1,23 @@
+{
+  "journey": "product-back",
+  "title": "product page back button returns to the previous screen",
+  "passed": true,
+  "steps": [
+    {
+      "name": "open Groceries and a product",
+      "ok": true,
+      "ms": 69913,
+      "shot": "journey-product-back-01.png"
+    },
+    {
+      "name": "tap the back arrow (top-left)",
+      "ok": true,
+      "ms": 3432,
+      "shot": "journey-product-back-02.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

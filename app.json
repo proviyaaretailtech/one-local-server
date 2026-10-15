@@ -23,11 +23,15 @@
         "CAMERA",
         "RECORD_AUDIO"
       ],
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#0B0F0C"
       },
-      "package": "com.proviyaa.onelatur"
+      "package": "com.proviyaa.onelatur",
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",
@@ -40,7 +44,7 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/brand/onelocal-logo-on-dark.png",
-          "imageWidth": 220,
+          "imageWidth": 160,
           "resizeMode": "contain",
           "backgroundColor": "#050605"
         }

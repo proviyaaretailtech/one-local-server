@@ -1,0 +1,948 @@
+{
+  "screen": "grocery",
+  "route": "/grocery",
+  "finalUrl": "/grocery",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "global-back-button"
+  ],
+  "screenshots": [
+    "grocery.png",
+    "grocery-bottom.png",
+    "grocery-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "department-screen-grocery",
+    "scrollHeight": 8203,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/grocery",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "department-screen-grocery",
+    "stats": {
+      "testids": 726,
+      "visibleTextChars": 496,
+      "visibleImages": 12,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It FRESH FINDS, FAMILIAR FAVOURITES Little slices. Big happiness. Your daily basket deserves a little Amul. Explore Amul   daily goodness The dairy edit Milk, butter, cheese & more  A "
+    },
+    "smallTargets": [
+      {
+        "id": "location-button",
+        "text": "Change location",
+        "w": 124,
+        "h": 28,
+        "tag": "button"
+      }
+    ],
+    "truncated": [
+      {
+        "id": "grocery-page-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "shown": "Chitale Ban…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "grocery-page-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "tile": "grocery-page-brand-chitale",
+        "spill": 8.4
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "grocery-page-category-c1",
+        "text": "Fruits & Veggies",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "20,704 94x125",
+        "cy": 90.8
+      },
+      {
+        "id": "grocery-page-category-c2",
+        "text": "Dairy & Eggs",
+        "by": "tab-reels > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "126,704 94x125",
+        "cy": 90.8
+      },
+      {
+        "id": "grocery-page-category-c3",
+        "text": "Snacks",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "232,704 94x125",
+        "cy": 90.8
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [
+      {
+        "id": "spotlight-image-grocery",
+        "text": "",
+        "fill": 70,
+        "frame": "206.8x205.7",
+        "natural": "549x777",
+        "bars": "left/right"
+      },
+      {
+        "id": "grocery-page-brand-logo-amul",
+        "text": "",
+        "fill": 40,
+        "frame": "43x43",
+        "natural": "600x237",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-grocery-p1",
+        "text": "",
+        "fill": 47,
+        "frame": "167x112",
+        "natural": "695x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p4",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p8",
+        "text": "",
+        "fill": 54,
+        "frame": "167x112",
+        "natural": "400x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p9",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p11",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p12",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p14",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p15",
+        "text": "",
+        "fill": 50,
+        "frame": "167x112",
+        "natural": "400x533",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "500x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "640x640",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "500x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf8",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg8",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sp1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sp2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sp3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sc1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sc2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sc3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-se1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-se2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-se7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "global-back-button"
+    ],
+    "suspiciousText": [],
+    "clippedControls": [
+      {
+        "id": "spotlight-brand-grocery",
+        "text": "Explore The dairy edit",
+        "by": "spotlight-grocery > …",
+        "cut": "4.1px vertically",
+        "size": "158.9x52.1"
+      }
+    ]
+  },
+  "bottom": {
+    "url": "/grocery",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "department-screen-grocery",
+    "stats": {
+      "testids": 730,
+      "visibleTextChars": 303,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "     Latur, Maharashtra   A little search. A lovely find.   Food Groceries Shops Pharmacy & Beauty Book It   Explore  Search OneCity FRESH FINDS, FAMILIAR FAVOURITES Little slices. Big happiness. Your daily basket deserves a little Amul. Explore Amul   daily goodness The dairy edit Mil"
+    },
+    "smallTargets": [],
+    "truncated": [
+      {
+        "id": "grocery-page-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "shown": "Chitale Ban…",
+        "kind": "single-line",
+        "midWord": true,
+        "w": 68
+      }
+    ],
+    "clipped": [],
+    "spills": [
+      {
+        "id": "grocery-page-brand-name-chitale",
+        "text": "Chitale Bandhu",
+        "tile": "grocery-page-brand-chitale",
+        "spill": 8.4
+      }
+    ],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "add-btn-grocery-st3",
+        "text": "Add Cadbury Celebration Box",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "27,1 155x44",
+        "cy": 2.7
+      },
+      {
+        "id": "add-btn-grocery-st4",
+        "text": "Add Lay’s Classic Salted",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "208,1 155x44",
+        "cy": 2.7
+      }
+    ],
+    "hiddenText": [
+      {
+        "id": "add-btn-grocery-st3 > …",
+        "text": "ADD",
+        "by": "compact-header",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-grocery-st3 > …",
+        "text": "",
+        "by": "compact-expand-header > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-grocery-st4 > …",
+        "text": "ADD",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      },
+      {
+        "id": "add-btn-grocery-st4 > …",
+        "text": "",
+        "by": "compact-search > …",
+        "overlayRoot": "compact-header",
+        "positioned": true,
+        "cy": 3
+      }
+    ],
+    "letterbox": [
+      {
+        "id": "spotlight-image-grocery",
+        "text": "",
+        "fill": 70,
+        "frame": "206.8x205.7",
+        "natural": "549x777",
+        "bars": "left/right"
+      },
+      {
+        "id": "grocery-page-brand-logo-amul",
+        "text": "",
+        "fill": 40,
+        "frame": "43x43",
+        "natural": "600x237",
+        "bars": "top/bottom"
+      },
+      {
+        "id": "product-image-grocery-p1",
+        "text": "",
+        "fill": 47,
+        "frame": "167x112",
+        "natural": "695x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p4",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "667x1000",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p8",
+        "text": "",
+        "fill": 54,
+        "frame": "167x112",
+        "natural": "400x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p9",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p11",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p12",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p14",
+        "text": "",
+        "fill": 45,
+        "frame": "167x112",
+        "natural": "400x600",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-p15",
+        "text": "",
+        "fill": 50,
+        "frame": "167x112",
+        "natural": "400x533",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "500x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "900x900",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "640x640",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-a4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "500x500",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sf8",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sn4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sg8",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sp1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sp2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sp3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sc1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sc2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-sc3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "330x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-se1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-se2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-se7",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x330",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st1",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st2",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st3",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st4",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st5",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      },
+      {
+        "id": "product-image-grocery-st6",
+        "text": "",
+        "fill": 67,
+        "frame": "167x112",
+        "natural": "329x329",
+        "bars": "left/right"
+      }
+    ],
+    "brokenImages": [],
+    "backButtons": [
+      "compact-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

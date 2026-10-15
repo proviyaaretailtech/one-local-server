@@ -1,0 +1,109 @@
+{
+  "screen": "orders-empty",
+  "route": "/orders",
+  "finalUrl": "/orders",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "orders-back-btn"
+  ],
+  "screenshots": [
+    "orders-empty.png",
+    "orders-empty-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/orders",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 13,
+      "visibleTextChars": 117,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " My Orders 0 orders 📦 No orders yet Your past orders will appear here Start shopping  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "orders-back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "orders-screen > …",
+        "text": "Start shopping",
+        "w": 144.8,
+        "h": 41,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "orders-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/orders",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 13,
+      "visibleTextChars": 117,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " My Orders 0 orders 📦 No orders yet Your past orders will appear here Start shopping  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "orders-back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "orders-screen > …",
+        "text": "Start shopping",
+        "w": 144.8,
+        "h": 41,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "orders-back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

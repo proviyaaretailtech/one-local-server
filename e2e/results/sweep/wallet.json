@@ -1,0 +1,79 @@
+{
+  "screen": "wallet",
+  "route": "/wallet",
+  "finalUrl": "/wallet",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "coming-soon-back"
+  ],
+  "screenshots": [
+    "wallet.png",
+    "wallet-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/wallet",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 14,
+      "visibleTextChars": 231,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " COMING SOON  OneCity Wallet Refunds, store credit and OneLocal Coins in one place, spendable at checkout.  Instant refunds to your wallet  Pay with one tap  Works across every store  Use text search for now  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "coming-soon-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/wallet",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 14,
+      "visibleTextChars": 231,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " COMING SOON  OneCity Wallet Refunds, store credit and OneLocal Coins in one place, spendable at checkout.  Instant refunds to your wallet  Pay with one tap  Works across every store  Use text search for now  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "coming-soon-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

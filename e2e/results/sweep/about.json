@@ -1,0 +1,79 @@
+{
+  "screen": "about",
+  "route": "/about",
+  "finalUrl": "/about",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "about-back"
+  ],
+  "screenshots": [
+    "about.png",
+    "about-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/about",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 20,
+      "visibleTextChars": 370,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " One city. Endless possibilities. OneCity · Made in Latur  A little closer to home. Food you crave. Essentials you need. Local finds you love. OneCity brings shopping and discovery together in one place, for Latur. About this experience This is a sample shopping experience. Catalogue prices, deliv"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "about-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/about",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 20,
+      "visibleTextChars": 370,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " One city. Endless possibilities. OneCity · Made in Latur  A little closer to home. Food you crave. Essentials you need. Local finds you love. OneCity brings shopping and discovery together in one place, for Latur. About this experience This is a sample shopping experience. Catalogue prices, deliv"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "about-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

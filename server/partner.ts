@@ -5,7 +5,7 @@ import { signedInUserId } from './auth';
 import { db, fromDbError } from './db';
 import { HttpError } from './http';
 
-export type Action = 'accept' | 'reject' | 'ready' | 'out' | 'delivered' | 'outlet' | 'items' | 'view';
+export type Action = 'accept' | 'reject' | 'ready' | 'out' | 'delivered' | 'outlet' | 'items' | 'location' | 'view';
 
 const CAN: Record<Exclude<Action, 'view'>, string[]> = {
   accept: ['org_owner', 'org_admin', 'manager', 'biller', 'location_manager', 'operations_manager'],
@@ -15,6 +15,8 @@ const CAN: Record<Exclude<Action, 'view'>, string[]> = {
   ready: ['org_owner', 'org_admin', 'manager', 'biller', 'kitchen', 'location_manager', 'operations_manager'],
   out: ['org_owner', 'org_admin', 'manager', 'biller', 'location_manager', 'operations_manager'],
   delivered: ['org_owner', 'org_admin', 'manager', 'biller', 'location_manager', 'operations_manager'],
+  // The pickup point decides where every rider goes: owner, admin and managers of the whole restaurant only (the database checks the same list).
+  location: ['org_owner', 'org_admin', 'manager', 'business_manager'],
 };
 
 export type Staff = { userId: string; email: string; name: string; role: string; organizationId: string; organizationName: string };

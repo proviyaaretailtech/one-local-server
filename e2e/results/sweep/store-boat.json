@@ -1,0 +1,125 @@
+{
+  "screen": "store-boat",
+  "route": "/store/boat",
+  "finalUrl": "/store/boat",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "back-btn"
+  ],
+  "screenshots": [
+    "store-boat.png",
+    "store-boat-bottom.png",
+    "store-boat-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 1122,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/store/boat",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 164,
+      "visibleImages": 6,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "  VIDEO  VIDEO boAt Turn the everyday up  15 min  4.6  Sample store Shops Sample brand  Follow store 🛒 All Items Electronics All Products  40% OFF boAt Wireless Headphones Over-ear · sample model ₹1499 ₹2499 ADD   Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "follow-btn",
+        "text": " Follow store",
+        "w": 140.6,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-all",
+        "text": "🛒 All Items",
+        "w": 104.1,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c19",
+        "text": "Electronics",
+        "w": 97.6,
+        "h": 36,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "save-product-audio1",
+        "text": "Save boAt Wireless Headphones",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "111,825 44x44",
+        "cy": 100.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/store/boat",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 29,
+      "visibleTextChars": 220,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "  VIDEO  VIDEO boAt Turn the everyday up  15 min  4.6  Sample store Shops Sample brand  Follow store 🛒 All Items Electronics All Products  40% OFF boAt Wireless Headphones Over-ear · sample model ₹1499 ₹2499 ADD   Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

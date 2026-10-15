@@ -7,7 +7,7 @@ import Animated, { type SharedValue, useAnimatedStyle, useSharedValue, withSeque
 import Icon from '@react-native-vector-icons/ionicons';
 import { haptic } from '../../haptics';
 import { useMotionAllowed } from '../../motion';
-import { duration, easing, reSpring } from '../../motion-tokens';
+import { duration, reEasing, reSpring } from '../../motion-tokens';
 import { colors } from '../../theme';
 
 const SPARKS = 6;
@@ -26,7 +26,7 @@ export function HeartToggle({ saved, onToggle, size = 17, color = colors.muted, 
     if (motion) {
       if (saving) {
         scale.value = withSequence(withTiming(0.7, { duration: duration.instant }), withSpring(1, reSpring.bouncy));
-        burst.value = 0; burst.value = withTiming(1, { duration: duration.gentle, easing: easing.enter });
+        burst.value = 0; burst.value = withTiming(1, { duration: duration.gentle, easing: reEasing.enter });
       } else {
         scale.value = withSequence(withTiming(0.82, { duration: duration.instant }), withSpring(1, reSpring.snappy));
       }

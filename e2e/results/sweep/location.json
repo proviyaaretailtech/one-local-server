@@ -1,0 +1,109 @@
+{
+  "screen": "location",
+  "route": "/location",
+  "finalUrl": "/location",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "location-back"
+  ],
+  "screenshots": [
+    "location.png",
+    "location-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/location",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 9,
+      "visibleTextChars": 187,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Where should we deliver?   Use current location  Add new address SAVED ADDRESSES  Home Flat 4, Shivaji Apartments, Ausa Road, Latur, 413512   Work Office 12, Main Market Complex, Latur, 413512 "
+    },
+    "smallTargets": [
+      {
+        "id": "address-menu-address-home",
+        "text": "Options for Home",
+        "w": 32,
+        "h": 32,
+        "tag": "div"
+      },
+      {
+        "id": "address-menu-address-work",
+        "text": "Options for Work",
+        "w": 32,
+        "h": 32,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "location-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/location",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 9,
+      "visibleTextChars": 187,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Where should we deliver?   Use current location  Add new address SAVED ADDRESSES  Home Flat 4, Shivaji Apartments, Ausa Road, Latur, 413512   Work Office 12, Main Market Complex, Latur, 413512 "
+    },
+    "smallTargets": [
+      {
+        "id": "address-menu-address-home",
+        "text": "Options for Home",
+        "w": 32,
+        "h": 32,
+        "tag": "div"
+      },
+      {
+        "id": "address-menu-address-work",
+        "text": "Options for Work",
+        "w": 32,
+        "h": 32,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "location-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "screen": "cart-empty",
+  "route": "/cart",
+  "finalUrl": "/cart",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "cart-back"
+  ],
+  "screenshots": [
+    "cart-empty.png",
+    "cart-empty-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/cart",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 19,
+      "visibleTextChars": 139,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your little bag 0 items  Cart  One Saver  Your cart is empty Add fresh items to get started Browse products  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "browse-btn",
+        "text": "Browse products",
+        "w": 156.8,
+        "h": 41,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "cart-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/cart",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 19,
+      "visibleTextChars": 139,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Your little bag 0 items  Cart  One Saver  Your cart is empty Add fresh items to get started Browse products  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [
+      {
+        "id": "browse-btn",
+        "text": "Browse products",
+        "w": 156.8,
+        "h": 41,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "cart-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

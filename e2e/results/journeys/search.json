@@ -1,0 +1,24 @@
+{
+  "journey": "search",
+  "title": "search by text from the home header",
+  "passed": false,
+  "steps": [
+    {
+      "name": "open home",
+      "ok": true,
+      "ms": 71679,
+      "shot": "journey-search-01.png"
+    },
+    {
+      "name": "tap the search bar",
+      "ok": false,
+      "error": "locator.tap: Timeout 15000ms exceeded. | Call log: | \u001b[2m  - waiting for locator('[data-testid=\"header-search-button\"]').visible().first()\u001b[22m | \u001b[2m    - locator resolved to <div tabindex=\"0\" aria-label=\"Search products\" data-testid=\"header-search-button\" class=\"css-view-g5y9jx r-cursor-1loqt21 r-touchAction-1otgn73 r-alignItems-1awozwy r-flex-13awgt0 r-flexDirection-18u37iz r-gap-1cmwbt1 r-minHeight-peo1c\">…</div>\u001b[22m | \u001b[2m  - attempting tap action\u001b[22m | \u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m",
+      "ms": 15094,
+      "shot": "journey-search-02-FAILED.png"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": []
+}

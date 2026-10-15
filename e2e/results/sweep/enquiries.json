@@ -1,0 +1,82 @@
+{
+  "screen": "enquiries",
+  "route": "/enquiries",
+  "finalUrl": "/enquiries",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "page-back-button",
+    "enquiries-back"
+  ],
+  "screenshots": [
+    "enquiries.png",
+    "enquiries-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": null,
+  "top": {
+    "url": "/enquiries",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 18,
+      "visibleTextChars": 163,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity   Your plans, in one place. Saved demo enquiries · no confirmed tickets  Your next good time starts here. Explore Book It  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button",
+      "enquiries-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/enquiries",
+    "phase": "top",
+    "scrollable": false,
+    "scroller": null,
+    "stats": {
+      "testids": 18,
+      "visibleTextChars": 163,
+      "visibleImages": 0,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " OneCity   Your plans, in one place. Saved demo enquiries · no confirmed tickets  Your next good time starts here. Explore Book It  Home  Categories Discover  Food  Book It"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "page-back-button",
+      "enquiries-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

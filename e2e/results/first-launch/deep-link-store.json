@@ -1,0 +1,30 @@
+{
+  "route": "/store/s1",
+  "steps": [
+    {
+      "name": "intro splash plays",
+      "ok": true,
+      "note": "intro visible for ~2.3 s after first paint"
+    },
+    {
+      "name": "sign-in offer appears once",
+      "ok": true
+    },
+    {
+      "name": "a finger tap on the centre of “Skip for now” works",
+      "ok": true,
+      "note": "BLOCKED at centre; only the top-right corner of the button responds"
+    },
+    {
+      "name": "“Skip for now” returns to the requested screen",
+      "ok": true
+    },
+    {
+      "name": "the offer does not return on the next load",
+      "ok": true
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": []
+}

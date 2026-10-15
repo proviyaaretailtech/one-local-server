@@ -1,0 +1,158 @@
+{
+  "screen": "discover",
+  "route": "/discover",
+  "candidates": 10,
+  "tested": 10,
+  "outcomes": [
+    {
+      "id": "discover-ai-button",
+      "label": "Ask One AI",
+      "phase": "top",
+      "pattern": "discover-ai-button",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/assistant"
+    },
+    {
+      "id": "discover-filter-all",
+      "label": "All",
+      "phase": "top",
+      "pattern": "discover-filter-all",
+      "selected": false,
+      "result": "already-selected",
+      "changed": [],
+      "urlAfter": "/discover"
+    },
+    {
+      "id": "discover-filter-reels",
+      "label": "Reels",
+      "phase": "top",
+      "pattern": "discover-filter-reels",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/discover"
+    },
+    {
+      "id": "discover-filter-food",
+      "label": "Food",
+      "phase": "top",
+      "pattern": "discover-filter-food",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/discover"
+    },
+    {
+      "id": "discover-filter-fresh",
+      "label": "Fresh",
+      "phase": "top",
+      "pattern": "discover-filter-fresh",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/discover"
+    },
+    {
+      "id": "discover-filter-care",
+      "label": "Care",
+      "phase": "top",
+      "pattern": "discover-filter-care",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/discover"
+    },
+    {
+      "id": "discover-tile-r-amul",
+      "label": "Open Amul Pure Milk Cheese reel",
+      "phase": "top",
+      "pattern": "discover-tile-r-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/reels?id=r-amul"
+    },
+    {
+      "id": "discover-tile-r1",
+      "label": "Open Classic Cheeseburger reel",
+      "phase": "top",
+      "pattern": "discover-tile-rN",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/reels?id=r1"
+    },
+    {
+      "id": "discover-tile-r-beauty",
+      "label": "Open NIVEA Soft Moisturiser reel",
+      "phase": "top",
+      "pattern": "discover-tile-r-beauty",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/reels?id=r-beauty"
+    },
+    {
+      "id": "discover-tile-photo-f4",
+      "label": "Open Whopper Meal photo ad",
+      "phase": "top",
+      "pattern": "discover-tile-photo-*",
+      "selected": false,
+      "result": "changed",
+      "changed": [
+        "url",
+        "text",
+        "nodes",
+        "states",
+        "scroll"
+      ],
+      "urlAfter": "/reels?id=photo-f4"
+    }
+  ]
+}

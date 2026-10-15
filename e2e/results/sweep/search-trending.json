@@ -1,0 +1,106 @@
+{
+  "screen": "search-trending",
+  "route": "/search?collection=trending",
+  "finalUrl": "/search?collection=trending",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "search-back"
+  ],
+  "screenshots": [
+    "search-trending.png",
+    "search-trending-bottom.png",
+    "search-trending-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 652,
+    "clientHeight": 528,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/search?collection=trending",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 64,
+      "visibleTextChars": 334,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Trending in Latur  Everything Food Groceries Shops Pharmacy & Beauty 4 finds for you  19% OFF Classic Cheeseburger McDonald’s · 1 burger ₹129 ₹159 ADD   16% OFF Iced Caramel Latte Starbucks · 350 ml ₹249 ₹295 ADD   24% OFF Farmhouse Pizza Domino’s · regular ₹249 ₹329 ADD   24% OFF NIVEA So"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "search-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/search?collection=trending",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 64,
+      "visibleTextChars": 334,
+      "visibleImages": 4,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Trending in Latur  Everything Food Groceries Shops Pharmacy & Beauty 4 finds for you  19% OFF Classic Cheeseburger McDonald’s · 1 burger ₹129 ₹159 ADD   16% OFF Iced Caramel Latte Starbucks · 350 ml ₹249 ₹295 ADD   24% OFF Farmhouse Pizza Domino’s · regular ₹249 ₹329 ADD   24% OFF NIVEA So"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-open-search-f1",
+        "text": "View Classic Cheeseburger",
+        "by": "search-filter-all",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "21,114 167x112",
+        "cy": 20.1
+      },
+      {
+        "id": "product-open-search-f3",
+        "text": "View Iced Caramel Latte",
+        "by": "search-filter-shops",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/5",
+        "rect": "202,114 167x112",
+        "cy": 20.1
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "search-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

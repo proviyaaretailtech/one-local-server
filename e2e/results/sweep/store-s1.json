@@ -1,0 +1,173 @@
+{
+  "screen": "store-s1",
+  "route": "/store/s1",
+  "finalUrl": "/store/s1",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "back-btn"
+  ],
+  "screenshots": [
+    "store-s1.png",
+    "store-s1-bottom.png",
+    "store-s1-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": null,
+    "scrollHeight": 2170,
+    "clientHeight": 765,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/store/s1",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 117,
+      "visibleTextChars": 205,
+      "visibleImages": 7,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "  VIDEO  VIDEO Latur Fresh Mart Farm to home in 10 mins  10 min  4.7  Sample store Grocery Fresh Organic  Follow store 🛒 All Items 🥦 Fruits & Veggies 🥛 Dairy & Eggs 🍞 Bakery 🍜 Instant Food 🧴 Personal Care All Products  37% OFF Fresh Tomatoes 500 g ₹25 ₹40 ADD   Amul Milk 500 ml ₹28 ₹"
+    },
+    "smallTargets": [
+      {
+        "id": "back-btn",
+        "text": "",
+        "w": 40,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "follow-btn",
+        "text": " Follow store",
+        "w": 140.6,
+        "h": 40,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-all",
+        "text": "🛒 All Items",
+        "w": 104.1,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c1",
+        "text": "🥦 Fruits & Veggies",
+        "w": 149.5,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c2",
+        "text": "🥛 Dairy & Eggs",
+        "w": 128,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c5",
+        "text": "🍞 Bakery",
+        "w": 93.1,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c6",
+        "text": "🍜 Instant Food",
+        "w": 126.8,
+        "h": 36,
+        "tag": "div"
+      },
+      {
+        "id": "store-chip-c7",
+        "text": "🧴 Personal Care",
+        "w": 135.1,
+        "h": 36,
+        "tag": "div"
+      }
+    ],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "store-chip-c1",
+        "text": "🥦 Fruits & Veggies",
+        "by": "bottom-navigation > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "1/5",
+        "rect": "128.1,732 149.5x36",
+        "cy": 88.9
+      },
+      {
+        "id": "save-product-p1",
+        "text": "Save Fresh Tomatoes",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "111,825 44x44",
+        "cy": 100.4
+      },
+      {
+        "id": "save-product-p4",
+        "text": "Save Amul Milk",
+        "by": "bottom-navigation",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "2/2",
+        "rect": "293,825 44x44",
+        "cy": 100.4
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/store/s1",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": null,
+    "stats": {
+      "testids": 117,
+      "visibleTextChars": 199,
+      "visibleImages": 5,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": "  VIDEO  VIDEO Latur Fresh Mart Farm to home in 10 mins  10 min  4.7  Sample store Grocery Fresh Organic  Follow store 🛒 All Items 🥦 Fruits & Veggies 🥛 Dairy & Eggs 🍞 Bakery 🍜 Instant Food 🧴 Personal Care All Products  37% OFF Fresh Tomatoes 500 g ₹25 ₹40 ADD   Amul Milk 500 ml ₹28 ₹"
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "back-btn"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

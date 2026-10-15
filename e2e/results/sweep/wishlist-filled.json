@@ -1,0 +1,117 @@
+{
+  "screen": "wishlist-filled",
+  "route": "/wishlist",
+  "finalUrl": "/wishlist",
+  "blocked": null,
+  "readyError": "",
+  "nearBlank": false,
+  "stuckLoading": false,
+  "backMissing": false,
+  "backButtons": [
+    "wishlist-back"
+  ],
+  "screenshots": [
+    "wishlist-filled.png",
+    "wishlist-filled-bottom.png",
+    "wishlist-filled-full.png"
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "apiFailures": [],
+  "apiBlocked": [],
+  "requestFailed": [],
+  "scroller": {
+    "id": "wishlist-scroll",
+    "scrollHeight": 879,
+    "clientHeight": 701,
+    "scrollTop": 0
+  },
+  "top": {
+    "url": "/wishlist",
+    "phase": "top",
+    "scrollable": true,
+    "scroller": "wishlist-scroll",
+    "stats": {
+      "testids": 71,
+      "visibleTextChars": 388,
+      "visibleImages": 5,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Saved with love 5 favourites. A little inspiration for later.  37% OFF Fresh Tomatoes 500 g ₹25 ₹40 ADD   19% OFF Classic Cheeseburger McDonald’s · 1 burger ₹129 ₹159 ADD   18% OFF Himalaya Wellness Tablets 60 tablets · sample listing ₹180 ₹220 ADD   25% OFF Lakmé Matte Lipstick Rose crush "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-name-open-wishlist-sneak1",
+        "text": "View Nike Everyday Sneakers details",
+        "by": "tab-categories",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "5/5",
+        "rect": "21,766 167x55",
+        "cy": 94
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "wishlist-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  },
+  "bottom": {
+    "url": "/wishlist",
+    "phase": "bottom",
+    "scrollable": true,
+    "scroller": "wishlist-scroll",
+    "stats": {
+      "testids": 71,
+      "visibleTextChars": 345,
+      "visibleImages": 5,
+      "errorFallback": false,
+      "loadingText": false,
+      "bodyText": " Saved with love 5 favourites. A little inspiration for later.  37% OFF Fresh Tomatoes 500 g ₹25 ₹40 ADD   19% OFF Classic Cheeseburger McDonald’s · 1 burger ₹129 ₹159 ADD   18% OFF Himalaya Wellness Tablets 60 tablets · sample listing ₹180 ₹220 ADD   25% OFF Lakmé Matte Lipstick Rose crush "
+    },
+    "smallTargets": [],
+    "truncated": [],
+    "clipped": [],
+    "spills": [],
+    "brokenWords": [],
+    "covered": [
+      {
+        "id": "product-open-wishlist-p1",
+        "text": "View Fresh Tomatoes",
+        "by": "wishlist-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "21,-48 167x112",
+        "cy": 0.9
+      },
+      {
+        "id": "product-open-wishlist-f1",
+        "text": "View Classic Cheeseburger",
+        "by": "wishlist-screen > …",
+        "overlayRoot": null,
+        "overlayPositioned": true,
+        "points": "3/3",
+        "rect": "202,-48 167x112",
+        "cy": 0.9
+      }
+    ],
+    "hiddenText": [],
+    "letterbox": [],
+    "brokenImages": [],
+    "backButtons": [
+      "wishlist-back"
+    ],
+    "suspiciousText": [],
+    "clippedControls": []
+  }
+}

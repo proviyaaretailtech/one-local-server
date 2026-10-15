@@ -272,7 +272,7 @@ async function main() {
     const jobIds = [...new Set([...jobs.map(j => j.id), ...jobsOfOrders])];
     if (jobIds.length) { await d.from('delivery_exceptions').delete().in('job_id', jobIds); await d.from('delivery_jobs').delete().in('id', jobIds); }
     const orders = [...new Set([...jobs.map(j => j.ol_order_id), ...mine, ...orderIds])];
-    if (orders.length) await d.from('ol_orders').delete().in('id', orders);
+    if (orders.length) await d.rpc('ol_dev_purge_orders', { p_ids: orders, p_reason: 'live-tracking-checks cleanup' });
     if (rids.length) { await d.from('rider_availability').delete().in('rider_id', rids); await d.from('riders').delete().in('id', rids); }
     if (final) for (const id of [uA, uB]) await d.auth.admin.deleteUser(id);
   }

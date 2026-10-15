@@ -97,7 +97,7 @@ async function main() {
     check('/api/health reports only status, time and a stuck count', h.status === 200 && hb.status === 'ok' && typeof hb.outbox_stuck === 'number' && Object.keys(hb).sort().join() === 'outbox_stuck,status,time', hb);
   } finally {
     for (const s of [scopeA, scopeB, `http:id:${tag}`]) await d.from('idempotency_keys').delete().eq('scope', s);
-    if (orders.length) await d.from('ol_orders').delete().in('id', orders);
+    if (orders.length) await d.rpc('ol_dev_purge_orders', { p_ids: orders, p_reason: 'idempotency-outbox-checks cleanup' });
   }
   console.log(`\n${passed} checks passed${process.exitCode ? ', SOME FAILED' : ''}`);
 }

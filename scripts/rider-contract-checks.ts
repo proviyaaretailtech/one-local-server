@@ -469,7 +469,7 @@ async function main() {
       const log = (what: string, e: any) => { if (e) { console.error('cleanup:', what, e.message ?? e); process.exitCode = 1; } };
       if (orderIds.length) {
         log('delivery_jobs', (await c.from('delivery_jobs').delete().in('ol_order_id', orderIds)).error);
-        log('ol_orders', (await c.from('ol_orders').delete().in('id', orderIds)).error);
+        log('ol_orders', (await c.rpc('ol_dev_purge_orders', { p_ids: orderIds, p_reason: 'rider-contract-checks cleanup' })).error);
       }
       if (riderIds.length) log('riders', (await c.from('riders').delete().in('id', riderIds)).error);
       if (org) log('merchant channel', (await c.from('ol_merchant_channels').delete().eq('store_id', 'rc-store')).error);

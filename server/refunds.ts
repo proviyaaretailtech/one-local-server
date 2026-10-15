@@ -60,15 +60,11 @@ async function refundedSoFar(orderId: string): Promise<number> {
   return rupees((data ?? []).reduce((n: number, r: Row) => n + Number(r.amount), 0));
 }
 
-// An order whose processed refunds cover its total is "refunded"; a checkout whose orders all are, is too.
+// An order whose processed refunds cover its total is "refunded"; a checkout whose refunds cover it, is too. The database decides
+// (ol_mark_refunded_if_covered, migration 0346): payment status has a lifecycle there, and "refunded" needs the refunds to prove it.
 async function markRefundedIfCovered(order: Row) {
-  const { data } = await db().from('ol_refunds').select('amount').eq('order_id', order.id).eq('status', 'processed');
-  const processed = (data ?? []).reduce((n: number, r: Row) => n + Number(r.amount), 0);
-  if (processed + 0.004 < Number(order.total)) return;
-  await db().from('ol_orders').update({ payment_status: 'refunded' }).eq('id', order.id);
-  if (!order.checkout_id) return;
-  const { data: siblings } = await db().from('ol_orders').select('payment_status').eq('checkout_id', order.checkout_id);
-  if ((siblings ?? []).every((s: Row) => s.payment_status === 'refunded')) await db().from('ol_checkouts').update({ payment_status: 'refunded' }).eq('id', order.checkout_id);
+  const { error } = await db().rpc('ol_mark_refunded_if_covered', { p_order: order.id });
+  if (error) fromDbError(error);
 }
 
 // Refunds what is still owed on one order of an online payment, and books it. Never throws: a refund that cannot be made now is

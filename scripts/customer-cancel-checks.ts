@@ -72,7 +72,7 @@ async function main() {
     let last = 0; for (let i = 0; i < 12; i++) last = (await call('POST', crypto.randomUUID(), flood, { reason: 'x' })).status;
     check('cancel: flooding from one device is rate limited (429)', last === 429, last);
   } finally {
-    for (const id of made) { await d.from('ol_refunds').delete().eq('order_id', id); await d.from('ol_orders').delete().eq('id', id); }
+    for (const id of made) { await d.from('ol_refunds').delete().eq('order_id', id); await d.rpc('ol_dev_purge_orders', { p_ids: [id], p_reason: 'customer-cancel-checks cleanup' }); }
     console.log(`${passed} checks passed`);
   }
 }

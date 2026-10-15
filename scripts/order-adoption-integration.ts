@@ -336,7 +336,7 @@ async function main() {
     await d.from('ol_refunds').delete().in('order_id', made.olOrders);
     await d.from('ol_checkouts').delete().in('customer_hash', made.hashes);
     for (const id of made.olOrders) { await d.from('delivery_events').delete().in('job_id', (await d.from('delivery_jobs').select('id').eq('ol_order_id', id)).data?.map(j => j.id) ?? []); await d.from('delivery_jobs').delete().eq('ol_order_id', id); }
-    for (const id of made.olOrders) { await d.from('ol_order_items').delete().eq('order_id', id); await d.from('ol_orders').delete().eq('id', id); }
+    for (const id of made.olOrders) { await d.from('ol_order_items').delete().eq('order_id', id); await d.rpc('ol_dev_purge_orders', { p_ids: [id], p_reason: 'order-adoption-integration cleanup' }); }
     console.log('Run  ../../../database/purge_test_orders.sh  to remove the tagged test order (orders are append-only for the app).');
     await d.from('ol_products').delete().in('id', ['oa-prod', 'oa-loose', 'oa-loose-demo', 'oa-orphan-prod']);
     await d.from('ol_stores').delete().in('id', ['oa-store', 'oa-orphan', 'oa-demo-store']);

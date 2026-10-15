@@ -442,12 +442,11 @@ export async function recordGatewayRefund(checkoutId: string, refundId: string, 
     const { error } = await db().from('ol_refunds').insert({ order_id: target.id, amount, reason: 'Refunded through Razorpay', method: 'original', status: 'processed', reference: refundId, created_at: now, processed_at: now });
     if (error && error.code !== '23505') fromDbError(error);
   }
-  const orders = await state();
-  // A cash order that is still going ahead (the customer switched to cash and a late online payment was returned) stays a cash order:
-  // the refund is in the ledger, but it is not marked "refunded", because the cash is still to be collected.
-  for (const o of orders) if (o.refunded >= o.total && !o.cod) await db().from('ol_orders').update({ payment_status: 'refunded' }).eq('id', o.id);
-  const { data: checkout } = await db().from('ol_checkouts').select('total, payment_method').eq('id', checkoutId).maybeSingle();
-  if (checkout && checkout.payment_method !== 'cod' && orders.reduce((s, o) => s + o.refunded, 0) >= Number(checkout.total)) await db().from('ol_checkouts').update({ payment_status: 'refunded' }).eq('id', checkoutId);
+  // Orders and the checkout whose processed refunds cover them become "refunded" (the database decides: ol_mark_refunded_if_covered,
+  // migration 0346). A cash order that is still going ahead (the customer switched to cash and a late online payment was returned)
+  // is "not_charged", so it stays a cash order: the refund is in the ledger, but the cash is still to be collected.
+  const { error } = await db().rpc('ol_mark_refunded_if_covered', { p_checkout: checkoutId });
+  if (error) fromDbError(error);
 }
 
 // The delivery code for the orders that have a rider on them, added to what the order's customer reads. Callers pass only orders

@@ -110,7 +110,7 @@ async function main() {
     for (const id of made) {
       await d.from('payment_reconciliation_exceptions').delete().eq('ref_key', id);
       await d.from('ol_refunds').delete().eq('order_id', id);
-      await d.from('ol_orders').delete().eq('id', id);
+      await d.rpc('ol_dev_purge_orders', { p_ids: [id], p_reason: 'refund-worker-checks cleanup' });
     }
   }
   console.log(`${passed} checks passed`);

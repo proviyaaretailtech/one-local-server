@@ -83,7 +83,7 @@ async function main() {
       if (jobIds.length) {
         await d.from('delivery_exceptions').delete().in('job_id', jobIds);
         await d.from('delivery_jobs').delete().in('id', jobIds);
-        await d.from('ol_orders').delete().in('id', jobs.map(j => j.ol_order_id));
+        await d.rpc('ol_dev_purge_orders', { p_ids: jobs.map(j => j.ol_order_id), p_reason: 'rider-extra-checks cleanup' });
       }
       await d.from('push_tokens').delete().in('rider_id', rids);
       await d.from('rider_documents').delete().in('rider_id', rids);

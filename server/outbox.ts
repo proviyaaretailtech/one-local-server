@@ -47,6 +47,8 @@ async function deliverOrderEvent(e: Row, counts: { push_customer: number; push_p
   }
 }
 
+const STALE_PUSH_MS = 30 * 60_000;
+
 export async function publishOutbox(limit = 100) {
   const out = { claimed: 0, published: 0, failed: 0, push_customer: 0, push_partner: 0, push_rider: 0, skipped: 0 };
   const { data, error } = await db().rpc('events_claim', { p_limit: limit });
@@ -56,7 +58,9 @@ export async function publishOutbox(limit = 100) {
   const done: number[] = [];
   for (const e of events) {
     try {
-      if (e.event_type === 'order.transitioned') await deliverOrderEvent(e, out);
+      // A push about an order move that happened long ago (the sweep was down) is noise, not news: it is marked published unsent.
+      if (e.event_type === 'order.transitioned' && Date.now() - Date.parse(e.occurred_at) > STALE_PUSH_MS) out.skipped++;
+      else if (e.event_type === 'order.transitioned') await deliverOrderEvent(e, out);
       done.push(e.id);
     } catch (err) {
       out.failed++;

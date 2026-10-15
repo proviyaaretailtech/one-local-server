@@ -339,7 +339,7 @@ async function cleanup(d: any) {
     if (made.olOrders.length) {
       // ol_orders.pos_order_id points at the tagged order; the purge script clears it, so the consumer order is removed only when nothing blocks it
       await del('ol_order_items', d.from('ol_order_items').delete().in('order_id', made.olOrders));
-      const r = await d.from('ol_orders').delete().in('id', made.olOrders);
+      const r = await d.rpc('ol_dev_purge_orders', { p_ids: made.olOrders, p_reason: 'golden-thread cleanup' });
       if (r.error) residue.push(`ol_orders (${made.olOrders.length}): ${r.error.message}`);
     }
     if (made.checkouts.length) await del('ol_checkouts', d.from('ol_checkouts').delete().in('id', made.checkouts));

@@ -293,7 +293,7 @@ async function main() {
   // ---- cleanup ----
   const ids = must(await d.from('ol_orders').select('id').eq('customer_hash', 'it')).map((x: any) => x.id);
   await d.from('delivery_jobs').delete().in('ol_order_id', ids);
-  await d.from('ol_orders').delete().in('id', ids);
+  await d.rpc('ol_dev_purge_orders', { p_ids: ids, p_reason: 'dispatch-integration cleanup' });
   await d.from('riders').delete().in('id', [rNear, rFar, rAuto]);
   await d.from('ol_merchant_channels').delete().eq('organization_id', org);
   await d.from('ol_stores').delete().eq('id', 'it-store');

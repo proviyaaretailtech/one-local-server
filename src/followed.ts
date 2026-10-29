@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { COMING_SOON_ALL, announceComingSoon } from "./coming-soon-mode";
 
 const KEY = "onelatur.followed.v1";
 
@@ -32,6 +33,7 @@ export function useFollowedStores() {
 
   const isFollowing = useCallback((id: string) => ids.includes(id), [ids]);
   const toggle = useCallback(async (id: string) => {
+    if (COMING_SOON_ALL) { announceComingSoon(); return; }
     const current = await load();
     const next = current.includes(id) ? current.filter((x) => x !== id) : [...current, id];
     await save(next);

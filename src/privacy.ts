@@ -253,11 +253,11 @@ export const noticeItemsText = () => NOTICE_ITEM_IDS.map((id: NoticeItemId, i) =
 }));
 
 /** Who else gets the data. The SMS provider's `where` is a value still to be filled, so it is shown as written in the constants. */
-export const sharedWithText = () => SHARED_WITH_IDS.map((id: SharedWithId, i) => ({
+export const sharedWithText = () => SHARED_WITH_IDS.map((id: SharedWithId) => ({
   id,
   who: t(`privacyNotice.s3.${id}Who`),
   what: t(`privacyNotice.s3.${id}What`),
-  where: id === 'sms' ? SHARED_WITH[i]!.where : t(`privacyNotice.s3.${id}Where`),
+  where: t(`privacyNotice.s3.${id}Where`),
 }));
 
 /** What we must keep after an account is deleted (shown in the notice and in the delete confirmation). */

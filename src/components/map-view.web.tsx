@@ -1,6 +1,7 @@
 // Web map: Google Maps JavaScript API. Needs GOOGLE_MAPS_BROWSER_KEY (restricted by referrer).
 import { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Constants from 'expo-constants';
 import Icon from '@react-native-vector-icons/ionicons';
 import { APIProvider, Map, useMap } from '@vis.gl/react-google-maps';

@@ -2,7 +2,8 @@
 // a plain background. Used on the web when there is no Google Maps key (or Google refuses it). It is not the canned
 // "illustrative" animation: every point here is real, and moves when the rider moves.
 import { useMemo, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Svg, { Path } from 'react-native-svg';
 import { colors, radius } from '../theme';
 import { useTranslation } from '../i18n';

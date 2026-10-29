@@ -2,7 +2,8 @@
 // Needs no server secret. Tokens Expo reports as unregistered are removed.
 import { db } from './db';
 
-type Message = { title: string; body: string; data: Record<string, unknown> };
+// ttl: seconds Expo keeps trying to deliver; a new-order alert lives as long as the restaurant has to answer (0580: 240 s, was 60).
+type Message = { title: string; body: string; data: Record<string, unknown>; ttl?: number };
 
 export async function pushToRestaurant(organizationId: string, message: Message) {
   try {
@@ -14,7 +15,7 @@ export async function pushToRestaurant(organizationId: string, message: Message)
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(tokens.map(to => ({
         to, title: message.title, body: message.body, data: message.data,
-        sound: 'new_order.wav', channelId: 'new-orders', priority: 'high', interruptionLevel: 'time-sensitive', ttl: 60,
+        sound: 'new_order.wav', channelId: 'new-orders', priority: 'high', interruptionLevel: 'time-sensitive', ttl: message.ttl ?? 60,
       }))),
       signal: AbortSignal.timeout(8000),
     });

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { Text, TextInput } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from '@react-native-vector-icons/ionicons';

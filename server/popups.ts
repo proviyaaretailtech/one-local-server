@@ -10,25 +10,29 @@ import { HttpError, limit, readBody } from './http';
 
 // Screens a pop-up may never cover, whatever the CMS says (spec §2.5 rule 2): sign-in, cart / checkout, payment, payment
 // result and live order tracking. The app enforces the same list on its side.
-export const BLOCKED_SCREENS = new Set(['sign-in', 'cart', 'checkout', 'payment', 'payments', 'payment-result', 'order']);
+export const BLOCKED_SCREENS = new Set(['sign-in', 'welcome', 'cart', 'checkout', 'payment', 'payments', 'payment-result', 'order']);
 
 const Lang = z.enum(['en', 'hi', 'mr']);
 const Content = z.object({
-  title: z.string(), body: z.string().optional(), image: z.string().optional(),
+  greeting: z.string().optional(), title: z.string(), body: z.string().optional(), image: z.string().optional(),
   cta_label: z.string().optional(), cta_route: z.string().optional(),
   items: z.array(z.object({ name: z.string(), logo: z.string(), line: z.string().optional() })).optional(),
 }).partial();
 const Targeting = z.object({
-  segments: z.array(z.enum(['new', 'repeat', 'inactive_30d', 'has_cart'])).optional(),
+  segments: z.array(z.enum(['new', 'new_signup', 'repeat', 'inactive_30d', 'has_cart'])).optional(),
+  signup_within_days: z.number().int().min(1).max(90).optional(),
   languages: z.array(Lang).optional(),
   min_app_version: z.string().optional(),
 }).catch({});
 
+export type PopupMedia = { type: 'photo' | 'video'; key: string; poster_key?: string; web_key?: string; width: number; height: number; seconds?: number };
 export type Popup = {
-  id: string; format: 'popup_center' | 'popup_sheet' | 'interstitial' | 'strip' | 'coming_soon';
+  id: string; format: 'popup_center' | 'popup_sheet' | 'interstitial' | 'strip' | 'coming_soon' | 'letter';
   content: Partial<Record<z.infer<typeof Lang>, z.infer<typeof Content>>>;
-  trigger: 'app_open' | 'screen_view' | 'after_seconds' | 'scroll_depth'; trigger_value: number | null;
-  screens: string[]; frequency: 'once' | 'daily' | 'session'; priority: number; is_sponsored: boolean;
+  trigger: 'app_open' | 'screen_view' | 'after_seconds' | 'scroll_depth' | 'first_sign_in'; trigger_value: number | null;
+  screens: string[]; frequency: 'once' | 'daily' | 'session' | 'every_hours' | 'every_nth_open'; frequency_value: number | null;
+  max_shows: number | null; priority: number; is_sponsored: boolean;
+  media: PopupMedia | null; frame: { style?: 'royal_gold' | 'festive_red' | 'plain'; seal?: string };
   starts_at: string; ends_at: string;
 };
 type Row = Popup & { targeting: unknown };
@@ -36,6 +40,8 @@ type Row = Popup & { targeting: unknown };
 const TTL_MS = 30_000;
 const cache = new Map<string, { rows: Row[]; at: number }>();
 const inFlight = new Map<string, Promise<Row[]>>();
+// Master Admin calls this after a pop-up is approved or ended, so the change shows on the next request, not 30 s later.
+export const clearPopupCache = () => cache.clear();
 
 async function liveRows(city: string): Promise<Row[]> {
   const hit = cache.get(city);
@@ -45,7 +51,7 @@ async function liveRows(city: string): Promise<Row[]> {
   const load = (async () => {
     const now = new Date().toISOString();
     const { data, error } = await db().from('ol_popups')
-      .select('id, format, content, trigger, trigger_value, screens, targeting, frequency, priority, is_sponsored, starts_at, ends_at')
+      .select('id, format, content, media, frame, trigger, trigger_value, screens, targeting, frequency, frequency_value, max_shows, priority, is_sponsored, starts_at, ends_at')
       .eq('city_id', city).eq('status', 'live').lte('starts_at', now).gt('ends_at', now)
       .order('priority', { ascending: false }).order('starts_at', { ascending: true });
     // Before migration 0330 is applied there are simply no pop-ups.
@@ -78,6 +84,15 @@ async function orderSegments(request: Request): Promise<Set<string>> {
   return out;
 }
 
+// A new sign-up: a signed-in account created within the last N days (default 7). Unknown or signed out = not new.
+async function isNewSignup(request: Request, withinDays: number): Promise<boolean> {
+  const { userId } = await caller(request);
+  if (!userId) return false;
+  const { data } = await db().auth.admin.getUserById(userId).catch(() => ({ data: null }));
+  const created = data?.user?.created_at ? new Date(data.user.created_at).getTime() : NaN;
+  return Number.isFinite(created) && Date.now() - created <= withinDays * 86_400_000;
+}
+
 const Query = z.object({
   screen: z.string().trim().toLowerCase().regex(/^[a-z0-9_-]{1,40}$/),
   lang: Lang.catch('en'),
@@ -105,12 +120,16 @@ export async function livePopups(request: Request): Promise<{ popups: Popup[] }>
   let segments: Set<string> | null = null;
   const out: Popup[] = [];
   for (const p of candidates) {
-    const wanted = Targeting.parse(p.targeting ?? {}).segments ?? [];
+    const t = Targeting.parse(p.targeting ?? {});
+    // The first-sign-in welcome only ever goes to a signed-in new account, whatever else it targets.
+    const wanted = p.trigger === 'first_sign_in' && !t.segments?.includes('new_signup') ? [...(t.segments ?? []), 'new_signup'] : (t.segments ?? []);
     if (wanted.length) {
-      if (wanted.some(s => s !== 'has_cart')) segments ??= await orderSegments(request);
+      if (wanted.some(s => s !== 'has_cart' && s !== 'new_signup')) segments ??= await orderSegments(request);
       const mine = new Set(segments ?? []);
       if (q.cart === '1') mine.add('has_cart');
-      if (!wanted.some(s => mine.has(s))) continue;
+      if (wanted.includes('new_signup') && await isNewSignup(request, t.signup_within_days ?? 7)) mine.add('new_signup');
+      const required = p.trigger === 'first_sign_in' ? ['new_signup'] : [];
+      if (!wanted.some(s => mine.has(s)) || !required.every(s => mine.has(s))) continue;
     }
     const { targeting: _t, ...popup } = p;
     out.push(popup);

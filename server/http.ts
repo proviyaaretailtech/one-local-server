@@ -32,6 +32,11 @@ type Handler = (request: Request, params: Record<string, string>) => Response | 
 export function route(handler: Handler): Handler {
   return async (request, params) => {
     try {
+      // Rider API is served by the dedicated rider gateway (specs/rider-server). A customer host that sets
+      // RIDER_ONLY_ON_GATEWAY=1 refuses rider paths; the gateway sets RIDER_GATEWAY=1 and serves them.
+      if (process.env.RIDER_ONLY_ON_GATEWAY === '1' && process.env.RIDER_GATEWAY !== '1' && /^\/api\/rider(\/|$)/.test(new URL(request.url).pathname)) {
+        return fail(404, 'Not found.');
+      }
       return await handler(request, params ?? {});
     } catch (error) {
       if (error instanceof HttpError) return fail(error.status, error.detail, error.headers, error.code, error.extra);

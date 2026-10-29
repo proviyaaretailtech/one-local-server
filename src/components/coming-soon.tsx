@@ -1,6 +1,7 @@
 // Shown in place of a feature that isn't live yet (see src/features.ts) — a clear, branded promise
 // instead of an error or a half-working screen.
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';

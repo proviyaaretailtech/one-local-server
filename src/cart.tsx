@@ -9,6 +9,7 @@ import React, { createContext, useCallback, useContext, useEffect, useLayoutEffe
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api, mediaUrl, Store } from './api';
 import { ReplaceCartSheet } from './components/replace-cart-sheet';
+import { COMING_SOON_ALL, announceComingSoon } from './coming-soon-mode';
 
 export type CartKind = 'food' | 'shopping';
 // Same rule as the server (server/pricing.ts cartKindOf).
@@ -75,9 +76,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [pending, setPending] = useState<{ lines: Line[]; origin?: Origin; from?: string; to?: string } | null>(null);
   const [storeNames, setStoreNames] = useState<Map<string, string>>(new Map());
   const catalog = useRef(new Map<string, CartProduct>()); // fills in store and department when a caller leaves them out
-  const current = useRef(carts); current.current = carts;
+  const current = useRef(carts);
+  // Kept current after each commit, not during render: React may render and throw a render away, and a ref written there would leak it.
+  useLayoutEffect(() => { current.current = carts; });
 
   useEffect(() => {
+    // Coming-soon build: the bag always starts empty and is never saved, so no old "2 items" bar shows up.
+    if (COMING_SOON_ALL) return;
     AsyncStorage.multiGet([KEY, OLD_KEY]).then(([[, saved], [, old]]) => {
       try {
         if (saved) {
@@ -121,6 +126,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Adds to the right cart; a reorder can hold both kinds. Food from a second restaurant asks first.
   const addMany = (raw: Line[], origin?: Origin) => {
+    // Coming-soon build: nothing goes into the bag; the "almost ready" toast says why.
+    if (COMING_SOON_ALL) { announceComingSoon(); return; }
     const lines = raw.filter(l => l.qty > 0).map(l => {
       const known = catalog.current.get(l.product.id);
       return { ...l, product: { ...l.product, store_id: l.product.store_id ?? known?.store_id, department: l.product.department ?? known?.department } };

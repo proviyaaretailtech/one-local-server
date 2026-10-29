@@ -23,14 +23,16 @@ export const PRIVACY = {
   noticeDateIso: '2026-09-27',
   brand: 'One Local (OneCity)',
   // The Data Fiduciary: the company that decides why and how personal data is used.
-  legalEntity: `${FILL}: registered company name`,
-  registeredAddress: `${FILL}: registered office address`,
+  // From the Certificate of Incorporation dated 2 April 2026. The certificate calls this address the
+  // "mailing address as per record"; confirm it is also the registered office.
+  legalEntity: 'Proviyaa Global (OPC) Private Limited (CIN U70200ME2026OPC474234)',
+  registeredAddress: 'C/o Yerte Manisha Baswaraj, Bunglow No. 37, New Adarsh Colony, Ausa Road, Latur 413512, Maharashtra, India',
   // DPDP Act s.8(9) and Rule 9: someone who answers questions about personal data, published and
   // named in every reply to a privacy request.
   grievanceOfficer: {
-    name: `${FILL}: grievance officer's name`,
-    email: `${FILL}: e.g. privacy@yourdomain.in`,
-    phone: `${FILL}: phone number`,
+    name: 'Vaishnavi Baswaraj Yerte',
+    email: 'proviyaaretailtech@gmail.com',
+    phone: '+91 86683 20699',
     hours: 'Monday to Saturday, 10 am to 6 pm',
   },
   // Rule 14: the longest we take to answer a grievance or a rights request (the Rules' outer limit is 90 days).
@@ -38,7 +40,8 @@ export const PRIVACY = {
   // Data Protection Board of India: where a person can complain after using our grievance process.
   board: {
     name: 'Data Protection Board of India',
-    complaintLink: `${FILL}: the Board's official online complaint link, once confirmed`,
+    // Empty until the official complaint link is confirmed; the notice then says how to complain without a link.
+    complaintLink: '',
   },
   // Accounts are for adults only; a parent or guardian uses their own account for a child (s.9).
   minimumAge: 18,
@@ -98,14 +101,15 @@ export const NOTICE_ITEMS: NoticeItem[] = NOTICE_ITEM_IDS.map(id => NOTICE_BY_ID
 // Ids: privacyNotice.s3.<id>Who / <id>What / <id>Where (the SMS provider's `where` is still to be filled and is
 // shown as written here).
 export type SharedWith = { who: string; what: string; where: string };
-export const SHARED_WITH_IDS = ['store', 'rider', 'supabase', 'razorpay', 'sms', 'googleMaps', 'osm'] as const;
+// 'sms' is left out while sign-in by mobile number is off (no SMS provider is used). Add it back, with its
+// provider and region, before switching that sign-in on.
+export const SHARED_WITH_IDS = ['store', 'rider', 'supabase', 'razorpay', 'googleMaps', 'osm'] as const;
 export type SharedWithId = (typeof SHARED_WITH_IDS)[number];
 const SHARED_BY_ID: Record<SharedWithId, SharedWith> = {
   store: { who: 'The store or restaurant fulfilling your order', what: 'The items, and the delivery address and notes for that order only.', where: 'India' },
   rider: { who: 'The delivery rider', what: 'The delivery address, map pin and notes for the order they carry.', where: 'India' },
   supabase: { who: 'Supabase', what: 'Hosts our database and sign-in (account, orders, requests).', where: 'Mumbai region, India' },
   razorpay: { who: 'Razorpay', what: 'Takes online payments; holds card, UPI and bank details under its own licence.', where: 'India' },
-  sms: { who: 'SMS provider (through Supabase sign-in)', what: 'Your mobile number, to send sign-in codes.', where: `${FILL}: provider and region, once chosen` },
   googleMaps: { who: 'Google Maps (when switched on)', what: 'Address searches and map positions, to find your address.', where: 'Google’s servers, may be outside India' },
   osm: { who: 'OpenStreetMap servers', what: 'A town-sized map area (no name or phone), to list local shops.', where: 'Europe' },
 };

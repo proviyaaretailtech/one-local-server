@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useLayoutEffect, use
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // From the runtime file, not the '@/src/i18n' index: the index mounts ProfileLanguageSync, which imports this file (a cycle).
 import { t } from '@/src/i18n/runtime';
+import { COMING_SOON_ALL, announceComingSoon } from './coming-soon-mode';
 
 export type PaymentMethod = 'cod' | 'upi' | 'card' | 'netbanking' | 'wallet' | 'paylater';
 // The UPI app picked on the Payment Options screen ('id' = pay with a UPI ID instead of an app).
@@ -65,6 +66,7 @@ export function CustomerProvider({ children }: { children: React.ReactNode }) {
     await AsyncStorage.setItem(KEY, JSON.stringify(next)); current.current = next; setData(next); setError('');
   });
   const toggleSaved = (id: string) => enqueue(async () => {
+    if (COMING_SOON_ALL) { announceComingSoon(); return; }
     if (!ready) return;
     const next = currentSaved.current.includes(id) ? currentSaved.current.filter(x => x !== id) : [...currentSaved.current, id];
     await AsyncStorage.setItem(SAVED_KEY, JSON.stringify(next)); currentSaved.current = next; setSaved(next); setError('');

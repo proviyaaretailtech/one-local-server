@@ -28,8 +28,6 @@ export type LocaleMeta = {
   load: () => Promise<Catalogue>;
 };
 
-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__;
-
 const asCatalogue = (m: unknown): Catalogue => ((m as { default?: Catalogue })?.default ?? m) as Catalogue;
 
 export const SOURCE_LOCALE = 'en';
@@ -52,8 +50,8 @@ const ALL_LOCALES: LocaleMeta[] = [
   },
 ];
 
-/** The languages this build offers. The pseudo-locale is left out of production builds. */
-export const LOCALES: readonly LocaleMeta[] = ALL_LOCALES.filter(l => !l.dev || IS_DEV);
+/** The languages this build offers. The pseudo-locale is hidden everywhere, dev builds included. */
+export const LOCALES: readonly LocaleMeta[] = ALL_LOCALES.filter(l => !l.dev);
 export const SUPPORTED: readonly string[] = LOCALES.map(l => l.code);
 
 export function localeMeta(code: string): LocaleMeta {

@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useAppDimensions } from '@/src/layout';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useRouter } from 'expo-router';

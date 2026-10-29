@@ -1,4 +1,5 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { AccountLayout, accountStyles as s } from '@/src/components/account-layout';
 import { colors } from '@/src/theme';

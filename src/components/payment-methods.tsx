@@ -2,7 +2,8 @@
 // GET /payments/methods; the method used last time is on top. The selected row opens with its choices, one Pay button at
 // the bottom shows the exact amount. Card numbers, UPI PINs and bank logins are typed on Cashfree's own page, never here.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Text, TextInput } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';

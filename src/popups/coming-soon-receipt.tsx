@@ -4,7 +4,8 @@
 // The receipt-printer idea comes from lab.xevrion.dev (a web component); this is a React Native build of it on the UI
 // thread with Reanimated. Reduce Motion shows the receipt already printed.
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Modal, Platform, Pressable, ScrollView, StyleSheet, View, useWindowDimensions } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { Image } from 'expo-image';
 import * as Haptics from 'expo-haptics';

@@ -1,7 +1,8 @@
 // Web: Cashfree's hosted page opens in a popup window; its result page posts a message back to this window. The message is
 // only a cue: the progress screen then asks the server. If the popup is blocked a button opens it (a tap is allowed to).
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';
 import { useTranslation } from '@/src/i18n';

@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { View, Text, Pressable, ScrollView, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Pressable, ScrollView, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Tap } from './tap';
 import { useAppDimensions } from '../layout';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';

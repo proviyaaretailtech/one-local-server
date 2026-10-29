@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, Text, Pressable, TextInput, StyleSheet } from 'react-native';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { Text, TextInput } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useLocalSearchParams } from 'expo-router';
 import { AccountLayout, ActionButton, Message, accountStyles as s } from '@/src/components/account-layout';

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Platform, AppState } from 'react-native';
+import { View, Pressable, StyleSheet, Platform, AppState } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { AudioModule, RecordingPresets, useAudioRecorder, useAudioRecorderState, setAudioModeAsync } from 'expo-audio';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useFormat, useTranslation } from '../i18n';

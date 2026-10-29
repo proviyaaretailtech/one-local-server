@@ -9,6 +9,7 @@ import type { Session } from '@supabase/supabase-js';
 import { supabase, SUPABASE_KEY, SUPABASE_URL } from './lib/supabase';
 import { useCustomer } from './customer';
 import { afterSignIn } from './privacy';
+import { PRIVACY } from '@/constants/privacy';
 import { unregisterPush } from './push';
 import { t } from '@/src/i18n';
 
@@ -17,7 +18,8 @@ type AuthState = {
   signInWithGoogle: () => Promise<void>;
   signInWithApple: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  signUpWithEmail: (name: string, email: string, password: string) => Promise<{ needsConfirmation: boolean }>;
+  signUpWithEmail: (name: string, email: string, password: string, mobile: string, whatsapp: boolean) => Promise<{ needsConfirmation: boolean }>;
+  saveMobile: (mobile: string, whatsapp: boolean) => Promise<void>;
   verifyEmailCode: (email: string, code: string) => Promise<void>;
   resendEmailCode: (email: string) => Promise<void>;
   sendPhoneCode: (mobile: string) => Promise<void>;
@@ -70,6 +72,11 @@ function e164(mobile: string) {
   return `+91${digits}`;
 }
 
+// What is stored on the account for a number: the digits, the WhatsApp choice and when/under which notice it was made.
+function mobileMeta(digits: string, whatsapp: boolean) {
+  return { mobile: digits, whatsapp_optin: whatsapp, whatsapp_optin_at: new Date().toISOString(), whatsapp_optin_notice_version: PRIVACY.noticeVersion };
+}
+
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null); const [ready, setReady] = useState(!supabase);
   const [googleAvailable, setGoogleAvailable] = useState(false); const [appleAvailable, setAppleAvailable] = useState(false);
@@ -91,7 +98,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const user = session?.user;
     if (!user || !customerReady) return;
     const meta = user.user_metadata ?? {};
-    const phone = mobileDigits(user.phone ?? '');
+    const phone = mobileDigits(user.phone ?? '') || mobileDigits(String(meta.mobile ?? ''));
     const next = {
       name: profile.name || meta.full_name || meta.name || '', email: profile.email || user.email || '',
       phone: profile.phone || (/^[6-9]\d{9}$/.test(phone) ? phone : ''),
@@ -136,14 +143,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // A new account signs straight in when the project auto-confirms emails; otherwise the customer
   // is told to confirm from their inbox first.
-  const signUpWithEmail = async (name: string, email: string, password: string) => {
+  const signUpWithEmail = async (name: string, email: string, password: string, mobile: string, whatsapp: boolean) => {
     if (!supabase) throw new Error(t('auth.error.notConfigured'));
-    const { data, error } = await supabase.auth.signUp({ email: email.trim().toLowerCase(), password, options: { data: { full_name: name.trim() } } });
+    const digits = mobileDigits(mobile);
+    if (!/^[6-9]\d{9}$/.test(digits)) throw new Error(t('auth.error.mobileInvalid'));
+    const { data, error } = await supabase.auth.signUp({ email: email.trim().toLowerCase(), password, options: { data: { full_name: name.trim(), ...mobileMeta(digits, whatsapp) } } });
     if (error) throw new Error(friendly(error.message));
-    if (name.trim() && customerReady) await update({ profile: { ...profile, name: profile.name || name.trim(), email: profile.email || email.trim().toLowerCase() } }).catch(() => {});
+    if (name.trim() && customerReady) await update({ profile: { ...profile, name: profile.name || name.trim(), email: profile.email || email.trim().toLowerCase(), phone: profile.phone || digits } }).catch(() => {});
     return { needsConfirmation: !data.session };
   };
 
+  // The mobile number (unverified: no code is sent) and the WhatsApp offers choice live on the account's own
+  // metadata, the one write this build still allows. The choice carries its time and the notice version it was
+  // given under, so it can be shown to a customer or an auditor later.
+  const saveMobile = async (mobile: string, whatsapp: boolean) => {
+    if (!supabase) throw new Error(t('auth.error.notConfigured'));
+    const digits = mobileDigits(mobile);
+    if (!/^[6-9]\d{9}$/.test(digits)) throw new Error(t('auth.error.mobileInvalid'));
+    const { error } = await supabase.auth.updateUser({ data: mobileMeta(digits, whatsapp) });
+    if (error) throw new Error(friendly(error.message));
+    if (customerReady) await update({ profile: { ...profile, phone: digits } }).catch(() => {});
+  };
   // A new email account is confirmed inside the app: the OneLocal email carries a 6-digit code ({{ .Token }} in the Supabase
   // "Confirm signup" template) that the customer types here, which also signs them in.
   const verifyEmailCode = async (email: string, code: string) => {
@@ -182,7 +202,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (error) throw new Error(t('auth.error.signOut'));
   };
 
-  return <AuthContext.Provider value={{ ready, session, googleAvailable, appleAvailable, phoneAvailable, signInWithGoogle, signInWithApple, signInWithEmail, signUpWithEmail, verifyEmailCode, resendEmailCode, sendPhoneCode, verifyPhoneCode, signOut }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ ready, session, googleAvailable, appleAvailable, phoneAvailable, signInWithGoogle, signInWithApple, signInWithEmail, signUpWithEmail, saveMobile, verifyEmailCode, resendEmailCode, sendPhoneCode, verifyPhoneCode, signOut }}>{children}</AuthContext.Provider>;
 }
 
 export function useAuth() {

@@ -7,7 +7,8 @@
 //
 // Animations run on the UI thread (Reanimated) and are skipped when the person has asked for reduced motion.
 import { useEffect, useState, useSyncExternalStore } from 'react';
-import { ActivityIndicator, BackHandler, Linking, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, BackHandler, Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Constants from 'expo-constants';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

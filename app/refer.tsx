@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, Text, Share, StyleSheet } from 'react-native';
+import { View, Share, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import * as Clipboard from 'expo-clipboard';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useCustomer } from '@/src/customer';

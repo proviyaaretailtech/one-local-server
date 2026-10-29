@@ -3,7 +3,8 @@
 // are filled in once. Placeholders still to be filled show highlighted, with a "draft" banner.
 // The wording is in the catalogue (privacyNotice.*, English + Hindi): one key per paragraph.
 import { Fragment, type ReactNode } from 'react';
-import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import { AccountLayout, accountStyles as s } from '@/src/components/account-layout';
@@ -13,7 +14,7 @@ import { keptByLawText, noticeDateText, noticeItemsText, purposeText, sharedWith
 import { isPlaceholder, OPTIONAL_PURPOSES, PRIVACY, SHARED_WITH } from '@/constants/privacy';
 
 const g = PRIVACY.grievanceOfficer;
-const FACTS = [PRIVACY.legalEntity, PRIVACY.registeredAddress, g.name, g.email, g.phone, PRIVACY.board.complaintLink, ...SHARED_WITH.map(x => x.where)];
+const FACTS = [PRIVACY.legalEntity, PRIVACY.registeredAddress, g.name, g.email, g.phone, ...(PRIVACY.board.complaintLink ? [PRIVACY.board.complaintLink] : []), ...SHARED_WITH.map(x => x.where)];
 const draft = FACTS.some(isPlaceholder);
 
 // A fact that is still a placeholder is shown highlighted, so it cannot be missed before launch.
@@ -105,8 +106,10 @@ export default function PrivacyNotice() {
         <Fact value={g.phone} />
         <Text style={s.hint}>{t('privacy.officerHours')}</Text>
       </View>
-      <Text style={s.hint}><Rich text={t('privacyNotice.s9.p2', { days: PRIVACY.responseDays, board, link: piece('link') })}
-        parts={{ link: <Fact id="privacy-notice-board" value={PRIVACY.board.complaintLink} /> }} /></Text>
+      {PRIVACY.board.complaintLink
+        ? <Text style={s.hint}><Rich text={t('privacyNotice.s9.p2', { days: PRIVACY.responseDays, board, link: piece('link') })}
+            parts={{ link: <Fact id="privacy-notice-board" value={PRIVACY.board.complaintLink} /> }} /></Text>
+        : <Text testID="privacy-notice-board" style={s.hint}>{t('privacyNotice.s9.p2NoLink', { days: PRIVACY.responseDays, board })}</Text>}
       <Link id="privacy-notice-raise" label={t('privacy.rows.grievanceTitle')} onPress={() => router.push('/privacy?open=grievance' as never)} />
       {!isPlaceholder(g.email) && <Link id="privacy-notice-mail" label={t('privacyNotice.s9.email', { email: g.email })} onPress={() => void Linking.openURL(`mailto:${g.email}`)} />}
     </Section>

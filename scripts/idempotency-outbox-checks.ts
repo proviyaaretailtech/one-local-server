@@ -94,7 +94,9 @@ async function main() {
     check('customer push is skipped, not faked, for a guest and for a customer with no registered phone', (await pushToCustomer(null, { title: 't', body: 'b', data: {} })).sent === 0 && (await pushToCustomer(crypto.randomUUID(), { title: 't', body: 'b', data: {} })).skipped === 'no_devices');
     const h = await (health as any).GET(new Request('http://localhost/api/health'));
     const hb = await h.json();
-    check('/api/health reports only status, time and a stuck count', h.status === 200 && hb.status === 'ok' && typeof hb.outbox_stuck === 'number' && Object.keys(hb).sort().join() === 'outbox_stuck,status,time', hb);
+    const masterStates = ['ok', 'wrong_key', 'unreachable', 'not_configured'];
+    check('/api/health reports only status, time, a stuck count and Master reachability', h.status === 200 && hb.status === 'ok' && typeof hb.outbox_stuck === 'number' && Object.keys(hb).sort().join() === 'master,outbox_stuck,status,time'
+      && Object.keys(hb.master ?? {}).sort().join() === 'customer,partner' && masterStates.includes(hb.master.customer) && masterStates.includes(hb.master.partner), hb);
   } finally {
     for (const s of [scopeA, scopeB, `http:id:${tag}`]) await d.from('idempotency_keys').delete().eq('scope', s);
     if (orders.length) await d.rpc('ol_dev_purge_orders', { p_ids: orders, p_reason: 'idempotency-outbox-checks cleanup' });

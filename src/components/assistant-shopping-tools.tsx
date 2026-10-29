@@ -1,4 +1,5 @@
-import { View, Text, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { View, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useFormat, useTranslation } from '../i18n';
 import { colors } from '../theme';

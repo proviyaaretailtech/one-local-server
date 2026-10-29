@@ -1,4 +1,5 @@
-import { View, Text, Pressable, StyleSheet, Linking, ScrollView } from 'react-native';
+import { View, Pressable, StyleSheet, Linking, ScrollView } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { ChatMessage } from '../assistant';
 import { useCatalog } from '../use-catalog';

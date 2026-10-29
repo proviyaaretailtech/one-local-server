@@ -3,7 +3,8 @@
 // Reads GET /payments/refund-status; shows nothing when the order has no refund. While a refund is "initiated" it asks
 // again every 30 seconds (the server also learns from the gateway's webhook).
 import { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';

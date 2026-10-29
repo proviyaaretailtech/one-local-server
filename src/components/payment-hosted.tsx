@@ -2,7 +2,8 @@
 // serves (checkout_url). react-native-webview is already in the build. The page tells us when it is finished, but that is
 // only a cue: the progress screen then asks the server (payment-progress.tsx). Card numbers and PINs never reach our server.
 import { useState } from 'react';
-import { ActivityIndicator, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { WebView } from 'react-native-webview';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';

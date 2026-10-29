@@ -4,8 +4,9 @@
 // Pay needs, in this order: where to deliver (the address row at the top), a signed-in customer
 // (sign-in opens and then brings them back here to carry on paying), and how to pay. Browsing and
 // filling the cart never need an account.
-import { useEffect, useMemo, useRef, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform, Pressable, ActivityIndicator } from "react-native";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { View, StyleSheet, ScrollView, TouchableOpacity, KeyboardAvoidingView, Platform, Pressable, ActivityIndicator } from "react-native";
+import { Text, TextInput } from "@/src/ui/text";
 import { Image } from "expo-image";
 import { useIsFocused, useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -14,9 +15,12 @@ import { haptic } from "@/src/haptics";
 import { RollingNumber } from "@/src/components/motion/rolling-number";
 import { SlideToConfirm } from "@/src/components/motion/slide-to-confirm";
 import { colors, radius, spacing } from "@/src/theme";
+import { logoSize, logoTile } from "@/src/logo-tile";
 import { CartKind, useCart } from "@/src/cart";
 import { apiGet, apiPost, Bill, Checkout, Coupon, CouponResult, PaymentResult, PaymentStart, randomId } from "@/src/api";
 import { VendorNote } from '@/src/components/vendor-note';
+import { CategoryRail } from '@/src/components/catalog-sections';
+import { useCatalog } from '@/src/use-catalog';
 import { OneSaver } from '@/src/components/one-saver';
 import { CheckoutPayment } from '@/src/components/checkout-payment';
 import { PaymentChoice, PaymentSheet } from '@/src/components/payment-sheet';
@@ -59,6 +63,22 @@ export default function CartScreen() {
   useEffect(() => { if (!items.length && carts[other].length) setKind(other); }, [items.length, carts, other, setKind]);
   const totalItems = items.reduce((n, i) => n + i.qty, 0);
   const totalPrice = items.reduce((n, i) => n + i.qty * i.price, 0);
+  // Categories: the bag's items are listed under their category, and categories not yet in the bag are offered below the bill.
+  const { data: catalog } = useCatalog();
+  const categoryGroups = (list: typeof items) => {
+    const out: { id: string; name: string; items: typeof items }[] = [];
+    for (const it of list) {
+      const id = it.category_id ?? ''; let group = out.find(x => x.id === id);
+      if (!group) { group = { id, name: catalog?.categories.find(c => c.id === id)?.name ?? '', items: [] }; out.push(group); }
+      group.items.push(it);
+    }
+    return out;
+  };
+  const moreCategories = useMemo(() => {
+    if (!catalog) return [];
+    const inBag = new Set(items.map(i => i.category_id)); const departments = new Set(items.map(i => i.department).filter(Boolean));
+    return catalog.categories.filter(c => !inBag.has(c.id) && (departments.size === 0 || departments.has(c.department))).slice(0, 12);
+  }, [catalog, items]);
   const { payment, upiApp, profile, update, addresses } = useCustomer();
   const { online_payments } = useFeatures();
   // With online payments off, everything below the `online` checks is skipped and checkout is
@@ -297,7 +317,9 @@ export default function CartScreen() {
 
   // Back from sign-in: carry on paying with what they picked — only on this visit to the screen, and
   // only if they did sign in. The latest handleCheckout is used, so it sees the bill as it is now.
-  const pay = useRef(handleCheckout); pay.current = handleCheckout;
+  const pay = useRef(handleCheckout);
+  // Kept current after each commit, not during render: React may render and throw a render away, and a ref written there would leak it.
+  useLayoutEffect(() => { pay.current = handleCheckout; });
   const resume = useRef<PaymentChoice | null>(null);
   useEffect(() => {
     if (!focused) { resume.current = null; return; }
@@ -361,6 +383,11 @@ export default function CartScreen() {
       ) : (
         <>
           <ScrollView testID="cart-scroll" style={{ flex: 1 }} keyboardShouldPersistTaps="handled" contentContainerStyle={{ padding: spacing.lg, paddingBottom: 24 }}>
+            {/* Quick-commerce summary: when it arrives and what is being saved, from the server's quote. */}
+            {(!!groups[0]?.bill?.delivery_time || (bill?.total_savings ?? 0) > 0) && <View testID="cart-summary-strip" style={styles.strip}>
+              {!!groups[0]?.bill?.delivery_time && <View style={styles.stripRow}><Icon name="flash" size={16} color={colors.forest} /><Text testID="cart-eta" style={styles.stripEta}>{t('cart.strip.deliveryIn', { time: fmt.deliveryTime(groups[0].bill.delivery_time) })}</Text><Text style={styles.stripCount}>{t('cart.itemCount', { count: totalItems, value: fmt.number(totalItems) })}</Text></View>}
+              {(bill?.total_savings ?? 0) > 0 && <View style={styles.stripSaving}><Icon name="sparkles" size={14} color={colors.onSuccess} /><Text testID="cart-saving-banner" style={styles.stripSavingText}>{t('cart.strip.saving', { amount: fmt.money(bill?.total_savings ?? 0) })}</Text></View>}
+            </View>}
             {/* Where it goes: tap to change (the location screen) */}
             <Pressable testID="cart-address" accessibilityRole="button" accessibilityLabel={hasAddress ? t('cart.address.a11y', { label: label || '', address: addressLine }) : t('cart.address.a11yChoose')} onPress={edit} style={[styles.deliveryCard, needAddress && styles.deliveryCardAsk]}>
               <Icon name={hasAddress ? 'location' : 'location-outline'} size={22} color={colors.onSurface} />
@@ -379,14 +406,16 @@ export default function CartScreen() {
               const id = (name: string) => (index === 0 ? name : `${name}-${g.id}`);
               return <View key={g.id || 'store'} style={[styles.card, { marginBottom: spacing.md }]} testID={`cart-store-${g.id}`}>
                 <View style={styles.storeHead}>
-                  {!!gb?.store_logo && <Image source={gb.store_logo} style={styles.storeLogo} contentFit="cover" />}
+                  {!!gb?.store_logo && <View style={styles.storeLogo}><Image source={gb.store_logo} style={styles.storeLogoImage} contentFit="contain" /></View>}
                   <View style={{ flex: 1 }}>
                     <Text testID={id('cart-store-name')} style={styles.storeName} numberOfLines={1}>{gb?.store_name ?? t(kind === 'food' ? 'cart.store.yourRestaurant' : 'cart.store.fallback')}</Text>
                     {!!gb && <Text style={styles.storeMeta}>{gb.delivery_time ? t(gb.delivery_fee === 0 ? 'cart.store.metaTimeFree' : 'cart.store.metaTimeFee', { time: fmt.deliveryTime(gb.delivery_time), fee: fmt.money(gb.delivery_fee) }) : t(gb.delivery_fee === 0 ? 'cart.store.metaFree' : 'cart.store.metaFee', { fee: fmt.money(gb.delivery_fee) })}</Text>}
                   </View>
                   {!!gb && groups.length > 1 && <Text testID={id('cart-store-subtotal')} style={styles.storeSubtotal}>{fmt.money(gb.item_total)}</Text>}
                 </View>
-                {g.items.map((it) => (
+                {categoryGroups(g.items).map(cg => <View key={cg.id} testID={`cart-category-${cg.id || 'other'}`}>
+                {!!cg.name && <Text style={styles.catHead}>{cg.name}</Text>}
+                {cg.items.map((it) => (
                   <View key={it.id} style={styles.row}>
                     <Image source={it.image} style={styles.itemImg} contentFit="cover" />
                     <View style={{ flex: 1 }}>
@@ -405,6 +434,7 @@ export default function CartScreen() {
                     </View>
                   </View>
                 ))}
+                </View>)}
                 {!!gb && gb.amount_to_free_delivery > 0 && (
                   <View style={styles.topUp} testID={id('free-delivery-hint')}>
                     <View style={styles.topUpHead}>
@@ -526,6 +556,11 @@ export default function CartScreen() {
                 )}
               </>}
             </View>
+            <View style={{ marginTop: spacing.md }}><VendorNote items={items} /></View>
+            {moreCategories.length > 0 && <View testID="cart-more-categories" style={{ marginTop: spacing.lg, marginHorizontal: -spacing.lg }}>
+              <Text style={styles.moreTitle}>{t('cart.more.title')}</Text>
+              <CategoryRail categories={moreCategories} scope="cart-more" />
+            </View>}
           </ScrollView>
 
           {!!checkoutError && <Text testID="checkout-error" style={{ color: colors.onError, padding: 12 }}>{failureText(checkoutError.error, checkoutError.fallback)}</Text>}
@@ -547,7 +582,6 @@ export default function CartScreen() {
               </View>
             </View>
           </View>}
-          <VendorNote items={items} />
           {online_payments ? (
             // Online payments live: "PAY USING" opens Payment Options; the big button pays with it.
             <View testID="checkout-footer" style={[styles.payBar, { marginBottom: 12, marginHorizontal: spacing.lg }]}>
@@ -658,7 +692,7 @@ const styles = StyleSheet.create({
   deliverySub: { fontSize: 13, color: colors.onSurfaceSecondary, marginTop: 2, lineHeight: 19 },
   notes: { minHeight: 44, marginTop: spacing.sm, marginBottom: spacing.md, paddingHorizontal: spacing.md, borderRadius: radius.sm, borderWidth: 1, borderColor: colors.border, backgroundColor: colors.surface, color: colors.onSurface, fontSize: 13 },
   storeHead: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm, paddingBottom: spacing.sm, borderBottomWidth: 1, borderBottomColor: colors.divider },
-  storeLogo: { width: 36, height: 36, borderRadius: 18, backgroundColor: colors.surfaceSecondary },
+  storeLogo: { ...logoTile(40), borderRadius: 12 }, storeLogoImage: { width: logoSize(40), height: logoSize(40) },
   storeName: { fontSize: 15, fontWeight: '800', color: colors.onSurface },
   storeMeta: { fontSize: 12, color: colors.muted, marginTop: 2 },
   storeSubtotal: { fontSize: 14, fontWeight: '800', color: colors.onSurface },
@@ -689,6 +723,14 @@ const styles = StyleSheet.create({
   billTitle: { fontSize: 14, fontWeight: "800", color: colors.onSurface },
   divider: { height: 1, backgroundColor: colors.divider, marginVertical: spacing.sm },
   taxBox: { marginTop: 4, marginLeft: spacing.md, paddingLeft: spacing.sm, borderLeftWidth: 2, borderLeftColor: colors.divider },
+  strip: { marginBottom: spacing.md, borderRadius: radius.md, overflow: 'hidden', backgroundColor: colors.surface },
+  stripRow: { flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 14, paddingVertical: 12 },
+  stripEta: { flex: 1, fontSize: 15, fontWeight: '800', color: colors.onSurface },
+  stripCount: { fontSize: 12, color: colors.muted, fontWeight: '600' },
+  stripSaving: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 14, paddingVertical: 9, backgroundColor: colors.success },
+  stripSavingText: { flex: 1, fontSize: 12.5, fontWeight: '700', color: colors.onSuccess },
+  catHead: { marginTop: spacing.sm, marginBottom: 2, fontSize: 12, fontWeight: '800', letterSpacing: 0.4, textTransform: 'uppercase', color: colors.muted },
+  moreTitle: { marginHorizontal: spacing.lg, marginBottom: 12, fontSize: 16, fontWeight: '800', color: colors.onSurface },
   savings: { marginTop: spacing.sm, backgroundColor: colors.pastelGreen, padding: spacing.sm, borderRadius: radius.sm },
   savingsText: { color: colors.onSuccess, fontSize: 12, fontWeight: "700" },
   couponHead: { flexDirection: "row", alignItems: "center", gap: spacing.sm, marginBottom: spacing.md },

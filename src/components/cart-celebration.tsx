@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { Animated, View, Text, Pressable, StyleSheet } from 'react-native';
+import { Animated, View, Pressable, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import Icon from '@react-native-vector-icons/ionicons';
 import { usePathname, useRouter } from 'expo-router';
 import { useCart } from '../cart';
 import { colors } from '../theme';
 import { nativeDriver, useMotionAllowed } from '../motion';
-import { CartCharacter } from './cart-character';
 import { useFormat, useTranslation } from '@/src/i18n';
 // The mascot greets the first add of each app session only. Every later add is confirmed by
 // the floating cart bar (count + total), so the character never interrupts a shopping run.
@@ -29,7 +29,7 @@ export function CartCelebration({ top }: { top: number }) {
   }, [visible, motion]);
   if (!visible || !lastAdded) return null;
   return <Animated.View testID="cart-added-popup" accessibilityLiveRegion="polite" style={[s.overlay, { top: top + 64, opacity: progress, transform: [{ translateY: progress.interpolate({ inputRange: [0, 1], outputRange: [70, 0] }) }, { scale: progress.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }] }]}>
-    <View style={s.characterWrap}><View style={s.aura} /><CartCharacter revision={lastAdded.revision} /><Image testID="cart-added-image" source={lastAdded.product.image} contentFit="contain" style={s.product} /><Icon name="sparkles" color={colors.gold} size={22} style={s.sparkle} /></View>
+    <View style={s.characterWrap}><View style={s.aura} /><Image testID="cart-added-image" source={lastAdded.product.image} contentFit="contain" style={s.product} /><Icon name="sparkles" color={colors.gold} size={22} style={s.sparkle} /></View>
     <View style={s.bubble}><Pressable testID="cart-added-dismiss" accessibilityLabel={t('cart.added.dismissA11y')} onPress={() => setVisible(false)} style={s.close}><Icon name="close" size={17} color={colors.muted} /></Pressable><Text testID="cart-added-title" style={s.title}>{t('cart.added.title')}</Text><Text testID="cart-added-product" numberOfLines={3} style={s.name}>{t('cart.added.body', { name: lastAdded.product.name })}</Text><Pressable testID="cart-added-open" accessibilityLabel={t('cart.added.viewA11y', { count: totalItems })} style={s.action} onPress={() => { setVisible(false); router.navigate('/cart'); }}><Text style={s.actionText}>{t('cart.added.view', { n: fmt.number(totalItems) })}</Text><Icon name="arrow-forward" size={15} color={colors.shops} /></Pressable></View>
   </Animated.View>;
 }

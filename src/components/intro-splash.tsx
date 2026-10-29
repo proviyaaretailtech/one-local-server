@@ -46,10 +46,13 @@ export function IntroSplash() {
     // Read by the pop-up host so no pop-up opens over the intro.
     (globalThis as { __onecityIntroShowing?: boolean }).__onecityIntroShowing = true;
     const done = () => { (globalThis as { __onecityIntroShowing?: boolean }).__onecityIntroShowing = false; setVisible(false); };
+    // Safety net: if the frame loop stalls (a background tab on the web pauses it), the finish callback
+    // never fires and a half-faded intro would sit over the app. Remove it on a plain timer as well.
+    const fallback = setTimeout(done, motion ? 2400 : 1200);
     if (!motion) {
       glyph.value = 1; word.value = 1; tag.value = 1; bloom.value = 0.6;
       exit.value = withDelay(650, withTiming(1, { duration: 260 }, f => { if (f) runOnJS(done)(); }));
-      return;
+      return () => clearTimeout(fallback);
     }
     bloom.value = withTiming(1, { duration: 900, easing: outExpo });
     glyph.value = withDelay(80, withTiming(1, { duration: 620, easing: overshoot }));
@@ -57,6 +60,7 @@ export function IntroSplash() {
     sweep.value = withDelay(620, withTiming(1, { duration: 700, easing: inOut }));
     tag.value = withDelay(820, withTiming(1, { duration: 500, easing: outExpo }));
     exit.value = withDelay(1450, withSequence(withTiming(1, { duration: 450, easing: Easing.bezier(0.4, 0, 0.2, 1) }, f => { if (f) runOnJS(done)(); })));
+    return () => clearTimeout(fallback);
   }, [visible, logoReady, motion, bloom, glyph, word, sweep, tag, exit]);
 
   const screen = useAnimatedStyle(() => ({ opacity: interpolate(exit.value, [0, 1], [1, 0]) }));

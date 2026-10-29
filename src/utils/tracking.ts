@@ -14,10 +14,25 @@ export type TrackingEta = { minutes: number; arrives_at: string; source: EtaSour
 export type TrackingLive = {
   live: true; phase: TrackingPhase; rider: TrackingRider | null;
   store: LatLng & { name: string | null }; drop: LatLng;
-  eta: TrackingEta | null; route: { polyline: string } | null; poll_after_s: number;
+  eta: TrackingEta | null; route: { polyline: string } | null; poll_after_s: number; stage: OrderStage | null;
 };
 // `live: false` = no dispatch data (demo mode, no job yet): the screen keeps its illustrative simulation.
-export type TrackingNotLive = { live: false; poll_after_s: number };
+export type TrackingNotLive = { live: false; poll_after_s: number; stage: OrderStage | null };
+
+// ---------- the restaurant's side of the order (database 0580, specs/order-accept-kot) ----------
+// `stage` comes with every tracking answer and on the realtime topic ol-order:<id>. "Accepted" is only ever shown once the
+// restaurant's kitchen ticket exists (kitchen_ticket_created): the database creates the ticket in the same step as the accept.
+export type OrderStageCode =
+  | 'created' | 'waiting_partner' | 'kitchen_ticket_created' | 'preparing' | 'ready' | 'out' | 'delivered'
+  | 'rejected_by_partner' | 'auto_cancelled' | 'auto_cancelled_ghost' | 'customer_cancelled' | 'ops_cancelled' | 'cancelled';
+export const ORDER_STAGES: readonly OrderStageCode[] = ['created', 'waiting_partner', 'kitchen_ticket_created', 'preparing', 'ready', 'out', 'delivered',
+  'rejected_by_partner', 'auto_cancelled', 'auto_cancelled_ghost', 'customer_cancelled', 'ops_cancelled', 'cancelled'];
+export type RefundState = 'none' | 'initiated' | 'processed' | 'delayed';
+const REFUND_STATES: readonly string[] = ['none', 'initiated', 'processed', 'delayed'];
+export type OrderStage = {
+  stage: OrderStageCode; kot_no: number | null; deadline: string | null; prep_minutes: number | null; eta_minutes: number | null;
+  cancel_reason: string | null; refund: RefundState; refund_amount: number | null;
+};
 export type TrackingData = TrackingLive | TrackingNotLive;
 
 const isNum = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
@@ -25,6 +40,25 @@ const isLat = (v: unknown): v is number => isNum(v) && v >= -90 && v <= 90;
 const isLng = (v: unknown): v is number => isNum(v) && v >= -180 && v <= 180;
 const isObj = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 const isTime = (v: unknown): v is string => typeof v === 'string' && Number.isFinite(Date.parse(v));
+const numOrNull = (v: unknown): number | null => (isNum(v) ? v : typeof v === 'string' && v.trim() !== '' && Number.isFinite(Number(v)) ? Number(v) : null);
+
+/** The order's stage, or null when the answer has none (an older server, or no database). An unknown stage code is null too. */
+export function parseStage(raw: unknown): OrderStage | null {
+  if (!isObj(raw) || typeof raw.stage !== 'string' || !ORDER_STAGES.includes(raw.stage as OrderStageCode)) return null;
+  return {
+    stage: raw.stage as OrderStageCode,
+    kot_no: numOrNull(raw.kot_no), deadline: isTime(raw.deadline) ? raw.deadline : null,
+    prep_minutes: numOrNull(raw.prep_minutes), eta_minutes: numOrNull(raw.eta_minutes),
+    cancel_reason: typeof raw.cancel_reason === 'string' && raw.cancel_reason.trim() ? raw.cancel_reason.trim() : null,
+    refund: typeof raw.refund === 'string' && REFUND_STATES.includes(raw.refund) ? raw.refund as RefundState : 'none',
+    refund_amount: numOrNull(raw.refund_amount),
+  };
+}
+export const isCancelledStage = (s: OrderStage | null): boolean => !!s && (s.stage === 'rejected_by_partner' || s.stage.endsWith('cancelled'));
+/** Nothing more will happen to the order (polling can stop). */
+export const isFinalStage = (s: OrderStage | null): boolean => !!s && (s.stage === 'delivered' || isCancelledStage(s));
+/** The restaurant's own words of a rejection ("Restaurant: Out of milk" -> "Out of milk"), or null. */
+export const partnerReason = (reason: string | null): string | null => (reason ? reason.replace(/^Restaurant:\s*/i, '').trim() || null : null);
 const ETA_SOURCES: readonly string[] = ['road', 'estimate', 'promise'];
 
 /** A heading in degrees, folded into [0, 360). Not a number -> null. */
@@ -38,7 +72,8 @@ export const normalizeHeading = (h: unknown): number | null => (isNum(h) ? ((h %
 export function parseTracking(raw: unknown): TrackingData | null {
   if (!isObj(raw)) return null;
   const poll_after_s = clampPollS(raw.poll_after_s);
-  if (raw.live !== true) return { live: false, poll_after_s };
+  const stage = parseStage(raw.stage);
+  if (raw.live !== true) return { live: false, poll_after_s, stage };
   if (typeof raw.phase !== 'string' || !TRACKING_PHASES.includes(raw.phase as TrackingPhase)) return null;
   const s = raw.store, d = raw.drop;
   if (!isObj(s) || !isLat(s.lat) || !isLng(s.lng) || !isObj(d) || !isLat(d.lat) || !isLng(d.lng)) return null;
@@ -60,7 +95,7 @@ export function parseTracking(raw: unknown): TrackingData | null {
   return {
     live: true, phase: raw.phase as TrackingPhase, rider,
     store: { lat: s.lat, lng: s.lng, name: typeof s.name === 'string' && s.name ? s.name : null },
-    drop: { lat: d.lat, lng: d.lng }, eta, route, poll_after_s,
+    drop: { lat: d.lat, lng: d.lng }, eta, route, poll_after_s, stage,
   };
 }
 

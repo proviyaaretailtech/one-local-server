@@ -5,7 +5,8 @@
 // entered on Razorpay's page afterwards (razorpay-checkout.tsx) — this screen never asks for them.
 import { useState } from 'react';
 import type { ParseKeys } from 'i18next';
-import { Modal, View, Text, Pressable, ScrollView, StyleSheet, Switch, ActivityIndicator } from 'react-native';
+import { Modal, View, Pressable, ScrollView, StyleSheet, Switch, ActivityIndicator } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { PaymentMethod, UpiApp } from '../customer';

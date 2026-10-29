@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { ApiError, apiGet, apiPost, type Order } from '@/src/api';
 import { colors, radius, spacing } from '@/src/theme';
 import { useErrorMessage, useFormat, useTranslation } from '@/src/i18n';

@@ -1,19 +1,27 @@
 // Responsive frame. Phones and portrait tablets use the whole screen. Wider screens (landscape iPad,
-// laptop, desktop web) show the app as a centred column on a black/neon backdrop — with a brand
-// panel on very wide screens — so every screen keeps its designed proportions.
+// laptop, desktop web) show the app as a wide centred column (up to 1120px) on a black/neon backdrop,
+// with product grids that gain columns as the column widens.
 // Components size themselves with useAppDimensions() (the column), never the raw window width.
 import { createContext, useContext } from 'react';
-import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useTranslation } from 'react-i18next';
 import { colors } from './theme';
 import { BrandLogo } from './components/brand-logo';
 import { departmentName } from './departments';
 import { safeLineHeight } from './i18n/typography';
 
-export const MAX_APP_WIDTH = 820;
+export const MAX_APP_WIDTH = 1120;
 const FRAME_FROM = MAX_APP_WIDTH + 40;
-const PANEL_FROM = 1280;
+const PANEL_FROM = 99999;
 const INK = '#050605';
+
+// Laptop and desktop browsers get a top menu bar instead of the phone's floating dock.
+export const DESKTOP_FROM = 1000;
+export function useIsDesktop() {
+  const { width } = useWindowDimensions();
+  return Platform.OS === 'web' && width >= DESKTOP_FROM;
+}
 
 const AppWidth = createContext<number | null>(null);
 
@@ -34,8 +42,8 @@ export function useLineHeight() {
   return (fontSize: number, wanted: number) => (latin ? wanted : safeLineHeight(fontSize, wanted));
 }
 
-// Columns for product grids: 3 on phones, 4 from small tablets up.
-export const gridColumns = (width: number) => (width >= 600 ? 4 : 3);
+// Columns for product grids: 3 on phones, 4 from small tablets, 5 and 6 on laptops and desktops.
+export const gridColumns = (width: number) => (width >= 1000 ? 6 : width >= 800 ? 5 : width >= 600 ? 4 : 3);
 
 export function AppFrame({ children }: { children: React.ReactNode }) {
   const { width } = useWindowDimensions(); const { t } = useTranslation(); const lineHeight = useLineHeight();

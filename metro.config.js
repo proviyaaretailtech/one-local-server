@@ -5,6 +5,10 @@ const { FileStore } = require('metro-cache');
 
 const config = getDefaultConfig(__dirname);
 
+// Secret env files (.env.dispatch.local etc.) live at the project root. The client bundle never needs them, and
+// Metro was trying to transform them as JS and failing the Android bundle.
+config.resolver.blockList = [...config.resolver.blockList, /(^|[\\/])\.env\.[^\\/]+$/];
+
 // Use a stable on-disk store (shared across web/android)
 const root = process.env.METRO_CACHE_ROOT || path.join(__dirname, '.metro-cache');
 config.cacheStores = [

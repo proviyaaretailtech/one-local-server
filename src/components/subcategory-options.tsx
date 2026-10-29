@@ -1,4 +1,5 @@
-import { Modal, View, Text, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Modal, View, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';

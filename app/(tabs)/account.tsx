@@ -1,7 +1,8 @@
 // "You" tab: identity, quick stats, OneLocal Coins (coming soon), preferences that save as you tap,
 // and everything account-related grouped so it can be scanned in one glance.
 import { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, ActivityIndicator, Switch, Modal } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable, ActivityIndicator, Switch, Modal } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import Icon from '@react-native-vector-icons/ionicons';

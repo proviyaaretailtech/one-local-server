@@ -1,6 +1,12 @@
 import { createContext, useCallback, useContext, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { useFocusEffect } from 'expo-router';
 import { AccessibilityInfo, Animated, AppState, Platform, ScrollView, ScrollViewProps, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useScreenPalette } from './use-screen-path';
+import { colors } from './theme';
+
+// How far the page gradient reaches below the header: past the department hero, where it has faded to white.
+const BACKDROP_BELOW_HEADER = 520;
 
 export const nativeDriver = Platform.OS !== 'web';
 
@@ -37,7 +43,8 @@ export const useCityScroll = () => useContext(ScrollContext)!;
 // The scroll position drives the collapsing header on the native (UI) thread, so the header follows the
 // finger without waiting for JavaScript. The listener only remembers the offset for when the tab returns.
 // `bleed`: the screen draws its own header (home's photo hero), so content starts at the very top.
-export function CityScroll({ contentContainerStyle, bleed = false, ...props }: ScrollViewProps & { bleed?: boolean }) {
+export function CityScroll({ contentContainerStyle, bleed = false, children, ...props }: ScrollViewProps & { bleed?: boolean }) {
+  const palette = useScreenPalette();
   const { y, headerHeight, scrollRef, claimScrollUnderDock } = useCityScroll();
   const ownRef = useRef<ScrollView>(null); const offset = useRef(0);
   useFocusEffect(useCallback(() => { scrollRef.current = ownRef.current; y.setValue(offset.current); return claimScrollUnderDock(); }, [scrollRef, y, claimScrollUnderDock]));
@@ -45,6 +52,11 @@ export function CityScroll({ contentContainerStyle, bleed = false, ...props }: S
     useNativeDriver: nativeDriver,
     listener: (e: { nativeEvent: { contentOffset: { y: number } } }) => { offset.current = Math.max(0, e.nativeEvent.contentOffset.y); },
   }), [y]);
-  return <Animated.ScrollView {...props} ref={ownRef} scrollEventThrottle={16} onScroll={onScroll} contentContainerStyle={[styles.content, contentContainerStyle, { paddingTop: bleed ? 0 : headerHeight, paddingBottom: 125 }]} />;
+  // One gradient for the whole top of the page, from behind the (transparent) header down through the hero into white.
+  // It lives in the scrolling content, so it moves with the page and the header and hero never paint separate bands.
+  return <Animated.ScrollView {...props} ref={ownRef} scrollEventThrottle={16} onScroll={onScroll} contentContainerStyle={[styles.content, contentContainerStyle, { paddingTop: bleed ? 0 : headerHeight, paddingBottom: 125 }]}>
+    {!bleed && <LinearGradient testID="page-gradient" pointerEvents="none" colors={[palette.top, palette.mid, palette.fade, colors.surface]} locations={[0, 0.32, 0.78, 1]} style={[styles.backdrop, { height: headerHeight + BACKDROP_BELOW_HEADER }]} />}
+    {children}
+  </Animated.ScrollView>;
 }
-const styles = StyleSheet.create({ content: { flexGrow: 1 } });
+const styles = StyleSheet.create({ content: { flexGrow: 1 }, backdrop: { position: 'absolute', top: 0, left: 0, right: 0 } });

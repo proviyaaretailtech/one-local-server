@@ -1,7 +1,8 @@
 // Full-width photo header for brand/store-style pages: the image runs edge to edge (under the
 // status bar), a dark scrim keeps the white title readable, glass buttons float on top, and the
 // page content slides up over its bottom edge.
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
@@ -9,6 +10,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';
 import { useTranslation } from '../i18n';
+import { logoSize, logoTile } from '../logo-tile';
 
 type Props = {
   image: string; title: string; subtitle?: string; eyebrow?: string;
@@ -45,8 +47,9 @@ const s = StyleSheet.create({
   bar: { position: 'absolute', left: 16, right: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   glass: { width: 44, height: 44, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.18)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.28)', alignItems: 'center', justifyContent: 'center' },
   bottom: { position: 'absolute', left: 20, right: 20, bottom: 40 },
-  logoTile: { width: 64, height: 64, borderRadius: 20, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center', marginBottom: 14, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 24, color: 'rgba(0,0,0,0.3)' }] },
-  logo: { width: 48, height: 48 },
+  // Shared logo tile; a deeper shadow only because it sits on a photo.
+  logoTile: { ...logoTile(72), marginBottom: 14, boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 24, color: 'rgba(0,0,0,0.3)' }] },
+  logo: { width: logoSize(72), height: logoSize(72) },
   monogram: { fontSize: 24, fontWeight: '800', color: '#050605' },
   eyebrow: { color: colors.electricLime, fontSize: 10, fontWeight: '800', letterSpacing: 2 },
   title: { color: '#fff', fontSize: 34, fontWeight: '800', letterSpacing: -1, marginTop: 6 },

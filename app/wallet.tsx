@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useFeatures } from '@/src/features';
 import { ComingSoon } from '@/src/components/coming-soon';
-import { View, Text, ScrollView, Pressable, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Pressable, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { View, Text, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { View, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useCustomer, PaymentMethod } from '../customer';
 import { colors } from '../theme';

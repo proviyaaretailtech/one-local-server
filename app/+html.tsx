@@ -29,6 +29,8 @@ export default function Root({ children }: PropsWithChildren) {
               body > div:first-child { position: fixed !important; top: 0; left: 0; right: 0; bottom: 0; }
               [role="tablist"] [role="tab"] * { overflow: visible !important; }
               [role="heading"], [role="heading"] * { overflow: visible !important; }
+              /* No focus or tap outlines anywhere (founder's call, 28 Oct 2026); pressed feedback is the sink and shadow instead. */
+              *, *:focus, *:focus-visible { outline: none !important; -webkit-tap-highlight-color: transparent; }
             `,
           }}
         />

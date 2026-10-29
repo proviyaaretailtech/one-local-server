@@ -50,7 +50,9 @@ export default {
     // APP_SUPABASE_URL: the address a phone on the same Wi-Fi uses (e.g. http://192.168.x.x:54321), while
     // the dev server itself keeps SUPABASE_URL=http://127.0.0.1:54321 (server/env.ts only accepts local hosts).
     supabaseUrl: process.env.APP_SUPABASE_URL || process.env.SUPABASE_URL,
-    supabaseAnonKey: process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY,
+    // APP_SUPABASE_KEY pairs with APP_SUPABASE_URL (the "Expo Web as Live" launch sets both from .env, because Expo lets
+    // .env.local's local keys win over .env otherwise).
+    supabaseAnonKey: process.env.APP_SUPABASE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY,
     googleMapsBrowserKey: process.env.GOOGLE_MAPS_BROWSER_KEY,
     appGroup: APP_GROUP,
   },

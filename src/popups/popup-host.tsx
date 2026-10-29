@@ -6,9 +6,10 @@
 //    cannot be fetched the pop-up waits for the next opportunity;
 //  - one fade / slide on the UI thread (none with reduce motion); close always visible; back and tap outside close.
 // If the API fails (or on web without a backend) nothing is shown.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useShowFirstRun } from '@/src/i18n/first-run';
-import { InteractionManager, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { InteractionManager, Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { usePathname, useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import { useQuery } from '@tanstack/react-query';
@@ -24,8 +25,12 @@ import { ComingSoonReceipts } from './coming-soon-receipt';
 import { useDeliveryLocation } from '../delivery-location';
 import { allowedByFrequency, isBlockedPath, markShown, screenOf, session } from './rules';
 import type { Popup } from './types';
+import { COMING_SOON_ALL } from '../coming-soon-mode';
+import { useAuth } from '../auth';
+import { LetterPopup } from './letter-popup';
 
 const SETTLE_MS = 1000;
+const SEEN_AFTER_MS = 1200;
 const INTERACTIONS_CAP_MS = 1500;
 const introShowing = () => !!(globalThis as { __onecityIntroShowing?: boolean }).__onecityIntroShowing;
 
@@ -33,6 +38,7 @@ export function PopupHost() {
   const pathname = usePathname() ?? '/';
   // No pop-up over the first-run language chooser either.
   const firstRun = useShowFirstRun();
+  // Coming-soon build: only letters (welcome and announcements); other promo pop-ups' "See offers" buttons lead nowhere yet.
   const blocked = isBlockedPath(pathname) || firstRun;
   const screen = screenOf(pathname);
   // The town the pop-ups were fetched for, printed on coming-soon receipts. PopupHost sits outside the shell, so this is
@@ -42,16 +48,23 @@ export function PopupHost() {
   const lang = (i18n.resolvedLanguage ?? i18n.language ?? 'en').slice(0, 2);
   const hasCart = useCart().items.length > 0;
   const motion = useMotionAllowed();
+  // Signed in or not changes the answer (the first-sign-in welcome goes only to a new account), so it is part of the key.
+  const userId = useAuth().session?.user?.id ?? '';
   const { data } = useQuery({
-    queryKey: ['popups', screen, lang, hasCart],
-    queryFn: () => fetchPopups(screen, lang, hasCart),
+    queryKey: ['popups', screen, lang, hasCart, userId],
+    queryFn: async () => (await fetchPopups(screen, lang, hasCart)).filter(p => !COMING_SOON_ALL || p.format === 'letter'),
     enabled: !blocked, staleTime: 60_000, retry: false,
   });
   const dataRef = useRef<Popup[] | undefined>(data);
-  dataRef.current = data;
+  // Kept current after each commit, not during render: React may render and throw a render away, and a ref written there would leak it.
+  useLayoutEffect(() => { dataRef.current = data; });
 
   const [modal, setModal] = useState<Popup | null>(null);
   const [strip, setStrip] = useState<Popup | null>(null);
+  // What is on screen right now, read by the delayed "seen" check (state from the render it was scheduled in would be stale).
+  const onScreen = useRef<{ modal?: string; strip?: string }>({});
+  useLayoutEffect(() => { onScreen.current = { modal: modal?.id, strip: strip?.id }; });
+  const stillOnScreen = (id: string) => onScreen.current.modal === id || onScreen.current.strip === id;
   // One record per screen view: which view of the session it is, and whether this view already had its pop-up / strip.
   const view = useRef({ path: '', index: -1, modalDone: false, stripDone: false });
   const router = useRouter();
@@ -77,6 +90,7 @@ export function PopupHost() {
         if ((p.format === 'strip') !== wantStrip || !p.screens.includes(screen)) continue;
         if (p.trigger === 'app_open' && session.firstViewOf.get(screen) !== v.index) continue;
         if (p.trigger === 'scroll_depth') continue;   // needs the screen's scroll position; not wired yet
+        // first_sign_in: the server sends it only to a signed-in new account; it shows on the first screen it fits (once ever).
         if (await allowedByFrequency(p)) return p;
       }
       return null;
@@ -91,15 +105,19 @@ export function PopupHost() {
         timers.push(setTimeout(async () => {
           while (!cancelled && introShowing()) await new Promise(r => setTimeout(r, 300));   // wait for the intro to finish
           if (cancelled || !stillAllowed()) return;
-          const url = imageUrl(contentFor(p, lang).image);
+          const url = p.format === 'letter' ? imageUrl(p.media?.type === 'photo' ? p.media.key : p.media?.poster_key) : imageUrl(contentFor(p, lang).image);
           if (url) {
             const ok = await Image.prefetch(url).catch(() => false);
             if (!ok) return;   // not on the phone: try again at the next opportunity
           }
           if (cancelled || !stillAllowed()) return;
-          await markShown(p);
-          sendPopupEvent(p.id, 'impression');
           show(p);
+          // Counted as seen only once it has really been on screen for a moment: on a first launch the app moves on to
+          // choosing a location right after the language step, and a pop-up closed by that move must not use up its turn.
+          timers.push(setTimeout(() => {
+            if (cancelled || !stillOnScreen(p.id)) return;
+            void markShown(p); sendPopupEvent(p.id, 'impression');
+          }, SEEN_AFTER_MS));
         }, wait));
       });
       tasks.push(InteractionManager.runAfterInteractions(run));
@@ -131,6 +149,7 @@ export function PopupHost() {
     {strip && <PopupStrip popup={strip} lang={lang} motion={motion} onClose={() => close(strip, setStrip)} onOpen={() => open(strip, setStrip)} />}
     {modal && modal.format === 'coming_soon' && !!contentFor(modal, lang).items?.length
       ? <ComingSoonReceipts title={contentFor(modal, lang).title} items={contentFor(modal, lang).items!} city={city} motion={motion} onClose={() => close(modal, setModal)} />
+      : modal && modal.format === 'letter' ? <LetterPopup popup={modal} lang={lang} motion={motion} onClose={() => close(modal, setModal)} onOpen={() => open(modal, setModal)} />
       : modal && modal.format !== 'coming_soon' && <PopupModal popup={modal} lang={lang} motion={motion} onClose={() => close(modal, setModal)} onOpen={() => open(modal, setModal)} />}
   </>;
 }
@@ -169,7 +188,7 @@ function PopupModal({ popup, lang, motion, onClose, onOpen }: Props) {
   const insets = useSafeAreaInsets();
   const c = contentFor(popup, lang);
   const image = imageUrl(c.image);
-  const hasCta = !!c.cta_route;
+  const hasCta = !!(c.cta_label || c.cta_route); // words alone still show a button; it closes the pop-up
   const sheet = popup.format === 'popup_sheet';
   const full = popup.format === 'interstitial';
   const entrance = useEntrance(motion, sheet ? 48 : full ? 0 : 16);

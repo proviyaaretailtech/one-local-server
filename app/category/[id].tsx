@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useAppDimensions } from '@/src/layout';
-import { Animated, View, Text, StyleSheet, ScrollView, Pressable, KeyboardAvoidingView, Platform } from 'react-native';
+import { Animated, View, StyleSheet, ScrollView, Pressable, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useCustomer } from '@/src/customer';

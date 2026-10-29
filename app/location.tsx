@@ -3,7 +3,9 @@
 // places. Street-level address search (Google) joins in once the Maps key is set. On first launch
 // this screen asks "Where are you?" and can be skipped (Latur).
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Text, TextInput } from '@/src/ui/text';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useQuery } from '@tanstack/react-query';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -12,6 +14,7 @@ import { randomId } from '@/src/api';
 import { Address, useCustomer } from '@/src/customer';
 import { Point, useDeliveryLocation } from '@/src/delivery-location';
 import { useFeatures } from '@/src/features';
+import { COMING_SOON_ALL } from '@/src/coming-soon-mode';
 import {
   addressText, CITY_CENTER, coverageAt, currentPoint, distanceKm, IndiaPlace, isLocationError, knownPoint, LocationOffError, placeDetails, placeLine, popularCities,
   Recent, recentPlaces, rememberPlace, searchIndia, searchPlaces, Suggestion,
@@ -25,7 +28,7 @@ const mapHref = (p?: Point | null, extra = '') => `/address-map?${p ? `lat=${p.l
 const KIND_KEY = { city: 'location.kind.city', town: 'location.kind.town', locality: 'location.kind.locality', village: 'location.kind.village' } as const;
 
 export default function LocationPicker() {
-  const router = useRouter(); const insets = useSafeAreaInsets(); const { first } = useLocalSearchParams<{ first?: string }>();
+  const router = useRouter(); const insets = useSafeAreaInsets(); const { first, back } = useLocalSearchParams<{ first?: string; back?: string }>();
   const { t } = useTranslation(); const fmt = useFormat(); const message = useErrorMessage();
   const { addresses, update } = useCustomer(); const delivery = useDeliveryLocation(); const { maps } = useFeatures();
   const session = useRef(randomId(16)).current;
@@ -33,6 +36,7 @@ export default function LocationPicker() {
   const [searching, setSearching] = useState(false); const [error, setError] = useState(''); const [locating, setLocating] = useState(false);
   const [here, setHere] = useState<Point | null>(null); const [recent, setRecent] = useState<Recent[]>([]); const [menu, setMenu] = useState('');
   const [settings, setSettings] = useState(false); // location refused for good: offer the way to Settings
+  const [sheet, setSheet] = useState(false); // location refused: offer cities instead of a dead end
   const { data: popular = [] } = useQuery({ queryKey: ['popular-cities'], queryFn: popularCities, staleTime: Infinity });
 
   useEffect(() => { knownPoint().then(setHere); recentPlaces().then(setRecent); }, []);
@@ -54,16 +58,21 @@ export default function LocationPicker() {
   }, [query, session, here, delivery.point, maps, message]);
 
   const close = () => (router.canGoBack() ? router.back() : router.replace('/(tabs)' as never));
+  // Opened from the "One last step" screen (back=1): return to it, so what was typed there is kept.
+  const done = () => (back && router.canGoBack() ? router.back() : router.replace('/(tabs)' as never));
   const choosePlace = (p: Pick<IndiaPlace, 'name' | 'district' | 'state' | 'lat' | 'lng'>) => {
     const line = placeLine(p);
     delivery.setLocation(line ? `${p.name}, ${line}` : p.name, { lat: p.lat, lng: p.lng });
     void rememberPlace({ title: p.name, subtitle: line, lat: p.lat, lng: p.lng });
-    router.replace('/(tabs)' as never);
+    done();
   };
   const pickStreet = async (s: Suggestion) => {
     try {
       const place = await placeDetails(s.place_id, session);
       await rememberPlace({ title: s.title, subtitle: s.subtitle, lat: place.lat, lng: place.lng });
+      // First run and the coming-soon build: take the place as it is and carry on (the pin-on-map screen saves an
+      // address, which is not open there, so it used to stop onboarding on the coming-soon page).
+      if (first || COMING_SOON_ALL) { delivery.setLocation(s.subtitle ? `${s.title}, ${s.subtitle}` : s.title, { lat: place.lat, lng: place.lng }); done(); return; }
       router.push(mapHref(place));
     } catch (e) { setError(message(e)); }
   };
@@ -74,9 +83,10 @@ export default function LocationPicker() {
       const p = await currentPoint(); setHere(p);
       const c = await coverageAt(p);
       if (c.place) choosePlace({ ...c.place, lat: p.lat, lng: p.lng });
-      else { delivery.setLocation(t('location.current'), p); router.replace('/(tabs)' as never); }
+      else { delivery.setLocation(t('location.current'), p); done(); }
     } catch (e) {
-      setError(Platform.OS === 'web' && e instanceof LocationOffError ? t('location.webOff') : isLocationError(e) ? e.message : message(e));
+      if (e instanceof LocationOffError) setSheet(true);
+      else setError(isLocationError(e) ? e.message : message(e));
       setSettings(e instanceof LocationOffError && !e.canAskAgain && Platform.OS !== 'web');
     }
     finally { setLocating(false); }
@@ -136,10 +146,10 @@ export default function LocationPicker() {
                 {locating ? <ActivityIndicator color={colors.forest} /> : <Icon name="locate" size={20} color={colors.forest} />}
                 <Text style={styles.actionText}>{t('location.useCurrent')}</Text>
               </Pressable>
-              <Pressable testID="add-new-address" onPress={() => router.push(mapHref(here ?? delivery.point ?? CITY_CENTER))} style={styles.action}>
+              {!COMING_SOON_ALL && <Pressable testID="add-new-address" onPress={() => router.push(mapHref(here ?? delivery.point ?? CITY_CENTER))} style={styles.action}>
                 <Icon name="add-circle-outline" size={20} color={colors.forest} />
                 <Text style={styles.actionText}>{t('location.addAddress')}</Text>
-              </Pressable>
+              </Pressable>}
             </View>
 
             {!!addresses.length && <Text style={styles.section}>{t('location.section.saved')}</Text>}
@@ -194,6 +204,28 @@ export default function LocationPicker() {
           </>
         )}
       </ScrollView>
+      <Modal visible={sheet} transparent animationType="slide" onRequestClose={() => setSheet(false)}>
+        <Pressable testID="city-sheet-backdrop" onPress={() => setSheet(false)} style={styles.backdrop} />
+        <View testID="city-sheet" style={[styles.sheet, { paddingBottom: insets.bottom + 18 }]}>
+          <View style={styles.grabber} />
+          <Text style={styles.sheetTitle}>{t('location.sheet.title')}</Text>
+          <Text style={styles.sheetSub}>{t('location.sheet.sub')}</Text>
+          <Pressable testID="sheet-city-latur" onPress={() => { setSheet(false); choosePlace({ name: 'Latur', district: 'Latur', state: 'Maharashtra', ...CITY_CENTER }); }} style={styles.live}>
+            <View style={styles.liveMark}><Icon name="bicycle" size={18} color={colors.forest} /></View>
+            <View style={styles.flex}><Text style={styles.rowTitle}>Latur</Text><Text style={styles.rowSub}>{t('location.liveBlurb')}</Text></View>
+            <Icon name="chevron-forward" size={18} color={colors.forest} />
+          </Pressable>
+          <View style={styles.sheetGrid}>
+            {popular.slice(0, 6).map(p => <Pressable key={p.id} testID={`sheet-city-${p.name.toLowerCase()}`} onPress={() => { setSheet(false); choosePlace(p); }} style={styles.sheetCity}>
+              <Text style={styles.sheetCityName} numberOfLines={1}>{p.name}</Text>
+            </Pressable>)}
+          </View>
+          <Pressable testID="sheet-search" onPress={() => setSheet(false)} style={styles.sheetSearch}>
+            <Icon name="search-outline" size={16} color={colors.forest} /><Text style={styles.settingsText}>{t('location.sheet.search')}</Text>
+          </Pressable>
+          {settings && <Pressable onPress={() => Linking.openSettings().catch(() => {})} style={styles.sheetSearch}><Icon name="settings-outline" size={16} color={colors.forest} /><Text style={styles.settingsText}>{t('location.openSettings')}</Text></Pressable>}
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -240,4 +272,13 @@ const styles = StyleSheet.create({
   liveMark: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface },
   tiles: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   browse: { marginTop: 14, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 16, borderRadius: 18, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
+  backdrop: { flex: 1, backgroundColor: colors.overlay },
+  sheet: { position: 'absolute', left: 0, right: 0, bottom: 0, borderTopLeftRadius: 24, borderTopRightRadius: 24, backgroundColor: colors.surface, paddingHorizontal: 16, paddingTop: 8, gap: 12 },
+  grabber: { alignSelf: 'center', width: 36, height: 4, borderRadius: 2, backgroundColor: colors.borderStrong, marginBottom: 4 },
+  sheetTitle: { fontSize: 20, fontWeight: '800', letterSpacing: -0.4, color: colors.onSurface },
+  sheetSub: { marginTop: -6, fontSize: 13, lineHeight: 18, color: colors.muted },
+  sheetGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  sheetCity: { minHeight: 40, paddingHorizontal: 14, borderRadius: 20, justifyContent: 'center', backgroundColor: colors.surfaceSecondary, borderWidth: 1, borderColor: colors.border },
+  sheetCityName: { fontSize: 13, fontWeight: '700', color: colors.onSurface },
+  sheetSearch: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
 });

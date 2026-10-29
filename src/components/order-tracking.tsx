@@ -1,6 +1,7 @@
 import React from 'react';
 import type { ParseKeys } from 'i18next';
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, Image } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useTheme, radius, spacing } from '../theme';
 import { GlassCard } from './glass-card';

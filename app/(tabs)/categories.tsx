@@ -1,4 +1,6 @@
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { useMemo } from 'react';
+import { View, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
@@ -7,7 +9,9 @@ import { useCatalog } from '@/src/use-catalog';
 import { CityScroll } from '@/src/motion';
 import { BrandRail, EventRail, LoadState, ProductRail, SectionTitle } from '@/src/components/catalog-sections';
 import { StoreRail } from '@/src/components/store-rail';
-import { Category } from '@/src/api';
+import { apiGet, Category } from '@/src/api';
+import type { Catalog, Store } from '@/src/api';
+import { useQuery } from '@tanstack/react-query';
 import { useFormat, useTranslation } from '@/src/i18n';
 
 // The section titles and subtitles live in the catalogue under home.categories.groups.<id>.
@@ -23,8 +27,41 @@ const groups = [
 ] as const;
 function CategoryTiles({ categories, scope }: { categories: Category[]; scope: string }) {
   const router = useRouter();
-  return <View style={styles.grid}>{categories.map(c => <Pressable testID={`${scope}-category-${c.id}`} key={c.id} onPress={() => router.push(`/category/${c.id}` as any)} style={({ pressed }) => [styles.tile, pressed && styles.pressed]}><View style={styles.tileArt}><Image testID={`${scope}-category-image-${c.id}`} source={c.image} contentFit="contain" style={styles.tileImage} transition={160} /></View><Text testID={`${scope}-category-label-${c.id}`} style={styles.tileLabel}>{c.name}</Text></Pressable>)}</View>;
+  return <View style={styles.grid}>{categories.map(c => <Pressable testID={`${scope}-category-${c.id}`} key={c.id} onPress={() => router.push(`/category/${c.id}` as any)} style={({ pressed }) => [styles.tile, pressed && styles.pressed]}><View style={styles.tileArt}><Image testID={`${scope}-category-image-${c.id}`} source={c.image} contentFit="contain" style={styles.tileImage} transition={160} /></View><Text testID={`${scope}-category-label-${c.id}`} style={styles.tileLabel} numberOfLines={2}>{c.name}</Text></Pressable>)}</View>;
 }
+// Each store with the categories it sells in (from its own products), so a customer can browse by what a store carries.
+// Common categories are the groups above; these are the stores' own. Stores with nothing to show are left out.
+function StoreCategories({ data }: { data: Catalog }) {
+  const router = useRouter(); const { t } = useTranslation();
+  const { data: stores = [] } = useQuery({ queryKey: ['stores'], queryFn: () => apiGet<Store[]>('/stores'), staleTime: 60_000 });
+  const rows = useMemo(() => stores.map(store => {
+    const ids = [...new Set(data.products.filter(p => p.store_id === store.id).map(p => p.category_id))];
+    return { store, cats: ids.map(id => data.categories.find(c => c.id === id)).filter((c): c is Category => !!c) };
+  }).filter(r => r.cats.length).slice(0, 12), [stores, data]);
+  if (!rows.length) return null;
+  return <View testID="store-categories">
+    <SectionTitle id="categories-by-store" title={t('home.categories.storeCategories.title')} subtitle={t('home.categories.storeCategories.subtitle')} />
+    {rows.map(({ store, cats }) => <View key={store.id} testID={`store-categories-${store.id}`} style={storeStyles.row}>
+      <Pressable testID={`store-categories-open-${store.id}`} accessibilityRole="button" accessibilityLabel={store.name} onPress={() => router.push(`/store/${store.id}` as any)} style={storeStyles.head}>
+        {!!store.logo && <Image source={store.logo} style={storeStyles.logo} contentFit="contain" />}
+        <Text numberOfLines={1} style={storeStyles.name}>{store.name}</Text>
+        <Icon name="chevron-forward" size={16} color={colors.muted} />
+      </Pressable>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={storeStyles.chips}>
+        {cats.map(c => <Pressable key={c.id} testID={`store-category-${store.id}-${c.id}`} onPress={() => router.push(`/category/${c.id}` as any)} style={({ pressed }) => [storeStyles.chip, pressed && { opacity: 0.7 }]}><Text style={storeStyles.chipText}>{c.name}</Text></Pressable>)}
+      </ScrollView>
+    </View>)}
+  </View>;
+}
+const storeStyles = StyleSheet.create({
+  row: { marginHorizontal: 20, marginBottom: 14, padding: 14, borderRadius: 18, backgroundColor: colors.surfaceSecondary, gap: 10 },
+  head: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 44 },
+  logo: { width: 36, height: 36, borderRadius: 10, backgroundColor: colors.surface },
+  name: { flex: 1, fontSize: 15, fontWeight: '700', color: colors.onSurface },
+  chips: { gap: 8 },
+  chip: { minHeight: 36, paddingHorizontal: 14, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
+  chipText: { fontSize: 13, fontWeight: '600', color: colors.forest },
+});
 export default function Categories() {
   const { data, isError, refetch } = useCatalog(); const router = useRouter(); const { t } = useTranslation(); const fmt = useFormat();
   if (!data) return <LoadState error={isError} retry={refetch} />;
@@ -36,6 +73,7 @@ export default function Categories() {
       {i === 1 && <><SectionTitle id="category-quick-picks" title={t('home.categories.quickTitle')} subtitle={t('home.categories.quickSubtitle', { amount: fmt.money(99) })} onPress={() => router.push('/search?collection=budget' as any)} /><ProductRail products={data.products.filter(p => p.price < 99).slice(-8)} scope="category-budget" /></>}
       {i === 4 && <><SectionTitle id="category-brands" title={t('home.categories.brandsTitle')} subtitle={t('home.categories.brandsSubtitle', { value: fmt.number(data.brands.length) })} /><BrandRail brands={data.brands.slice(16, 31)} scope="categories-brands" /></>}
     </View>)}
+    <StoreCategories data={data} />
     <SectionTitle id="categories-more-brands" title={t('home.categories.moreBrands')} /><BrandRail brands={data.brands.slice(31).concat(data.brands.slice(0, 16))} scope="categories-more" />
     <SectionTitle id="categories-book" title={t('home.categories.bookTitle')} subtitle={t('home.categories.bookSubtitle')} onPress={() => router.navigate('/book-it')} /><EventRail events={data.events} scope="categories-book" />
     <Pressable testID="categories-ask-one" onPress={() => router.push('/assistant')} style={styles.assistant}><Icon name="sparkles" size={24} color={colors.lime} /><View style={styles.assistantCopy}><Text style={styles.assistantTitle}>{t('home.categories.assistantTitle')}</Text><Text style={styles.assistantText}>{t('home.categories.assistantText')}</Text></View><Icon name="arrow-forward" size={20} color={colors.lime} /></Pressable>

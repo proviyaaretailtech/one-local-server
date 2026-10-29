@@ -4,7 +4,8 @@
 
 import { reloadAppAsync } from "expo";
 import { Component, type ErrorInfo, type PropsWithChildren, useState } from "react";
-import { Platform, Pressable, ScrollView, Text, View } from "react-native";
+import { Platform, Pressable, ScrollView, View } from "react-native";
+import { Text } from "@/src/ui/text";
 
 import { useTranslation } from "@/src/i18n"; // importing the index also guarantees the shared i18next instance exists
 

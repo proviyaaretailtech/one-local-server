@@ -3,7 +3,8 @@
 // a payment page, a deep link or the browser reports is a cue to ask the server again. The cart is never touched here:
 // the parent clears it on `onPaid` only, so every other ending leaves the cart intact.
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, AppState, Image, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, AppState, Image, Linking, Modal, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';

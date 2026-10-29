@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@bacons/apple-targets": "5.0.0",
+    "@expo-google-fonts/poppins": "0.4.1",
     "@expo/metro-runtime": "57.0.15",
     "@gorhom/bottom-sheet": "5.2.14",
     "@lottiefiles/dotlottie-react": "0.13.5",
@@ -30,6 +31,7 @@
     "expo": "57.0.19",
     "expo-audio": "~57.0.4",
     "expo-blur": "57.0.2",
+    "expo-build-properties": "~57.0.22",
     "expo-clipboard": "~57.0.1",
     "expo-constants": "57.0.17",
     "expo-dev-client": "~57.0.19",

@@ -113,8 +113,24 @@ const trimmed = (answer: RouteAnswer, from: LatLng): string => {
   return encodePolyline(projection ? trimAhead(answer.points, projection) : answer.points);
 };
 
+// The order's stage from the restaurant's side (0580 ol_order_stage): waiting for the restaurant, kitchen ticket created, preparing, ready,
+// or why it was cancelled and where the refund is. "Accepted" only ever shows once the kitchen ticket exists. The realtime topic
+// ol-order:<id> pushes the same object; this read is what the app falls back to (and what a guest without realtime sees).
+async function stageOf(orderId: string): Promise<Row | null> {
+  try {
+    const { data, error } = await db().rpc('ol_order_stage', { p_ol: orderId });
+    if (error) return null;
+    return (data as Row | null) ?? null;
+  } catch { return null; } // tracking still works without it
+}
+
 export async function orderTracking(request: Request, id: string) {
   const { row: order, status: orderStatus } = await ownOrderForTracking(request, id);
+  const [tracking, stage] = await Promise.all([trackOrder(order, orderStatus), order ? stageOf(String(order.id)) : Promise.resolve(null)]);
+  return { ...tracking, stage };
+}
+
+async function trackOrder(order: Row | null, orderStatus: string) {
   const now = Date.now();
   const notLive = (phase: Phase) => ({ live: false, phase, rider: null, store: null, drop: null, eta: null, route: null, poll_after_s: POLL_IDLE_S });
   if (!order) return notLive(phaseOf(orderStatus, null)); // demo memory store: no dispatch data

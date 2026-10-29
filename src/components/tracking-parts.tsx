@@ -1,7 +1,8 @@
 // Pieces shared by the live tracking maps (native, Google web map, and the no-map drawing): the rider, store and
 // address markers, and the "location is a little behind" hint. Each marker is an ordinary view, so the same look
 // is used inside react-native-maps markers, Google AdvancedMarkers and the plain drawing.
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Svg, { Path } from 'react-native-svg';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors, radius } from '../theme';

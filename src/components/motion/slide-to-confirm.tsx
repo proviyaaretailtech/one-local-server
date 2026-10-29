@@ -6,7 +6,8 @@
 // surface, so there it stays a plain button: tests and mouse users click it.
 // Reduce Motion: no spring overshoot; the gesture and haptics are unchanged.
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, LayoutChangeEvent, Platform, Pressable, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
+import { ActivityIndicator, LayoutChangeEvent, Platform, Pressable, StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { interpolate, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';

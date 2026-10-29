@@ -24,13 +24,15 @@
         "RECORD_AUDIO"
       ],
       "blockedPermissions": [
-        "android.permission.SYSTEM_ALERT_WINDOW"
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#0B0F0C"
       },
       "package": "com.proviyaa.onelatur",
+      "versionCode": 12,
       "googleServicesFile": "./google-services.json"
     },
     "web": {
@@ -74,6 +76,15 @@
         "expo-location",
         {
           "locationWhenInUsePermission": "OneLocal uses your location to find your delivery address."
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableMinifyInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
         }
       ]
     ],

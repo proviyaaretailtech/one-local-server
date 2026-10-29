@@ -22,7 +22,7 @@ export type CancelPreview = {
 };
 
 // The order, only if it belongs to this caller (same ownership rule as getOrder: customer_hash among the caller's hashes).
-async function ownOrder(request: Request, id: string): Promise<Row> {
+export async function ownOrder(request: Request, id: string): Promise<Row> {
   if (!dbConfigured()) throw new HttpError(503, 'The database is not connected yet.', undefined, 'database_unavailable');
   const { matches } = await caller(request);
   if (!matches.length || !UUID.test(id)) throw notFound();

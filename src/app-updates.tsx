@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { AppState, Platform, Pressable, StyleSheet, Text, View } from 'react-native';
+import { AppState, Platform, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import * as Updates from 'expo-updates';
 import { useTranslation } from 'react-i18next';
 import { colors } from '@/src/theme';

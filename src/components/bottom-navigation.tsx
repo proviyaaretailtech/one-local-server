@@ -9,7 +9,8 @@
 // Reduce Motion: no magnify or hop; scrub-to-open and the ticks remain.
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'expo-router';
-import { View, Text, StyleSheet, LayoutChangeEvent } from 'react-native';
+import { View, StyleSheet, LayoutChangeEvent } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { Easing, interpolate, type SharedValue, useAnimatedStyle, useSharedValue, withDelay, withSequence, withSpring, withTiming } from 'react-native-reanimated';
@@ -24,6 +25,7 @@ import { useTranslation } from '../i18n';
 import { departmentName } from '../departments';
 import { haptic } from '../haptics';
 import { useMotionAllowed } from '../motion';
+import { useIsDesktop } from '../layout';
 
 const tabs = [
   { id: 'home', path: '/', icon: House },
@@ -44,7 +46,7 @@ export const dockSpace = (insetBottom: number) => dockBottom(insetBottom) + DOCK
 
 export function BottomNavigation() {
   const insets = useSafeAreaInsets(); const path = usePathname(); const router = useRouter(); const { t } = useTranslation();
-  const motion = useMotionAllowed();
+  const motion = useMotionAllowed(); const desktop = useIsDesktop();
   const labels: Record<string, string> = { home: t('nav.home'), categories: t('nav.categories'), discover: t('nav.discover'), food: departmentName(t, 'food'), 'book-it': departmentName(t, 'book-it') };
   const palette = usePageColors();
   const dark = path === '/reels';
@@ -74,13 +76,13 @@ export function BottomNavigation() {
     });
   const onLayout = (e: LayoutChangeEvent) => { slot.value = e.nativeEvent.layout.width / tabs.length; };
 
-  // Full-screen flows, and product pages (they carry their own sticky add-to-bag bar).
-  if (['/location', '/address-map', '/address-form', '/sign-in'].includes(path) || path.startsWith('/product/')) return null;
+  // Full-screen flows. Product pages keep the dock: their sticky add-to-bag bar sits just above it.
+  if (desktop || ['/location', '/address-map', '/address-form', '/sign-in', '/welcome'].includes(path)) return null;
   return <View pointerEvents="box-none" style={[styles.float, { bottom: dockBottom(insets.bottom) }]}>
     <GestureDetector gesture={pan}>
       <View testID="bottom-navigation" onLayout={onLayout} style={[styles.bar, dark && styles.dark]}>
         {/* Frosted glass: the page stays readable through the dock without competing with the icons. */}
-        <BlurView pointerEvents="none" intensity={40} tint={dark ? 'dark' : 'light'} style={[StyleSheet.absoluteFill, styles.glass]} />
+        <BlurView pointerEvents="none" intensity={60} tint={dark ? 'dark' : 'light'} style={[StyleSheet.absoluteFill, styles.glass]} />
         {tabs.map((tab, i) => tab.id === 'discover'
           ? <View key={tab.id} style={styles.item}><View style={[styles.center, dark && styles.darkCenter]}><OneButton selected={path === '/discover' || dark} onDiscover={() => router.navigate('/(tabs)/discover')} onAssistant={() => router.push('/assistant')} /></View><Text testID="discover-tab-label" style={[styles.label, dark && styles.light]}>{labels.discover}</Text></View>
           : <Tap key={tab.id} testID={`tab-${tab.id}`} accessibilityRole="tab" accessibilityLabel={labels[tab.id]} accessibilityState={{ selected: selected(tab.id, tab.path) }} glow={false}
@@ -131,10 +133,10 @@ function RunningLight({ on, color, motion }: { on: boolean; color: string; motio
 
 const styles = StyleSheet.create({
   float: { position: 'absolute', left: 0, right: 0, alignItems: 'center', zIndex: 50 },
-  bar: { width: '92%', maxWidth: 440, height: DOCK_HEIGHT, flexDirection: 'row', paddingTop: 11, backgroundColor: 'rgba(255,255,255,0.78)', borderWidth: 1, borderColor: colors.glassLine, borderRadius: 33,
+  bar: { width: '92%', maxWidth: 440, height: DOCK_HEIGHT, flexDirection: 'row', paddingTop: 11, backgroundColor: 'rgba(255,255,255,0.9)', borderWidth: 1, borderColor: colors.glassLine, borderRadius: 33,
     boxShadow: [{ offsetX: 0, offsetY: 10, blurRadius: 28, color: 'rgba(16,59,43,0.18)' }, { offsetX: 0, offsetY: 2, blurRadius: 6, color: 'rgba(16,59,43,0.08)' }] },
   glass: { borderRadius: 33, overflow: 'hidden' },
-  item: { flex: 1, minHeight: 45, alignItems: 'center', gap: 5 }, label: { fontSize: 9, fontWeight: '500', color: colors.muted }, active: { color: colors.forest, fontWeight: '700' },
+  item: { flex: 1, minHeight: 45, alignItems: 'center', gap: 5 }, label: { fontSize: 10, fontWeight: '500', color: colors.muted }, active: { color: colors.forest, fontWeight: '700' },
   center: { marginTop: -30, marginBottom: -5, borderWidth: 6, borderColor: colors.surface, borderRadius: 40, backgroundColor: colors.surface }, dot: { position: 'absolute', bottom: -6, width: 4, height: 4, borderRadius: 2 },
   dark: { backgroundColor: 'rgba(26,26,26,0.92)', borderColor: 'rgba(255,255,255,0.08)' }, darkCenter: { borderColor: colors.brandPrimary, backgroundColor: colors.brandPrimary }, light: { color: colors.surface },
 });

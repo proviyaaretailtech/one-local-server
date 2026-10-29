@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAppDimensions } from '@/src/layout';
-import { View, Text, TextInput, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Pressable, ScrollView, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text, TextInput } from '@/src/ui/text';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '@/src/theme';
@@ -14,6 +15,7 @@ import { useDeliveryLocation } from '@/src/delivery-location';
 import { useFormat, useTranslation } from '@/src/i18n';
 import { CITY_CENTER, nearbyAt, NearbyKind, NearbyPlace } from '@/src/places';
 import { KINDS, PlaceRow } from '@/src/components/explore-town';
+import { addRecent, clearRecent, readRecent } from '@/src/recent-searches';
 
 // Department filter → kind of local place ('care' covers pharmacy and beauty).
 const PLACE_KIND: Record<string, NearbyKind | undefined> = { food: 'food', grocery: 'grocery', shops: 'shops', care: 'care' };
@@ -31,6 +33,9 @@ export default function Search() {
   const [query, setQuery] = useState(q || '');
   useEffect(() => { if (q !== undefined) setQuery(q); }, [q]);
   const [department, setDepartment] = useState('all');
+  const [recent, setRecent] = useState<string[]>([]);
+  useEffect(() => { void readRecent().then(setRecent); }, []);
+  const remember = (text: string) => { void addRecent(text).then(setRecent); };
   const router = useRouter();
   const width = useAppDimensions().width;
   const cols = width > 600 ? 3 : 2;
@@ -52,8 +57,12 @@ export default function Search() {
   const products = data.products.filter(p => (collection !== 'budget' || p.price < BUDGET_LIMIT) && (!collectionIds || query || collectionIds.includes(p.id)) && (department === 'all' || inDepartment(p.department, department)) && matchesProductQuery(p, query, data));
   return <KeyboardAvoidingView testID="search-screen" behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.screen}>
     <View style={styles.titleRow}><Pressable testID="search-back" accessibilityLabel={t('common.goBack')} onPress={() => router.canGoBack() ? router.back() : router.replace('/(tabs)' as any)} style={styles.back}><Icon name="arrow-back" size={22} color={colors.onSurface} /></Pressable><Text style={styles.title}>{collection === 'budget' ? t('search.title.budget', { amount: fmt.money(BUDGET_LIMIT) }) : collection === 'trending' ? t('search.title.trending') : collection === 'picks' ? t('search.title.picks') : t('search.title.default')}</Text></View>
-    <View style={styles.inputWrap}><Icon name="search" size={20} color={colors.muted} /><TextInput testID="search-input" value={query} onChangeText={setQuery} placeholder={town ? t('search.near.placeholder', { town }) : t('search.near.placeholderYou')} placeholderTextColor={colors.muted} style={styles.input} autoFocus={!collection} returnKeyType="search" />{!!query && <Pressable testID="clear-search" accessibilityLabel={t('search.clear')} onPress={() => setQuery('')} style={styles.back}><Icon name="close" size={20} color={colors.muted} /></Pressable>}</View>
+    <View style={styles.inputWrap}><Icon name="search" size={20} color={colors.muted} /><TextInput testID="search-input" value={query} onChangeText={setQuery} onSubmitEditing={() => remember(query)} placeholder={town ? t('search.near.placeholder', { town }) : t('search.near.placeholderYou')} placeholderTextColor={colors.muted} style={styles.input} autoFocus={!collection} returnKeyType="search" />{!!query && <Pressable testID="clear-search" accessibilityLabel={t('search.clear')} onPress={() => setQuery('')} style={styles.back}><Icon name="close" size={20} color={colors.muted} /></Pressable>}</View>
     <View><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>{[{ id: 'all', label: t('search.everything') }, ...departments.filter(d => d.id !== 'book-it').map(d => ({ id: d.id as string, label: departmentLabel(d) }))].map(d => <Pressable testID={`search-filter-${d.id}`} key={d.id} onPress={() => setDepartment(d.id)} style={[styles.chip, department === d.id && styles.active]}><Text style={[styles.chipText, department === d.id && styles.activeText]}>{d.label}</Text></Pressable>)}</ScrollView></View>
+    {!query && recent.length > 0 && <View testID="search-recent" style={styles.recent}>
+      <View style={styles.recentHead}><Text style={styles.section}>{t('search.recent')}</Text><Pressable testID="search-recent-clear" accessibilityRole="button" onPress={() => { void clearRecent(); setRecent([]); }} hitSlop={8}><Text style={styles.clear}>{t('search.clearRecent')}</Text></Pressable></View>
+      <View style={styles.recentChips}>{recent.map(r => <Pressable key={r} testID={`search-recent-${r}`} accessibilityRole="button" onPress={() => { setQuery(r); remember(r); }} style={styles.recentChip}><Icon name="time-outline" size={14} color={colors.muted} /><Text style={styles.recentText}>{r}</Text></Pressable>)}</View>
+    </View>}
     {(!!query || products.length > 0) && <Text testID="search-result-count" style={styles.count}>{t('search.finds', { value: fmt.number(products.length + (query ? places.length : 0)) })}</Text>}
     <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.results}>
       {products.length > 0 && <View style={styles.grid}>{products.map(p => <ProductCard key={p.id} product={p} scope="search" width={(width - 40 - 12 * (cols - 1)) / cols} />)}</View>}
@@ -74,5 +83,6 @@ const styles = StyleSheet.create({
   inputWrap: { margin: 20, marginTop: 12, borderWidth: 1, borderColor: colors.borderStrong, borderRadius: 14, flexDirection: 'row', alignItems: 'center', paddingLeft: 14 }, input: { flex: 1, minHeight: 50, fontSize: 14, paddingHorizontal: 10, color: colors.onSurface },
   filters: { paddingHorizontal: 20, gap: 8 }, chip: { paddingHorizontal: 14, minHeight: 44, borderRadius: 24, justifyContent: 'center', backgroundColor: colors.cream }, active: { backgroundColor: colors.forest }, chipText: { fontSize: 11, fontWeight: '600', color: colors.onSurface }, activeText: { color: colors.surface },
   count: { margin: 20, color: colors.muted, fontSize: 12 }, results: { paddingBottom: 140, gap: 18 }, grid: { paddingHorizontal: 20, gap: 12, flexDirection: 'row', flexWrap: 'wrap' },
+  recent: { paddingHorizontal: 20, gap: 10 }, recentHead: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }, clear: { fontSize: 12, fontWeight: '700', color: colors.forest }, recentChips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 }, recentChip: { minHeight: 36, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: colors.cream }, recentText: { fontSize: 13, fontWeight: '600', color: colors.onSurface },
   places: { paddingHorizontal: 16, gap: 10 }, section: { fontSize: 13, fontWeight: '800', color: colors.onSurface, marginLeft: 4, marginTop: 14 }, credit: { fontSize: 11, color: colors.muted, marginLeft: 4 }, empty: { width: '100%', alignItems: 'center', paddingTop: 25, gap: 15 },
 });

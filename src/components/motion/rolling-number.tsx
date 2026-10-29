@@ -4,7 +4,8 @@
 // digit columns. Reduce Motion swaps instantly. After the roll, only the new text is in the tree, so
 // tests and screen readers always read one clean value.
 import { useEffect, useRef, useState } from 'react';
-import { StyleProp, StyleSheet, Text, TextStyle, View } from 'react-native';
+import { StyleProp, StyleSheet, TextStyle, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useMotionAllowed } from '../../motion';
 import { duration, reEasing } from '../../motion-tokens';

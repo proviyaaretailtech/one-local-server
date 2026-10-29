@@ -3,7 +3,8 @@
 // your account, nominate someone, raise a grievance, and read the notice. Guests see what is kept
 // on this phone and can clear it; the account-level rights need sign-in, so we know it is you.
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Switch, View } from 'react-native';
+import { Text, TextInput } from '@/src/ui/text';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import * as Haptics from 'expo-haptics';

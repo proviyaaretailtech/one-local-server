@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { CityScroll } from '@/src/motion';
 import { BrandSpotlight } from '@/src/components/brand-spotlight';
 import { useLocalSearchParams, useRouter } from 'expo-router';

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useCustomer } from '@/src/customer';
 import { colors } from '@/src/theme';

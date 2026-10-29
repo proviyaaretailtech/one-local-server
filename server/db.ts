@@ -37,14 +37,14 @@ const STATUS: Record<string, number> = {
   OL_NOT_ACCEPTING: 409, OL_ITEM_UNAVAILABLE: 409, OL_STALE: 409, OL_WRONG_STATE: 409, OL_EXPIRED: 409,
   OL_NOT_DELIVERABLE: 409, OL_PICKED_UP: 409, OL_TAKEN: 409, OL_GONE: 410,
   OL_BAD_STEP: 409, OL_NOT_APPROVED: 409, OL_TOO_FAR: 422, OL_PICKUP_MISMATCH: 422, OL_CASH_MISMATCH: 422, OL_IDEMPOTENCY: 422, OL_IDEMPOTENCY_MISMATCH: 422, OL_IN_PROGRESS: 409,
-  OL_FORBIDDEN: 403, OL_ORG_INACTIVE: 403, OL_OUTSIDE_AREA: 422, OL_PICKUP_ACCURACY: 422,
+  OL_KOT_FAILED: 409, OL_PLATFORM_HOLD: 409, OL_FORBIDDEN: 403, OL_ORG_INACTIVE: 403, OL_OUTSIDE_AREA: 422, OL_PICKUP_ACCURACY: 422,   // 0580: accept rolled back without a kitchen ticket; One Local paused the restaurant
 };
 // Machine-readable reasons for the dispatch and rider APIs (docs/RIDER_APP_E2E_V1.md section 5).
 const CODE: Record<string, string> = {
   OL_NOT_DELIVERABLE: 'order_not_deliverable', OL_PICKED_UP: 'already_picked_up', OL_EXPIRED: 'offer_expired', OL_TAKEN: 'already_taken',
   OL_STALE: 'version_conflict', OL_GONE: 'offer_withdrawn', OL_NOT_FOUND: 'not_found', OL_WRONG_STATE: 'wrong_state',
   OL_BAD_STEP: 'invalid_transition', OL_TOO_FAR: 'too_far', OL_PICKUP_MISMATCH: 'pickup_mismatch', OL_CASH_MISMATCH: 'cash_mismatch', OL_IDEMPOTENCY: 'idempotency_mismatch', OL_IDEMPOTENCY_MISMATCH: 'idempotency_mismatch', OL_IN_PROGRESS: 'in_progress', OL_NOT_APPROVED: 'not_approved',
-  OL_NOT_ONE_LOCAL: 'not_on_one_local', OL_FORBIDDEN: 'forbidden', OL_ORG_INACTIVE: 'organization_inactive', OL_OUTSIDE_AREA: 'outside_delivery_area',
+  OL_KOT_FAILED: 'kitchen_ticket_failed', OL_PLATFORM_HOLD: 'platform_hold', OL_NOT_ONE_LOCAL: 'not_on_one_local', OL_FORBIDDEN: 'forbidden', OL_ORG_INACTIVE: 'organization_inactive', OL_OUTSIDE_AREA: 'outside_delivery_area',
   OL_PICKUP_ACCURACY: 'accuracy_too_low',
 };
 

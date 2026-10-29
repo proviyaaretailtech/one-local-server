@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { Tap } from './tap';
-import { View, Text, StyleSheet, Animated } from 'react-native';
+import { View, StyleSheet, Animated } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import { usePathname, useRouter } from 'expo-router';
 import { colors } from '../theme';
@@ -16,7 +17,7 @@ function DepartmentIcon({ id, selected, delay }: { id: string; selected: boolean
     const animation = Animated.sequence([Animated.delay(delay), Animated.timing(tilt, { toValue: -6, duration: 240, useNativeDriver: nativeDriver }), Animated.spring(tilt, { toValue: 0, friction: 3, useNativeDriver: nativeDriver })]);
     animation.start(); return () => animation.stop();
   }, [delay, motion, selected, tilt]);
-  return <Animated.View style={[styles.circle, selected && styles.selected, { transform: [{ translateY: tilt }, { rotate: tilt.interpolate({ inputRange: [-6, 0], outputRange: ['-8deg', '0deg'] }) }] }]}><Image testID={`department-icon-${id}`} source={mediaUrl(`icon-${id}-v2`)} style={[styles.icon, { borderRadius: 18 }]} contentFit="contain" /></Animated.View>;
+  return <Animated.View style={[styles.circle, { transform: [{ translateY: tilt }, { rotate: tilt.interpolate({ inputRange: [-6, 0], outputRange: ['-8deg', '0deg'] }) }, { scale: selected ? 1.12 : 1 }] }]}><Image testID={`department-icon-${id}`} source={mediaUrl(`icon-${id}-v4`)} style={styles.icon} contentFit="contain" /></Animated.View>;
 }
 export function DepartmentStrip() {
   const path = usePathname(); const router = useRouter(); const { t } = useTranslation();
@@ -27,4 +28,5 @@ export function DepartmentStrip() {
     </Tap>;
   })}</View>;
 }
-const styles = StyleSheet.create({ row: { flexDirection: 'row', paddingHorizontal: 12, paddingTop: 9, paddingBottom: 5 }, item: { flex: 1, alignItems: 'center', minHeight: 81, gap: 3 }, circle: { width: 51, height: 47, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }, icon: { width: 51, height: 47 }, selected: { backgroundColor: colors.glassBright, boxShadow: [{ offsetX: 0, offsetY: 5, blurRadius: 10, color: colors.shadow }] }, label: { color: colors.onSurface, fontSize: 9, lineHeight: 12, fontWeight: '500', textAlign: 'center' }, active: { fontWeight: '700', color: colors.forest }, dot: { width: 12, height: 3, borderRadius: 2, backgroundColor: colors.forest }, pressed: { transform: [{ scale: 0.9 }], opacity: 0.8 } });
+const styles = StyleSheet.create({ row: { flexDirection: 'row', paddingHorizontal: 12, paddingTop: 9, paddingBottom: 5 }, item: { flex: 1, alignItems: 'center', minHeight: 81, gap: 3 }, // Cut-out icons straight on the header, no tile or ring; the selected one grows a little and gets the underline.
+  circle: { width: 54, height: 54, alignItems: 'center', justifyContent: 'center' }, icon: { width: 54, height: 54 }, label: { color: colors.onSurface, fontSize: 11, lineHeight: 13, fontWeight: '600', textAlign: 'center' }, active: { fontWeight: '700', color: colors.forest }, dot: { width: 12, height: 3, borderRadius: 2, backgroundColor: colors.forest }, pressed: { transform: [{ scale: 0.9 }], opacity: 0.8 } });

@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
-import { View, Text, ScrollView, Pressable, StyleSheet } from 'react-native';
+import { View, ScrollView, Pressable, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useFocusEffect, useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import { bookingDay, getEnquiries, SavedEnquiry } from '@/src/bookings';

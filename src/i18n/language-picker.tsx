@@ -5,7 +5,8 @@
 // and the language you are in stay exactly as they are; when the new language is ready the whole app swaps
 // at once. If it fails or takes more than 8 seconds, that row says so, you stay in your current language,
 // and Retry sits right there. Tap another row meanwhile and the last tap wins.
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import * as Haptics from 'expo-haptics';
 import { useTranslation } from 'react-i18next';

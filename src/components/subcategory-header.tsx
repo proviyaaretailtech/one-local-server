@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
-import { Animated, Text, TextInput, Pressable, Platform, Share, StyleSheet } from 'react-native';
+import { Animated, Pressable, Platform, Share, StyleSheet } from 'react-native';
+import { Text, TextInput } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import * as Linking from 'expo-linking';
 import * as Clipboard from 'expo-clipboard';

@@ -4,7 +4,12 @@
 // always there. Placing an order does: the cart's Pay button opens this screen with next=checkout,
 // and signing in returns to the cart, which carries on paying.
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
+import { mediaUrl } from '@/src/api';
+import { useDeliveryLocation } from '@/src/delivery-location';
+import { Text, TextInput } from '@/src/ui/text';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -16,7 +21,7 @@ import { colors } from '@/src/theme';
 import { recordChoices, usePrivacyChoices } from '@/src/privacy';
 import { PRIVACY } from '@/constants/privacy';
 import { safeLineHeight, useFormat, useLanguage, useTranslation } from '@/src/i18n';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated, { FadeIn, FadeInDown, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useMotionAllowed } from '@/src/motion';
 
 // Light and quiet (after Glovo's sign-in): white page, soft filled fields with no borders, one bright
@@ -29,6 +34,8 @@ const SOFT = '#6B746D';
 export default function SignIn() {
   const { signInWithEmail, signUpWithEmail, verifyEmailCode, resendEmailCode, signInWithGoogle, signInWithApple, googleAvailable, appleAvailable, phoneAvailable, sendPhoneCode, verifyPhoneCode } = useAuth();
   const router = useRouter(); const insets = useSafeAreaInsets(); const motion = useMotionAllowed();
+  // The town the customer picked, in the headline ("Latur, at your door"); the photo takes about 38% of the screen.
+  const town = useDeliveryLocation().location.split(',')[0] || 'Latur'; const photoH = Math.round(useWindowDimensions().height * 0.38);
   // Sections rise in one after another on arrival; nothing moves under Reduce Motion.
   const rise = (i: number) => motion ? FadeInDown.delay(60 + i * 55).duration(420).springify().damping(20) : undefined;
   const { t } = useTranslation(); const fmt = useFormat(); const deva = useLanguage().active.script === 'devanagari';
@@ -41,6 +48,8 @@ export default function SignIn() {
   // Mobile number + one-time code: offered first whenever Supabase has phone sign-in switched on.
   const [method, setMethod] = useState<'phone' | 'email'>('phone');
   const byPhone = phoneAvailable && method === 'phone';
+  // Create account (email) also collects a mobile number and an optional WhatsApp offers choice (unticked by default).
+  const [signupMobile, setSignupMobile] = useState(''); const [whatsapp, setWhatsapp] = useState(false);
   const [mobile, setMobile] = useState(''); const [sentTo, setSentTo] = useState(''); const [code, setCode] = useState('');
   // The email a new account's 6-digit confirmation code went to (empty until sign-up asks for it).
   const [emailCodeFor, setEmailCodeFor] = useState('');
@@ -102,6 +111,7 @@ export default function SignIn() {
     setError(''); setNotice('');
     if (mode === 'signup' && name.trim().length < 2) return setError(t('auth.error.nameShort'));
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) return setError(t('auth.error.emailInvalid'));
+    if (mode === 'signup' && !/^[6-9]\d{9}$/.test(mobileDigits(signupMobile))) return setError(t('auth.error.mobileInvalid'));
     if (password.length < 6) return setError(t('auth.error.passwordShort'));
     if (!confirmedAdult()) return;
     setBusy('email');
@@ -109,7 +119,7 @@ export default function SignIn() {
       await recordConsent();
       if (mode === 'signin') await signInWithEmail(email, password);
       else {
-        const { needsConfirmation } = await signUpWithEmail(name, email, password);
+        const { needsConfirmation } = await signUpWithEmail(name, email, password, signupMobile, whatsapp);
         if (needsConfirmation) { const to = email.trim().toLowerCase(); setEmailCodeFor(to); setCode(''); setWait(30); setNotice(t('auth.notice.emailCodeSent', { email: to })); return; }
       }
       signedIn();
@@ -156,39 +166,47 @@ export default function SignIn() {
   </>;
 
   return <KeyboardAvoidingView testID="sign-in-screen" behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={s.screen}>
-    <StatusBar style="dark" />
-    <View pointerEvents="none" style={s.blob} />
-    <ScrollView keyboardShouldPersistTaps="handled" horizontal={false} showsHorizontalScrollIndicator={false} contentContainerStyle={[s.content, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 24 }]}>
-      <View style={s.top}>
-        <BrandLogo tone="light" height={26} />
-        <Pressable testID="sign-in-skip" accessibilityRole="button" onPress={leave} hitSlop={8} style={s.skip}><Text style={s.skipText}>{welcome ? t('auth.skipForNow') : t('common.close')}</Text></Pressable>
+    <StatusBar style="light" />
+    <ScrollView keyboardShouldPersistTaps="handled" horizontal={false} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
+      {/* A real local moment at the top (story-first look): the town's market, then the form on a white sheet over it. */}
+      <View style={[s.photo, { height: photoH }]}>
+        <Image testID="sign-in-photo" source={mediaUrl('signin-market-v1')} style={StyleSheet.absoluteFill} contentFit="cover" contentPosition="top" transition={200} />
+        <LinearGradient pointerEvents="none" colors={['rgba(6,18,11,0.45)', 'rgba(6,18,11,0)']} locations={[0, 0.4]} style={StyleSheet.absoluteFill} />
+        <View style={[s.top, { paddingTop: insets.top + 8 }]}>
+          <BrandLogo tone="dark" height={24} />
+          <Pressable testID="sign-in-skip" accessibilityRole="button" onPress={leave} hitSlop={8} style={s.skip}><Text style={s.skipText}>{welcome ? t('auth.skipForNow') : t('common.close')}</Text></Pressable>
+        </View>
       </View>
+      <View style={[s.sheet, { paddingBottom: insets.bottom + 24 }]}>
+      <View style={s.grabber} />
 
-      <Animated.View entering={rise(0)} style={s.hero}>
+      {/* One small capsule, always there (except at checkout, where signing in is the only point): sign in or create an account.
+          With a mobile number both are the same code, so it only changes the words; with email it changes the form. */}
+      {!checkout && <Animated.View entering={rise(0)} style={[s.capsuleRow, s.capsuleCentre]}>
+        <ModeCapsule mode={mode} onChange={switchMode} labels={{ signin: t('auth.signIn'), signup: t('auth.createAccount') }} motion={motion} />
+      </Animated.View>}
+
+      <Animated.View key={checkout ? 'checkout' : mode} entering={motion ? FadeIn.duration(220) : undefined} style={s.hero}>
         {checkout
           ? <><Text testID="sign-in-checkout-title" style={[s.title, deva && s.noTrack]}>{t('auth.heroTitle.checkout')}</Text><Text style={s.sub}>{t('auth.heroSub.checkout')}</Text></>
-          : <><Text style={[s.title, deva && s.noTrack]}>{mode === 'signin' ? t('auth.heroTitle.signin') : t('auth.heroTitle.signup')}</Text><Text style={s.sub}>{t('auth.heroSub.default')}</Text></>}
+          : <><Text style={[s.title, deva && s.noTrack]}>{t('auth.heroTitle.town', { town })}</Text><Text style={s.sub}>{mode === 'signin' ? t('auth.heroSub.signin') : t('auth.heroSub.signup')}</Text></>}
       </Animated.View>
-
-      {phoneAvailable && <Animated.View entering={rise(1)} testID="sign-in-method" accessibilityRole="tablist" style={s.segment}>
-        {(['phone', 'email'] as const).map(m => <Pressable key={m} testID={`sign-in-method-${m}`} accessibilityRole="tab" accessibilityState={{ selected: method === m }} onPress={() => { setMethod(m); setError(''); setNotice(''); }} style={[s.segmentItem, method === m && s.segmentOn]}>
-          <Text style={[s.segmentText, method === m && s.segmentTextOn]}>{m === 'phone' ? t('auth.method.phone') : t('auth.method.email')}</Text>
-        </Pressable>)}
-      </Animated.View>}
 
       <Animated.View entering={rise(2)} style={s.card}>
         {byPhone ? <View testID="sign-in-phone" style={s.stack}>
           {!sentTo
             ? <Field icon="call-outline" prefix="+91" testID="sign-in-mobile" placeholder={t('auth.placeholder.mobile')} value={mobile} onChangeText={v => setMobile(v.replace(/[^\d ]/g, ''))}
                 keyboardType="phone-pad" textContentType="telephoneNumber" autoComplete="tel" maxLength={14} onSubmitEditing={sendCode} returnKeyType="go" />
-            : <Field icon="keypad-outline" testID="sign-in-code" placeholder={t('auth.placeholder.code')} value={code} onChangeText={v => setCode(v.replace(/\D/g, '').slice(0, 6))}
-                keyboardType="number-pad" textContentType="oneTimeCode" autoComplete="sms-otp" maxLength={6} onSubmitEditing={verifyCode} returnKeyType="go" />}
+            : <><Text style={s.codeLabel}>{t('auth.enterCode')}</Text>
+                <CodeBoxes value={code} onChange={v => setCode(v.replace(/\D/g, '').slice(0, 6))} onDone={verifyCode} label={t('auth.placeholder.code')} /></>}
         </View> : emailCodeFor ? <View testID="sign-in-email-confirm" style={s.stack}>
           <Field icon="keypad-outline" testID="sign-in-email-code" placeholder={t('auth.placeholder.code')} value={code} onChangeText={v => setCode(v.replace(/\D/g, '').slice(0, 6))}
             keyboardType="number-pad" textContentType="oneTimeCode" autoComplete="one-time-code" maxLength={6} onSubmitEditing={verifyEmail} returnKeyType="go" />
         </View> : <View testID="sign-in-mode" style={s.stack}>
           {mode === 'signup' && <Field icon="person-outline" testID="sign-in-name" placeholder={t('auth.placeholder.name')} value={name} onChangeText={setName} autoCapitalize="words" textContentType="name" />}
           <Field icon="mail-outline" testID="sign-in-email" placeholder={t('auth.placeholder.email')} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" textContentType="emailAddress" autoComplete="email" />
+          {mode === 'signup' && <Field icon="call-outline" prefix="+91" testID="sign-in-signup-mobile" placeholder={t('auth.placeholder.mobile')} value={signupMobile} onChangeText={v => setSignupMobile(v.replace(/[^\d ]/g, ''))}
+            keyboardType="phone-pad" textContentType="telephoneNumber" autoComplete="tel" maxLength={14} />}
           <Field icon="lock-closed-outline" testID="sign-in-password" placeholder={mode === 'signup' ? t('auth.placeholder.createPassword') : t('auth.placeholder.password')} value={password} onChangeText={setPassword}
             secureTextEntry={!reveal} autoCapitalize="none" textContentType={mode === 'signup' ? 'newPassword' : 'password'} onSubmitEditing={submit} returnKeyType="go"
             trailing={<Pressable testID="sign-in-reveal" accessibilityLabel={reveal ? t('auth.hidePassword') : t('auth.showPassword')} onPress={() => setReveal(r => !r)} style={s.eye}><Icon name={reveal ? 'eye-off-outline' : 'eye-outline'} size={18} color={SOFT} /></Pressable>} />
@@ -197,6 +215,7 @@ export default function SignIn() {
         {/* DPDP: the short notice sits right where consent is given; 18+ is required, offers are optional and never pre-ticked. */}
         <View testID="sign-in-consent" style={s.consent}>
           <Check id="sign-in-age" checked={adult} onPress={() => { setAdult(a => !a); setError(''); }} label={t('auth.consent.adult', { age: PRIVACY.minimumAge })} />
+          {!byPhone && mode === 'signup' && <Check id="sign-in-whatsapp" checked={whatsapp} onPress={() => setWhatsapp(w => !w)} label={t('auth.consent.whatsapp')} />}
           {privacy.current.marketing
             ? <Text testID="sign-in-marketing-on" style={s.consentNote}>{t('auth.consent.marketingOn')}</Text>
             : <Check id="sign-in-marketing" checked={marketing} onPress={() => setMarketing(m => !m)} label={t('auth.consent.marketing')} />}
@@ -229,8 +248,10 @@ export default function SignIn() {
           <Pressable testID="sign-in-change-number" accessibilityRole="button" onPress={() => { setSentTo(''); setCode(''); setNotice(''); setError(''); }} style={s.link}><Text style={s.linkText}>{t('auth.changeNumber')}</Text></Pressable>
           <Pressable testID="sign-in-resend" accessibilityRole="button" disabled={wait > 0 || !!busy} onPress={sendCode} style={s.link}><Text style={[s.linkText, wait > 0 && { color: SOFT }]}>{wait > 0 ? t('auth.resendIn', { seconds: fmt.number(wait) }) : t('auth.resend')}</Text></Pressable>
         </View>}
-        {!byPhone && !emailCodeFor && <Pressable testID={mode === 'signin' ? 'sign-in-mode-signup' : 'sign-in-mode-signin'} accessibilityRole="button" onPress={() => switchMode(mode === 'signin' ? 'signup' : 'signin')} style={s.switch}>
-          <Text style={s.switchText}>{mode === 'signin' ? t('auth.switch.toSignup') : t('auth.switch.toSignin')}</Text>
+        {/* Mobile number or email is a quiet second choice under the form, not a second row of tabs. */}
+        {phoneAvailable && !emailCodeFor && <Pressable testID={method === 'phone' ? 'sign-in-method-email' : 'sign-in-method-phone'} accessibilityRole="button"
+          onPress={() => { setMethod(method === 'phone' ? 'email' : 'phone'); setError(''); setNotice(''); }} style={s.switch}>
+          <Text style={s.switchText}>{method === 'phone' ? t('auth.method.useEmail') : t('auth.method.usePhone')}</Text>
         </Pressable>}
       </Animated.View>
 
@@ -248,8 +269,42 @@ export default function SignIn() {
       <Text style={s.legal}>{t('auth.legal')}{' '}
         <Text accessibilityRole="link" onPress={() => router.push('/privacy-notice' as never)} style={s.legalLink}>{t('auth.privacyNotice')}</Text> · {t('auth.noticeVersion', { version: PRIVACY.noticeVersion })}
       </Text>
+      </View>
     </ScrollView>
   </KeyboardAvoidingView>;
+}
+
+// The one-time code as six boxes. One real (invisible) text field takes the typing and SMS autofill; the boxes only show it.
+function CodeBoxes({ value, onChange, onDone, label }: { value: string; onChange: (v: string) => void; onDone: () => void; label: string }) {
+  const [focused, setFocused] = useState(false);
+  return <View style={s.codeRow}>
+    {Array.from({ length: 6 }, (_, i) => <View key={i} style={[s.codeBox, (value.length === i || (i === 5 && value.length === 6)) && focused && s.codeBoxOn, !!value[i] && s.codeBoxFull]}>
+      <Text style={s.codeDigit}>{value[i] ?? ''}</Text>
+    </View>)}
+    <TextInput testID="sign-in-code" accessibilityLabel={label} value={value} onChangeText={onChange} autoFocus
+      keyboardType="number-pad" textContentType="oneTimeCode" autoComplete="sms-otp" maxLength={6} onSubmitEditing={onDone} returnKeyType="go"
+      onFocus={() => setFocused(true)} onBlur={() => setFocused(false)} caretHidden style={s.codeInput} />
+  </View>;
+}
+
+// The sign in / create account capsule: a small pill with a highlight that slides to the chosen side.
+function ModeCapsule({ mode, onChange, labels, motion }: { mode: 'signin' | 'signup'; onChange: (m: 'signin' | 'signup') => void; labels: Record<'signin' | 'signup', string>; motion: boolean }) {
+  const [box, setBox] = useState<Record<'signin' | 'signup', { x: number; w: number }>>({ signin: { x: 3, w: 0 }, signup: { x: 3, w: 0 } });
+  const x = useSharedValue(3); const w = useSharedValue(0);
+  useEffect(() => {
+    const target = box[mode]; if (!target.w) return;
+    x.value = motion ? withTiming(target.x, { duration: 220 }) : target.x;
+    w.value = motion ? withTiming(target.w, { duration: 220 }) : target.w;
+  }, [mode, box, motion, x, w]);
+  const thumb = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }], width: w.value }));
+  return <View testID="sign-in-mode-tabs" accessibilityRole="tablist" style={s.capsule}>
+    <Animated.View pointerEvents="none" style={[s.capsuleThumb, thumb]} />
+    {(['signin', 'signup'] as const).map(m => <Pressable key={m} testID={`sign-in-mode-${m}-tab`} accessibilityRole="tab" accessibilityState={{ selected: mode === m }}
+      onLayout={e => { const { x: lx, width } = e.nativeEvent.layout; setBox(b => (b[m].x === lx && b[m].w === width ? b : { ...b, [m]: { x: lx, w: width } })); }}
+      onPress={() => onChange(m)} hitSlop={6} style={s.capsuleItem}>
+      <Text style={[s.capsuleText, mode === m && s.capsuleTextOn]}>{labels[m]}</Text>
+    </Pressable>)}
+  </View>;
 }
 
 // A plain, unticked-by-default checkbox (never pre-ticked for consent).
@@ -273,12 +328,27 @@ function Field({ icon, prefix, trailing, testID, ...input }: React.ComponentProp
 
 const s = StyleSheet.create({
   screen: { flex: 1, backgroundColor: '#fff', overflow: 'hidden' },
-  blob: { position: 'absolute', top: -190, right: -150, width: 320, height: 320, borderRadius: 160, backgroundColor: colors.limeSoft },
-  content: { paddingHorizontal: 22, flexGrow: 1 },
-  top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  photo: { width: '100%', backgroundColor: '#2A3A2F' },
+  sheet: { flexGrow: 1, marginTop: -28, paddingHorizontal: 22, borderTopLeftRadius: 32, borderTopRightRadius: 32, backgroundColor: '#fff' },
+  grabber: { alignSelf: 'center', width: 40, height: 4, borderRadius: 2, backgroundColor: '#DDE2DC', marginTop: 10 },
+  top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 18 },
   skip: { minHeight: 44, minWidth: 44, paddingHorizontal: 14, borderRadius: 22, backgroundColor: 'rgba(255,255,255,0.8)', justifyContent: 'center', alignItems: 'center' },
   skipText: { color: INK, fontSize: 13, fontWeight: '700' },
-  hero: { marginTop: 40, marginBottom: 24 },
+  hero: { marginTop: 18, marginBottom: 22 },
+  capsuleRow: { marginTop: 18, flexDirection: 'row' },
+  capsuleCentre: { justifyContent: 'center' },
+  codeLabel: { color: INK, fontSize: 14, fontWeight: '700' },
+  codeRow: { flexDirection: 'row', justifyContent: 'space-between', gap: 8 },
+  codeBox: { flex: 1, aspectRatio: 0.86, maxWidth: 52, borderRadius: 14, borderWidth: 1.5, borderColor: LINE, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center' },
+  codeBoxOn: { borderColor: colors.forest },
+  codeBoxFull: { borderColor: '#C9D2CB' },
+  codeDigit: { color: INK, fontSize: 22, fontWeight: '800' },
+  codeInput: { ...StyleSheet.absoluteFill, opacity: 0.02, color: 'transparent' },
+  capsule: { flexDirection: 'row', padding: 3, borderRadius: 999, backgroundColor: FILL, borderWidth: 1, borderColor: LINE },
+  capsuleThumb: { position: 'absolute', top: 3, bottom: 3, left: 0, borderRadius: 999, backgroundColor: colors.electricLime, boxShadow: [{ offsetX: 0, offsetY: 1, blurRadius: 4, color: 'rgba(13,18,14,0.10)' }] },
+  capsuleItem: { minHeight: 34, paddingHorizontal: 14, borderRadius: 999, justifyContent: 'center' },
+  capsuleText: { color: SOFT, fontSize: 13, fontWeight: '700' },
+  capsuleTextOn: { color: INK },
   title: { color: INK, fontSize: 30, lineHeight: safeLineHeight(30, 36), fontWeight: '800', letterSpacing: -0.8 },
   noTrack: { letterSpacing: 0 }, // Devanagari: letter-spacing pulls conjuncts and matras apart
   sub: { color: SOFT, fontSize: 14, lineHeight: 21, marginTop: 10, maxWidth: 330 },

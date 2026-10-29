@@ -5,6 +5,7 @@ import { accessToken } from './lib/supabase';
 import { updateHeaders } from './app-identity';
 import { isNetworkError, reportNetworkFailure, reportNetworkSuccess } from './network/online-state';
 import { noteResponse } from './network/app-blocked-state';
+import { COMING_SOON_ALL, announceComingSoon, isAlwaysOpenApi } from './coming-soon-mode';
 // backendUrl is injected server-side via app.config.ts → extra; never use EXPO_PUBLIC_ vars for secrets.
 // In development on a phone (Expo Go), fall back to the dev server that served the app,
 // which also serves app/api.
@@ -158,6 +159,8 @@ export type PaymentResult =
   | { type: 'failed'; reason?: string };
 
 export async function apiPost<T>(path: string, body: unknown, headers: Record<string, string> = {}): Promise<T> {
+  // Coming-soon build: no write reaches the server (carts, orders, sign-up, profile edits).
+  if (COMING_SOON_ALL && !isAlwaysOpenApi(path)) { announceComingSoon(); throw new ApiError(501, 'Coming soon', 'coming_soon'); } // i18n-ignore (never shown: the banner says it)
   const r = await send(`${API}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json", ...(await identity()), ...headers },

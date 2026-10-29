@@ -1,5 +1,6 @@
 import type { ParseKeys } from 'i18next';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Pressable, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { PaymentMethod, UpiApp } from '../customer';
 import { colors } from '../theme';

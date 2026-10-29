@@ -1,5 +1,5 @@
-// Touch feedback for anything tappable: while the finger is down the surface sinks a little and a
-// neon ring glows around it; a light haptic confirms the tap. Drop-in for Pressable — the style goes
+// Touch feedback for anything tappable: while the finger is down the surface sinks a little and a light
+// haptic confirms the tap. No outline or ring is drawn (glow is opt-in and off by default). Drop-in for Pressable — the style goes
 // on the Pressable itself, so flex, widths and percentages behave exactly as before.
 // (A plain Pressable with its pressed state, not an animated wrapper: animated Pressables drop their
 // styles on react-native-web.) Reduce Motion keeps the ring but skips the scale.
@@ -14,7 +14,7 @@ type Props = Omit<PressableProps, 'style' | 'children'> & { style?: StyleProp<Vi
 // Smooths the press on the web (native applies it instantly, which reads as a crisp tap).
 const webEase = Platform.OS === 'web' ? ({ transitionProperty: 'transform', transitionDuration: `${duration.instant}ms`, transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)' } as unknown as ViewStyle) : null;
 
-export function Tap({ style, glow = true, haptic = true, radius = 18, onPress, children, ...rest }: Props) {
+export function Tap({ style, glow = false, haptic = true, radius = 18, onPress, children, ...rest }: Props) {
   const motion = useMotionAllowed();
   return <Pressable {...rest}
     onPress={e => { if (haptic) buzz.tap(); onPress?.(e); }}

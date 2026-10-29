@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useAppDimensions } from '../layout';
-import { View, Text, Animated, Pressable, StyleSheet } from 'react-native';
+import { View, Animated, Pressable, StyleSheet } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useRouter } from 'expo-router';

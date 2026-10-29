@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { View, Text, ScrollView, Pressable, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, ScrollView, Pressable, StyleSheet, ActivityIndicator } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import { api, Coupon } from '../api';
 import { colors } from '../theme';

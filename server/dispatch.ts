@@ -462,14 +462,16 @@ export async function adoptOrders(orderIds: string[]): Promise<string[]> {
   const ready: string[] = [];
   for (const id of orderIds) {
     try {
-      const r = await rpc<{ adopted: boolean; replayed?: boolean; reason?: string; organization_id?: string; pos_order_id?: string; display_no?: string }>(
+      const r = await rpc<{ adopted: boolean; replayed?: boolean; reason?: string; organization_id?: string; pos_order_id?: string; display_no?: string; accept_window_seconds?: number }>(
         'ol_adopt_marketplace_order', { p_ol_order: id });
       if (r.adopted) {
         ready.push(id);
         if (!r.replayed && r.organization_id) {
+          const window = Number(r.accept_window_seconds) || 240;
           await pushToRestaurant(r.organization_id, {
-            title: `New order ${r.display_no}`, body: 'New One Local order, accept within 60 seconds',
-            data: { type: 'new_order', order_id: r.pos_order_id },
+            title: `New order ${r.display_no}`,
+            body: `New One Local order, accept within ${window % 60 === 0 ? `${window / 60} minute${window === 60 ? '' : 's'}` : `${window} seconds`}`,
+            data: { type: 'new_order', order_id: r.pos_order_id }, ttl: window,
           });
         }
         continue;
@@ -482,6 +484,13 @@ export async function adoptOrders(orderIds: string[]): Promise<string[]> {
   }
   return ready;
 }
+
+// The first reason ol_restaurant_live gives, in words for the checkout ("<store> cannot take your order right now: ...").
+const NOT_LIVE: Record<string, string> = {
+  pos_offline: 'the restaurant is offline right now', paused: 'the restaurant is not accepting orders', platform_hold: 'the restaurant is paused by One Local',
+  outside_hours: 'the restaurant is closed now', no_location: 'the restaurant has no map location yet', not_approved: 'it is not set up to receive orders',
+  suspended: 'it is not set up to receive orders', not_listed: 'it is not set up to receive orders', not_found: 'it is not set up to receive orders',
+};
 
 // An Item Master listing sells its restaurant's menu items under made-up product ids: "<store id>_<menu item id>" (and
 // "<store id>_<menu item id>_<variant id>"), see marketplace.ts listingCatalog. This gives the menu item back, or null for any other id.
@@ -517,21 +526,23 @@ export async function assertFulfillable(
       throw refuse('it is not set up to receive orders');
     }
     const listed = g.items.map(i => listingMenuItemId(g.store_id, i.id)).filter((m): m is string => !!m);
-    const [{ data: channel, error: channelError }, pickup, { data: products, error: productError }, { data: menu, error: menuError }] = await Promise.all([
+    // Guard 2 (0580): the database's one live rule (switch, platform hold, approval, map point, a POS seen in the last 5 minutes, business hours),
+    // asked before anyone is charged. The same rule the validate-restaurant-live Edge Function and the ghost watcher use.
+    const [live, { data: channel }, pickup, { data: products, error: productError }, { data: menu, error: menuError }] = await Promise.all([
+      rpc<{ allow_order: boolean; reasons: string[] }>('ol_restaurant_live', { p_org: store.organization_id }),
       db().from('ol_merchant_channels').select('accepting, lat, lng, city_id').eq('organization_id', store.organization_id).maybeSingle(),
       pickupStatus(store.organization_id),
       db().from('ol_products').select('id, menu_item_id').in('id', g.items.map(i => i.id)),
       listed.length ? db().from('menu_items').select('id').eq('organization_id', store.organization_id).in('id', listed) : Promise.resolve({ data: [] as { id: string }[], error: null }),
     ]);
-    if (channelError) fromDbError(channelError);
     if (productError) fromDbError(productError);
     if (menuError) fromDbError(menuError);
-    if (!channel?.accepting) throw refuse('the restaurant is not accepting orders');
+    if (!live?.allow_order) throw refuse(NOT_LIVE[(live?.reasons ?? [])[0] ?? ''] ?? 'the restaurant is not accepting orders');
     // Pickup point (specs/restaurant-pickup-location): riders go where the restaurant confirmed. No point, or a point nobody at the
     // restaurant confirmed (in a city set to 'verified'), or a disputed one, is refused with its own reason code. The database checks
     // the same again when the payment lands (ol_adopt_marketplace_order, 0344). pickup null = no 0341 table yet: coordinates only.
     const notReady = (code: string) => new HttpError(409, `${g.store_name || 'This restaurant'} is not ready for delivery yet. Nothing was charged.`, undefined, code);
-    if (channel.lat == null || channel.lng == null || pickup === 'missing') throw notReady('pickup_location_missing');
+    if (!channel || channel.lat == null || channel.lng == null || pickup === 'missing') throw notReady('pickup_location_missing');
     if (pickup === 'disputed' || (pickup && pickup !== 'verified' && (await pickupEnforcement(channel.city_id)) === 'verified')) throw notReady('pickup_location_unverified');
     // An item is "mapped" when the restaurant can find it on its own menu: a catalogue product linked to a menu item (ol_products), or a menu
     // item of this very restaurant sold under its listing (the made-up id above).

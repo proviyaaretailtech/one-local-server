@@ -6,7 +6,8 @@
 // deliberate gesture, and holding is hard with TalkBack/VoiceOver. Reduce Motion: no fill sweep
 // (the timing, ticks and label still work).
 import { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Animated, { cancelAnimation, Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { haptic } from '../../haptics';
 import { useMotionAllowed } from '../../motion';

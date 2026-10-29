@@ -1,7 +1,8 @@
 // My Orders. Orders placed together (one per store, paid once) show as one checkout card with a
 // row per store; older orders and single-store checkouts look as they always did.
 import { useState, useCallback, useMemo } from "react";
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from "react-native";
+import { View, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from "react-native";
+import { Text } from "@/src/ui/text";
 import { Image } from "expo-image";
 import { useRouter, useFocusEffect } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -10,6 +11,7 @@ import * as Haptics from "expo-haptics";
 import { colors, radius, spacing } from "@/src/theme";
 import { api, Order } from "@/src/api";
 import { useCart } from "@/src/cart";
+import { reorderLines } from "@/src/reorder";
 import { useAuth } from "@/src/auth";
 import { supabase } from "@/src/lib/supabase";
 import { orderStatusKey, useFormat, useTranslation } from "@/src/i18n";
@@ -56,7 +58,7 @@ export default function OrdersScreen() {
   // Everything from the checkout, into the right cart (food from another restaurant asks first).
   const reorder = (key: string, list: Order[]) => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    addMany(list.flatMap(o => o.items.map(it => ({ product: { id: it.id, name: it.name, weight: it.weight, price: it.price, mrp: it.mrp, image: it.image, store_id: o.store_id ?? undefined }, qty: it.qty }))));
+    addMany(reorderLines(list));
     setReordered(key);
     setTimeout(() => setReordered(null), 1500);
   };

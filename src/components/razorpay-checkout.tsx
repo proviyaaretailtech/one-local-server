@@ -3,7 +3,8 @@
 // Razorpay's native SDK (react-native-razorpay) would need a new build, so it waits (docs/PAYMENTS.md).
 // Card numbers, UPI PINs and bank logins are typed into Razorpay's page, never into One Local.
 import { useEffect, useRef, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, ActivityIndicator, Linking } from 'react-native';
+import { Modal, View, Pressable, StyleSheet, ActivityIndicator, Linking } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { WebView } from 'react-native-webview';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';

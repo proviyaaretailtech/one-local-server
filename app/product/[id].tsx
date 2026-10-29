@@ -4,7 +4,8 @@
 // footer echoes the hero image. Data: GET /api/products/:id/story.
 import { useEffect, useRef, useState } from 'react';
 import { useAppDimensions } from '@/src/layout';
-import { Animated, Easing, NativeScrollEvent, NativeSyntheticEvent, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, NativeScrollEvent, NativeSyntheticEvent, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -13,6 +14,7 @@ import { useVideoPlayer, VideoView } from 'expo-video';
 import Icon from '@react-native-vector-icons/ionicons';
 import * as Haptics from 'expo-haptics';
 import { colors, radius, spacing } from '@/src/theme';
+import { logoSize, logoTile } from '@/src/logo-tile';
 import { apiGet, Product } from '@/src/api';
 import { useCart } from '@/src/cart';
 import { useCustomer } from '@/src/customer';
@@ -22,6 +24,8 @@ import { useFormat, useTranslation } from '@/src/i18n';
 import { paletteFor } from '@/src/departments';
 import { nativeDriver, useMotionAllowed } from '@/src/motion';
 import { ProductRail } from '@/src/components/catalog-sections';
+import { useStoreEtas } from '@/src/use-store-etas';
+import { departmentName } from '@/src/departments';
 
 type Story = {
   product: Product; gallery: string[];
@@ -42,6 +46,7 @@ export default function ProductDetail() {
   const compare = useCompare(); const motion = useMotionAllowed(); const { t } = useTranslation(); const fmt = useFormat();
   const [story, setStory] = useState<Story | null>(null); const [failed, setFailed] = useState(false);
   const [slide, setSlide] = useState(0); const [playing, setPlaying] = useState(false); const [watching, setWatching] = useState(false);
+  const etas = useStoreEtas();
   const [compareFull, setCompareFull] = useState(false); const [tick, setTick] = useState(0);
   const pager = useRef<ScrollView>(null); const zoom = useRef(new Animated.Value(0)).current;
 
@@ -67,6 +72,7 @@ export default function ProductDetail() {
   if (!story) return <View testID="product-detail" style={s.center}><View style={s.skeletonHero} /><View style={s.skeletonLine} /><View style={[s.skeletonLine, { width: '40%' }]} /></View>;
 
   const { product, gallery, video } = story;
+  const eta = (product.store_id && etas[product.store_id]) || product.delivery_min; // the store's real time when known
   const palette = paletteFor(`/${product.department ?? 'grocery'}`);
   const qty = qtyOf(product.id); const savings = product.mrp - product.price;
   const unit = unitPrice(product.price, product.weight);
@@ -110,7 +116,7 @@ export default function ProductDetail() {
       <View style={s.sheet}>
         {!!savedError && <Text testID="pd-save-error" style={{ color: colors.onError }}>{savedError}</Text>}
         <View style={s.chipsRow}>
-          <View style={s.delivery}><Icon name="flash" size={12} color={colors.onSurface} /><Text style={s.deliveryText}>{fmt.eta(product.delivery_min)}</Text></View>
+          <View style={s.delivery}><Icon name="flash" size={12} color={colors.onSurface} /><Text style={s.deliveryText}>{fmt.eta(eta)}</Text></View>
           <View style={s.rating}><Icon name="star" size={11} color={colors.gold} /><Text style={s.ratingText}>{fmt.number(product.rating, { maxFractionDigits: 1, minFractionDigits: 1 })}</Text></View>
           {!!story.category && <Pressable testID="pd-category-link" onPress={() => router.push(`/category/${story.category!.id}` as any)} style={s.catLink}><Text style={s.catLinkText}>{t('product.moreInCategory', { name: story.category.name })}</Text><Icon name="chevron-forward" size={12} color={colors.forest} /></Pressable>}
         </View>
@@ -138,13 +144,30 @@ export default function ProductDetail() {
         </Pressable>}
 
         {!!story.store && <Pressable testID="pd-store-card" onPress={() => router.push(`/store/${story.store!.id}` as any)} style={s.store}>
-          {story.store.logo ? <Image source={story.store.logo} style={s.storeLogo} contentFit="contain" /> : <View style={s.storeLogo} />}
-          <View style={{ flex: 1 }}><Text style={s.storeName}>{story.store.name}</Text><Text style={s.storeMeta} numberOfLines={1}>{`${story.store.tagline || t('product.storeFallback')} · ${fmt.deliveryTime(story.store.delivery_time)}`}</Text></View>
+          <View style={s.storeLogo}>{!!story.store.logo && <Image source={story.store.logo} style={s.storeLogoImage} contentFit="contain" />}</View>
+          <View style={{ flex: 1 }}><Text style={s.storeName} numberOfLines={1}>{story.store.name}</Text><Text style={s.storeMeta} numberOfLines={1}>{`${story.store.tagline || t('product.storeFallback')} · ${fmt.deliveryTime(story.store.delivery_time)}`}</Text></View>
           <Icon name="chevron-forward" size={18} color={colors.muted} />
         </Pressable>}
         {!!story.brand && <Pressable testID="pd-brand-link" accessibilityRole="link" onPress={() => router.push(`/brand/${story.brand!.id}` as any)} style={s.brandLink}>
           <Text style={s.catLinkText}>{t('product.moreFromBrand', { name: story.brand.name })}</Text><Icon name="chevron-forward" size={12} color={colors.forest} />
         </Pressable>}
+      </View>
+
+      {/* Everything the catalogue knows about the item, nothing more. */}
+      <View testID="pd-details" style={s.details}>
+        <Text style={[s.sectionTitle, { marginHorizontal: 0 }]}>{t('product.details.title')}</Text>
+        {([
+          ['brand', t('product.details.brand'), story.brand?.name],
+          ['pack', t('product.details.packSize'), product.weight],
+          ['category', t('product.details.category'), story.category?.name],
+          ['store', t('product.details.soldBy'), story.store?.name],
+          ['type', t('product.details.type'), product.department ? departmentName(t, product.department) : ''],
+          ['delivery', t('product.details.delivery'), fmt.eta(eta)],
+          ['rating', t('product.details.rating'), fmt.number(product.rating, { maxFractionDigits: 1, minFractionDigits: 1 }) + ' / 5'],
+          ['mrp', t('product.details.mrp'), product.mrp > product.price ? fmt.money(product.mrp) : ''],
+          ['save', t('product.details.youSave'), savings > 0 ? `${fmt.money(savings)} (${fmt.percent(Math.round(savings / product.mrp * 100))})` : ''],
+          ['tax', t('product.details.taxes'), product.department === 'food' ? t('product.gstAdded') : t('product.taxIncluded')],
+        ] as const).filter(([, , value]) => !!value).map(([key, label, value]) => <View key={key} style={s.detailRow}><Text style={s.detailLabel}>{label}</Text><Text testID={`pd-detail-${key}`} style={s.detailValue}>{value}</Text></View>)}
       </View>
 
       {story.related.length > 0 && <View style={s.relatedWrap}><Text style={s.sectionTitle}>{t('product.moreLikeThis')}</Text><ProductRail products={story.related} scope="pd-related" /></View>}
@@ -231,9 +254,13 @@ const s = StyleSheet.create({
   compareThumbs: { flexDirection: 'row' }, compareThumb: { width: 30, height: 30, borderRadius: 10, marginRight: -8, borderWidth: 2, borderColor: INK, backgroundColor: colors.surface },
   compareBarText: { flex: 1, color: colors.surface, fontSize: 13, fontWeight: '700', marginLeft: 8 },
   store: { marginTop: 18, flexDirection: 'row', alignItems: 'center', gap: 12, padding: 12, borderRadius: 20, backgroundColor: colors.surfaceSecondary },
-  storeLogo: { width: 46, height: 46, borderRadius: 14, backgroundColor: colors.surface },
+  storeLogo: logoTile(48), storeLogoImage: { width: logoSize(48), height: logoSize(48) },
   storeName: { fontSize: 14, fontWeight: '800', color: colors.onSurface }, storeMeta: { fontSize: 11, color: colors.muted, marginTop: 2 },
   relatedWrap: { marginTop: 8 },
+  details: { marginTop: 8, marginHorizontal: spacing.lg, padding: spacing.lg, borderRadius: 20, backgroundColor: colors.surfaceSecondary },
+  detailRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, paddingVertical: 9, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.border },
+  detailLabel: { fontSize: 13, color: colors.muted, flexShrink: 0 },
+  detailValue: { flex: 1, textAlign: 'right', fontSize: 13, fontWeight: '700', color: colors.onSurface },
   sectionTitle: { fontSize: 18, fontWeight: '700', color: colors.onSurface, marginHorizontal: 20, marginBottom: 12, letterSpacing: -0.3 },
   footer: { marginTop: 28, height: 260, alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 30, overflow: 'hidden' },
   footerShot: { width: 110, height: 110, marginBottom: 16, opacity: 0.95 },

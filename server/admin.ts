@@ -566,6 +566,9 @@ export async function setListingStatus(request: Request, id: string) {
 export const BUCKET = 'onecity-catalog';
 export const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const IMAGE_TYPES: Record<string, string[]> = { 'image/jpeg': ['jpg', 'jpeg'], 'image/png': ['png'], 'image/webp': ['webp'] };
+// Marketing pop-up creatives (specs/marketing-popups): photos up to 2 MB, MP4 videos up to 15 MB (30 s).
+const POPUP_TYPES: Record<string, string[]> = { ...IMAGE_TYPES, 'video/mp4': ['mp4'] };
+const POPUP_MAX_BYTES = (type: string) => (type.startsWith('video/') ? 15 : 2) * 1024 * 1024;
 
 const randomHex = (bytes: number) => Array.from(crypto.getRandomValues(new Uint8Array(bytes)), b => b.toString(16).padStart(2, '0')).join('');
 
@@ -573,21 +576,24 @@ export async function uploadUrl(request: Request) {
   const admin = await requireAdmin(request, true);
   limit(admin.userId, 'admin-upload', 30, 60_000);
   const body = await readBody(request);
-  if (body.folder !== 'stores') throw bad('folder must be "stores".');
+  if (body.folder !== 'stores' && body.folder !== 'popups') throw bad('folder must be "stores" or "popups".');
+  const folder = body.folder as 'stores' | 'popups';
+  const types = folder === 'popups' ? POPUP_TYPES : IMAGE_TYPES;
+  const maxBytes = folder === 'popups' ? POPUP_MAX_BYTES(typeof body.content_type === 'string' ? body.content_type.trim().toLowerCase() : '') : MAX_IMAGE_BYTES;
   const type = typeof body.content_type === 'string' ? body.content_type.trim().toLowerCase() : '';
-  if (!IMAGE_TYPES[type]) throw bad('Only JPEG, PNG or WebP images can be uploaded.');
+  if (!types[type]) throw bad(folder === 'popups' ? 'Only JPEG, PNG or WebP photos or MP4 videos can be uploaded.' : 'Only JPEG, PNG or WebP images can be uploaded.');
   const filename = typeof body.filename === 'string' ? body.filename.trim() : '';
   const parts = filename.match(/^([^/\\\0]{1,100})\.([A-Za-z0-9]{2,5})$/);
   if (!parts) throw bad('filename must be a plain file name such as logo.jpg.');
   const ext = parts[2].toLowerCase();
-  if (!IMAGE_TYPES[type].includes(ext)) throw bad(`A ${type} file must end in .${IMAGE_TYPES[type].join(' or .')}.`);
+  if (!types[type].includes(ext)) throw bad(`A ${type} file must end in .${types[type].join(' or .')}.`);
   const size = body.size ?? body.bytes;
   if (size !== undefined && (typeof size !== 'number' || !(size > 0))) throw bad('size must be the file size in bytes.');
-  if (typeof size === 'number' && size > MAX_IMAGE_BYTES) throw err(413, 'too_large', 'Images can be at most 5 MB.');
+  if (typeof size === 'number' && size > maxBytes) throw err(413, 'too_large', `This file can be at most ${maxBytes / 1024 / 1024} MB.`);
 
   const name = `${randomHex(8)}-${market.slugify(parts[1]) || 'image'}.${ext}`;
   const now = new Date();
-  const path = `stores/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${name}`;
+  const path = `${folder}/${now.getUTCFullYear()}/${String(now.getUTCMonth() + 1).padStart(2, '0')}/${name}`;
   let upload: string, published: string;
   if (dbConfigured()) {
     const bucket = db().storage.from(BUCKET);
@@ -607,7 +613,7 @@ export async function uploadUrl(request: Request) {
   // Supabase signed upload links are valid for 2 hours. PUT the file body with exactly these headers.
   return {
     upload_url: upload, public_url: published, path, method: 'PUT', headers: { 'Content-Type': type, 'x-upsert': 'false' },
-    content_type: type, max_bytes: MAX_IMAGE_BYTES, expires_in: 7200,
+    content_type: type, max_bytes: maxBytes, expires_in: 7200,
   };
 }
 

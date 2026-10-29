@@ -1,7 +1,8 @@
 // A brand or store that is on OneLocal but has no menu yet (founder, 10 Oct 2026: "the menu doesn't exist yet, it should be
 // masked with coming soon"). Its page shows the coming-soon receipt instead of an empty list, and rails mark it "Soon".
 import { useEffect } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';

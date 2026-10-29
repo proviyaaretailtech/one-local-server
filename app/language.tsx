@@ -1,6 +1,7 @@
 // Profile → Language. Pick a language and the whole app switches at once (no restart, nothing remounts, so the
 // cart and any open form stay as they are). The sample card below shows the new language and ₹/date/time formats live.
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { AccountLayout, accountStyles as s } from '@/src/components/account-layout';
 import { LanguagePicker, useFormat, useTranslation } from '@/src/i18n';
 

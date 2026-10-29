@@ -45,6 +45,10 @@
     "error": {
       "timeout": "{{language}} is taking too long to load. The app is still in {{current}}.",
       "load": "{{language}} could not be loaded. The app is still in {{current}}."
+    },
+    "appearance": {
+      "toLight": "Switch to light look",
+      "toDark": "Switch to dark look"
     }
   },
   "format": {
@@ -142,11 +146,14 @@
     "heroTitle": {
       "checkout": "Sign in to place\nyour order.",
       "signin": "Your whole city,\none sign-in away.",
-      "signup": "Make OneLocal\nfeel like yours."
+      "signup": "Make OneLocal\nfeel like yours.",
+      "town": "{{town}}, at your door"
     },
     "heroSub": {
       "checkout": "Your bag is saved. Sign in once and we’ll take you straight back to pay.",
-      "default": "Orders that follow you to any phone, saved addresses, and OneLocal Coins when they arrive."
+      "default": "Orders that follow you to any phone, saved addresses, and OneLocal Coins when they arrive.",
+      "signin": "Welcome back. Local stores, fresh picks, real people.",
+      "signup": "Local stores. Fresh picks. Real people. Delivered to you."
     },
     "consent": {
       "notice": "We use your name, number, email and address only to run your account and deliver your orders.",
@@ -155,7 +162,8 @@
       "marketingOn": "You get offers and updates. Change this any time in Privacy & your data.",
       "marketing": "Send me offers and updates (optional)",
       "marketingHint": "You can switch this off any time.",
-      "under": "Under {{age}}?"
+      "under": "Under {{age}}?",
+      "whatsapp": "Send me offers and updates on WhatsApp (optional)"
     },
     "minor": {
       "title": "Ask a parent or guardian",
@@ -164,7 +172,9 @@
     },
     "method": {
       "phone": "Mobile number",
-      "email": "Email"
+      "email": "Email",
+      "useEmail": "Use email instead",
+      "usePhone": "Use mobile number instead"
     },
     "signIn": "Sign in",
     "createAccount": "Create account",
@@ -230,6 +240,10 @@
       "toSignup": "New here? Create an account",
       "toSignin": "Already have an account? Sign in"
     },
+    "mobile": {
+      "why": "We use your number for order updates. We never share it with stores."
+    },
+    "enterCode": "Enter the 6-digit code",
     "changeEmail": "Change email"
   },
   "account": {
@@ -315,7 +329,14 @@
     "storageLoadError": "Could not load your saved preferences. Please reopen this screen.",
     "storageSaveError": "Could not save your changes. Please try again.",
     "profileLoading": "Your profile is still loading",
-    "coinsTitle": "OneLocal Coins"
+    "coinsTitle": "OneLocal Coins",
+    "addMobile": {
+      "title": "Add your mobile number",
+      "body": "So we can reach you about your orders. WhatsApp offers are a separate, optional tick.",
+      "save": "Save number",
+      "saved": "Number saved.",
+      "failed": "Couldn’t save your number. Check your connection and try again."
+    }
   },
   "profile": {
     "title": "Make it yours",
@@ -483,7 +504,20 @@
     "removeOneItem": "Remove one {{name}}",
     "addOneItem": "Add one {{name}}",
     "add": "ADD",
-    "moreFromBrand": "More from {{name}}"
+    "moreFromBrand": "More from {{name}}",
+    "details": {
+      "title": "Product details",
+      "brand": "Brand",
+      "packSize": "Pack size",
+      "category": "Category",
+      "soldBy": "Sold by",
+      "type": "Type",
+      "delivery": "Delivery",
+      "rating": "Rating",
+      "mrp": "MRP",
+      "youSave": "You save",
+      "taxes": "Taxes"
+    }
   },
   "store": {
     "loading": "Loading store...",
@@ -713,7 +747,12 @@
       "canAsk": "Location access is off. Allow it to use your current location, or search for your town above.",
       "settings": "Location access is turned off for OneLocal. Turn it on in Settings, or search for your town above."
     },
-    "cannotFind": "Couldn’t find where you are right now. Check that location is switched on, or search for your town above."
+    "cannotFind": "Couldn’t find where you are right now. Check that location is switched on, or search for your town above.",
+    "sheet": {
+      "title": "Pick your city",
+      "sub": "Location is off, no problem. Choose a city to start browsing.",
+      "search": "Search another town"
+    }
   },
   "address": {
     "kind": {
@@ -848,7 +887,9 @@
       "unavailable": "Search unavailable. Please try again.",
       "cameraOff": "Camera access is off. Enable it in settings or choose a photo instead.",
       "photoFailed": "Could not open that photo. Please choose another."
-    }
+    },
+    "recent": "Recent searches",
+    "clearRecent": "Clear"
   },
   "voice": {
     "stopA11y": "Stop and search",
@@ -1077,7 +1118,11 @@
       "bookSubtitle": "Movies, music and a change of scene.",
       "assistantTitle": "Not sure where to start?",
       "assistantText": "Tell One your budget. Find your little favourites.",
-      "note": "Made for Latur. Curated for you. Demo brand listings, illustrative images and sample prices."
+      "note": "Made for Latur. Curated for you. Demo brand listings, illustrative images and sample prices.",
+      "storeCategories": {
+        "title": "Store categories",
+        "subtitle": "What each local store sells"
+      }
     },
     "promos": {
       "heading": "A LITTLE LOCAL. A LOT TO LOVE.",
@@ -1233,7 +1278,8 @@
       "eyebrow": "GOOD FOOD · BRIGHTER DAYS",
       "title": "Fresh choices\nfor a happier you.",
       "searchPlaceholder": "Search for food, groceries, shops…",
-      "photoLabel": "A fresh salad bowl"
+      "photoLabel": "A fresh salad bowl",
+      "fastDelivery": "Delivery in {{time}}"
     },
     "offers": {
       "groceryTitle": "Up to {{pct}} off",
@@ -1241,7 +1287,14 @@
       "careTitle": "Pharmacy & Beauty",
       "careSub": "Up to {{pct}} off"
     },
-    "essentialsTitle": "Your daily essentials"
+    "essentialsTitle": "Your daily essentials",
+    "favouritesTitle": "Your favourites",
+    "favouritesSubtitle": "Saved items, one tap away",
+    "orderAgain": {
+      "title": "Order again",
+      "one": "{{name}}",
+      "more": "{{name}} and {{count}} more"
+    }
   },
   "shell": {
     "goPrevious": "Go to previous page",
@@ -1500,6 +1553,13 @@
       "added": "Added to Cart!",
       "continue": "Continue Shopping",
       "view": "View Cart"
+    },
+    "strip": {
+      "deliveryIn": "Delivery in {{time}}",
+      "saving": "You're saving {{amount}} on this order"
+    },
+    "more": {
+      "title": "Add more from these categories"
     }
   },
   "checkout": {
@@ -1714,7 +1774,8 @@
       "on_the_way": "On the way to you",
       "at_door": "At your door",
       "delivered": "Delivered",
-      "cancelled": "Order cancelled"
+      "cancelled": "Order cancelled",
+      "waiting_partner": "Waiting for the restaurant to confirm"
     },
     "phaseNow": {
       "preparing": "The store is getting your order ready",
@@ -1732,7 +1793,31 @@
       "cycle": "cycle",
       "car": "car"
     },
-    "getHelp": "Get help with this order"
+    "getHelp": "Get help with this order",
+    "stage": {
+      "created": "Placing your order with {{store}}…",
+      "waiting_partner": "Sent to {{store}}. Waiting for them to confirm (up to 4 min).",
+      "answerIn": "They have {{time}} left to confirm",
+      "kitchen_ticket_created": "{{store}} accepted your order · Kitchen ticket #{{kot}} · ready in about {{prep}} min",
+      "kitchen_ticket_created_noPrep": "{{store}} accepted your order · Kitchen ticket #{{kot}}",
+      "preparing": "The kitchen has started your order",
+      "ready": "Your order is ready",
+      "out": "Your order is on the way",
+      "delivered": "Delivered. Enjoy your meal!",
+      "rejected_by_partner": "{{store}} couldn't take your order: {{reason}}.",
+      "rejected_by_partner_noReason": "{{store}} couldn't take your order.",
+      "auto_cancelled": "{{store}} didn't respond in time, so we cancelled your order.",
+      "auto_cancelled_ghost": "{{store}} went offline, so we cancelled your order.",
+      "customer_cancelled": "You cancelled this order.",
+      "ops_cancelled": "One Local cancelled this order.",
+      "cancelled": "This order was cancelled."
+    },
+    "stageRefund": {
+      "initiated": "Refund of {{amount}} started. It reaches your account in 5–7 working days.",
+      "processed": "Refund of {{amount}} sent to your original payment method.",
+      "delayed": "Your refund is delayed. Our support team is on it.",
+      "none": "Nothing was charged."
+    }
   },
   "notifications": {
     "placed": {
@@ -2071,7 +2156,8 @@
       "title": "Questions and complaints",
       "p1": "Our grievance officer answers questions about your personal data:",
       "p2": "We reply within {{days}} days. If you are not satisfied, you can complain to the {{board}}: {{link}}. Please use our grievance process first; the Act asks for that.",
-      "email": "Email {{email}}"
+      "email": "Email {{email}}",
+      "p2NoLink": "We reply within {{days}} days. If you are not satisfied, you can also complain to the {{board}}. Please use our grievance process first; the Act asks for that."
     },
     "s10": {
       "title": "Changes and languages",
@@ -2264,11 +2350,72 @@
       "menuSoon": "{{name}} is joining OneLocal. Its menu will be here soon.",
       "explore": "See what’s open now",
       "soon": "Soon"
-    }
+    },
+    "soundOn": "Turn the sound on",
+    "soundOff": "Turn the sound off"
   },
   "notFound": {
     "title": "This page took a wrong turn.",
     "body": "The link may be old or mistyped. Let’s get you back.",
     "home": "Go to home"
+  },
+  "welcome": {
+    "title": "One last step",
+    "subtitle": "Tell us who we are delivering to, and where.",
+    "mobileLabel": "Mobile number",
+    "locationLabel": "Delivery location",
+    "chooseLocation": "Choose your delivery location",
+    "locationNeeded": "Please choose where we should deliver.",
+    "finish": "Start shopping",
+    "saveError": "We could not save your details. Please try again.",
+    "differentNumber": "Use a different number"
+  },
+  "orderReceipt": {
+    "title": "Order receipt",
+    "order": "Order",
+    "date": "Date",
+    "store": "Store",
+    "deliverTo": "Deliver to",
+    "items": "Items",
+    "subtotal": "Item total",
+    "discount": "Discount",
+    "delivery": "Delivery fee",
+    "tax": "GST",
+    "total": "Total",
+    "payment": "Payment",
+    "footer": "Thank you for shopping local with OneLocal.",
+    "share": "Share receipt",
+    "copied": "Receipt copied"
+  },
+  "orderFeedback": {
+    "rateTitle": "How was your order?",
+    "deliveryTitle": "How was the delivery?",
+    "commentPlaceholder": "Anything to add? (optional)",
+    "submit": "Submit rating",
+    "thanks": "Thanks for rating your order",
+    "stars": "{{count}} stars",
+    "saveError": "We could not save that. Please try again.",
+    "reportTitle": "Something wrong with an item?",
+    "reportHint": "Tell us which item and what happened. We will review it and refund where it is due.",
+    "open": "Report a problem",
+    "choose": "Which item?",
+    "whatHappened": "What went wrong?",
+    "notePlaceholder": "Tell us more (optional)",
+    "send": "Send report",
+    "sent": "Report sent. We will review it and refund where it is due.",
+    "yourReports": "Your reports",
+    "kind": {
+      "missing": "Missing",
+      "wrong": "Wrong item",
+      "damaged": "Damaged",
+      "quality": "Poor quality"
+    },
+    "status": {
+      "open": "Under review",
+      "approved": "Approved",
+      "rejected": "Not approved",
+      "refunded": "Refunded"
+    },
+    "already": "You have already reported this. We are looking at it."
   }
 }

@@ -6,12 +6,15 @@
 //    request goes out straight away so the screen is never showing a minutes-old rider.
 //  - A failed request keeps the last good answer on screen and retries after 5, 10, 20, 40, then 60 seconds.
 //  - Stops for good once the order is delivered or cancelled (nothing will move any more).
+//  - Realtime (0580): a broadcast on the order's topic (src/use-order-realtime.ts) asks again at once, even after the order was
+//    final (a refund that settles later); polling stays the fallback, so a dropped socket only makes the screen slower.
 //  - `data` is null until the first answer; `loading` is true only until the first answer or the first failure.
 import { useEffect, useState } from 'react';
 import { AppState } from 'react-native';
 import { useIsFocused } from 'expo-router';
 import { api } from './api';
-import { isTerminalPhase, nextPollDelayMs, parseTracking, type TrackingData } from './utils/tracking';
+import { useOrderRealtime } from './use-order-realtime';
+import { isFinalStage, isTerminalPhase, nextPollDelayMs, parseTracking, type TrackingData } from './utils/tracking';
 
 const REQUEST_TIMEOUT_MS = 12_000;
 
@@ -33,6 +36,11 @@ export function useLiveTracking(orderId: string | undefined, { enabled = true }:
   // One state object tagged with the order it belongs to: a different order starts from nothing without any reset effect.
   const [stored, setStored] = useState<State>(() => fresh(orderId));
   const state = stored.orderId === orderId ? stored : fresh(orderId);
+  const [nudge, setNudge] = useState(0);
+  useOrderRealtime(orderId, () => {
+    setStored(prev => (prev.orderId === orderId && prev.finished ? { ...prev, finished: false } : prev));
+    setNudge(n => n + 1);
+  }, enabled);
 
   useEffect(() => {
     const sub = AppState.addEventListener('change', next => setForeground(next === 'active'));
@@ -51,7 +59,7 @@ export function useLiveTracking(orderId: string | undefined, { enabled = true }:
         if (cancelled) return;
         if (!parsed) throw new Error('not a tracking response'); // i18n-ignore (developer-only)
         failures = 0;
-        const finished = parsed.live && isTerminalPhase(parsed.phase);
+        const finished = (parsed.live && isTerminalPhase(parsed.phase)) || isFinalStage(parsed.stage);
         setStored({ orderId, data: parsed, loading: false, error: null, finished });
         if (!finished) timer = setTimeout(poll, nextPollDelayMs(parsed.poll_after_s, 0));
       } catch (e) {
@@ -64,7 +72,7 @@ export function useLiveTracking(orderId: string | undefined, { enabled = true }:
     };
     poll();
     return () => { cancelled = true; if (timer) clearTimeout(timer); };
-  }, [running, orderId]);
+  }, [running, orderId, nudge]);
 
   return { data: state.data, loading: state.loading, error: state.error };
 }

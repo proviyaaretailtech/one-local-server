@@ -1,7 +1,8 @@
 // Food comes from one restaurant per order, like Swiggy Food, so adding a dish from another
 // restaurant asks before the food cart is emptied. Shopping carts mix stores freely and never ask.
 // Shown by CartProvider (src/cart.tsx); the server refuses a two-restaurant food checkout as well.
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Modal, Pressable, StyleSheet, View } from 'react-native';
+import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors, radius, spacing } from '../theme';

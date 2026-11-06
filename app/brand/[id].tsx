@@ -30,7 +30,7 @@ export default function BrandCollection() {
   const hero = brand.image || products[0]?.image || '';
   return <ScrollView testID={`brand-screen-${id}`} style={styles.screen} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
     <ImmersiveHeader testID="brand-hero" image={hero} eyebrow={t('brand.eyebrow')} title={brand.name} subtitle={brand.tagline} logo={brand.logo || undefined} monogram={brand.logo ? undefined : monogram(brand.name)}
-      right={ownStore.data ? <GlassPill testID={`brand-store-${id}`} label={t('brand.storeProfile')} icon="storefront-outline" onPress={() => router.push(`/store/${ownStore.data.id}` as any)} /> : undefined}>
+      right={ownStore.data ? <GlassPill testID={`brand-store-${id}`} label={t('brand.storeProfile')} icon="storefront-outline" onPress={() => router.push(`/store/${ownStore.data.id}`)} /> : undefined}>
       <View style={styles.heroActions}>
         <GlassPill testID={`brand-follow-${id}`} label={followed ? t('brand.following') : t('brand.follow')} icon={followed ? 'heart' : 'heart-outline'} active={followed} onPress={() => toggle(id)} />
         <View style={styles.countPill}><Text testID="brand-product-count-pill" style={styles.countText}>{t('brand.finds', { count: products.length, value: fmt.number(products.length) })}</Text></View>

@@ -4,6 +4,7 @@
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from '@react-native-vector-icons/ionicons';
+import { StatusBar } from 'expo-status-bar';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -34,6 +35,7 @@ export function LanguageFirstRun() {
   const flip = () => setDark(d => { const next = !d; AsyncStorage.setItem(APPEARANCE_KEY, next ? 'dark' : 'light').catch(() => {}); return next; });
   if (!show) return null;
   return <View testID="language-first-run" accessibilityViewIsModal aria-modal style={[s.screen, !dark && s.screenLight]}>
+    <StatusBar style={dark ? 'light' : 'dark'} />
     <ScrollView contentContainerStyle={[s.content, { paddingTop: insets.top + 28, paddingBottom: insets.bottom + 24 }]} keyboardShouldPersistTaps="handled">
       <View style={s.top}>
         <BrandLogo tone={dark ? 'dark' : 'light'} height={30} />
@@ -69,7 +71,6 @@ const s = StyleSheet.create({
   titleLight: { color: '#0B1F16' },
   noteLight: { color: 'rgba(11,31,22,0.6)' },
   content: { paddingHorizontal: 22, flexGrow: 1 },
-  brand: { flexDirection: 'row', alignItems: 'flex-end', gap: 1 },
   hero: { marginTop: 30, marginBottom: 22, gap: 6 },
   title: { color: '#fff', fontSize: 28, lineHeight: 40, fontWeight: '800' },
   note: { color: 'rgba(255,255,255,0.62)', fontSize: 12, lineHeight: 19, marginTop: 16 },

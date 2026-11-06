@@ -14,7 +14,7 @@ import { errorMessage, i18n, t } from './i18n';
 import type { Formatter } from './i18n';
 import {
   ConsentPurpose, ConsentSource, KeptByLawId, NoticeItemId, NOTICE_ITEMS, NOTICE_ITEM_IDS, OPTIONAL_PURPOSES, OptionalPurpose, PRIVACY,
-  SHARED_WITH, SHARED_WITH_IDS, SharedWithId, KEPT_BY_LAW_IDS,
+  SHARED_WITH_IDS, SharedWithId, KEPT_BY_LAW_IDS,
 } from '../constants/privacy';
 
 const KEY = 'onecity.privacy.v1';

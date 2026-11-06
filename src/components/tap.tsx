@@ -2,23 +2,21 @@
 // haptic confirms the tap. No outline or ring is drawn (glow is opt-in and off by default). Drop-in for Pressable — the style goes
 // on the Pressable itself, so flex, widths and percentages behave exactly as before.
 // (A plain Pressable with its pressed state, not an animated wrapper: animated Pressables drop their
-// styles on react-native-web.) Reduce Motion keeps the ring but skips the scale.
-import { Platform, Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
+// styles on react-native-web.) Reduce Motion skips the scale.
+import { Pressable, PressableProps, StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { haptic as buzz } from '../haptics';
-import { useMotionAllowed } from '../motion';
-import { duration, pressScale } from '../motion-tokens';
+import { markHaptic } from '../native/haptic-clock';
+import { motionAllowedNow } from '../motion';
+import { pressScale, webPressEase } from '../motion-tokens';
 import { colors } from '../theme';
 
 type Props = Omit<PressableProps, 'style' | 'children'> & { style?: StyleProp<ViewStyle>; glow?: boolean; haptic?: boolean; radius?: number; children?: React.ReactNode };
 
-// Smooths the press on the web (native applies it instantly, which reads as a crisp tap).
-const webEase = Platform.OS === 'web' ? ({ transitionProperty: 'transform', transitionDuration: `${duration.instant}ms`, transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)' } as unknown as ViewStyle) : null;
-
 export function Tap({ style, glow = false, haptic = true, radius = 18, onPress, children, ...rest }: Props) {
-  const motion = useMotionAllowed();
+  // haptic={false} still claims the moment (markHaptic), so the app-wide press feedback stays silent as well.
   return <Pressable {...rest}
-    onPress={e => { if (haptic) buzz.tap(); onPress?.(e); }}
-    style={({ pressed }) => [style, webEase, motion && pressed && { transform: [{ scale: pressScale }] }]}>
+    onPress={e => { if (haptic) buzz.tap(); else markHaptic(); onPress?.(e); }}
+    style={({ pressed }) => [style, webPressEase, motionAllowedNow() && pressed && { transform: [{ scale: pressScale }] }]}>
     {({ pressed }) => <>
       {children}
       {glow && pressed && <View pointerEvents="none" style={[StyleSheet.absoluteFill, s.ring, { borderRadius: radius }]} />}

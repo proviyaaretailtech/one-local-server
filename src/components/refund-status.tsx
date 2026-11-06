@@ -45,7 +45,7 @@ export function RefundStatus({ orderId, checkoutId }: { orderId?: string | null;
         <Icon name={failed ? 'alert-circle' : done ? 'checkmark-circle' : 'time-outline'} size={20} color={failed ? colors.onError : done ? colors.onSuccess : colors.onWarning} />
         <View style={s.flex}>
           <Text style={s.text}>{text}</Text>
-          {failed && <Pressable testID="refund-support" accessibilityRole="link" onPress={() => router.push('/help' as never)} style={s.link}><Text style={s.linkText}>{t('payui.refund.support')}</Text></Pressable>}
+          {failed && <Pressable testID="refund-support" accessibilityRole="link" onPress={() => router.push('/help')} style={s.link}><Text style={s.linkText}>{t('payui.refund.support')}</Text></Pressable>}
         </View>
       </View>;
     })}

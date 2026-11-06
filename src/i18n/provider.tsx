@@ -6,7 +6,7 @@
 //   4. announces a change to screen readers, in the new language, and sets <html lang> on web.
 import { createContext, useContext, useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import { AccessibilityInfo, Platform } from 'react-native';
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import type { LocaleController, LocaleState } from './loader';
 import { LOCALES, localeMeta, type LocaleMeta } from './locales';
 import { bootI18n, i18n, prefetchWhenIdle } from './runtime';
@@ -70,4 +70,3 @@ export function useLanguage(): LanguageApi {
 }
 
 /** Re-renders when the language changes and gives the translate function for it (a thin alias so screens import from one place). */
-export function useT() { return useTranslation().t; }

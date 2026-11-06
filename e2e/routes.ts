@@ -51,11 +51,6 @@ export const SCREENS: Screen[] = [
   { name: 'cart-empty', route: '/cart', ready: 'cart-screen' },
   { name: 'cart-filled', route: '/cart', ready: 'checkout-btn', setup: seedCart },
   { name: 'account', route: '/account', ready: 'account-screen' },
-  { name: 'grocery', route: '/grocery', ready: 'department-screen-grocery' },
-  { name: 'shops', route: '/shops', ready: 'department-screen-shops' },
-  { name: 'care', route: '/care', ready: 'department-screen-care' },
-  { name: 'pharmacy', route: '/pharmacy', ready: 'department-screen-care' },
-  { name: 'beauty', route: '/beauty', ready: 'department-screen-care' },
   { name: 'reels', route: '/reels', ready: 'reels-screen' },
   // Search and AI
   { name: 'search', route: '/search', ready: 'search-screen' },

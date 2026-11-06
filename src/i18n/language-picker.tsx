@@ -10,7 +10,7 @@ import { Text } from '@/src/ui/text';
 import Icon from '@react-native-vector-icons/ionicons';
 import * as Haptics from 'expo-haptics';
 import { useTranslation } from 'react-i18next';
-import { colors } from '../theme';
+import { colors, soft } from '../theme';
 import { formatDate, formatMoney } from './format';
 import { useLanguage } from './provider';
 
@@ -63,7 +63,7 @@ export function LanguagePicker({ tone = 'light' }: { tone?: PickerTone }) {
 const s = StyleSheet.create({
   group: { gap: 10 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 72, paddingVertical: 14, paddingHorizontal: 16, borderRadius: 20, borderWidth: 1.5 },
-  rowLight: { backgroundColor: colors.surface, borderColor: colors.border },
+  rowLight: { backgroundColor: colors.surface, borderColor: colors.surface, boxShadow: soft.lifted },
   rowDark: { backgroundColor: '#101210', borderColor: 'rgba(255,255,255,0.12)' },
   rowOnLight: { backgroundColor: colors.limeSoft, borderColor: colors.forest },
   rowOnDark: { borderColor: colors.electricLime },

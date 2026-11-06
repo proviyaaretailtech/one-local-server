@@ -11,12 +11,16 @@ import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from '
 import * as RN from 'react-native';
 import type { GestureResponderEvent, PressableProps, PressableStateCallbackType, StyleProp, View, ViewStyle } from 'react-native';
 import { haptic } from '../haptics';
-import { useMotionAllowed } from '../motion';
-import { duration } from '../motion-tokens';
+import { motionAllowedNow } from '../motion';
+import { webPressEase as webEase } from '../motion-tokens';
 import { lastHapticAt } from './haptic-clock';
 
 export * from 'react-native';
 export default RN;
+// Shadows react-native's deprecated lazy getter. Fast Refresh walks every export of this module in development, and reading
+// that getter builds a NativeEventEmitter for a native module this app does not link, which throws on iOS at startup.
+// The app does not use it (expo-notifications handles notifications).
+export const PushNotificationIOS = undefined;
 
 type Handler = ((e: GestureResponderEvent) => unknown) | null | undefined;
 // Run the handler, then play the generic tap only if it did not buzz on its own.
@@ -26,25 +30,23 @@ function withHaptic(fn: Handler) {
 }
 
 const SINK_PX = 6; // how far the edges travel in, at most
-const webEase = RN.Platform.OS === 'web'
-  ? ({ transitionProperty: 'transform', transitionDuration: `${duration.instant}ms`, transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)' } as unknown as ViewStyle)
-  : null;
 
 export const Pressable = forwardRef<View, PressableProps>(function Pressable({ onPress, onLongPress, onPressIn, style, disabled, ...rest }, ref) {
-  const motion = useMotionAllowed();
   const node = useRef<View>(null);
   useImperativeHandle(ref, () => node.current as View);
   const [width, setWidth] = useState(0);
+  // Reduce Motion is read at the press itself rather than subscribed to, so a trip to the background and back does
+  // not re-render every button in the app.
   const pressIn = useCallback((e: GestureResponderEvent) => {
-    if (motion && !width) try { node.current?.measure((_x, _y, w) => { if (w) setWidth(w); }); } catch { /* not mounted */ }
+    if (motionAllowedNow() && !width) try { node.current?.measure((_x, _y, w) => { if (w) setWidth(w); }); } catch { /* not mounted */ }
     onPressIn?.(e);
-  }, [motion, width, onPressIn]);
+  }, [width, onPressIn]);
   const styleFn = useCallback((state: PressableStateCallbackType) => {
     const own = typeof style === 'function' ? style(state) : style;
-    if (!motion || disabled || !state.pressed || !width) return webEase ? [own, webEase] : own;
+    if (!motionAllowedNow() || disabled || !state.pressed || !width) return webEase ? [own, webEase] : own;
     if (RN.StyleSheet.flatten(own)?.transform) return own;
     return [own, webEase, { transform: [{ scale: Math.max(0.96, 1 - SINK_PX / width) }] }] as StyleProp<ViewStyle>;
-  }, [style, motion, disabled, width]);
+  }, [style, disabled, width]);
   return <RN.Pressable {...rest} ref={node} disabled={disabled} onPressIn={pressIn} style={styleFn}
     onPress={withHaptic(onPress) ?? undefined} onLongPress={withHaptic(onLongPress) ?? undefined} />;
 });

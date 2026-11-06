@@ -1,23 +1,24 @@
 // My Orders. Orders placed together (one per store, paid once) show as one checkout card with a
 // row per store; older orders and single-store checkouts look as they always did.
 import { useState, useCallback, useMemo } from "react";
-import { View, StyleSheet, ScrollView, TouchableOpacity, RefreshControl } from "react-native";
+import { View, StyleSheet, Pressable, RefreshControl } from "react-native";
 import { Text } from "@/src/ui/text";
 import { Image } from "expo-image";
 import { useRouter, useFocusEffect } from "expo-router";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "@react-native-vector-icons/ionicons";
 import * as Haptics from "expo-haptics";
-import { colors, radius, spacing } from "@/src/theme";
+import { colors, popBase, radius, spacing } from "@/src/theme";
 import { api, Order } from "@/src/api";
 import { useCart } from "@/src/cart";
 import { reorderLines } from "@/src/reorder";
 import { useAuth } from "@/src/auth";
 import { supabase } from "@/src/lib/supabase";
 import { orderStatusKey, useFormat, useTranslation } from "@/src/i18n";
+import { AccountLayout, accountStyles as a } from "@/src/components/account-layout";
+import { Button } from "@/src/ui/button";
+import { EmptyState } from "@/src/ui/states";
 
 export default function OrdersScreen() {
-  const insets = useSafeAreaInsets();
   const router = useRouter();
   const { addMany } = useCart();
   const { t } = useTranslation();
@@ -64,128 +65,97 @@ export default function OrdersScreen() {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: colors.surfaceSecondary }} testID="orders-screen">
-      <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
-        <TouchableOpacity onPress={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')} style={styles.backBtn} testID="orders-back-btn">
-          <Icon name="chevron-back" size={22} color={colors.onSurface} />
-        </TouchableOpacity>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>{t('orders.title')}</Text>
-          <Text style={styles.sub}>{t('orders.count', { count: checkouts.length })}</Text>
+    <AccountLayout id="orders" title={t('orders.title')} subtitle={t('orders.count', { count: checkouts.length })} fallback="/(tabs)" refreshControl={<RefreshControl refreshing={refreshing} onRefresh={fetchOrders} tintColor={colors.forest} />}>
+      {signedOut && <View style={[a.card, a.row]} testID="orders-signed-out">
+        <View style={a.tile}><Icon name="person-circle-outline" size={22} color={colors.forest} /></View>
+        <View style={a.flex}>
+          <Text style={styles.strong}>{t('orders.signedOutTitle')}</Text>
+          <Text style={styles.meta}>{t('orders.signedOutSub')}</Text>
         </View>
-      </View>
-      <ScrollView
-        contentContainerStyle={{ padding: spacing.lg, paddingBottom: 40 }}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={fetchOrders} />}
-      >
-        {signedOut && <View style={styles.signInCard} testID="orders-signed-out">
-          <Icon name="person-circle-outline" size={28} color={colors.onSurface} />
-          <View style={{ flex: 1 }}>
-            <Text style={styles.signInTitle}>{t('orders.signedOutTitle')}</Text>
-            <Text style={styles.emptySub}>{t('orders.signedOutSub')}</Text>
-          </View>
-          <TouchableOpacity testID="orders-sign-in" accessibilityRole="button" style={styles.signInBtn} onPress={() => router.push('/sign-in?next=/orders' as never)}>
-            <Text style={styles.shopBtnText}>{t('orders.signIn')}</Text>
-          </TouchableOpacity>
-        </View>}
-        {failed && <View style={styles.empty} testID="orders-error"><Text style={styles.emptySub}>{t('orders.loadError')}</Text><TouchableOpacity testID="orders-retry" style={styles.shopBtn} onPress={fetchOrders}><Text style={styles.shopBtnText}>{t('common.retry')}</Text></TouchableOpacity></View>}
-        {orders.length === 0 && !failed ? (
-          <View style={styles.empty}>
-            <Text style={styles.emptyEmoji}>📦</Text>
-            <Text style={styles.emptyTitle}>{t('orders.emptyTitle')}</Text>
-            <Text style={styles.emptySub}>{t('orders.emptySub')}</Text>
-            <TouchableOpacity style={styles.shopBtn} onPress={() => router.replace("/(tabs)" as any)}>
-              <Text style={styles.shopBtnText}>{t('orders.startShopping')}</Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          checkouts.map(({ key, orders: list }) => {
-            const first = list[0]; const many = list.length > 1;
-            const track = (o: Order) => <TouchableOpacity style={styles.trackBtn} onPress={() => router.push(`/order/${o.id}` as any)} testID={`track-${o.id}`}>
-              <Icon name="location-outline" size={14} color={colors.onSurface} />
-              <Text style={styles.trackText}>{t('orders.track')}</Text>
-            </TouchableOpacity>;
-            return <View key={key} style={styles.card} testID={many ? `checkout-${key}` : `order-${first.id}`}>
-              <View style={styles.cardHead}>
-                <View style={{ flex: 1 }}>
-                  <Text style={styles.orderId} numberOfLines={1}>{many ? t('orders.cardStores', { id: key.slice(0, 8).toUpperCase(), n: fmt.number(list.length) }) : `#${key.slice(0, 8).toUpperCase()}${first.store_name ? ` · ${first.store_name}` : ''}`}</Text>
-                  <Text style={styles.orderDate}>{fmt.dateTime(first.created_at)}</Text>
-                </View>
-                <View style={[styles.statusPill, { backgroundColor: colors.pastelGreen }]}>
-                  <Text style={styles.statusText}>{t(orderStatusKey(first.status))}</Text>
-                </View>
+        <Pressable testID="orders-sign-in" accessibilityRole="button" style={styles.go} onPress={() => router.push('/sign-in?next=/orders')}>
+          <Text style={styles.goText}>{t('orders.signIn')}</Text>
+        </Pressable>
+      </View>}
+      {failed && <View style={a.card} testID="orders-error"><Text style={a.hint}>{t('orders.loadError')}</Text><Button testID="orders-retry" variant="quiet" icon="refresh" title={t('common.retry')} onPress={fetchOrders} /></View>}
+      {orders.length === 0 && !failed ? (
+        <EmptyState testID="orders-empty" icon="bag-handle-outline" title={t('orders.emptyTitle')} body={t('orders.emptySub')}>
+          <Button testID="orders-start-shopping" title={t('orders.startShopping')} onPress={() => router.replace("/(tabs)")} />
+        </EmptyState>
+      ) : (
+        checkouts.map(({ key, orders: list }) => {
+          const first = list[0]; const many = list.length > 1;
+          const track = (o: Order) => <Pressable style={styles.track} onPress={() => router.push(`/order/${o.id}`)} testID={`track-${o.id}`}>
+            <Icon name="location-outline" size={14} color={colors.forest} />
+            <Text style={styles.trackText}>{t('orders.track')}</Text>
+          </Pressable>;
+          return <View key={key} style={[a.card, styles.card]} testID={many ? `checkout-${key}` : `order-${first.id}`}>
+            <View style={styles.head}>
+              <View style={a.flex}>
+                <Text style={styles.strong} numberOfLines={1}>{many ? t('orders.cardStores', { id: key.slice(0, 8).toUpperCase(), n: fmt.number(list.length) }) : `#${key.slice(0, 8).toUpperCase()}${first.store_name ? ` · ${first.store_name}` : ''}`}</Text>
+                <Text style={styles.meta}>{fmt.dateTime(first.created_at)}</Text>
               </View>
-
-              {list.map(o => <View key={o.id} style={many ? styles.storePart : undefined} testID={many ? `order-${o.id}` : undefined}>
-                {many && <View style={styles.storeHead}>
-                  <View style={{ flex: 1 }}><Text style={styles.storeName} numberOfLines={1}>{o.store_name || t('orders.storeFallback')}</Text><Text style={styles.footerMeta}>{t('orders.storeMeta', { total: fmt.money(o.total), count: o.items.length })}</Text></View>
-                  {track(o)}
-                </View>}
-                <View style={styles.imgRow}>
-                  {o.items.slice(0, 4).map((i) => (
-                    <Image key={i.id} source={i.image} style={styles.itemImg} contentFit="cover" />
-                  ))}
-                  {o.items.length > 4 && (
-                    <View style={styles.moreBadge}>
-                      <Text style={styles.moreText}>+{o.items.length - 4}</Text>
-                    </View>
-                  )}
-                </View>
-              </View>)}
-
-              <View style={styles.footer}>
-                <View style={{ flexShrink: 1 }}>
-                  <Text style={styles.total}>{fmt.money(list.reduce((s, o) => s + o.total, 0))}</Text>
-                  <Text style={styles.footerMeta}>{t(many ? 'orders.itemsTogether' : 'orders.items', { count: list.reduce((n, o) => n + o.items.length, 0) })}</Text>
-                </View>
-                <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-end", flexShrink: 1, gap: spacing.sm }}>
-                  {!many && track(first)}
-                  <TouchableOpacity style={styles.reorderBtn} onPress={() => reorder(key, list)} testID={`reorder-${first.id}`}>
-                    <Icon name={reordered === key ? "checkmark" : "repeat"} size={14} color={colors.onBrandPrimary} />
-                    <Text style={styles.reorderText}>{reordered === key ? t('orders.reordered') : t('orders.reorder')}</Text>
-                  </TouchableOpacity>
-                </View>
+              <View style={styles.status}>
+                <Text style={styles.statusText}>{t(orderStatusKey(first.status))}</Text>
               </View>
-            </View>;
-          })
-        )}
-      </ScrollView>
-    </View>
+            </View>
+
+            {list.map(o => <View key={o.id} style={many ? styles.storePart : undefined} testID={many ? `order-${o.id}` : undefined}>
+              {many && <View style={styles.storeHead}>
+                <View style={a.flex}><Text style={styles.strong} numberOfLines={1}>{o.store_name || t('orders.storeFallback')}</Text><Text style={styles.meta}>{t('orders.storeMeta', { total: fmt.money(o.total), count: o.items.length })}</Text></View>
+                {track(o)}
+              </View>}
+              <View style={styles.photos}>
+                {o.items.slice(0, 4).map((i) => (
+                  <Image key={i.id} source={i.image} style={styles.photo} contentFit="cover" />
+                ))}
+                {o.items.length > 4 && (
+                  <View style={styles.photo}>
+                    <Text style={styles.more}>+{fmt.number(o.items.length - 4)}</Text>
+                  </View>
+                )}
+              </View>
+            </View>)}
+
+            <View style={styles.footer}>
+              <View style={styles.sum}>
+                <Text style={styles.total}>{fmt.money(list.reduce((s, o) => s + o.total, 0))}</Text>
+                <Text style={styles.meta}>{t(many ? 'orders.itemsTogether' : 'orders.items', { count: list.reduce((n, o) => n + o.items.length, 0) })}</Text>
+              </View>
+              <View style={styles.actions}>
+                {!many && track(first)}
+                <Pressable style={styles.go} onPress={() => reorder(key, list)} testID={`reorder-${first.id}`}>
+                  <Icon name={reordered === key ? "checkmark" : "repeat"} size={14} color={colors.surface} />
+                  <Text style={styles.goText}>{reordered === key ? t('orders.reordered') : t('orders.reorder')}</Text>
+                </Pressable>
+              </View>
+            </View>
+          </View>;
+        })
+      )}
+    </AccountLayout>
   );
 }
 
+const PHOTO = 48;
 const styles = StyleSheet.create({
-  header: { paddingHorizontal: spacing.lg, paddingBottom: spacing.md, backgroundColor: colors.surface, borderBottomWidth: 1, borderBottomColor: colors.border, flexDirection: "row", alignItems: "center", gap: spacing.md },
-  backBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: colors.surfaceSecondary, alignItems: "center", justifyContent: "center" },
-  title: { fontSize: 20, fontWeight: "800", color: colors.onSurface },
-  sub: { fontSize: 12, color: colors.muted, marginTop: 2 },
-  empty: { alignItems: "center", padding: spacing.xl },
-  emptyEmoji: { fontSize: 56, marginBottom: spacing.md },
-  emptyTitle: { fontSize: 18, fontWeight: "800", color: colors.onSurface },
-  emptySub: { fontSize: 13, color: colors.muted, marginTop: 4 },
-  shopBtn: { marginTop: spacing.lg, backgroundColor: colors.brandPrimary, paddingHorizontal: 20, paddingVertical: 12, borderRadius: radius.pill },
-  shopBtnText: { color: colors.onBrandPrimary, fontWeight: "800" },
-  signInCard: { flexDirection: "row", alignItems: "center", gap: spacing.md, backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
-  signInTitle: { fontSize: 14, fontWeight: "800", color: colors.onSurface },
-  signInBtn: { minHeight: 44, justifyContent: "center", backgroundColor: colors.brandPrimary, paddingHorizontal: 16, borderRadius: radius.pill },
-  card: { backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing.md, marginBottom: spacing.md },
-  cardHead: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
-  orderId: { fontSize: 14, fontWeight: "800", color: colors.onSurface },
-  orderDate: { fontSize: 11, color: colors.muted, marginTop: 2 },
-  statusPill: { paddingHorizontal: 10, paddingVertical: 4, borderRadius: radius.pill, marginLeft: spacing.sm, maxWidth: "55%" },
-  statusText: { fontSize: 11, fontWeight: "800", color: colors.onSuccess },
-  imgRow: { flexDirection: "row", gap: 6, marginTop: spacing.md },
-  storePart: { marginTop: spacing.md, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.divider },
+  card: { gap: spacing.md },
+  head: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
+  strong: { fontSize: 15, lineHeight: 21, fontWeight: "800", color: colors.onSurface },
+  meta: { fontSize: 12, lineHeight: 17, color: colors.muted, marginTop: 2 },
+  status: { paddingHorizontal: 10, paddingVertical: 5, borderRadius: radius.pill, backgroundColor: colors.limeSoft, maxWidth: "55%" },
+  statusText: { fontSize: 11, fontWeight: "800", color: colors.forest },
+  storePart: { paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.border },
   storeHead: { flexDirection: "row", alignItems: "center", gap: spacing.sm },
-  storeName: { fontSize: 14, fontWeight: "800", color: colors.onSurface },
-  itemImg: { width: 44, height: 44, borderRadius: radius.sm, backgroundColor: colors.surfaceSecondary },
-  moreBadge: { width: 44, height: 44, borderRadius: radius.sm, backgroundColor: colors.surfaceSecondary, alignItems: "center", justifyContent: "center" },
-  moreText: { fontSize: 12, fontWeight: "800", color: colors.onSurface },
-  footer: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginTop: spacing.md },
-  total: { fontSize: 16, fontWeight: "800", color: colors.onSurface },
-  footerMeta: { fontSize: 11, color: colors.muted, marginTop: 2 },
-  trackBtn: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 12, paddingVertical: 8, borderRadius: radius.pill, borderWidth: 1, borderColor: colors.border },
-  trackText: { fontSize: 12, fontWeight: "800", color: colors.onSurface },
-  reorderBtn: { flexDirection: "row", alignItems: "center", gap: 4, paddingHorizontal: 12, paddingVertical: 8, borderRadius: radius.pill, backgroundColor: colors.brandPrimary },
-  reorderText: { fontSize: 12, fontWeight: "800", color: colors.onBrandPrimary },
+  photos: { flexDirection: "row", gap: 8, marginTop: spacing.sm },
+  photo: { width: PHOTO, height: PHOTO, borderRadius: 14, alignItems: "center", justifyContent: "center", backgroundColor: colors.surfaceSecondary },
+  more: { fontSize: 12, fontWeight: "800", color: colors.onSurface },
+  footer: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", gap: spacing.sm, paddingTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.border },
+  sum: { flexShrink: 1 },
+  total: { fontSize: 18, lineHeight: 24, fontWeight: "800", letterSpacing: -0.3, color: colors.onSurface },
+  actions: { flexDirection: "row", flexWrap: "wrap", justifyContent: "flex-end", flexShrink: 1, gap: spacing.sm },
+  track: { minHeight: 38, flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal: 14, borderRadius: radius.pill, backgroundColor: colors.surfaceSecondary },
+  trackText: { fontSize: 13, fontWeight: "800", color: colors.forest },
+  // The way forward (reorder, sign in): the brand green, raised on a darker base like a picked chip.
+  go: { minHeight: 38, flexDirection: "row", alignItems: "center", gap: 5, paddingHorizontal: 14, borderRadius: radius.pill, backgroundColor: colors.forest, boxShadow: popBase(3, colors.forestDeep) },
+  goText: { fontSize: 13, fontWeight: "800", color: colors.surface },
 });

@@ -8,14 +8,17 @@ import { useQuery } from '@tanstack/react-query';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
 import { useDeliveryLocation } from '@/src/delivery-location';
-import { listDistricts, listPlaces, listStates, placeLine, rememberPlace } from '@/src/places';
-import { colors } from '@/src/theme';
-import { useFormat, useTranslation } from '@/src/i18n';
+import { IndiaPlace, listDistricts, listPlaces, listStates, placeLine, rememberPlace } from '@/src/places';
+import { Wash, accountStyles as a } from '@/src/components/account-layout';
+import { ListRow } from '@/src/ui/list-row';
+import { colors, lightPane, radius, soft } from '@/src/theme';
+import { safeLineHeight, useFormat, useTranslation } from '@/src/i18n';
 
 // A row keeps the raw kind and population (not a sentence), so what a person reads is made at render time
 // and follows the language even though the list itself is cached.
-type Row = { key: string; title: string; kind?: keyof typeof KIND_TEXT; population?: number; onPress: () => void };
+type Row = { key: string; title: string; kind?: IndiaPlace['kind']; population?: number; onPress: () => void };
 const KIND_TEXT = { city: 'india.kindCity', town: 'india.kindTown', locality: 'india.kindLocality', village: 'india.kindVillage' } as const;
+const KIND_ICON = { city: 'business-outline', town: 'business-outline', locality: 'navigate-circle-outline', village: 'leaf-outline' } as const;
 
 export default function BrowseIndia() {
   const router = useRouter(); const insets = useSafeAreaInsets(); const delivery = useDeliveryLocation(); const { t } = useTranslation(); const fmt = useFormat();
@@ -25,15 +28,15 @@ export default function BrowseIndia() {
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ['india', state ?? '', district ?? ''], staleTime: Infinity,
     queryFn: async (): Promise<Row[]> => {
-      if (level === 'states') return (await listStates()).map(s => ({ key: s.code, title: s.name, onPress: () => router.push(`/india?state=${s.code}&name=${encodeURIComponent(s.name)}` as never) }));
-      if (level === 'districts') return (await listDistricts(state!)).map(d => ({ key: d.code, title: d.name, onPress: () => router.push(`/india?state=${state}&district=${d.code}&name=${encodeURIComponent(d.name)}` as never) }));
+      if (level === 'states') return (await listStates()).map(s => ({ key: s.code, title: s.name, onPress: () => router.push(`/india?state=${s.code}&name=${encodeURIComponent(s.name)}`) }));
+      if (level === 'districts') return (await listDistricts(state!)).map(d => ({ key: d.code, title: d.name, onPress: () => router.push(`/india?state=${state}&district=${d.code}&name=${encodeURIComponent(d.name)}`) }));
       return (await listPlaces(state!, district!)).map(p => ({
         key: p.id, title: p.name, kind: p.kind, population: p.population,
         onPress: () => {
           const line = placeLine(p);
           delivery.setLocation(`${p.name}, ${line}`, { lat: p.lat, lng: p.lng });
           void rememberPlace({ title: p.name, subtitle: line, lat: p.lat, lng: p.lng });
-          router.dismissTo('/(tabs)' as never);
+          router.dismissTo('/(tabs)');
         },
       }));
     },
@@ -42,36 +45,42 @@ export default function BrowseIndia() {
   const title = level === 'states' ? t('india.all') : name ?? '';
   const hint = level === 'states' ? t('india.filterStates') : level === 'districts' ? t('india.filterDistricts') : t('india.filterPlaces');
   const rowSub = (r: Row) => !r.kind ? undefined : r.population ? t('india.kindPeople', { kind: t(KIND_TEXT[r.kind]), value: fmt.number(r.population) }) : t(KIND_TEXT[r.kind]);
+  const icon = (r: Row) => (r.kind ? KIND_ICON[r.kind] : level === 'states' ? 'map-outline' : 'location-outline');
 
-  return <View testID="browse-india-screen" style={[s.screen, { paddingTop: insets.top }]}>
-    <View style={s.header}>
-      <Pressable testID="browse-india-back" accessibilityLabel={t('common.goBack')} onPress={() => router.back()} style={s.back}><Icon name="arrow-back" size={21} color={colors.onSurface} /></Pressable>
-      <View style={s.flex}><Text style={s.title} numberOfLines={1}>{title}</Text><Text style={s.sub}>{level === 'states' ? t('india.chooseState') : level === 'districts' ? t('india.chooseDistrict') : t('india.placesHint')}</Text></View>
+  return <View testID="browse-india-screen" style={s.screen}>
+    <Wash />
+    <View style={[s.bar, { paddingTop: insets.top + 8 }]}>
+      <Pressable testID="browse-india-back" accessibilityRole="button" accessibilityLabel={t('common.goBack')} onPress={() => router.back()} style={s.round}><Icon name="chevron-back" size={22} color={colors.onSurface} /></Pressable>
+      <View style={a.flex}>
+        <Text accessibilityRole="header" style={s.title} numberOfLines={1}>{title}</Text>
+        <Text style={s.sub}>{level === 'states' ? t('india.chooseState') : level === 'districts' ? t('india.chooseDistrict') : t('india.placesHint')}</Text>
+      </View>
     </View>
-    <View style={s.search}><Icon name="funnel-outline" size={16} color={colors.muted} /><TextInput testID="browse-india-filter" value={filter} onChangeText={setFilter} placeholder={hint} placeholderTextColor={colors.muted} style={s.input} autoCorrect={false} /></View>
+    <View style={s.search}>
+      <Icon name="search" size={18} color={colors.forest} />
+      <TextInput testID="browse-india-filter" accessibilityLabel={hint} value={filter} onChangeText={setFilter} placeholder={hint} placeholderTextColor={colors.muted} style={s.input} autoCorrect={false} />
+    </View>
     {isLoading && <ActivityIndicator style={s.pad} color={colors.forest} />}
-    {isError && <Pressable onPress={() => refetch()} style={s.pad}><Text style={s.sub}>{t('india.loadFailed')}</Text></Pressable>}
+    {isError && <Pressable accessibilityRole="button" onPress={() => refetch()} style={[a.card, s.failed]}><Text style={a.hint}>{t('india.loadFailed')}</Text></Pressable>}
     <FlatList data={rows} keyExtractor={r => r.key} keyboardShouldPersistTaps="handled" initialNumToRender={30}
-      contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: insets.bottom + 30 }}
-      renderItem={({ item, index }) => <Pressable testID={`browse-row-${index}`} onPress={item.onPress} style={[s.row, index > 0 && s.divider]}>
-        <View style={s.flex}><Text style={s.rowTitle}>{item.title}</Text>{!!item.kind && <Text style={s.rowSub}>{rowSub(item)}</Text>}</View>
-        <Icon name="chevron-forward" size={16} color={colors.muted} />
-      </Pressable>} />
+      style={s.list} contentContainerStyle={rows.length ? [s.card, { marginBottom: insets.bottom + 30 }] : undefined}
+      ItemSeparatorComponent={() => <View style={s.line} />}
+      renderItem={({ item, index }) => <ListRow testID={`browse-row-${index}`} icon={icon(item)} title={item.title} subtitle={rowSub(item)} onPress={item.onPress} />} />
   </View>;
 }
 
 const s = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.surface },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, minHeight: 60 },
-  back: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
-  flex: { flex: 1 },
-  title: { fontSize: 18, fontWeight: '800', color: colors.onSurface },
-  sub: { fontSize: 12, color: colors.muted, marginTop: 2 },
-  search: { margin: 16, marginTop: 4, minHeight: 44, borderRadius: 14, paddingHorizontal: 12, flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: colors.surfaceSecondary },
-  input: { flex: 1, fontSize: 15, color: colors.onSurface, minHeight: 42 },
-  pad: { padding: 24, alignItems: 'center' },
-  row: { minHeight: 52, flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10 },
-  divider: { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: colors.borderStrong },
-  rowTitle: { fontSize: 15, fontWeight: '600', color: colors.onSurface },
-  rowSub: { fontSize: 12, color: colors.muted, marginTop: 2 },
+  screen: { flex: 1, backgroundColor: colors.surfaceSecondary },
+  bar: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingBottom: 12 },
+  round: { ...lightPane, width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center' },
+  title: { color: colors.onSurface, fontSize: 24, lineHeight: safeLineHeight(24), fontWeight: '800', letterSpacing: -0.6 },
+  sub: { color: colors.inkSoft, fontSize: 13, lineHeight: 18 },
+  search: { marginHorizontal: 16, marginBottom: 14, height: 52, borderRadius: radius.pill, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10, backgroundColor: colors.surface, boxShadow: soft.lifted },
+  input: { flex: 1, fontSize: 15, color: colors.onSurface, minHeight: 48 },
+  pad: { padding: 24 },
+  failed: { marginHorizontal: 16 },
+  list: { flex: 1 },
+  // The whole list sits on one white card, like the other lists.
+  card: { marginHorizontal: 16, marginTop: 2, borderRadius: radius.md, backgroundColor: colors.surface, boxShadow: soft.lifted },
+  line: { height: 1, marginLeft: 70, backgroundColor: colors.border },
 });

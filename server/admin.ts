@@ -15,6 +15,7 @@
 //   * No database (npx expo start, no .env): everything runs on the in-memory store in
 //     marketplace.ts, and development tokens stand in for sign-in: "dev-admin:<platform role>"
 //     (e.g. dev-admin:master_admin) or "dev-user" (signed in, not an admin). Never in production.
+import crypto from 'node:crypto';
 import { signedInUserId } from './auth';
 import { invalidateCatalog } from './catalog';
 import { db, dbConfigured, fromDbError } from './db';
@@ -40,82 +41,154 @@ const notFound = (what: string) => err(404, 'not_found', `${what} not found`);
 // 'super_admin' is the one role the live platform_roles table holds; the others are the development-token roles.
 export const WRITE_ROLES = ['super_admin', 'master_admin', 'onboarding_admin', 'operations'];
 export type Admin = { userId: string; email: string; fullName: string | null; role: string; canWrite: boolean };
+// Any Active platform staff member on an active role, with that role's permission string as Master Admin writes it
+// ("feat_x::full::view_x$manage_x$$$feat_y::read_only::view_y"). dev: a development token (memory mode only).
+export type Staff = Admin & { permissions: string; dev?: boolean };
 
 const production = () => process.env.NODE_ENV === 'production';
-const g = globalThis as unknown as { __onecityAdmins?: Map<string, { admin: Admin | null; until: number }> };
-const admins = (g.__onecityAdmins ??= new Map());
+const g = globalThis as unknown as { __onecityStaff?: Map<string, { staff: Staff | null; until: number }> };
+const staffCache = (g.__onecityStaff ??= new Map());
 
 const asAdmin = (row: { user_id: string; email: string | null; full_name: string | null; role: string }): Admin =>
   ({ userId: row.user_id, email: row.email ?? '', fullName: row.full_name ?? null, role: row.role, canWrite: WRITE_ROLES.includes(row.role) });
 
-// The platform_admins row, cached for 30 seconds (a removed admin loses access within that time).
-// Live columns: user_id, role_id (-> platform_roles.key), first_name, last_name, status. The email lives in auth.users.
-// Only an Active admin gets in; a Suspended, Inactive or Pending one counts as not an admin.
-type RoleRow = { key: string; is_active?: boolean | null };
+// The platform_admins row, cached for 30 seconds (a removed admin, or a permission taken away, stops working within that time).
+// Live columns: user_id, role_id (-> platform_roles.key, is_active, permissions), first_name, last_name, status. The email lives in auth.users.
+// Only an Active staff member on an active role counts; a Suspended, Inactive or Pending one counts as nobody.
+type RoleRow = { key: string; is_active?: boolean | null; permissions?: string | null };
 type AdminRow = { user_id: string; status: string; first_name: string | null; last_name: string | null; platform_roles: RoleRow | RoleRow[] | null };
 // The same test the database makes for a platform admin (is_platform_super): an Active row whose role is active AND is super_admin (SRV-5).
-// A limited staff role (support, finance, a role someone named "operations") is not a One Local admin here: this API has no per-feature
-// permission model, so it must not hand out the full one. Anything missing or unexpected in the row is a "no": it fails closed.
+// A limited staff role (support, finance, a role someone named "operations") is not a One Local admin: it gets only the features
+// Master Admin granted that role (requireFeature), never the whole API. Anything missing or unexpected in the row is a "no": it fails closed.
 export const PLATFORM_ADMIN_ROLE = 'super_admin';
-export const adminFromRow = (row: AdminRow, email: string | null): Admin | null => {
+export const staffFromRow = (row: AdminRow, email: string | null): Staff | null => {
   if (row.status !== 'Active') return null;
   const role = Array.isArray(row.platform_roles) ? row.platform_roles[0] : row.platform_roles;
-  if (!role || role.key !== PLATFORM_ADMIN_ROLE || role.is_active !== true) return null; // no role, another role, or a deactivated role
+  if (!role || typeof role.key !== 'string' || role.is_active !== true) return null; // no role, or a deactivated role
   const fullName = [row.first_name, row.last_name].filter(Boolean).join(' ') || null;
-  return { ...asAdmin({ user_id: row.user_id, email, full_name: fullName, role: role.key }), canWrite: true };
+  const superAdmin = role.key === PLATFORM_ADMIN_ROLE;
+  return {
+    ...asAdmin({ user_id: row.user_id, email, full_name: fullName, role: role.key }),
+    canWrite: superAdmin, permissions: superAdmin || typeof role.permissions !== 'string' ? '' : role.permissions,
+  };
 };
-async function platformAdmin(userId: string): Promise<Admin | null> {
-  const hit = admins.get(userId);
-  if (hit && hit.until > Date.now()) return hit.admin;
-  const { data, error } = await db().from('platform_admins').select('user_id, status, first_name, last_name, platform_roles(key, is_active)').eq('user_id', userId).maybeSingle();
+export const adminFromRow = (row: AdminRow, email: string | null): Admin | null => {
+  const staff = staffFromRow(row, email);
+  if (!staff || staff.role !== PLATFORM_ADMIN_ROLE) return null;
+  const { permissions: _p, ...admin } = staff;
+  return admin;
+};
+async function platformStaff(userId: string): Promise<Staff | null> {
+  const hit = staffCache.get(userId);
+  if (hit && hit.until > Date.now()) return hit.staff;
+  const { data, error } = await db().from('platform_admins').select('user_id, status, first_name, last_name, platform_roles(key, is_active, permissions)').eq('user_id', userId).maybeSingle();
   if (error) {
     // The table does not look the way this code expects (a migration it does not know about, a renamed column) or the database is down:
     // nobody is let in, and nothing is cached, so the next call asks again. Only the code is logged.
     console.error('[admin] the platform_admins check failed, so access is refused:', error.code ?? 'error');
     throw err(503, 'admin_unavailable', 'The admin service cannot check your access right now. Please try again shortly.');
   }
-  let admin: Admin | null = null;
+  let staff: Staff | null = null;
   if (data) {
     const email = (await db().auth.admin.getUserById(userId).catch(() => null))?.data?.user?.email ?? null;
-    admin = adminFromRow(data as unknown as AdminRow, email);
+    staff = staffFromRow(data as unknown as AdminRow, email);
   }
-  if (admins.size > 1000) admins.clear();
-  admins.set(userId, { admin, until: Date.now() + 30_000 });
-  return admin;
+  if (staffCache.size > 1000) staffCache.clear();
+  staffCache.set(userId, { staff, until: Date.now() + 30_000 });
+  return staff;
 }
 
-function devAdmin(token: string): Admin | null {
+function devAdmin(token: string): Staff | null {
   if (token === 'dev-user') return null;
   const role = token.startsWith('dev-admin:') ? token.slice('dev-admin:'.length) : '';
   if (!(market.DEV_ROLES as readonly string[]).includes(role)) {
     throw err(401, 'dev_token_required', 'Without a database this server accepts development tokens only: "dev-admin:<platform role>" or "dev-user".');
   }
   const user = market.memory().users.find(u => u.id === market.devAdminId(role));
-  return asAdmin({ user_id: market.devAdminId(role), email: user?.email ?? null, full_name: `Dev ${role.replace(/_/g, ' ')}`, role });
+  return { ...asAdmin({ user_id: market.devAdminId(role), email: user?.email ?? null, full_name: `Dev ${role.replace(/_/g, ' ')}`, role }), permissions: '', dev: true };
 }
 
-export async function requireAdmin(request: Request, write: boolean): Promise<Admin> {
+// ---------- Which server is calling ----------
+// The Master server calls this API with its own key (INTERNAL_KEY_MASTER, in x-internal-key) as well as the staff member's session,
+// so a stolen staff token alone cannot drive One Local's admin API from anywhere else. When INTERNAL_KEY_MASTER is unset the key is
+// not asked for (today's behaviour, so a machine without it keeps working). Compared as SHA-256 digests in constant time; the key
+// never appears in a log line, an error or a reply.
+export const MASTER_KEY_ENV = 'INTERNAL_KEY_MASTER';
+const keyDigest = (value: string) => crypto.createHash('sha256').update(value, 'utf8').digest();
+export const masterKeyConfigured = (env: Record<string, string | undefined> = process.env) => !!env[MASTER_KEY_ENV]?.trim();
+export function masterKeyAccepted(presented: string | null, env: Record<string, string | undefined> = process.env): boolean {
+  const expected = env[MASTER_KEY_ENV]?.trim();
+  if (!expected) return true;
+  if (!presented || presented.length > 512) return false;
+  return crypto.timingSafeEqual(keyDigest(presented.trim()), keyDigest(expected));
+}
+function assertMasterKey(request: Request) {
+  if (!masterKeyAccepted(request.headers.get('x-internal-key'))) {
+    throw err(401, 'master_key_required', 'Only the Master server can use the One Local admin API.');
+  }
+}
+
+// The signed-in caller as platform staff, or null when they are not on the platform staff at all.
+async function callerStaff(request: Request): Promise<Staff | null> {
+  assertMasterKey(request);
   const header = request.headers.get('authorization') ?? '';
   const token = header.startsWith('Bearer ') ? header.slice(7).trim() : '';
   if (!token) throw err(401, 'not_signed_in', 'Sign in to continue.');
-  let admin: Admin | null;
   // In production dbConfigured() throws when the database is missing; here that is the admin API's own 503 below.
   const hasDb = (() => { try { return dbConfigured(); } catch { return false; } })();
   if (hasDb) {
     const userId = await signedInUserId(request);
     if (!userId) throw err(401, 'session_expired', 'Your session has expired. Please sign in again.');
-    admin = await platformAdmin(userId);
-  } else {
-    // Development tokens ("dev-admin:<role>") stand in for sign-in with no database. They are a back door, so they are off unless
-    // this development machine asks for them with ADMIN_DEV_TOKENS=1, and never in production (SRV-9 P3-4).
-    if (production() || process.env.ADMIN_DEV_TOKENS !== '1') throw err(503, 'database_not_connected', 'The database is not connected yet.');
-    admin = devAdmin(token);
+    return platformStaff(userId);
   }
-  if (!admin) throw err(403, 'not_platform_admin', 'Only One Local platform admins can use this.');
-  if (write && !admin.canWrite) throw err(403, 'read_only_role', 'Your role can view One Local but not change it.');
-  limit(admin.userId, write ? 'admin-write' : 'admin-read', write ? 60 : 240, 60_000);
-  return admin;
+  // Development tokens ("dev-admin:<role>") stand in for sign-in with no database. They are a back door, so they are off unless
+  // this development machine asks for them with ADMIN_DEV_TOKENS=1, and never in production (SRV-9 P3-4).
+  if (production() || process.env.ADMIN_DEV_TOKENS !== '1') throw err(503, 'database_not_connected', 'The database is not connected yet.');
+  return devAdmin(token);
 }
+
+// ---------- Features Master Admin grants per role ----------
+// Pop-ups and Reels are pages Master Admin hands to roles (platform_roles.permissions). A super admin may do everything; any other
+// staff member only what their own active role grants for that one feature, with the same rule Master applies: seeing needs the view
+// action, changing needs full access and the manage action. The ids are Master's own (master-admin-server permission-adapter.ts).
+export type Feature = { id: string; view: string; manage: string; name: string };
+export const POPUPS_FEATURE: Feature = { id: 'feat_customer_popups', view: 'view_popups', manage: 'manage_popups', name: 'pop-ups' };
+export const REELS_FEATURE: Feature = { id: 'feat_customer_reels', view: 'view_reels', manage: 'manage_reels', name: 'reels' };
+
+export function grants(permissions: string, feature: Feature, write: boolean): boolean {
+  for (const section of permissions.split('$$$')) {
+    const [id, level, actions = ''] = section.split('::').map(s => s.trim());
+    if (id !== feature.id) continue;
+    const keys = new Set(actions.split('$').map(a => a.trim()).filter(Boolean));
+    return write ? level === 'full' && keys.has(feature.manage) : (level === 'full' || level === 'read_only') && keys.has(feature.view);
+  }
+  return false;
+}
+
+// feature null: One Local's own admin pages (listings, shoppers, order holds ...): super admins only (development roles as before).
+function allowed(staff: Staff, feature: Feature | null, write: boolean): boolean {
+  if (staff.dev) return !write || staff.canWrite;
+  if (staff.role === PLATFORM_ADMIN_ROLE) return true;
+  return !!feature && grants(staff.permissions, feature, write);
+}
+
+function assertAccess(staff: Staff | null, feature: Feature | null, write: boolean): Staff {
+  if (!staff) throw err(403, 'not_platform_admin', 'Only One Local platform admins can use this.');
+  if (!allowed(staff, feature, write)) {
+    if (staff.dev) throw err(403, 'read_only_role', 'Your role can view One Local but not change it.');
+    if (!feature) throw err(403, 'not_platform_admin', 'Only One Local platform admins can use this.');
+    if (write && grants(staff.permissions, feature, false)) throw err(403, 'read_only_role', `Your role can see ${feature.name} but not change them.`);
+    throw err(403, 'feature_not_granted', `Your role does not include ${feature.name}. A super admin can add it in Master Admin → Roles.`);
+  }
+  limit(staff.userId, write ? 'admin-write' : 'admin-read', write ? 60 : 240, 60_000);
+  return { ...staff, canWrite: allowed(staff, feature, true) };
+}
+
+const requireAccess = async (request: Request, feature: Feature | null, write: boolean) => assertAccess(await callerStaff(request), feature, write);
+
+export const requireAdmin = (request: Request, write: boolean): Promise<Admin> => requireAccess(request, null, write);
+// A page Master Admin grants per role (pop-ups, reels): super admins, and staff whose role includes the feature.
+export const requireFeature = (request: Request, feature: Feature, write: boolean): Promise<Admin> => requireAccess(request, feature, write);
 
 // One line per write: who (user id and role), what, which row, when. No personal data.
 export function audit(admin: Admin, action: string, target: string, extra: Record<string, string | number | boolean> = {}) {
@@ -163,7 +236,7 @@ export function preflight(request: Request): Response {
   const origin = allowedOrigin(request);
   if (origin === false) return errorResponse(request, notAllowed());
   const allow = {
-    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, content-type, x-upsert',
+    'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'authorization, content-type, x-upsert',
     'Access-Control-Max-Age': '600',
   };
   const empty = new Response(null, { status: 204, headers: { Allow: allow['Access-Control-Allow-Methods'] } });
@@ -569,19 +642,30 @@ const IMAGE_TYPES: Record<string, string[]> = { 'image/jpeg': ['jpg', 'jpeg'], '
 // Marketing pop-up creatives (specs/marketing-popups): photos up to 2 MB, MP4 videos up to 15 MB (30 s).
 const POPUP_TYPES: Record<string, string[]> = { ...IMAGE_TYPES, 'video/mp4': ['mp4'] };
 const POPUP_MAX_BYTES = (type: string) => (type.startsWith('video/') ? 15 : 2) * 1024 * 1024;
+// Reels (specs/reels-admin): an MP4 (or WebM web copy) up to 40 MB, the bucket's own ceiling, and a poster photo up to 2 MB.
+const REEL_TYPES: Record<string, string[]> = { ...IMAGE_TYPES, 'video/mp4': ['mp4'], 'video/webm': ['webm'] };
+const REEL_MAX_BYTES = (type: string) => (type.startsWith('video/') ? 40 : 2) * 1024 * 1024;
+// Who may upload where: store pictures are One Local's own admin pages; pop-up and reel media go with those features.
+const FOLDERS = {
+  stores: { feature: null, types: IMAGE_TYPES, maxBytes: () => MAX_IMAGE_BYTES, refused: 'Only JPEG, PNG or WebP images can be uploaded.' },
+  popups: { feature: POPUPS_FEATURE, types: POPUP_TYPES, maxBytes: POPUP_MAX_BYTES, refused: 'Only JPEG, PNG or WebP photos or MP4 videos can be uploaded.' },
+  reels: { feature: REELS_FEATURE, types: REEL_TYPES, maxBytes: REEL_MAX_BYTES, refused: 'Only MP4 or WebM videos, or JPEG, PNG or WebP posters, can be uploaded.' },
+} as const;
 
 const randomHex = (bytes: number) => Array.from(crypto.getRandomValues(new Uint8Array(bytes)), b => b.toString(16).padStart(2, '0')).join('');
 
 export async function uploadUrl(request: Request) {
-  const admin = await requireAdmin(request, true);
-  limit(admin.userId, 'admin-upload', 30, 60_000);
+  const staff = await callerStaff(request);
+  if (!staff) throw err(403, 'not_platform_admin', 'Only One Local platform admins can use this.');
   const body = await readBody(request);
-  if (body.folder !== 'stores' && body.folder !== 'popups') throw bad('folder must be "stores" or "popups".');
-  const folder = body.folder as 'stores' | 'popups';
-  const types = folder === 'popups' ? POPUP_TYPES : IMAGE_TYPES;
-  const maxBytes = folder === 'popups' ? POPUP_MAX_BYTES(typeof body.content_type === 'string' ? body.content_type.trim().toLowerCase() : '') : MAX_IMAGE_BYTES;
+  if (typeof body.folder !== 'string' || !Object.hasOwn(FOLDERS, body.folder)) throw bad('folder must be "stores", "popups" or "reels".');
+  const folder = body.folder as keyof typeof FOLDERS;
+  const admin = assertAccess(staff, FOLDERS[folder].feature, true);
+  limit(admin.userId, 'admin-upload', 30, 60_000);
   const type = typeof body.content_type === 'string' ? body.content_type.trim().toLowerCase() : '';
-  if (!types[type]) throw bad(folder === 'popups' ? 'Only JPEG, PNG or WebP photos or MP4 videos can be uploaded.' : 'Only JPEG, PNG or WebP images can be uploaded.');
+  const types: Record<string, readonly string[]> = FOLDERS[folder].types;
+  const maxBytes = FOLDERS[folder].maxBytes(type);
+  if (!types[type]) throw bad(FOLDERS[folder].refused);
   const filename = typeof body.filename === 'string' ? body.filename.trim() : '';
   const parts = filename.match(/^([^/\\\0]{1,100})\.([A-Za-z0-9]{2,5})$/);
   if (!parts) throw bad('filename must be a plain file name such as logo.jpg.');

@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 import * as Linking from 'expo-linking';
 import * as WebBrowser from 'expo-web-browser';
 import type { Session } from '@supabase/supabase-js';
-import { supabase, SUPABASE_KEY, SUPABASE_URL } from './lib/supabase';
+import { AUTH_URL, supabase, SUPABASE_KEY } from './lib/supabase';
 import { useCustomer } from './customer';
 import { afterSignIn } from './privacy';
 import { PRIVACY } from '@/constants/privacy';
@@ -41,6 +41,8 @@ function friendly(message: string): string {
   if (/sending.*(sms|otp)|sms.*(send|fail)/i.test(message)) return t('auth.error.smsFailed');
   if (/invalid phone|phone number/i.test(message)) return t('auth.error.mobileInvalid');
   if (/rate limit|too many/i.test(message)) return t('errors.code.rate_limited');
+  // A phone that cannot reach the server gets Android's own words ("fetch failed: java.net.UnknownHostException …").
+  if (/fetch failed|network request failed|unknownhost|unable to resolve host|failed to connect|timed? ?out|socket|connection (reset|refused|abort)/i.test(message)) return t('auth.error.network');
   return message;
 }
 const AuthContext = createContext<AuthState | null>(null);
@@ -49,7 +51,7 @@ const AuthContext = createContext<AuthState | null>(null);
 // offered one that ends on a raw error page.
 async function providers(): Promise<{ google: boolean; apple: boolean; phone: boolean }> {
   try {
-    const r = await fetch(`${SUPABASE_URL}/auth/v1/settings`, { headers: { apikey: SUPABASE_KEY ?? '' } });
+    const r = await fetch(`${AUTH_URL}/auth/v1/settings`, { headers: { apikey: SUPABASE_KEY ?? '' } });
     const external = (await r.json())?.external ?? {};
     return { google: !!external.google, apple: !!external.apple, phone: !!external.phone };
   } catch {

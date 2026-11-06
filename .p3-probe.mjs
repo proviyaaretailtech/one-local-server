@@ -1,0 +1,10 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const p = await (await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 })).newPage();
+p.on('console', m => { if (m.type() === 'error') console.log('console:', m.text().slice(0, 200)); });
+await p.goto('http://127.0.0.1:8098/');
+await p.waitForSelector('flutter-view, flt-glass-pane', { timeout: 120000 });
+await p.waitForTimeout(10000);
+await p.screenshot({ path: process.argv[2] });
+console.log(await p.evaluate(() => document.body.innerHTML.slice(0, 300)));
+await b.close();

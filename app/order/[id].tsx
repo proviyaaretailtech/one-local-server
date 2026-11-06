@@ -224,7 +224,7 @@ export default function OrderTrackingScreen() {
           <Icon name="storefront-outline" size={20} color={colors.forest} />
           <View style={{ flex: 1, gap: 6 }}>
             <Text style={styles.addressTitle}>{t('tracking.paidTogether', { count: siblings.length })}</Text>
-            {siblings.map(o => <TouchableOpacity key={o.id} testID={`order-sibling-${o.id}`} onPress={() => router.push(`/order/${o.id}` as any)} style={styles.siblingRow}>
+            {siblings.map(o => <TouchableOpacity key={o.id} testID={`order-sibling-${o.id}`} onPress={() => router.push(`/order/${o.id}`)} style={styles.siblingRow}>
               <Text style={styles.addressText}>{t('tracking.siblingRow', { store: o.store_name || t('orders.storeFallback'), count: o.items.length, total: fmt.money(o.total) })}</Text>
               <Icon name="chevron-forward" size={16} color={colors.muted} />
             </TouchableOpacity>)}
@@ -385,7 +385,6 @@ const styles = StyleSheet.create({
   etaTime: { color: colors.onBrandPrimary, fontSize: 42, fontWeight: "800", marginTop: 4 },
   etaHint: { color: colors.brandSecondary, fontSize: 12, fontWeight: "700", marginTop: 4 },
   dispatchDot: { width: 68, height: 68, borderRadius: 34, backgroundColor: colors.brandSecondary, alignItems: "center", justifyContent: "center" },
-  dispatchEmoji: { fontSize: 34 },
   // live ETA card: fixed line heights so a new value never changes the card's height
   etaTimeLive: { color: colors.onBrandPrimary, fontSize: 30, lineHeight: 40, minHeight: 40, fontWeight: "800", marginTop: 4 },
   etaWhen: { color: colors.onBrandPrimary, fontSize: 14, lineHeight: 20, minHeight: 20, fontWeight: "700" },

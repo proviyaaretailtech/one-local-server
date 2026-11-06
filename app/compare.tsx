@@ -13,8 +13,6 @@ import { useCart } from '@/src/cart';
 import { unitPrice, unitPriceLabel } from '@/src/unit-price';
 import { useFormat, useTranslation } from '@/src/i18n';
 
-const INK = '#050605';
-
 export default function CompareScreen() {
   const { items, toggle, clear } = useCompare(); const { add, qtyOf } = useCart(); const router = useRouter();
   const { width } = useAppDimensions(); const { t } = useTranslation(); const fmt = useFormat();
@@ -54,7 +52,7 @@ export default function CompareScreen() {
           {items.map((p, i) => <View key={p.id} style={[s.card, { width: col }, i === best && s.cardBest]}>
             {i === best && <View style={s.bestTag}><Text style={s.bestTagText}>{t('compare.bestValue')}</Text></View>}
             <Pressable testID={`compare-remove-${p.id}`} accessibilityLabel={t('compare.removeItem', { name: p.name })} onPress={() => toggle(p)} style={s.remove}><Icon name="close" size={14} color={colors.muted} /></Pressable>
-            <Pressable onPress={() => router.push(`/product/${p.id}` as any)}><Image source={p.image} style={s.img} contentFit="contain" /><Text style={s.name} numberOfLines={2}>{p.name}</Text></Pressable>
+            <Pressable onPress={() => router.push(`/product/${p.id}`)}><Image source={p.image} style={s.img} contentFit="contain" /><Text style={s.name} numberOfLines={2}>{p.name}</Text></Pressable>
           </View>)}
         </View>
         {rows.map(r => <View key={r.id} style={[s.row, s.dataRow]}>
@@ -85,7 +83,7 @@ const s = StyleSheet.create({
   label: { width: 84, fontSize: 11, fontWeight: '800', color: colors.muted, textTransform: 'uppercase', letterSpacing: 0.5, paddingTop: 2 },
   card: { backgroundColor: colors.surface, borderRadius: 20, padding: 10, marginBottom: 12, borderWidth: 2, borderColor: 'transparent' },
   cardBest: { borderColor: colors.electricLime },
-  bestTag: { position: 'absolute', top: -9, left: 10, zIndex: 2, backgroundColor: INK, borderRadius: 8, paddingHorizontal: 7, paddingVertical: 3 },
+  bestTag: { position: 'absolute', top: -9, left: 10, zIndex: 2, backgroundColor: colors.splashInk, borderRadius: 8, paddingHorizontal: 7, paddingVertical: 3 },
   bestTagText: { color: colors.electricLime, fontSize: 9, fontWeight: '800', letterSpacing: 0.8 },
   remove: { position: 'absolute', top: 4, right: 4, zIndex: 2, width: 32, height: 32, borderRadius: 16, backgroundColor: colors.surfaceSecondary, alignItems: 'center', justifyContent: 'center' },
   img: { width: '100%', height: 96, marginTop: 8 },
@@ -96,12 +94,12 @@ const s = StyleSheet.create({
   strike: { textDecorationLine: 'line-through', color: colors.muted },
   off: { color: colors.onSuccess, fontWeight: '800', fontSize: 11 },
   win: { color: colors.forest, fontWeight: '800' },
-  add: { minHeight: 46, paddingHorizontal: 8, paddingVertical: 6, borderRadius: 16, backgroundColor: INK, alignItems: 'center', justifyContent: 'center', marginTop: 12 },
+  add: { minHeight: 46, paddingHorizontal: 8, paddingVertical: 6, borderRadius: 16, backgroundColor: colors.splashInk, alignItems: 'center', justifyContent: 'center', marginTop: 12 },
   addText: { color: colors.electricLime, fontSize: 12, fontWeight: '800', textAlign: 'center' },
   empty: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 32, backgroundColor: colors.surfaceSecondary, gap: 10 },
-  emptyIcon: { width: 72, height: 72, borderRadius: 26, backgroundColor: INK, alignItems: 'center', justifyContent: 'center', marginBottom: 8 },
+  emptyIcon: { width: 72, height: 72, borderRadius: 26, backgroundColor: colors.splashInk, alignItems: 'center', justifyContent: 'center', marginBottom: 8 },
   emptyTitle: { fontSize: 20, fontWeight: '800', color: colors.onSurface },
   emptySub: { fontSize: 13, color: colors.muted, textAlign: 'center', lineHeight: 20 },
   emptyBtn: { marginTop: 10, minHeight: 48, paddingHorizontal: 22, borderRadius: 16, backgroundColor: colors.electricLime, justifyContent: 'center' },
-  emptyBtnText: { color: INK, fontWeight: '800' },
+  emptyBtnText: { color: colors.splashInk, fontWeight: '800' },
 });

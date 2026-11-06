@@ -1,6 +1,6 @@
 // Address details after the pin: where exactly (building, street, area), who receives it, and how to reach the door.
 import { useMemo, useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import { KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 import { Text, TextInput } from '@/src/ui/text';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -64,14 +64,15 @@ export default function AddressForm() {
       await update({ addresses: existing ? addresses.map(a => (a.id === existing.id ? address : a)) : [...addresses, address] });
       delivery.setLocation(addressText(address), lat != null && lng != null ? { lat, lng } : null);
       // Back to where shopping was (home), closing the location, map and form screens.
-      router.dismissTo('/(tabs)' as never);
+      router.dismissTo('/(tabs)');
     } catch { setError(t('address.form.saveFailed')); }
     finally { setBusy(false); }
   };
 
   const title = p.locality || (existing ? t('address.editTitle') : t('address.form.addTitle'));
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.screen}>
+    // Padding on every platform: Android draws edge to edge, so its window no longer shrinks for the keyboard.
+    <KeyboardAvoidingView behavior="padding" style={styles.screen}>
       <View style={[styles.header, { paddingTop: insets.top }]}>
         <Pressable testID="address-form-back" accessibilityLabel={t('common.goBack')} onPress={() => router.back()} style={styles.back}><Icon name="arrow-back" size={22} color={colors.onSurface} /></Pressable>
         <Text style={styles.headerLine} numberOfLines={1}>

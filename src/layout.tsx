@@ -4,17 +4,12 @@
 // Components size themselves with useAppDimensions() (the column), never the raw window width.
 import { createContext, useContext } from 'react';
 import { Platform, StyleSheet, useWindowDimensions, View } from 'react-native';
-import { Text } from '@/src/ui/text';
 import { useTranslation } from 'react-i18next';
 import { colors } from './theme';
-import { BrandLogo } from './components/brand-logo';
-import { departmentName } from './departments';
 import { safeLineHeight } from './i18n/typography';
 
 export const MAX_APP_WIDTH = 1120;
 const FRAME_FROM = MAX_APP_WIDTH + 40;
-const PANEL_FROM = 99999;
-const INK = '#050605';
 
 // Laptop and desktop browsers get a top menu bar instead of the phone's floating dock.
 export const DESKTOP_FROM = 1000;
@@ -46,34 +41,19 @@ export function useLineHeight() {
 export const gridColumns = (width: number) => (width >= 1000 ? 6 : width >= 800 ? 5 : width >= 600 ? 4 : 3);
 
 export function AppFrame({ children }: { children: React.ReactNode }) {
-  const { width } = useWindowDimensions(); const { t } = useTranslation(); const lineHeight = useLineHeight();
+  const { width } = useWindowDimensions();
   if (width < FRAME_FROM) return <AppWidth.Provider value={width}>{children}</AppWidth.Provider>;
-  const panel = width >= PANEL_FROM;
   return <AppWidth.Provider value={MAX_APP_WIDTH}>
     <View testID="app-frame" style={s.backdrop}>
       <View style={s.glowA} /><View style={s.glowB} />
-      {panel && <View style={s.panel}>
-        <View style={s.brand}><BrandLogo tone="dark" height={44} /></View>
-        <Text style={[s.headline, { lineHeight: lineHeight(48, 52) }]}>{t('shell.panel.headline')}</Text>
-        <Text style={s.copy}>{t('shell.panel.copy')}</Text>
-        <View style={s.chips}>{[{ id: 'food', label: departmentName(t, 'food') }, { id: 'grocery', label: departmentName(t, 'grocery') }, { id: 'shops', label: departmentName(t, 'shops') }, { id: 'care', label: t('shell.panel.care') }, { id: 'book-it', label: departmentName(t, 'book-it') }].map(c => <View key={c.id} style={s.chip}><Text style={s.chipText}>{c.label}</Text></View>)}</View>
-      </View>}
       <View style={s.column}>{children}</View>
     </View>
   </AppWidth.Provider>;
 }
 
 const s = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: INK, flexDirection: 'row', alignItems: 'stretch', justifyContent: 'center', overflow: 'hidden' },
+  backdrop: { flex: 1, backgroundColor: colors.splashInk, flexDirection: 'row', alignItems: 'stretch', justifyContent: 'center', overflow: 'hidden' },
   glowA: { position: 'absolute', left: -200, top: -160, width: 520, height: 520, borderRadius: 260, backgroundColor: colors.lime, opacity: 0.08 },
   glowB: { position: 'absolute', right: -220, bottom: -200, width: 560, height: 560, borderRadius: 280, backgroundColor: colors.electricLime, opacity: 0.06 },
   column: { width: MAX_APP_WIDTH, overflow: 'hidden', backgroundColor: colors.surface, boxShadow: [{ offsetX: 0, offsetY: 0, blurRadius: 60, color: 'rgba(179,244,0,0.12)' }] },
-  panel: { width: 360, justifyContent: 'center', paddingRight: 56 },
-  brand: { flexDirection: 'row', alignItems: 'flex-end', gap: 2 },
-  // i18n-ignore: Latin value; the Text overrides it with useLineHeight() in other languages
-  headline: { color: '#fff', fontSize: 48, lineHeight: 52, fontWeight: '800', letterSpacing: -1.8, marginTop: 28 },
-  copy: { color: 'rgba(255,255,255,0.62)', fontSize: 15, lineHeight: 23, marginTop: 16 },
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 24 },
-  chip: { borderWidth: 1, borderColor: 'rgba(179,244,0,0.4)', borderRadius: 14, paddingHorizontal: 12, paddingVertical: 6 },
-  chipText: { color: colors.electricLime, fontSize: 12, fontWeight: '700' },
 });

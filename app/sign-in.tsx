@@ -4,13 +4,13 @@
 // always there. Placing an order does: the cart's Pay button opens this screen with next=checkout,
 // and signing in returns to the cart, which carries on paying.
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Pressable, ScrollView, StyleSheet, useWindowDimensions, View } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { mediaUrl } from '@/src/api';
 import { useDeliveryLocation } from '@/src/delivery-location';
 import { Text, TextInput } from '@/src/ui/text';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { type Href, useLocalSearchParams, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons';
@@ -76,8 +76,8 @@ export default function SignIn() {
 
   const leave = () => {
     // From the cart's Pay button: back to the cart, which carries on paying once signed in.
-    if (checkout) { if (router.canGoBack()) router.back(); else router.replace('/cart' as never); }
-    else if (typeof next === 'string' && next.startsWith('/')) router.replace(next as never);
+    if (checkout) { if (router.canGoBack()) router.back(); else router.replace('/cart'); }
+    else if (typeof next === 'string' && next.startsWith('/')) router.replace(next as Href);
     else if (router.canGoBack()) router.back();
     else router.replace('/(tabs)');
   };
@@ -165,7 +165,8 @@ export default function SignIn() {
     {!!notice && <Text testID="sign-in-notice" accessibilityLiveRegion="polite" style={s.notice}>{notice}</Text>}
   </>;
 
-  return <KeyboardAvoidingView testID="sign-in-screen" behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={s.screen}>
+  // Padding on every platform: Android draws edge to edge, so its window no longer shrinks for the keyboard.
+  return <KeyboardAvoidingView testID="sign-in-screen" behavior="padding" style={s.screen}>
     <StatusBar style="light" />
     <ScrollView keyboardShouldPersistTaps="handled" horizontal={false} showsHorizontalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
       {/* A real local moment at the top (story-first look): the town's market, then the form on a white sheet over it. */}
@@ -220,7 +221,7 @@ export default function SignIn() {
             ? <Text testID="sign-in-marketing-on" style={s.consentNote}>{t('auth.consent.marketingOn')}</Text>
             : <Check id="sign-in-marketing" checked={marketing} onPress={() => setMarketing(m => !m)} label={t('auth.consent.marketing')} />}
           <Text testID="sign-in-notice-line" style={s.noticeLine}>{t('auth.consent.notice')}{' '}
-            <Text testID="sign-in-privacy-link" accessibilityRole="link" onPress={() => router.push('/privacy-notice' as never)} style={s.inlineLink}>{t('auth.consent.privacyLink')}</Text>
+            <Text testID="sign-in-privacy-link" accessibilityRole="link" onPress={() => router.push('/privacy-notice')} style={s.inlineLink}>{t('auth.consent.privacyLink')}</Text>
             {'  '}<Text testID="sign-in-under-18" accessibilityRole="button" onPress={() => setMinor(m => !m)} style={s.inlineLink}>{t('auth.consent.under', { age: PRIVACY.minimumAge })}</Text>
           </Text>
           {minor && <View testID="sign-in-minor" style={s.minor}>
@@ -267,7 +268,7 @@ export default function SignIn() {
       </Animated.View>
 
       <Text style={s.legal}>{t('auth.legal')}{' '}
-        <Text accessibilityRole="link" onPress={() => router.push('/privacy-notice' as never)} style={s.legalLink}>{t('auth.privacyNotice')}</Text> · {t('auth.noticeVersion', { version: PRIVACY.noticeVersion })}
+        <Text accessibilityRole="link" onPress={() => router.push('/privacy-notice')} style={s.legalLink}>{t('auth.privacyNotice')}</Text> · {t('auth.noticeVersion', { version: PRIVACY.noticeVersion })}
       </Text>
       </View>
     </ScrollView>
@@ -352,11 +353,6 @@ const s = StyleSheet.create({
   title: { color: INK, fontSize: 30, lineHeight: safeLineHeight(30, 36), fontWeight: '800', letterSpacing: -0.8 },
   noTrack: { letterSpacing: 0 }, // Devanagari: letter-spacing pulls conjuncts and matras apart
   sub: { color: SOFT, fontSize: 14, lineHeight: 21, marginTop: 10, maxWidth: 330 },
-  segment: { flexDirection: 'row', backgroundColor: FILL, borderRadius: 14, padding: 4, marginBottom: 14 },
-  segmentItem: { flex: 1, minHeight: 40, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
-  segmentOn: { backgroundColor: '#fff', boxShadow: [{ offsetX: 0, offsetY: 1, blurRadius: 4, color: 'rgba(13,18,14,0.08)' }] },
-  segmentText: { color: SOFT, fontSize: 13, fontWeight: '700', textAlign: 'center' },
-  segmentTextOn: { color: INK },
   card: { gap: 14 },
   stack: { gap: 10 },
   field: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 54, paddingHorizontal: 16, borderRadius: 14, backgroundColor: FILL, borderWidth: 1.5, borderColor: FILL },

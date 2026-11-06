@@ -65,7 +65,7 @@ export const createSessionStorage = (secure: KeyValueBackend, legacy: KeyValueBa
         await writeSecure(key, old);
         if ((await readSecure(key)) === old) await legacy.del(key);
       } catch {
-        // keystore unavailable: keep the old copy so the rider stays signed in
+        // keystore unavailable: keep the old copy so the customer stays signed in
       }
       return old;
     },

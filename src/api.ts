@@ -15,9 +15,18 @@ const configuredBackend = (Constants.expoConfig?.extra?.backendUrl || devServer)
 // same-origin; native apps use the configured backend URL.
 export const BACKEND = Platform.OS === 'web' && typeof window !== 'undefined' ? window.location.origin : configuredBackend;
 export const API = BACKEND + '/api';
+// Pictures and videos come through our own server, which keeps a copy at Vercel's edge near the customer. Phones never
+// go straight to Supabase Storage: Jio, Airtel and ACT have blocked *.supabase.co on and off since February 2026, and
+// every picture and reel stayed blank on those networks. A Storage link the server still sends goes through /api/sb.
 export const mediaUrl = (key: string) => `${API}/media/${key}`;
+const STORAGE_LINK = /^https:\/\/[a-z0-9]+\.supabase\.co\/(storage\/v1\/object\/public\/.+)$/;
 function resolveMedia(value: any): any {
-  if (typeof value === 'string') { const media = value.match(/^(?:https?:\/\/[^/]+)?\/api\/media\/(.+)$/); return media ? mediaUrl(media[1]) : value; }
+  if (typeof value === 'string') {
+    const media = value.match(/^(?:https?:\/\/[^/]+)?\/api\/media\/(.+)$/);
+    if (media) return mediaUrl(media[1]);
+    const stored = value.match(STORAGE_LINK);
+    return stored ? `${API}/sb/${stored[1]}` : value;
+  }
   if (Array.isArray(value)) return value.map(resolveMedia);
   if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, resolveMedia(v)]));
   return value;
@@ -56,6 +65,8 @@ export async function identity(): Promise<Record<string, string>> {
 export class ApiError extends Error {
   constructor(public status: number, message: string, public code?: string) { super(message); }
 }
+/** A write the coming-soon build held back: the "coming soon" toast already says so, so the screen shows no error of its own. */
+export const isComingSoon = (e: unknown) => e instanceof ApiError && e.code === 'coming_soon';
 
 // Every call to our server goes through here: a fetch that never reached the server tells the offline detector
 // (src/network/online-state.ts); any answer says we are online, and a 426 / maintenance-503 blocks the app
@@ -83,19 +94,23 @@ export async function api<T>(path: string): Promise<T> {
 }
 
 export type Category = { id: string; name: string; emoji: string; color: string; department: string; image: string };
-export type DiscoverChip = { id: string; label: string; emoji: string; color: string };
-export type Banner = { id: string; title: string; subtitle: string; image: string; bg: string };
+/** Whether a product is made or sold locally or is a national brand; the server marks each product. */
+export type Origin = 'local' | 'national';
 export type Product = {
   id: string; name: string; weight: string; price: number; mrp: number;
   image: string; category_id: string; store_id: string;
   delivery_min: number; discount_pct?: number | null; rating: number;
   department?: string; brand_id?: string;
+  origin?: Origin; // absent until the server marks products
 };
 export type StoreMedia = { type: "video" | "image"; url: string; thumbnail?: string; video_web?: string };
 export type Store = {
   id: string; name: string; logo: string; tagline: string;
   delivery_time: string; rating: number; tags: string[]; media: StoreMedia[];
+  department?: string; // 'food' for restaurants
 };
+/** A shop's banner picture: its first photo, or a video's still if it has none. */
+export const storeBanner = (store: Store) => store.media.find(m => m.type === 'image')?.url ?? store.media.find(m => m.thumbnail)?.thumbnail;
 
 export type Coupon = {
   code: string; label: string; kind: "flat" | "pct"; value: number;
@@ -195,7 +210,9 @@ export type Brand = { id: string; name: string; department: string; logo: string
 export type EventListing = { id: string; title: string; kind: string; subtitle: string; venue: string; price: number; image: string; tag: string; slots: string[] };
 export type ThemedStore = { id: string; name: string; subtitle: string; eyebrow: string; categories: string[]; icon: string; image: string; sections: string[] };
 export type Catalog = { brands: Brand[]; products: Product[]; categories: Category[]; events: EventListing[]; themed_stores: ThemedStore[] };
-export type Reel = { id: string; video: string; video_web: string; product: Product; caption: string; creator: string; likes: number; tag: string; brand: Brand };
+// A reel promotes a product, a brand, or both (Master Admin -> Reels). poster: the still shown until the video plays (else the product photo);
+// is_demo: a sample reel, labelled as one.
+export type Reel = { id: string; video: string; video_web: string; product?: Product; caption: string; creator: string; likes: number; tag: string; brand?: Brand; poster?: string | null; is_demo?: boolean };
 export type AISearchResult = { query: string; product_ids: string[]; explanation: string; transcript?: string };
 export async function uploadSearch(mode: 'image' | 'voice', uri: string, name: string, type: string, signal: AbortSignal): Promise<AISearchResult> {
   const { Platform } = await import('react-native');

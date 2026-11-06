@@ -29,11 +29,12 @@
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#0B0F0C"
+        "backgroundImage": "./assets/images/adaptive-icon-background.png",
+        "monochromeImage": "./assets/images/adaptive-icon-monochrome.png",
+        "backgroundColor": "#76EC00"
       },
       "package": "com.proviyaa.onelatur",
-      "versionCode": 12,
-      "googleServicesFile": "./google-services.json"
+      "versionCode": 12
     },
     "web": {
       "bundler": "metro",
@@ -45,10 +46,10 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/brand/onelocal-logo-on-dark.png",
-          "imageWidth": 160,
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 140,
           "resizeMode": "contain",
-          "backgroundColor": "#050605"
+          "backgroundColor": "#0B1A10"
         }
       ],
       "expo-font",

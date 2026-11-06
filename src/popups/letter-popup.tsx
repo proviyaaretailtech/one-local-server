@@ -87,7 +87,7 @@ function CampaignVideo({ source, poster, play }: { source: string; poster: strin
     start();
     const ready = player.addListener('statusChange', e => { if (e.status === 'readyToPlay') start(); });
     const tick = player.addListener('playingChange', e => { if (e.isPlaying) setStarted(true); });
-    return () => { ready.remove(); tick.remove(); player.pause(); };
+    return () => { ready.remove(); tick.remove(); try { player.pause(); } catch { /* already released (Android, on close) */ } };
   }, [player, play]);
   return <>
     {/* a <video> on the web keeps its own size unless stretched (see Discover tiles) */}

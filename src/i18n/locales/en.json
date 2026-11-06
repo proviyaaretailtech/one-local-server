@@ -150,7 +150,7 @@
       "town": "{{town}}, at your door"
     },
     "heroSub": {
-      "checkout": "Your bag is saved. Sign in once and we’ll take you straight back to pay.",
+      "checkout": "Your cart is saved. Sign in once and we’ll take you straight back to pay.",
       "default": "Orders that follow you to any phone, saved addresses, and OneLocal Coins when they arrive.",
       "signin": "Welcome back. Local stores, fresh picks, real people.",
       "signup": "Local stores. Fresh picks. Real people. Delivered to you."
@@ -223,6 +223,7 @@
       "passwordWeak": "Choose a password with at least 6 characters.",
       "emailNotConfirmed": "Please confirm your email first — check your inbox for the link.",
       "codeWrong": "That code is wrong or has expired. Check it, or send a new one.",
+      "network": "We couldn’t reach OneLocal. Check your internet connection and try again.",
       "waitSeconds": "Please wait {{seconds}} seconds before asking for another code.",
       "phoneOff": "Sign-in by mobile number isn’t switched on yet. Please use your email for now.",
       "smsFailed": "We couldn’t send the code. Check the number and try again in a minute.",
@@ -251,6 +252,7 @@
     "languageRow": "Language: {{language}}",
     "avatarChange": "Change profile photo",
     "guestName": "Hello, neighbour",
+    "helloName": "Hello, {{name}}",
     "guestSub": "Browsing as a guest",
     "signedInPill": "Signed in · orders follow you to any phone",
     "signInOrCreate": "Sign in or create an account",
@@ -318,6 +320,7 @@
     "signedInTitle": "Signed in",
     "yourAccount": "Your account",
     "signOut": "Sign out",
+    "deleteAccount": "Delete account",
     "signedOutNotice": "You’re signed out. Your cart and preferences stay on this phone.",
     "guestPitch": "Sign in so your orders, addresses and bookings follow you to any phone.",
     "signOutTitle": "Sign out of One Local?",
@@ -336,7 +339,8 @@
       "save": "Save number",
       "saved": "Number saved.",
       "failed": "Couldn’t save your number. Check your connection and try again."
-    }
+    },
+    "title": "Profile"
   },
   "profile": {
     "title": "Make it yours",
@@ -370,7 +374,8 @@
       "phone": "Please enter a valid 10-digit Indian mobile number.",
       "birthday": "Enter your birthday as DD/MM, for example 14/08.",
       "save": "Could not save your profile. Please try again."
-    }
+    },
+    "removePhoto": "Remove photo"
   },
   "help": {
     "title": "A little help, right here",
@@ -388,10 +393,10 @@
     "requestTitle": "Leave a support request",
     "serviceNotice": "Your request is saved in OneLocal. Live chat, email delivery and response times are not connected yet. Do not include passwords, card details or sensitive information.",
     "topic": {
-      "order": "order",
-      "payment": "payment",
-      "profile": "profile",
-      "other": "other"
+      "order": "Order",
+      "payment": "Payment",
+      "profile": "Profile",
+      "other": "Other"
     },
     "referenceLabel": "Order reference, optional",
     "referencePlaceholder": "Order reference · optional",
@@ -489,10 +494,10 @@
     "footerTagline": "A little closer to your city",
     "footerSub": "{{name}} · delivered across Latur",
     "openCart": "Open cart",
-    "bagSummary": "{{n}} in bag · {{price}}",
-    "viewBag": "View bag →",
+    "bagSummary": "{{n}} in cart · {{price}}",
+    "viewBag": "View cart →",
     "mrpPrice": "MRP {{price}}",
-    "addToBag": "Add to bag",
+    "addToBag": "Add to cart",
     "removeOne": "Remove one",
     "addOneMore": "Add one more",
     "closeVideo": "Close video",
@@ -517,7 +522,12 @@
       "mrp": "MRP",
       "youSave": "You save",
       "taxes": "Taxes"
-    }
+    },
+    "share": "Share",
+    "shareMessage": "Found on OneLocal: {{name}} — {{link}}",
+    "linkCopied": "Link copied",
+    "shareFailed": "Could not share this item. Please try again.",
+    "inCart": "in cart"
   },
   "store": {
     "loading": "Loading store...",
@@ -528,7 +538,8 @@
     "allProducts": "All Products",
     "emptyCategory": "No products in this category",
     "notFound": "This store isn’t here.",
-    "backHome": "Back to OneLocal"
+    "backHome": "Back to OneLocal",
+    "inside": "Inside {{name}}"
   },
   "category": {
     "notFound": "Category not found",
@@ -625,7 +636,7 @@
     "pctOff": "{{pct}} off",
     "removeItem": "Remove {{name}}",
     "bestValue": "BEST VALUE",
-    "inBagAdd": "{{n}} in bag · add",
+    "inBagAdd": "{{n}} in cart · add",
     "title": "Compare",
     "clearAll": "Clear all",
     "subSame": "Best value is the lowest price for the same amount.",
@@ -685,7 +696,7 @@
     "copyFailed": "Select the link to copy it manually.",
     "shareMessage": "Found on OneLocal: {{name}} — {{link}}",
     "backToDiscover": "Back to Discover grid",
-    "title": "‹ City finds.",
+    "title": "City finds.",
     "tagline": "LITTLE ADS. LOVELY DISCOVERIES.",
     "viewCart": "View cart",
     "play": "Play video",
@@ -700,6 +711,7 @@
     "soundOn": "Sound on",
     "exploreCreator": "Explore {{creator}} products",
     "sampleAd": "Sample brand ad · Explore collection",
+    "brandAd": "Brand ad · Explore collection",
     "addToCartA11y": "Add {{name}} to cart",
     "added": "Added · {{n}}",
     "addToCart": "Add to cart",
@@ -720,11 +732,11 @@
     "openSettings": "Open Settings",
     "noPlaces": "No places found. Check the spelling, or try the nearest town.",
     "section": {
-      "streets": "ADDRESSES & LANDMARKS",
-      "saved": "SAVED ADDRESSES",
-      "recent": "RECENT PLACES",
-      "live": "WE DELIVER IN",
-      "popular": "POPULAR CITIES"
+      "streets": "Addresses & landmarks",
+      "saved": "Saved addresses",
+      "recent": "Recent places",
+      "live": "We deliver in",
+      "popular": "Popular cities"
     },
     "useCurrent": "Use current location",
     "addAddress": "Add delivery address",
@@ -752,7 +764,22 @@
       "title": "Pick your city",
       "sub": "Location is off, no problem. Choose a city to start browsing.",
       "search": "Search another town"
-    }
+    },
+    "confirm": {
+      "title": "Is this where you are?",
+      "hint": "Move the map to put the pin exactly where you are",
+      "finding": "Finding this place…",
+      "pinned": "Pinned location",
+      "live": "We deliver here",
+      "discover": "No delivery here yet. You can still find local shops nearby. Nearest delivery city: {{city}}, {{distance}} away.",
+      "outside": "This spot is outside India. One Local works only in India. If your phone shows the wrong place, move the pin or pick your town.",
+      "cta": "Confirm location",
+      "goLatur": "Go to Latur",
+      "search": "Search my town",
+      "error": "Couldn’t check this place. Try again."
+    },
+    "useCurrentSub": "Find the area you’re in right now",
+    "finding": "Finding where you are…"
   },
   "address": {
     "kind": {
@@ -943,15 +970,15 @@
       "label": "YOUR SUGGESTED BASKET",
       "oneEach": "one of each",
       "withinBudget": "{{amount}} within budget",
-      "note": "Sample prices. Delivery fees calculated in cart. Items already in your bag won’t be added twice.",
+      "note": "Sample prices. Delivery fees calculated in cart. Items already in your cart won’t be added twice.",
       "add_one": "Add {{value}} missing item · {{amount}}",
       "add_other": "Add {{value}} missing items · {{amount}}",
-      "allIn": "All picks are in your bag"
+      "allIn": "All picks are in your cart"
     },
     "tools": {
       "budget": "BASKET BUDGET",
       "vegetarian": "Vegetarian",
-      "review": "Review my bag ({{value}})"
+      "review": "Review my cart ({{value}})"
     },
     "err": {
       "interrupted": "The reply was interrupted. Please try again.",
@@ -965,7 +992,7 @@
     "categories": "Categories",
     "discover": "Discover",
     "discoverButton": "Discover. Hold for One AI",
-    "discoverHint": "Tap to discover reels. Long press to ask the shopping assistant."
+    "discoverHint": "Tap to discover reels. Long press to ask the shopping assistant, or hold and drag to the red siren for emergency helplines."
   },
   "departments": {
     "food": {
@@ -1238,7 +1265,9 @@
       "switchHome": "Daily goodness",
       "switchShops": "Fresh style",
       "switchCare": "A little self-care",
-      "sample": "A sample brand spotlight · curated for you"
+      "sample": "A sample brand spotlight · curated for you",
+      "title": "In spotlight",
+      "subtitle": "Sponsored picks from shops near you"
     },
     "collection": {
       "caption": "A ONECITY LITTLE WORLD",
@@ -1277,9 +1306,10 @@
     "hero": {
       "eyebrow": "GOOD FOOD · BRIGHTER DAYS",
       "title": "Fresh choices\nfor a happier you.",
-      "searchPlaceholder": "Search for food, groceries, shops…",
+      "searchPlaceholder": "Search groceries & more",
       "photoLabel": "A fresh salad bowl",
-      "fastDelivery": "Delivery in {{time}}"
+      "fastDelivery": "Delivery in {{time}}",
+      "services": "Shop by service"
     },
     "offers": {
       "groceryTitle": "Up to {{pct}} off",
@@ -1294,6 +1324,21 @@
       "title": "Order again",
       "one": "{{name}}",
       "more": "{{name}} and {{count}} more"
+    },
+    "services": {
+      "care": "Pharma & Beauty",
+      "bookIt": "Booking & Services"
+    },
+    "origin": {
+      "local": "LOCAL",
+      "national": "NATIONAL",
+      "only": "Show local items only"
+    },
+    "banners": {
+      "purushottam": "Purushottam Super Market: Diwali Dhamaka lucky draw",
+      "shreeShyamBhoj": "Shree Shyam Bhoj thali",
+      "rooftop": "Rooftop All Day Kitchen: wood-fired pizza",
+      "baskinRobbins": "Baskin Robbins ice cream"
     }
   },
   "shell": {
@@ -1393,7 +1438,9 @@
     "closedNow": "Closed now",
     "callLabel": "Call {{name}}, {{phone}}",
     "directions": "Directions",
-    "directionsLabel": "Directions to {{name}}"
+    "directionsLabel": "Directions to {{name}}",
+    "outsideCurrent": "The location you chose is outside India. One Local works only in India.",
+    "goLatur": "Go to Latur"
   },
   "discover": {
     "title": "Discover",
@@ -1411,7 +1458,12 @@
     "openPhotoAd": "Open {{name}} photo ad",
     "forYou": "FOR YOU",
     "shop": "Shop",
-    "photoCaption": "{{name}}. A little find for your everyday."
+    "photoCaption": "{{name}}. A little find for your everyday.",
+    "intro": {
+      "featured": "Featured",
+      "skip": "Skip",
+      "watch": "Watch the reel"
+    }
   },
   "errorBoundary": {
     "title": "Something went wrong",
@@ -1419,7 +1471,7 @@
     "reload": "Reload app"
   },
   "cart": {
-    "title": "Your little bag",
+    "title": "Your cart",
     "itemCount_one": "{{count}} item",
     "itemCount_other": "{{count}} items",
     "kindTab": {
@@ -1541,10 +1593,10 @@
     "added": {
       "dismissA11y": "Dismiss added confirmation",
       "title": "Great pick!",
-      "body": "{{name}} is in your bag.",
+      "body": "{{name}} is in your cart.",
       "viewA11y_one": "View cart with {{count}} item",
       "viewA11y_other": "View cart with {{count}} items",
-      "view": "View bag · {{n}}"
+      "view": "View cart · {{n}}"
     },
     "character": {
       "a11y": "A smiling 3D-style OneLocal helper waving hello"
@@ -2114,7 +2166,10 @@
       "googleMapsWhere": "Google’s servers, may be outside India",
       "osmWho": "OpenStreetMap servers",
       "osmWhat": "A town-sized map area (no name or phone), to list local shops.",
-      "osmWhere": "Europe"
+      "osmWhere": "Europe",
+      "deviceMapsWho": "Your phone’s map service (Apple Maps on iPhone, Google on Android)",
+      "deviceMapsWhat": "Your position when you tap “Use current location”, to name the area you’re in.",
+      "deviceMapsWhere": "Apple’s or Google’s servers, may be outside India"
     },
     "s4": {
       "title": "Your choices, and taking them back",
@@ -2417,5 +2472,96 @@
       "refunded": "Refunded"
     },
     "already": "You have already reported this. We are looking at it."
+  },
+  "sos": {
+    "dropHere": "Drop for help",
+    "open": "Emergency helplines",
+    "title": "Emergency help",
+    "body": "Tap a number to open it in your phone app.",
+    "emergency": "Emergency",
+    "ambulance": "Ambulance",
+    "police": "Police",
+    "fire": "Fire",
+    "call": "Call {{name}} on {{number}}"
+  },
+  "categories": {
+    "group": {
+      "fresh": "FRESH",
+      "groceries": "Groceries",
+      "beautyWellness": "Beauty & Wellness",
+      "household": "Household & Essentials",
+      "snacksDrinks": "Snacks & Drinks",
+      "otherPicks": "Other Picks"
+    },
+    "sub": {
+      "vegetables": "Fresh Vegetables",
+      "fruits": "Fresh Fruits",
+      "dairyBread": "Dairy & Bread",
+      "meatSeafood": "Meat & Seafood",
+      "attaRiceDal": "Atta, Rice & Dal",
+      "masalas": "Masalas",
+      "oilsGhee": "Oils & Ghee",
+      "cereals": "Cereals & Breakfast",
+      "bathBody": "Bath & Body",
+      "hairSkin": "Hair Care & Skincare",
+      "makeup": "Makeup",
+      "healthPharma": "Health & Pharma",
+      "electronics": "Electronics",
+      "stationery": "Stationery",
+      "homeDecor": "Home & Decor",
+      "giftsPooja": "Gifts & Pooja",
+      "chipsNamkeen": "Chips & Namkeen",
+      "sweetsBakery": "Sweets & Bakery",
+      "drinksJuices": "Drinks & Juices",
+      "iceCream": "Ice Cream & More",
+      "fashion": "Fashion & Accessories",
+      "travelFitness": "Travel & Fitness",
+      "kids": "Kids",
+      "imported": "Imported"
+    }
+  },
+  "categoryShops": {
+    "subtitle_one": "{{value}} shop has this",
+    "subtitle_other": "{{value}} shops have this",
+    "items_one": "{{value}} item",
+    "items_other": "{{value}} items",
+    "empty": "No shop near you has this yet.",
+    "shoppingAt": "You're shopping at",
+    "change": "Change",
+    "changeShop": "Pick another shop"
+  },
+  "foodPage": {
+    "quote": "The kitchens Latur loves, one tap away.",
+    "count_one": "{{value}} restaurant delivering to you",
+    "count_other": "{{value}} restaurants delivering to you",
+    "offer": "Up to {{pct}} off",
+    "orderNow": "Order now",
+    "featured": "Featured"
+  },
+  "restaurant": {
+    "search": "Search the menu",
+    "menu": "Menu",
+    "onDishes_one": "on {{value}} dish",
+    "onDishes_other": "on {{value}} dishes"
+  },
+  "bookItPage": {
+    "dining": "Dining",
+    "events": "Events",
+    "activities": "Activities",
+    "play": "Play",
+    "stay": "Stay",
+    "appointment": "Book an appointment",
+    "appointmentLine": "A doctor's visit or roadside help, booked ahead",
+    "breakdown": "Breakdown help",
+    "doctor": "Doctor"
+  },
+  "comingSoonGate": {
+    "badge": "ALMOST THERE",
+    "title": "Something wonderful is on its way",
+    "body": "We're working tirelessly to give you a wonderful experience. We'll be ready very soon.",
+    "working": "Getting things ready for you",
+    "notify": "We'll notify you the moment everything is up and running. Stay tuned!",
+    "cta": "Keep exploring",
+    "toast": "Coming soon! We'll let you know when it's live."
   }
 }

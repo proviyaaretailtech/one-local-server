@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAppDimensions } from '../layout';
 import { View, Animated, Pressable, StyleSheet } from 'react-native';
 import { Text } from '@/src/ui/text';
@@ -12,10 +12,10 @@ import { nativeDriver, useMotionAllowed } from '../motion';
 import { useFormat, useTranslation } from '../i18n';
 
 export function FloatingCart({ bottom, compact = false }: { bottom: number; compact?: boolean }) {
-  const colors = usePageColors(); const styles = getStyles(colors); const { t } = useTranslation(); const fmt = useFormat();
+  const colors = usePageColors(); const styles = useMemo(() => getStyles(colors), [colors]); const { t } = useTranslation(); const fmt = useFormat();
   const { items, totalItems, totalPrice, totalMrp, lastAdded } = useCart();
   const router = useRouter(); const motion = useMotionAllowed(); const { height, width } = useAppDimensions();
-  const entrance = useRef(new Animated.Value(0)).current; const bump = useRef(new Animated.Value(1)).current; const flight = useRef(new Animated.Value(1)).current;
+  const [entrance] = useState(() => new Animated.Value(0)); const [bump] = useState(() => new Animated.Value(1)); const [flight] = useState(() => new Animated.Value(1));
   useEffect(() => { if (!motion) { entrance.setValue(totalItems ? 1 : 0); return; } const animation = Animated.spring(entrance, { toValue: totalItems ? 1 : 0, friction: 8, useNativeDriver: nativeDriver }); animation.start(); return () => animation.stop(); }, [entrance, totalItems, motion]);
   useEffect(() => {
     if (!lastAdded || !motion) return;
@@ -29,10 +29,10 @@ export function FloatingCart({ bottom, compact = false }: { bottom: number; comp
   if (compact) return <Animated.View testID="floating-cart" style={[styles.position, styles.compactPosition, { bottom, left: Math.max(24, (width-278)/2), right: Math.max(24, (width-278)/2), opacity: entrance, transform: [{ translateY: entrance.interpolate({ inputRange: [0, 1], outputRange: [90, 0] }) }, { scale: bump }] }]}><Pressable testID="floating-cart-open" accessibilityLabel={t('shell.cartBar.open', { count: totalItems, total: fmt.money(totalPrice) })} onPress={() => router.navigate('/cart')} style={({ pressed }) => [styles.compactBar, pressed && styles.pressed]}><View style={styles.thumbnails}>{items.slice(-2).map((item,i) => <Image key={item.id} testID={`subcategory-cart-image-${item.id}`} source={item.image} contentFit="contain" style={[styles.compactThumb, { marginLeft: i ? -16 : 0 }]} />)}</View><View style={styles.flex}><Text testID="subcategory-cart-title" style={styles.compactTitle}>{t('shell.cartBar.view')}</Text><Text testID="floating-cart-count" style={styles.compactCount}>{t('shell.cartBar.items', { count: totalItems })}<Text testID="floating-cart-price">{` · ${fmt.money(totalPrice)}`}</Text></Text></View><View style={styles.compactArrow}><Icon name="chevron-forward" size={25} color={colors.forest} /></View></Pressable></Animated.View>;
   return <>
     {motion && lastAdded && <Animated.View testID="cart-flying-product" style={[styles.flying, { opacity: flight.interpolate({ inputRange: [0, 0.05, 0.85, 1], outputRange: [0, 1, 1, 0] }), transform: [{ translateX: flight.interpolate({ inputRange: [0, 1], outputRange: [start.x - 22, 26] }) }, { translateY: flight.interpolate({ inputRange: [0, 0.35, 1], outputRange: [start.y - 22, Math.min(start.y - 95, endY - 100), endY] }) }, { scale: flight.interpolate({ inputRange: [0, 1], outputRange: [1.15, 0.5] }) }] }]}><Image source={lastAdded.product.image} style={styles.flyingImage} /></Animated.View>}
-    {/* One slim pill (after Glovo): what is in the bag and the total on the left, the free-delivery line as a
+    {/* One slim pill (after Glovo): what is in the cart and the total on the left, the free-delivery line as a
         quiet second row with its progress drawn along the pill's bottom edge, one action on the right. */}
     <Animated.View testID="floating-cart" style={[styles.position, { bottom, opacity: entrance, transform: [{ translateY: entrance.interpolate({ inputRange: [0, 1], outputRange: [110, 0] }) }, { scale: bump }] }]}>
-      <Pressable testID="floating-cart-open" accessibilityLabel={t('shell.cartBar.open', { count: totalItems, total: fmt.money(totalPrice) })} onPress={() => router.navigate('/cart' as any)} style={styles.bar}>
+      <Pressable testID="floating-cart-open" accessibilityLabel={t('shell.cartBar.open', { count: totalItems, total: fmt.money(totalPrice) })} onPress={() => router.navigate('/cart')} style={styles.bar}>
         <View style={styles.thumbnails}>{items.slice(-2).map((item, i) => <Image key={item.id} source={item.image} style={[styles.thumb, { marginLeft: i ? -14 : 0 }]} />)}</View>
         <View style={styles.flex}>
           <Text numberOfLines={1} style={styles.count}><Text testID="floating-cart-count">{t('shell.cartBar.items', { count: totalItems })}</Text><Text style={styles.dotSep}>  ·  </Text><Text testID="floating-cart-price" style={styles.price}>{fmt.money(totalPrice)}</Text></Text>

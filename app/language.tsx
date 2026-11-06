@@ -10,8 +10,8 @@ export default function LanguageScreen() {
   const fmt = useFormat();
   return <AccountLayout id="language" title={t('language.title')} subtitle={t('language.subtitle')}>
     <LanguagePicker />
-    <View style={[s.card, { marginTop: 16 }]} testID="language-preview">
-      <Text style={s.label}>{t('language.previewTitle')}</Text>
+    <View style={s.card} testID="language-preview">
+      <Text style={s.title}>{t('language.previewTitle')}</Text>
       <Text style={s.hint} accessibilityLiveRegion="polite">{t('language.previewOrder', { amount: fmt.money(1234.5), eta: fmt.eta(25) })}</Text>
       <Text style={s.hint}>{t('language.previewDate', { date: fmt.dateTime(new Date()) })}</Text>
     </View>

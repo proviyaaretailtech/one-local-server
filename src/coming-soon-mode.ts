@@ -9,7 +9,7 @@ export const COMING_SOON_ALL = process.env.EXPO_PUBLIC_COMING_SOON !== 'off';
 // page instead, and any write still goes through apiPost, which is blocked.
 export const OPEN_SEGMENTS = ['(tabs)', 'sign-in', 'welcome', 'profile-edit', 'location', 'help', 'about', 'privacy', 'privacy-notice', 'language',
   'search', 'category', 'collection', 'store', 'brand', 'product', 'india'];
-// Tabs that are covered too, even though the tab bar is open: the bag (no ordering in this build).
+// Tabs that are covered too, even though the tab bar is open: the cart (no ordering in this build).
 export const BLOCKED_TABS = ['cart'];
 
 /** True when the route (expo-router segments) should show the coming-soon page. */

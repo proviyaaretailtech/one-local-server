@@ -5,9 +5,11 @@ import { Image } from 'expo-image';
 import * as ImagePicker from 'expo-image-picker';
 import Icon from '@react-native-vector-icons/ionicons';
 import { Diet, useCustomer } from '@/src/customer';
-import { colors } from '@/src/theme';
+import { colors, lightPane, popBase, radius, soft } from '@/src/theme';
 import { useTranslation } from '@/src/i18n';
-import { AccountLayout, ActionButton, Message, accountStyles as s } from '@/src/components/account-layout';
+import { AccountLayout, Message, accountStyles as s } from '@/src/components/account-layout';
+import { ChipRow } from '@/src/components/chip-row';
+import { Button } from '@/src/ui/button';
 
 const DIETS: Diet[] = ['', 'veg', 'egg', 'nonveg']; // words: account.diet.* in the catalogue
 const AVATARS = ['person', 'happy', 'flower', 'rocket'] as const; // Ionicons names (technical), labelled via profile.avatarChoice.*
@@ -46,13 +48,14 @@ export default function ProfileEdit() {
   const initials = draft.name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase();
   return <AccountLayout id="profile-edit" title={t('profile.title')} subtitle={t('profile.subtitle')}>
     <View style={styles.photoBlock}>
-      <View style={styles.photoRing}>{draft.photo ? <Image testID="profile-photo" source={draft.photo} style={styles.photo} contentFit="cover" /> : <View style={styles.placeholder}>{initials ? <Text style={styles.initials}>{initials}</Text> : <Icon name={`${draft.avatar}-outline` as any} size={40} color="#050605" />}</View>}</View>
+      <View style={styles.photoRing}>{draft.photo ? <Image testID="profile-photo" source={draft.photo} style={styles.photo} contentFit="cover" /> : <View style={styles.placeholder}>{initials ? <Text style={styles.initials}>{initials}</Text> : <Icon name={`${draft.avatar}-outline` as never} size={40} color={colors.forestDeep} />}</View>}</View>
       <View style={styles.photoActions}>
         <Pressable testID="profile-photo-library" onPress={() => void pickPhoto(false)} style={styles.photoBtn}><Icon name="images-outline" size={17} color={colors.forest} /><Text style={styles.photoBtnText}>{t('profile.choosePhoto')}</Text></Pressable>
         <Pressable testID="profile-photo-camera" onPress={() => void pickPhoto(true)} style={styles.photoBtn}><Icon name="camera-outline" size={17} color={colors.forest} /><Text style={styles.photoBtnText}>{t('profile.takePhoto')}</Text></Pressable>
-        {!!draft.photo && <Pressable testID="profile-photo-remove" onPress={() => setDraft(d => ({ ...d, photo: '' }))} style={styles.photoBtn}><Icon name="trash-outline" size={17} color={colors.onError} /></Pressable>}
+        {!!draft.photo && <Pressable testID="profile-photo-remove" accessibilityLabel={t('profile.removePhoto')} onPress={() => setDraft(d => ({ ...d, photo: '' }))} style={styles.photoBtn}><Icon name="trash-outline" size={17} color={colors.onError} /></Pressable>}
       </View>
-      {!draft.photo && <View style={styles.avatars}>{AVATARS.map(icon => <Pressable key={icon} testID={`profile-avatar-${icon}`} accessibilityLabel={t(`profile.avatarChoice.${icon}`)} accessibilityState={{ selected: draft.avatar === icon }} style={[styles.avatar, draft.avatar === icon && styles.selected]} onPress={() => setDraft({ ...draft, avatar: icon })}><Icon name={`${icon}-outline` as any} color={colors.forest} size={22} /></Pressable>)}</View>}
+      {!draft.photo && <View style={styles.avatars}>{AVATARS.map(icon => { const on = draft.avatar === icon;
+        return <Pressable key={icon} testID={`profile-avatar-${icon}`} accessibilityLabel={t(`profile.avatarChoice.${icon}`)} accessibilityState={{ selected: on }} style={[styles.avatar, on && styles.avatarOn]} onPress={() => setDraft({ ...draft, avatar: icon })}><Icon name={`${icon}-outline`} color={on ? colors.surface : colors.forest} size={22} /></Pressable>; })}</View>}
     </View>
 
     <View style={s.card}>{[
@@ -61,27 +64,26 @@ export default function ProfileEdit() {
       { key: 'phone', label: t('profile.label.phone'), placeholder: t('auth.placeholder.mobile') },
       { key: 'birthday', label: t('profile.label.birthday'), placeholder: t('profile.placeholder.birthday') },
     ].map(f => <View key={f.key}><Text testID={`profile-${f.key}-label`} style={s.label}>{f.label}</Text><TextInput testID={`profile-${f.key}-input`} accessibilityLabel={f.label} value={draft[f.key as 'name' | 'email' | 'phone' | 'birthday']} onChangeText={value => setDraft({ ...draft, [f.key]: value })} editable={ready && !busy} autoCapitalize={f.key === 'name' ? 'words' : 'none'} keyboardType={f.key === 'email' ? 'email-address' : f.key === 'phone' ? 'phone-pad' : f.key === 'birthday' ? 'numbers-and-punctuation' : 'default'} maxLength={f.key === 'phone' ? 10 : f.key === 'birthday' ? 5 : 100} placeholder={f.placeholder} placeholderTextColor={colors.muted} style={s.input} /></View>)}
-      <View><Text style={s.label}>{t('account.foodPreference')}</Text><View style={styles.chips}>{DIETS.map(d => <Pressable key={d || 'any'} testID={`profile-diet-${d || 'any'}`} accessibilityState={{ selected: draft.diet === d }} onPress={() => setDraft({ ...draft, diet: d })} style={[styles.chip, draft.diet === d && styles.chipOn]}><Text style={[styles.chipText, draft.diet === d && styles.chipTextOn]}>{t(`account.diet.${d || 'any'}`)}</Text></Pressable>)}</View></View>
+      <View><Text style={s.label}>{t('account.foodPreference')}</Text>
+        <ChipRow style={s.chips} contentContainerStyle={s.chipContent} selected={draft.diet || 'any'} onSelect={id => setDraft({ ...draft, diet: DIETS.find(d => (d || 'any') === id) ?? '' })} chips={DIETS.map(d => ({ id: d || 'any', testID: `profile-diet-${d || 'any'}`, label: t(`account.diet.${d || 'any'}`) }))} />
+      </View>
     </View>
-    <Message id="profile-edit-error" text={error} error /><Message id="profile-edit-success" text={message} /><ActionButton id="profile-save" title={t('profile.saveChanges')} onPress={save} busy={busy} disabled={!ready} />
+    <Message id="profile-edit-error" text={error} error /><Message id="profile-edit-success" text={message} /><Button testID="profile-save" title={t('profile.saveChanges')} onPress={save} busy={busy} disabled={!ready} />
   </AccountLayout>;
 }
 
+const PHOTO = 104;
 const styles = StyleSheet.create({
-  photoBlock: { alignItems: 'center', marginBottom: 22, gap: 14 },
-  photoRing: { width: 108, height: 108, borderRadius: 40, padding: 4, backgroundColor: colors.electricLime },
-  photo: { width: 100, height: 100, borderRadius: 36 },
-  placeholder: { width: 100, height: 100, borderRadius: 36, backgroundColor: colors.limeSoft, alignItems: 'center', justifyContent: 'center' },
-  initials: { fontSize: 34, fontWeight: '800', color: '#050605' },
-  photoActions: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 8 },
-  photoBtn: { minHeight: 44, minWidth: 44, paddingHorizontal: 14, borderRadius: 16, backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  photoBtnText: { fontSize: 12, fontWeight: '700', color: colors.forest },
-  avatars: { flexDirection: 'row', justifyContent: 'center', gap: 10 },
-  avatar: { width: 46, height: 46, borderRadius: 23, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface, borderWidth: 2, borderColor: colors.transparent },
-  selected: { borderColor: colors.forest, backgroundColor: colors.limeSoft },
-  chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: { minHeight: 40, paddingHorizontal: 14, borderRadius: 20, borderWidth: 1, borderColor: colors.border, alignItems: 'center', justifyContent: 'center' },
-  chipOn: { backgroundColor: '#050605', borderColor: '#050605' },
-  chipText: { fontSize: 13, fontWeight: '600', color: colors.onSurface },
-  chipTextOn: { color: colors.electricLime },
+  photoBlock: { alignItems: 'center', gap: 16, paddingTop: 6, paddingBottom: 4 },
+  // The photo on a lime mount, raised on a green base like the profile's avatar.
+  photoRing: { padding: 4, borderRadius: 38, backgroundColor: colors.electricLime, boxShadow: popBase(4, colors.forest) },
+  photo: { width: PHOTO, height: PHOTO, borderRadius: 34 },
+  placeholder: { width: PHOTO, height: PHOTO, borderRadius: 34, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.limeSoft },
+  initials: { fontSize: 34, fontWeight: '800', color: colors.forestDeep },
+  photoActions: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 10 },
+  photoBtn: { ...lightPane, minHeight: 44, minWidth: 44, paddingHorizontal: 16, borderRadius: radius.pill, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  photoBtnText: { fontSize: 13, fontWeight: '700', color: colors.forest },
+  avatars: { flexDirection: 'row', justifyContent: 'center', gap: 12 },
+  avatar: { width: 48, height: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface, boxShadow: soft.lifted },
+  avatarOn: { backgroundColor: colors.forest, boxShadow: popBase(3, colors.forestDeep) },
 });

@@ -24,7 +24,7 @@ export function ImmersiveHeader({ image, title, subtitle, eyebrow, logo, monogra
     <Image source={image} style={StyleSheet.absoluteFill} contentFit="cover" />
     <LinearGradient colors={['rgba(5,6,5,0.55)', 'rgba(5,6,5,0)', 'rgba(5,6,5,0.25)', 'rgba(5,6,5,0.88)']} locations={[0, 0.3, 0.55, 1]} style={StyleSheet.absoluteFill} />
     <View style={[s.bar, { top: insets.top + 8 }]}>
-      <Pressable testID={testID ? `${testID}-back` : undefined} accessibilityLabel={t('common.goBack')} onPress={() => router.canGoBack() ? router.back() : router.replace('/(tabs)' as never)} style={s.glass}><Icon name="chevron-back" size={22} color="#fff" /></Pressable>
+      <Pressable testID={testID ? `${testID}-back` : undefined} accessibilityLabel={t('common.goBack')} onPress={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')} style={s.glass}><Icon name="chevron-back" size={22} color="#fff" /></Pressable>
       {right}
     </View>
     <View style={s.bottom}>

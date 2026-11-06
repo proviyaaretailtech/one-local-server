@@ -5,7 +5,7 @@
 // has no topic and keeps polling, as does anyone whose socket drops.
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { RealtimeChannel } from '@supabase/supabase-js';
-import { accessToken, supabase } from './lib/supabase';
+import { accessToken, realtime } from './lib/supabase';
 import { parseStage, type OrderStage } from './utils/tracking';
 
 export function useOrderRealtime(orderId: string | undefined, onStage: (stage: OrderStage) => void, enabled = true) {
@@ -13,7 +13,7 @@ export function useOrderRealtime(orderId: string | undefined, onStage: (stage: O
   // Kept current after each commit, not during render: React may render and throw a render away, and a ref written there would leak it.
   useLayoutEffect(() => { latest.current = onStage; });
   useEffect(() => {
-    const client = supabase;
+    const client = realtime;
     if (!enabled || !client || !orderId) return;
     let cancelled = false;
     let channel: RealtimeChannel | null = null;

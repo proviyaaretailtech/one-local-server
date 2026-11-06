@@ -18,10 +18,7 @@ const easProjectId = process.env.EAS_PROJECT_ID || '08ae9031-c338-4b72-82a9-4b65
 export default {
   ...config.expo,
   name: 'OneLocal',
-  // The app version (app.json "version") is the runtime version: identical on every machine, so a build made from a
-  // folder whose node_modules is a link, or that also holds a generated android/ project, matches on EAS. Raise the
-  // version whenever native code changes, before sending an over-the-air update to that build.
-  runtimeVersion: { policy: 'appVersion' },
+  runtimeVersion: { policy: 'fingerprint' },
   updates: easProjectId
     ? { enabled: true, url: `https://u.expo.dev/${easProjectId}`, checkAutomatically: 'ON_LOAD', fallbackToCacheTimeout: 0 }
     : { enabled: false },
@@ -39,10 +36,13 @@ export default {
     ['expo-notifications', { color: '#B3F400' }],
     '@bacons/apple-targets',
     'expo-dev-client',
-    // The launch screen (expo-splash-screen) is configured in app.json: Android 12+ shows it inside a 192 dp circle, so its
-    // imageWidth stays at 160 dp to keep the whole wide logo visible (220 cut it to "OneLoca").
+    // Native launch screen: the app-icon tile (Fresh Lime) on the intro's dark green. The code-drawn intro starts from
+    // the same tile in the same place, so launch → intro has no jump (2026-10-31).
+    ['expo-splash-screen', { image: './assets/images/splash-icon.png', imageWidth: 140, resizeMode: 'contain', backgroundColor: '#0B1A10', dark: { image: './assets/images/splash-icon.png', backgroundColor: '#0B1A10' } }],
     // Our folder name has spaces; keeps pod build scripts working (see the plugin).
     './plugins/with-space-safe-paths',
+    // Release builds ran out of Gradle metaspace in R8 after lint; gives the daemon more (see the plugin).
+    './plugins/with-gradle-memory',
   ],
   extra: {
     ...(easProjectId ? { eas: { projectId: easProjectId } } : {}),

@@ -1,6 +1,6 @@
 // Coming-soon gate for the whole app. Any route outside OPEN_SEGMENTS (a store, brand, product, checkout…) is
 // covered by a frosted-glass "we're getting ready" card over the screen behind it, and a blocked write (see
-// apiPost) shows a short, friendly toast. Copy is English only for this launch build (i18n-ignore below).
+// apiPost) shows a short, friendly toast.
 import { useEffect, useState } from 'react';
 import { Animated, Easing, Pressable, StyleSheet, View } from 'react-native';
 import { Text } from '@/src/ui/text';
@@ -9,7 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BlurView } from 'expo-blur';
 import Icon from '@react-native-vector-icons/ionicons';
 import { colors } from '../theme';
-import { useTranslation } from '../i18n';
+import { useLanguage, useTranslation } from '../i18n';
 import { nativeDriver, useMotionAllowed } from '../motion';
 import { COMING_SOON_ALL, isComingSoonRoute, onComingSoon } from '../coming-soon-mode';
 import { BrandLogo } from './brand-logo';
@@ -34,7 +34,7 @@ function WorkingDots() {
 }
 
 function ComingSoonCard({ onBack }: { onBack: () => void }) {
-  const motion = useMotionAllowed();
+  const motion = useMotionAllowed(); const { t } = useTranslation(); const deva = useLanguage().active.script === 'devanagari';
   const [enter] = useState(() => new Animated.Value(motion ? 0 : 1));
   useEffect(() => {
     if (!motion) return;
@@ -42,16 +42,16 @@ function ComingSoonCard({ onBack }: { onBack: () => void }) {
   }, [motion, enter]);
   return <Animated.View testID="coming-soon-card" style={[s.card, { opacity: enter, transform: [{ translateY: enter.interpolate({ inputRange: [0, 1], outputRange: [24, 0] }) }, { scale: enter.interpolate({ inputRange: [0, 1], outputRange: [0.97, 1] }) }] }]}>
     <BrandLogo tone="light" height={24} />
-    <View style={s.pill}><Icon name="sparkles" size={12} color={colors.forest} /><Text style={s.pillText}>ALMOST THERE</Text></View>
-    <Text style={s.title}>Something wonderful is on its way</Text>
-    <Text style={s.body}>{"We're working tirelessly to give you a wonderful experience. We'll be ready very soon."}</Text>
-    <View style={s.working}><WorkingDots /><Text style={s.workingText}>Getting things ready for you</Text></View>
+    <View style={s.pill}><Icon name="sparkles" size={12} color={colors.forest} /><Text style={[s.pillText, deva && s.noTrack]}>{t('comingSoonGate.badge')}</Text></View>
+    <Text style={s.title}>{t('comingSoonGate.title')}</Text>
+    <Text style={s.body}>{t('comingSoonGate.body')}</Text>
+    <View style={s.working}><WorkingDots /><Text style={s.workingText}>{t('comingSoonGate.working')}</Text></View>
     <View style={s.notify}>
       <View style={s.notifyIcon}><Icon name="notifications-outline" size={16} color={INK} /></View>
-      <Text style={s.notifyText}>{"We'll notify you the moment everything is up and running. Stay tuned!"}</Text>
+      <Text style={s.notifyText}>{t('comingSoonGate.notify')}</Text>
     </View>
     <Pressable testID="coming-soon-home" accessibilityRole="button" onPress={onBack} style={({ pressed }) => [s.cta, pressed && { opacity: 0.85 }]}>
-      <Text style={s.ctaText}>Keep exploring</Text>
+      <Text style={s.ctaText}>{t('comingSoonGate.cta')}</Text>
       <Icon name="arrow-forward" size={16} color={INK} />
     </Pressable>
   </Animated.View>;
@@ -59,23 +59,24 @@ function ComingSoonCard({ onBack }: { onBack: () => void }) {
 
 export function ComingSoonGate() {
   const segments = useSegments(); const router = useRouter(); const insets = useSafeAreaInsets(); const { t } = useTranslation();
-  const [toast, setToast] = useState(false);
+  // How many blocked taps the toast is showing for (0: hidden). Each one keeps it up for its full time.
+  const [toast, setToast] = useState(0);
+  const blocked = isComingSoonRoute(segments);
 
-  useEffect(() => onComingSoon(() => setToast(true)), []);
+  // A covered page's own start-up writes (the assistant starting its chat) raise no toast: the card says it.
+  useEffect(() => onComingSoon(() => { if (!blocked) setToast(n => n + 1); }), [blocked]);
   useEffect(() => {
     if (!toast) return;
-    const id = setTimeout(() => setToast(false), 2600);
+    const id = setTimeout(() => setToast(0), 2600);
     return () => clearTimeout(id);
   }, [toast]);
 
   if (!COMING_SOON_ALL) return null;
-  const blocked = isComingSoonRoute(segments);
   const back = () => router.canGoBack() ? router.back() : router.replace('/(tabs)');
 
-  // i18n-ignore: launch-build copy, English only
   return <>
     {blocked && <View testID="coming-soon-page" style={s.page}>
-      <BlurView intensity={45} tint="light" experimentalBlurMethod="dimezisBlurView" style={StyleSheet.absoluteFill} />
+      <BlurView intensity={45} tint="light" style={StyleSheet.absoluteFill} />
       <View style={[StyleSheet.absoluteFill, s.wash]} />
       <Pressable testID="coming-soon-back" accessibilityLabel={t('common.goBack')} onPress={back} style={[s.back, { top: insets.top + 12 }]}>
         <Icon name="chevron-back" size={22} color={INK} />
@@ -84,10 +85,10 @@ export function ComingSoonGate() {
         <ComingSoonCard onBack={back} />
       </View>
     </View>}
-    {toast && <View testID="coming-soon-banner" accessibilityLiveRegion="polite" style={[s.toast, { top: insets.top + 10 }]}>
-      <BlurView intensity={40} tint="dark" experimentalBlurMethod="dimezisBlurView" style={StyleSheet.absoluteFill} />
+    {toast > 0 && !blocked && <View testID="coming-soon-banner" accessibilityLiveRegion="polite" style={[s.toast, { top: insets.top + 10 }]}>
+      <BlurView intensity={40} tint="dark" style={StyleSheet.absoluteFill} />
       <Icon name="sparkles" size={15} color={colors.electricLime} />
-      <Text style={s.toastText}>{"Coming soon! We'll let you know when it's live."}</Text>
+      <Text style={s.toastText}>{t('comingSoonGate.toast')}</Text>
     </View>}
   </>;
 }
@@ -102,6 +103,7 @@ const s = StyleSheet.create({
   card: { alignSelf: 'center', width: '100%', maxWidth: 420, alignItems: 'center', paddingHorizontal: 24, paddingTop: 28, paddingBottom: 22, borderRadius: 28, backgroundColor: 'rgba(255,255,255,0.97)', borderWidth: 1, borderColor: '#FFFFFF', ...shadow },
   pill: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 18, paddingHorizontal: 10, paddingVertical: 5, borderRadius: 999, backgroundColor: 'rgba(179,244,0,0.22)' },
   pillText: { color: colors.forest, fontSize: 11, fontWeight: '800', letterSpacing: 1.4 },
+  noTrack: { letterSpacing: 0 }, // Devanagari: letter-spacing pulls conjuncts and matras apart
   title: { color: INK, fontSize: 24, lineHeight: 30, fontWeight: '800', letterSpacing: -0.5, textAlign: 'center', marginTop: 14 },
   body: { color: MUTED, fontSize: 15, lineHeight: 22, textAlign: 'center', marginTop: 10 },
   working: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 18 },

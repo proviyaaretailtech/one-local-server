@@ -403,7 +403,7 @@ export async function catalog(request: APIRequestContext): Promise<Catalog> {
 }
 
 export function cartItems(products: CatalogProduct[], qty = 1) {
-  return products.map(p => ({ id: p.id, name: p.name, weight: p.weight, price: p.price, mrp: p.mrp, image: `${BASE}${p.image}`, category_id: p.category_id, store_id: p.store_id, department: p.department, brand_id: p.brand_id, qty }));
+  return products.map(p => ({ id: p.id, name: p.name, weight: p.weight, price: p.price, mrp: p.mrp, image: p.image.startsWith('/') ? `${BASE}${p.image}` : p.image, category_id: p.category_id, store_id: p.store_id, department: p.department, brand_id: p.brand_id, qty }));
 }
 
 /** Creates a sample order through the app's own API for a given device key. */

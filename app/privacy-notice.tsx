@@ -8,7 +8,7 @@ import { Text } from '@/src/ui/text';
 import { useRouter } from 'expo-router';
 import Icon from '@react-native-vector-icons/ionicons';
 import { AccountLayout, accountStyles as s } from '@/src/components/account-layout';
-import { colors } from '@/src/theme';
+import { colors, radius } from '@/src/theme';
 import { useFormat, useTranslation } from '@/src/i18n';
 import { keptByLawText, noticeDateText, noticeItemsText, purposeText, sharedWithText } from '@/src/privacy';
 import { isPlaceholder, OPTIONAL_PURPOSES, PRIVACY, SHARED_WITH } from '@/constants/privacy';
@@ -34,9 +34,9 @@ function Rich({ text, parts }: { text: string; parts: Record<string, ReactNode> 
 
 const RIGHTS = ['see', 'correct', 'delete', 'nominate', 'complain'] as const;
 
-function Section({ title, icon, children, id }: { title: string; icon: string; children: React.ReactNode; id: string }) {
+function Section({ title, icon, children, id }: { title: string; icon: React.ComponentProps<typeof Icon>['name']; children: React.ReactNode; id: string }) {
   return <View testID={`notice-${id}`} style={s.card}>
-    <View style={s.row}><View style={st.icon}><Icon name={icon as never} size={18} color={colors.forest} /></View><Text style={[s.title, s.flex]}>{title}</Text></View>
+    <View style={s.row}><View style={s.tile}><Icon name={icon} size={20} color={colors.forest} /></View><Text style={[s.title, s.flex]}>{title}</Text></View>
     {children}
   </View>;
 }
@@ -77,7 +77,7 @@ export default function PrivacyNotice() {
       <Text style={s.hint}>{t('privacyNotice.s4.p1')}</Text>
       {OPTIONAL_PURPOSES.map(p => bullet(purposeText(p).title, purposeText(p).body, p))}
       <Text style={s.hint}>{t('privacyNotice.s4.p2', { screen })}</Text>
-      <Link id="privacy-notice-open-choices" label={t('privacyNotice.s4.open', { screen })} onPress={() => router.push('/privacy' as never)} />
+      <Link id="privacy-notice-open-choices" label={t('privacyNotice.s4.open', { screen })} onPress={() => router.push('/privacy')} />
     </Section>
 
     <Section id="rights" title={t('privacyNotice.s5.title')} icon="shield-checkmark-outline">
@@ -110,7 +110,7 @@ export default function PrivacyNotice() {
         ? <Text style={s.hint}><Rich text={t('privacyNotice.s9.p2', { days: PRIVACY.responseDays, board, link: piece('link') })}
             parts={{ link: <Fact id="privacy-notice-board" value={PRIVACY.board.complaintLink} /> }} /></Text>
         : <Text testID="privacy-notice-board" style={s.hint}>{t('privacyNotice.s9.p2NoLink', { days: PRIVACY.responseDays, board })}</Text>}
-      <Link id="privacy-notice-raise" label={t('privacy.rows.grievanceTitle')} onPress={() => router.push('/privacy?open=grievance' as never)} />
+      <Link id="privacy-notice-raise" label={t('privacy.rows.grievanceTitle')} onPress={() => router.push('/privacy?open=grievance')} />
       {!isPlaceholder(g.email) && <Link id="privacy-notice-mail" label={t('privacyNotice.s9.email', { email: g.email })} onPress={() => void Linking.openURL(`mailto:${g.email}`)} />}
     </Section>
 
@@ -125,16 +125,15 @@ function Link({ id, label, onPress }: { id: string; label: string; onPress: () =
 }
 
 const st = StyleSheet.create({
-  version: { flexDirection: 'row', alignItems: 'center', gap: 8, alignSelf: 'flex-start', maxWidth: '100%', paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, backgroundColor: colors.limeSoft, marginBottom: 12 },
+  version: { flexDirection: 'row', alignItems: 'center', gap: 8, alignSelf: 'flex-start', maxWidth: '100%', paddingHorizontal: 12, paddingVertical: 8, borderRadius: radius.pill, backgroundColor: colors.limeSoft },
   versionText: { flexShrink: 1, color: colors.forest, fontSize: 12, lineHeight: 17, fontWeight: '700' },
-  draft: { flexDirection: 'row', alignItems: 'center', gap: 8, padding: 12, borderRadius: 14, backgroundColor: colors.warning, marginBottom: 16 },
+  draft: { flexDirection: 'row', alignItems: 'center', gap: 8, padding: 12, borderRadius: 16, backgroundColor: colors.warning },
   draftText: { flex: 1, color: colors.onWarning, fontSize: 12, fontWeight: '600', lineHeight: 18 },
-  icon: { width: 34, height: 34, borderRadius: 12, backgroundColor: colors.limeSoft, alignItems: 'center', justifyContent: 'center' },
-  item: { gap: 4, paddingTop: 10, borderTopWidth: 1, borderTopColor: colors.divider },
+  item: { gap: 4, paddingTop: 12, borderTopWidth: 1, borderTopColor: colors.border },
   itemTop: { flexDirection: 'row', alignItems: 'flex-start', gap: 8 },
   itemTitle: { color: colors.onSurface, fontSize: 14, fontWeight: '700', lineHeight: 20 },
-  needed: { fontSize: 10, lineHeight: 14, fontWeight: '800', color: colors.forest, backgroundColor: colors.limeSoft, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8, overflow: 'hidden' },
-  optional: { fontSize: 10, lineHeight: 14, fontWeight: '800', color: colors.book, backgroundColor: colors.bookSoft, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8, overflow: 'hidden' },
+  needed: { fontSize: 10, lineHeight: 14, fontWeight: '800', color: colors.forest, backgroundColor: colors.limeSoft, paddingHorizontal: 8, paddingVertical: 3, borderRadius: radius.pill, overflow: 'hidden' },
+  optional: { fontSize: 10, lineHeight: 14, fontWeight: '800', color: colors.book, backgroundColor: colors.bookSoft, paddingHorizontal: 8, paddingVertical: 3, borderRadius: radius.pill, overflow: 'hidden' },
   kept: { color: colors.onSurfaceTertiary, fontSize: 11, lineHeight: 17 },
   bullet: { color: colors.muted, fontSize: 12, lineHeight: 19 },
   strong: { color: colors.onSurface, fontWeight: '700' },

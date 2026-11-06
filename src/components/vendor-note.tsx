@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Pressable, Animated, StyleSheet } from 'react-native';
 import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
@@ -19,7 +19,7 @@ const crew = {
 } as const;
 export function VendorNote({ items, status = 'cart' }: { items: { id: string; name: string }[]; status?: string }) {
   const { t } = useTranslation(); const { data } = useCatalog(); const [index, setIndex] = useState(0); const motion = useMotionAllowed();
-  const wave = useRef(new Animated.Value(0)).current; const reveal = useRef(new Animated.Value(0)).current;
+  const [wave] = useState(() => new Animated.Value(0)); const [reveal] = useState(() => new Animated.Value(0));
   const groups = [...new Set(items.map(item => {
     const p = data?.products.find(v => v.id === item.id);
     if (p?.department === 'food') return 'food';

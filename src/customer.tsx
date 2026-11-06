@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // From the runtime file, not the '@/src/i18n' index: the index mounts ProfileLanguageSync, which imports this file (a cycle).
 import { t } from '@/src/i18n/runtime';
 import { COMING_SOON_ALL, announceComingSoon } from './coming-soon-mode';
+import type { Origin } from './api';
 
 export type PaymentMethod = 'cod' | 'upi' | 'card' | 'netbanking' | 'wallet' | 'paylater';
 // The UPI app picked on the Payment Options screen ('id' = pay with a UPI ID instead of an app).
@@ -21,6 +22,7 @@ export type Profile = {
   photo: string;                 // data URI of a chosen photo, or '' for the avatar icon
   birthday: string;              // DD/MM, optional — for a birthday treat later
   diet: Diet;                    // shapes food suggestions ('' = no preference)
+  origin: Origin;                // Local / National: which products browsing shows (the switch on home)
   language: Language;            // Marathi/Hindi are coming soon
   notifications: { orders: boolean; offers: boolean; bookings: boolean };
 };
@@ -31,7 +33,7 @@ const SAVED_KEY = 'onecity.saved-products.v1';
 // "Offers near me" is marketing, so it starts off: under the DPDP Act consent must be a clear
 // yes, never a pre-ticked box (docs/DPDP.md). Order and booking updates are part of the service.
 const defaults: CustomerData = {
-  profile: { name: '', email: '', phone: '', avatar: 'person', photo: '', birthday: '', diet: '', language: 'en', notifications: { orders: true, offers: false, bookings: true } },
+  profile: { name: '', email: '', phone: '', avatar: 'person', photo: '', birthday: '', diet: '', origin: 'local', language: 'en', notifications: { orders: true, offers: false, bookings: true } },
   addresses: [], payment: 'cod', referral: '',
 };
 const newReferral = () => `ONE${Math.random().toString(36).slice(2, 9).toUpperCase()}`;

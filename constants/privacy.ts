@@ -17,10 +17,10 @@ export const isPlaceholder = (value: string) => value.includes(FILL);
 
 export const PRIVACY = {
   // Raise the version whenever the notice's meaning changes; every consent is recorded with it.
-  noticeVersion: '2026-09-27.1',
-  noticeDate: '27 September 2026',
+  noticeVersion: '2026-11-04.1',
+  noticeDate: '4 November 2026',
   // The same day, for showing it in the reader's language (fmt.date). Keep the two in step.
-  noticeDateIso: '2026-09-27',
+  noticeDateIso: '2026-11-04',
   brand: 'One Local (OneCity)',
   // The Data Fiduciary: the company that decides why and how personal data is used.
   // From the Certificate of Incorporation dated 2 April 2026. The certificate calls this address the
@@ -60,21 +60,6 @@ export type ConsentPurpose = (typeof RECORDED_PURPOSES)[number];
 export const CONSENT_SOURCES = ['sign_in', 'privacy_screen'] as const;
 export type ConsentSource = (typeof CONSENT_SOURCES)[number];
 
-export const PURPOSES: Record<OptionalPurpose, { title: string; body: string }> = {
-  marketing: {
-    title: 'Offers and updates',
-    body: 'Messages about offers, new stores and events near you, by notification, SMS, WhatsApp or email.',
-  },
-  personalisation: {
-    title: 'Personalised suggestions',
-    body: 'Suggestions based on what you ordered and saved before. Off means everyone sees the same lists.',
-  },
-  location_suggestions: {
-    title: 'Use my location for nearby suggestions',
-    body: 'Uses the location your phone already knows to sort places by distance. Tapping “Use current location” always works, whatever this says.',
-  },
-};
-
 // ---------- What we collect, and why (the itemised notice; also summarised in the download) ----------
 export type NoticeItem = { data: string; why: string; basis: 'needed' | 'optional'; kept: string };
 // Stable ids (the catalogue keys are privacyNotice.s2.<id>Data / <id>Why / <id>Kept). The list the server
@@ -103,7 +88,7 @@ export const NOTICE_ITEMS: NoticeItem[] = NOTICE_ITEM_IDS.map(id => NOTICE_BY_ID
 export type SharedWith = { who: string; what: string; where: string };
 // 'sms' is left out while sign-in by mobile number is off (no SMS provider is used). Add it back, with its
 // provider and region, before switching that sign-in on.
-export const SHARED_WITH_IDS = ['store', 'rider', 'supabase', 'razorpay', 'googleMaps', 'osm'] as const;
+export const SHARED_WITH_IDS = ['store', 'rider', 'supabase', 'razorpay', 'googleMaps', 'deviceMaps', 'osm'] as const;
 export type SharedWithId = (typeof SHARED_WITH_IDS)[number];
 const SHARED_BY_ID: Record<SharedWithId, SharedWith> = {
   store: { who: 'The store or restaurant fulfilling your order', what: 'The items, and the delivery address and notes for that order only.', where: 'India' },
@@ -111,6 +96,7 @@ const SHARED_BY_ID: Record<SharedWithId, SharedWith> = {
   supabase: { who: 'Supabase', what: 'Hosts our database and sign-in (account, orders, requests).', where: 'Mumbai region, India' },
   razorpay: { who: 'Razorpay', what: 'Takes online payments; holds card, UPI and bank details under its own licence.', where: 'India' },
   googleMaps: { who: 'Google Maps (when switched on)', what: 'Address searches and map positions, to find your address.', where: 'Google’s servers, may be outside India' },
+  deviceMaps: { who: 'Your phone’s map service (Apple Maps on iPhone, Google on Android)', what: 'Your position when you tap “Use current location”, to name the area you’re in.', where: 'Apple’s or Google’s servers, may be outside India' },
   osm: { who: 'OpenStreetMap servers', what: 'A town-sized map area (no name or phone), to list local shops.', where: 'Europe' },
 };
 export const SHARED_WITH: SharedWith[] = SHARED_WITH_IDS.map(id => SHARED_BY_ID[id]);

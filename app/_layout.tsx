@@ -12,14 +12,14 @@ import { setPoppinsReady } from "@/src/ui/text";
 import { ErrorBoundary } from "@/src/components/error-boundary";
 import { queryClient } from "@/src/query-client";
 import { CartProvider } from "@/src/cart";
-import { AppShell } from '@/src/components/app-shell';
+import { AppShell, screenFrame } from '@/src/components/app-shell';
 import { colors } from '@/src/theme';
-import { CityMotionProvider } from '@/src/motion';
 import { CustomerProvider } from '@/src/customer';
 import { AuthProvider } from '@/src/auth';
 import { ProfileGate } from '@/src/components/profile-gate';
-import { PushRegistrar } from '@/src/push-registrar';
+import { SignInPrompt } from '@/src/components/sign-in-prompt';
 import { IntroSplash } from '@/src/components/intro-splash';
+import { PushRegistrar } from '@/src/push-registrar';
 import { CompareProvider } from '@/src/compare';
 import { AppFrame } from '@/src/layout';
 import { I18nProvider, LanguageFirstRun, ProfileLanguageSync } from '@/src/i18n';
@@ -60,7 +60,7 @@ export default function RootLayout() {
             <CartProvider>
               <StatusBar style="dark" />
               {Platform.OS === "web" && <Head><title>OneLocal</title></Head>}
-              <CustomerProvider><ProfileLanguageSync /><AuthProvider><ProfileGate /><CompareProvider><CityMotionProvider><AppFrame><AppShell><Stack screenOptions={{ headerShown: false, title: 'OneLocal', animation: 'ios_from_right', gestureEnabled: true, fullScreenGestureEnabled: true, contentStyle: { backgroundColor: colors.surface } }} /></AppShell><ComingSoonGate /><LanguageFirstRun /><PushRegistrar /><IntroSplash /><NetworkStatus /><PopupHost /><UpdateGate /></AppFrame></CityMotionProvider></CompareProvider></AuthProvider></CustomerProvider>
+              <CustomerProvider><ProfileLanguageSync /><AuthProvider><ProfileGate /><SignInPrompt /><CompareProvider><AppFrame><AppShell><Stack screenLayout={screenFrame} screenOptions={{ headerShown: false, title: 'OneLocal', animation: 'ios_from_right', gestureEnabled: true, fullScreenGestureEnabled: true, contentStyle: { backgroundColor: colors.surface } }}>{/* A sheet over the page it came from; it animates itself. */}<Stack.Screen name="product/[id]" options={{ presentation: 'containedTransparentModal', animation: 'none', gestureEnabled: false, contentStyle: { backgroundColor: 'transparent' } }} /></Stack></AppShell><ComingSoonGate /><LanguageFirstRun /><PushRegistrar /><IntroSplash /><NetworkStatus /><PopupHost /><UpdateGate /></AppFrame></CompareProvider></AuthProvider></CustomerProvider>
             </CartProvider>
           </QueryClientProvider>
         </ErrorBoundary>

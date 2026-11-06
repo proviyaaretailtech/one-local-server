@@ -30,7 +30,11 @@ const appCode = [path.join(__dirname, 'app') + path.sep, path.join(__dirname, 's
 const rnShim = path.join(__dirname, 'src/native/react-native.tsx');
 // On web Expo rewrites `react-native` to `react-native-web` before this resolver sees it.
 const shims = { 'react-native': rnShim, 'react-native-web': rnShim, 'expo-haptics': path.join(__dirname, 'src/native/expo-haptics.ts') };
-const realFor = new Set(['src/native/react-native.tsx', 'src/native/expo-haptics.ts', 'src/native/haptic-clock.ts', 'src/motion.tsx', 'src/motion-tokens.ts', 'src/haptics.ts'].map(f => path.join(__dirname, f)));
+// Every file in src/native gets the real packages: Metro caches a bare import's resolution per folder, so one file there
+// getting the wrapper would hand the wrapper to itself.
+// theme.ts too: the wrapper imports motion.tsx, which reads the page palettes (departments.ts), which read theme.ts's colors.
+// If theme.ts got the wrapper, Android would load theme -> wrapper -> motion -> departments -> theme (half-loaded) and crash on start.
+const realFor = new Set(['src/native/react-native.tsx', 'src/native/expo-haptics.ts', 'src/native/haptic-clock.ts', 'src/native/ios-extras.ts', 'src/motion.tsx', 'src/motion-tokens.ts', 'src/haptics.ts', 'src/theme.ts'].map(f => path.join(__dirname, f)));
 const upstreamResolve = config.resolver.resolveRequest;
 config.resolver.resolveRequest = (context, moduleName, platform) => {
   const from = context.originModulePath;

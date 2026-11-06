@@ -1,83 +1,51 @@
-import { useMemo } from 'react';
-import { View, Pressable, ScrollView, StyleSheet } from 'react-native';
-import { Text } from '@/src/ui/text';
-import { Image } from 'expo-image';
+// Categories: the brand header on a plain page, then each group of categories under its title, four mint tiles to a row.
+// A tile opens the shops that sell its catalogue category.
+import { View, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import Icon from '@react-native-vector-icons/ionicons';
+import { Text } from '@/src/ui/text';
+import { IconTile } from '@/src/ui/icon-tile';
+import { Tap } from '@/src/components/tap';
 import { colors } from '@/src/theme';
-import { useCatalog } from '@/src/use-catalog';
 import { CityScroll } from '@/src/motion';
-import { BrandRail, EventRail, LoadState, ProductRail, SectionTitle } from '@/src/components/catalog-sections';
-import { StoreRail } from '@/src/components/store-rail';
-import { apiGet, Category } from '@/src/api';
-import type { Catalog, Store } from '@/src/api';
-import { useQuery } from '@tanstack/react-query';
-import { useFormat, useTranslation } from '@/src/i18n';
+import { useAppDimensions, useLineHeight } from '@/src/layout';
+import { useScreenPalette } from '@/src/use-screen-path';
+import { BrandHeader } from '@/src/components/brand-header';
+import { CATEGORY_GROUPS } from '@/src/shop-categories';
+import { useTranslation } from '@/src/i18n';
 
-// The section titles and subtitles live in the catalogue under home.categories.groups.<id>.
-const groups = [
-  { id: 'fresh', ids: ['c1', 'c2', 'c5', 'c24'] },
-  { id: 'pantry', ids: ['c25', 'c26', 'c23', 'c6'] },
-  { id: 'snacks', ids: ['c3', 'c4', 'c29', 'c32'] },
-  { id: 'festive', ids: ['c21', 'c22', 'c23', 'c32'] },
-  { id: 'food', ids: ['c9', 'c10', 'c11', 'c12'] },
-  { id: 'fitness', ids: ['c28', 'c27', 'c24', 'c18'] },
-  { id: 'care', ids: ['c15', 'c16', 'c17', 'c31'] },
-  { id: 'home', ids: ['c30', 'c14', 'c13', 'c20', 'c19', 'c7', 'c8'] },
-] as const;
-function CategoryTiles({ categories, scope }: { categories: Category[]; scope: string }) {
-  const router = useRouter();
-  return <View style={styles.grid}>{categories.map(c => <Pressable testID={`${scope}-category-${c.id}`} key={c.id} onPress={() => router.push(`/category/${c.id}` as any)} style={({ pressed }) => [styles.tile, pressed && styles.pressed]}><View style={styles.tileArt}><Image testID={`${scope}-category-image-${c.id}`} source={c.image} contentFit="contain" style={styles.tileImage} transition={160} /></View><Text testID={`${scope}-category-label-${c.id}`} style={styles.tileLabel} numberOfLines={2}>{c.name}</Text></Pressable>)}</View>;
-}
-// Each store with the categories it sells in (from its own products), so a customer can browse by what a store carries.
-// Common categories are the groups above; these are the stores' own. Stores with nothing to show are left out.
-function StoreCategories({ data }: { data: Catalog }) {
-  const router = useRouter(); const { t } = useTranslation();
-  const { data: stores = [] } = useQuery({ queryKey: ['stores'], queryFn: () => apiGet<Store[]>('/stores'), staleTime: 60_000 });
-  const rows = useMemo(() => stores.map(store => {
-    const ids = [...new Set(data.products.filter(p => p.store_id === store.id).map(p => p.category_id))];
-    return { store, cats: ids.map(id => data.categories.find(c => c.id === id)).filter((c): c is Category => !!c) };
-  }).filter(r => r.cats.length).slice(0, 12), [stores, data]);
-  if (!rows.length) return null;
-  return <View testID="store-categories">
-    <SectionTitle id="categories-by-store" title={t('home.categories.storeCategories.title')} subtitle={t('home.categories.storeCategories.subtitle')} />
-    {rows.map(({ store, cats }) => <View key={store.id} testID={`store-categories-${store.id}`} style={storeStyles.row}>
-      <Pressable testID={`store-categories-open-${store.id}`} accessibilityRole="button" accessibilityLabel={store.name} onPress={() => router.push(`/store/${store.id}` as any)} style={storeStyles.head}>
-        {!!store.logo && <Image source={store.logo} style={storeStyles.logo} contentFit="contain" />}
-        <Text numberOfLines={1} style={storeStyles.name}>{store.name}</Text>
-        <Icon name="chevron-forward" size={16} color={colors.muted} />
-      </Pressable>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={storeStyles.chips}>
-        {cats.map(c => <Pressable key={c.id} testID={`store-category-${store.id}-${c.id}`} onPress={() => router.push(`/category/${c.id}` as any)} style={({ pressed }) => [storeStyles.chip, pressed && { opacity: 0.7 }]}><Text style={storeStyles.chipText}>{c.name}</Text></Pressable>)}
-      </ScrollView>
-    </View>)}
-  </View>;
-}
-const storeStyles = StyleSheet.create({
-  row: { marginHorizontal: 20, marginBottom: 14, padding: 14, borderRadius: 18, backgroundColor: colors.surfaceSecondary, gap: 10 },
-  head: { flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 44 },
-  logo: { width: 36, height: 36, borderRadius: 10, backgroundColor: colors.surface },
-  name: { flex: 1, fontSize: 15, fontWeight: '700', color: colors.onSurface },
-  chips: { gap: 8 },
-  chip: { minHeight: 36, paddingHorizontal: 14, borderRadius: 18, alignItems: 'center', justifyContent: 'center', backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border },
-  chipText: { fontSize: 13, fontWeight: '600', color: colors.forest },
-});
+const SIDE = 16;
+const GAP = 12;
+const COLUMNS = 4;
+
 export default function Categories() {
-  const { data, isError, refetch } = useCatalog(); const router = useRouter(); const { t } = useTranslation(); const fmt = useFormat();
-  if (!data) return <LoadState error={isError} retry={refetch} />;
-  return <CityScroll testID="categories-screen" showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
-    <View style={styles.intro}><View style={styles.introCopy}><Text testID="categories-eyebrow" style={styles.eyebrow}>{t('home.categories.eyebrow')}</Text><Text testID="categories-title" style={styles.title}>{t('home.categories.title')}</Text></View><Pressable testID="categories-search" accessibilityLabel={t('home.categories.searchLabel')} style={styles.search} onPress={() => router.push('/search')}><Icon name="search-outline" size={21} color={colors.forest} /></Pressable></View>
-    <SectionTitle id="shop-by-store" title={t('home.categories.storeTitle')} subtitle={t('home.categories.storeSubtitle')} /><StoreRail stores={data.themed_stores || []} />
-    <Pressable testID="categories-festive-banner" onPress={() => router.push('/collection/festive' as any)} style={({ pressed }) => [styles.banner, pressed && styles.pressed]}><View style={styles.bannerCopy}><Text style={styles.eyebrow}>{t('home.categories.festiveEyebrow')}</Text><Text style={styles.bannerTitle}>{t('home.categories.festiveTitle')}</Text><View style={styles.bannerLink}><Text style={styles.link}>{t('home.categories.festiveLink')}</Text><Icon name="arrow-forward" size={15} color={colors.forest} /></View></View><Image testID="categories-festive-art" source={data.themed_stores?.[0]?.image} style={styles.bannerArt} contentFit="cover" /></Pressable>
-    {groups.map((group, i) => <View key={group.id}><SectionTitle id={`categories-${group.id}`} title={t(`home.categories.groups.${group.id}.title`)} subtitle={t(`home.categories.groups.${group.id}.subtitle`)} /><CategoryTiles scope={`grid-${group.id}`} categories={group.ids.flatMap(id => data.categories.filter(c => c.id === id))} />
-      {i === 1 && <><SectionTitle id="category-quick-picks" title={t('home.categories.quickTitle')} subtitle={t('home.categories.quickSubtitle', { amount: fmt.money(99) })} onPress={() => router.push('/search?collection=budget' as any)} /><ProductRail products={data.products.filter(p => p.price < 99).slice(-8)} scope="category-budget" /></>}
-      {i === 4 && <><SectionTitle id="category-brands" title={t('home.categories.brandsTitle')} subtitle={t('home.categories.brandsSubtitle', { value: fmt.number(data.brands.length) })} /><BrandRail brands={data.brands.slice(16, 31)} scope="categories-brands" /></>}
+  const router = useRouter(); const { t } = useTranslation(); const palette = useScreenPalette(); const { width } = useAppDimensions(); const lineHeight = useLineHeight();
+  const cell = (width - SIDE * 2 - GAP * (COLUMNS - 1)) / COLUMNS;
+  return <CityScroll testID="categories-screen" bleed showsVerticalScrollIndicator={false} contentContainerStyle={s.content}>
+    {/* A light wash of the page's own colour (the purple the dock picks Categories out in), fading to white. */}
+    <LinearGradient pointerEvents="none" colors={[palette.top, palette.mid, palette.fade]} locations={[0, 0.5, 1]} style={s.wash} />
+    <BrandHeader tone="light" />
+    {CATEGORY_GROUPS.map(group => <View key={group.id} testID={`category-group-${group.id}`} style={s.group}>
+      <Text style={s.title}>{t(group.name)}</Text>
+      <View style={s.grid}>
+        {group.items.map(item => {
+          const name = t(item.name);
+          return <Tap key={item.id} testID={`category-tile-${item.id}`} accessibilityRole="button" accessibilityLabel={name} onPress={() => router.push(`/category/shops/${item.category}?tile=${item.id}`)} style={[s.cell, { width: cell }]}>
+            <IconTile source={item.icon} variant="mint" />
+            <Text numberOfLines={2} style={[s.name, { lineHeight: lineHeight(12, 15) }]}>{name}</Text>
+          </Tap>;
+        })}
+      </View>
     </View>)}
-    <StoreCategories data={data} />
-    <SectionTitle id="categories-more-brands" title={t('home.categories.moreBrands')} /><BrandRail brands={data.brands.slice(31).concat(data.brands.slice(0, 16))} scope="categories-more" />
-    <SectionTitle id="categories-book" title={t('home.categories.bookTitle')} subtitle={t('home.categories.bookSubtitle')} onPress={() => router.navigate('/book-it')} /><EventRail events={data.events} scope="categories-book" />
-    <Pressable testID="categories-ask-one" onPress={() => router.push('/assistant')} style={styles.assistant}><Icon name="sparkles" size={24} color={colors.lime} /><View style={styles.assistantCopy}><Text style={styles.assistantTitle}>{t('home.categories.assistantTitle')}</Text><Text style={styles.assistantText}>{t('home.categories.assistantText')}</Text></View><Icon name="arrow-forward" size={20} color={colors.lime} /></Pressable>
-    <Text testID="categories-demo-note" style={styles.note}>{t('home.categories.note')}</Text>
   </CityScroll>;
 }
-const styles = StyleSheet.create({ content: { backgroundColor: colors.surface }, intro: { paddingHorizontal: 20, paddingTop: 22, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 }, introCopy: { flex: 1 }, eyebrow: { fontSize: 8, letterSpacing: 1.4, fontWeight: '700', color: colors.inkSoft }, title: { fontSize: 25, letterSpacing: -0.9, fontWeight: '700', color: colors.onSurface, marginTop: 7 }, search: { width: 44, height: 44, borderRadius: 22, backgroundColor: colors.limeSoft, alignItems: 'center', justifyContent: 'center' }, grid: { paddingHorizontal: 16, flexDirection: 'row', flexWrap: 'wrap', rowGap: 16 }, tile: { width: '25%', paddingHorizontal: 4, alignItems: 'center' }, tileArt: { width: '100%', aspectRatio: 1, borderRadius: 20, backgroundColor: colors.cream, overflow: 'hidden' }, tileImage: { width: '100%', height: '100%' }, tileLabel: { fontSize: 11, lineHeight: 15, textAlign: 'center', fontWeight: '600', color: colors.onSurface, marginTop: 8, minHeight: 30 }, pressed: { opacity: 0.75, transform: [{ scale: 0.95 }] }, banner: { marginHorizontal: 18, marginTop: 28, borderRadius: 26, overflow: 'hidden', backgroundColor: colors.limeSoft, flexDirection: 'row', minHeight: 145 }, bannerCopy: { flex: 1, paddingLeft: 18, paddingVertical: 20, zIndex: 1 }, bannerTitle: { fontSize: 19, lineHeight: 25, fontWeight: '700', color: colors.forest, marginTop: 9 }, bannerLink: { flexDirection: 'row', gap: 5, alignItems: 'center', marginTop: 12 }, link: { fontSize: 10, fontWeight: '600', color: colors.forest }, bannerArt: { width: '39%', height: '100%' }, assistant: { marginHorizontal: 20, marginTop: 30, padding: 20, borderRadius: 25, backgroundColor: colors.forestDeep, flexDirection: 'row', alignItems: 'center', gap: 13 }, assistantCopy: { flex: 1 }, assistantTitle: { color: colors.surface, fontSize: 14, fontWeight: '700' }, assistantText: { color: colors.cityMid, fontSize: 10, lineHeight: 16, marginTop: 5 }, note: { fontSize: 10, lineHeight: 18, textAlign: 'center', color: colors.muted, marginTop: 26, paddingHorizontal: 30 } });
+
+const s = StyleSheet.create({
+  content: { backgroundColor: colors.surface, paddingBottom: 24 },
+  wash: { position: 'absolute', top: 0, left: 0, right: 0, height: 480 },
+  group: { marginTop: 24, paddingHorizontal: SIDE, gap: 14 },
+  title: { fontSize: 20, lineHeight: 26, fontWeight: '800', letterSpacing: -0.3, color: colors.onSurface },
+  grid: { flexDirection: 'row', flexWrap: 'wrap', columnGap: GAP, rowGap: 18 },
+  cell: { alignItems: 'center', gap: 8 },
+  name: { fontSize: 12, lineHeight: 15, minHeight: 30, fontWeight: '600', textAlign: 'center', color: colors.onSurface },
+});

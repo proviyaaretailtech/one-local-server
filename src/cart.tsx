@@ -1,10 +1,10 @@
-// The bag holds two carts (founder, 27 Sep 2026), paid for separately:
+// The app keeps two carts (founder, 27 Sep 2026), paid for separately:
 //   * Food — dishes from ONE restaurant, like Swiggy Food. A dish from another restaurant asks first
 //     ("Replace cart?", ReplaceCartSheet); the server refuses a two-restaurant food checkout too.
 //   * Shopping — groceries, shops, pharmacy and beauty from any number of stores. The cart screen
 //     groups it by store, and at checkout the server makes one order per store, paid together.
 // The cart screen shows one cart at a time (`kind`, the one last added to) with a switch when both
-// have items. `items` and the totals cover both carts, for the bag badge and the floating cart.
+// have items. `items` and the totals cover both carts, for the header's cart badge and the floating cart.
 import React, { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { api, mediaUrl, Store } from './api';
@@ -63,7 +63,7 @@ const EMPTY: Carts = { food: [], shopping: [] };
 // customer never builds a basket that checkout will refuse.
 export const MAX_LINE_QTY: Record<CartKind, number> = { food: 20, shopping: 25 };
 
-const freshImage = (item: CartItem): CartItem => { const key = item.image?.split('/api/media/')[1]; return { ...item, image: item.id === 'p6' ? mediaUrl('snacks') : key ? mediaUrl(key) : item.image }; };
+const freshImage = (item: CartItem): CartItem => { const key = item.image?.split('/api/media/')[1]; return { ...item, image: key ? mediaUrl(key) : item.image }; };
 // Every item in the cart its department says.
 const sorted = (all: CartItem[]): Carts => ({ food: all.filter(i => cartKindOf(i) === 'food'), shopping: all.filter(i => cartKindOf(i) === 'shopping') });
 
@@ -81,7 +81,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useLayoutEffect(() => { current.current = carts; });
 
   useEffect(() => {
-    // Coming-soon build: the bag always starts empty and is never saved, so no old "2 items" bar shows up.
+    // Coming-soon build: the cart always starts empty and is never saved, so no old "2 items" bar shows up.
     if (COMING_SOON_ALL) return;
     AsyncStorage.multiGet([KEY, OLD_KEY]).then(([[, saved], [, old]]) => {
       try {
@@ -126,7 +126,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   // Adds to the right cart; a reorder can hold both kinds. Food from a second restaurant asks first.
   const addMany = (raw: Line[], origin?: Origin) => {
-    // Coming-soon build: nothing goes into the bag; the "almost ready" toast says why.
+    // Coming-soon build: nothing goes into the cart; the "almost ready" toast says why.
     if (COMING_SOON_ALL) { announceComingSoon(); return; }
     const lines = raw.filter(l => l.qty > 0).map(l => {
       const known = catalog.current.get(l.product.id);

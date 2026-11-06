@@ -2,9 +2,9 @@
 // Name and delivery location are required; email is optional. The mobile number is already known from the code.
 // ProfileGate (src/components/profile-gate.tsx) sends a signed-in customer with no name here.
 import { useCallback, useState } from 'react';
-import { View, Pressable, ScrollView, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Pressable, ScrollView, KeyboardAvoidingView, StyleSheet, ActivityIndicator } from 'react-native';
 import { Text, TextInput } from '@/src/ui/text';
-import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import { type Href, useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from '@react-native-vector-icons/ionicons';
@@ -38,12 +38,13 @@ export default function Welcome() {
       await update({ profile: { ...profile, name: name.trim(), email: email.trim() } });
       // The account remembers the name too, so signing in on another phone does not ask again (best effort).
       await supabase?.auth.updateUser({ data: { full_name: name.trim() } }).catch(() => {});
-      if (typeof next === 'string' && next.startsWith('/') && !next.startsWith('/welcome')) router.replace(next as never); else router.replace('/(tabs)');
+      if (typeof next === 'string' && next.startsWith('/') && !next.startsWith('/welcome')) router.replace(next as Href); else router.replace('/(tabs)');
     } catch { setError(t('welcome.saveError')); }
     finally { setBusy(false); }
   };
 
-  return <KeyboardAvoidingView testID="welcome-screen" behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={s.screen}>
+  // Padding on every platform: Android draws edge to edge, so its window no longer shrinks for the keyboard.
+  return <KeyboardAvoidingView testID="welcome-screen" behavior="padding" style={s.screen}>
     <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={[s.content, { paddingTop: insets.top + 24, paddingBottom: insets.bottom + 32 }]}>
       <BrandLogo tone="light" height={30} />
       <Text accessibilityRole="header" style={s.title}>{t('welcome.title')}</Text>
@@ -65,7 +66,7 @@ export default function Welcome() {
       </View>
 
       <Text style={s.label}>{t('welcome.locationLabel')}</Text>
-      <Pressable testID="welcome-location" accessibilityRole="button" accessibilityLabel={t('shell.changeLocation')} onPress={() => router.push('/location?back=1' as never)} style={({ pressed }) => [s.field, s.place, pressed && s.dim]}>
+      <Pressable testID="welcome-location" accessibilityRole="button" accessibilityLabel={t('shell.changeLocation')} onPress={() => router.push('/location?back=1')} style={({ pressed }) => [s.field, s.place, pressed && s.dim]}>
         <Icon name="location-outline" size={19} color={placeChosen ? colors.forest : colors.muted} />
         <Text numberOfLines={2} style={[s.fixed, !placeChosen && { color: colors.muted }]}>{placeChosen ? location : t('welcome.chooseLocation')}</Text>
         <Icon name="chevron-forward" size={18} color={colors.muted} />

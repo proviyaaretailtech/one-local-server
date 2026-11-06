@@ -1,10 +1,12 @@
 // What GET /api/popups returns (server/popups.ts).
-export type PopupFormat = 'popup_center' | 'popup_sheet' | 'interstitial' | 'strip' | 'coming_soon' | 'letter';
+export type PopupFormat = 'popup_center' | 'popup_sheet' | 'interstitial' | 'strip' | 'coming_soon' | 'letter' | 'carousel';
 // A letter's creative: a 4:5 or 1:1 photo, or a video of at most 30 s (keys or full addresses, see imageUrl).
 export type PopupMedia = { type: 'photo' | 'video'; key: string; poster_key?: string; web_key?: string; width: number; height: number; seconds?: number };
 // One upcoming store on a coming-soon receipt: its name, logo (media key) and a short kind ("Ice creams").
 export type ComingSoonItem = { name: string; logo: string; line?: string };
-export type PopupContent = { greeting?: string; title?: string; body?: string; image?: string; cta_label?: string; cta_route?: string; items?: ComingSoonItem[] };
+// One slide of a carousel pop-up: an image (storage key or full URL, resolved by imageUrl) with an optional caption and CTA.
+export type CarouselSlide = { image: string; caption?: string; cta_label?: string; cta_route?: string };
+export type PopupContent = { greeting?: string; title?: string; body?: string; image?: string; cta_label?: string; cta_route?: string; items?: ComingSoonItem[]; slides?: CarouselSlide[] };
 export type Popup = {
   id: string; format: PopupFormat;
   content: Partial<Record<'en' | 'hi' | 'mr', PopupContent>>;

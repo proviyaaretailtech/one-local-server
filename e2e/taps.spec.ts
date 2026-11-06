@@ -10,7 +10,7 @@ import { SCREENS, prepare, readySelector } from './routes';
 
 // Taps with side effects outside the app, or destructive ones covered by journeys instead.
 const SKIP = /google|sign-out|checkout-btn|delete|remove|confirm|ai-take-photo|ai-choose-photo|voice-record|intro-splash/;
-const SHARED = /^(tab-|header-|department-|location-button|global-back-button|compact-|page-back-button|page-search-button|floating-cart)/;
+const SHARED = /^(tab-|header-|department-|location-button|global-back-button|compact-|floating-cart)/;
 
 type Candidate = { id: string; label: string; phase: 'top' | 'bottom'; pattern: string; selected: boolean };
 type Outcome = Candidate & { result: 'changed' | 'dead' | 'blocked' | 'skipped' | 'already-selected'; changed?: string[]; error?: string; urlAfter?: string };

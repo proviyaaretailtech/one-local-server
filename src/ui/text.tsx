@@ -28,8 +28,9 @@ const withFont = <S,>(style: S) => (ready ? [style, { fontFamily: poppinsFamily(
 export function Text(props: ComponentPropsWithRef<typeof RNText>) {
   return <RNText {...props} style={withFont(props.style) as never} />;
 }
+// Android: no theme underline inside the app's own bordered fields (a screen can still pass its own).
 export function TextInput(props: ComponentPropsWithRef<typeof RNTextInput>) {
-  return <RNTextInput {...props} style={withFont(props.style) as never} />;
+  return <RNTextInput underlineColorAndroid="transparent" {...props} style={withFont(props.style) as never} />;
 }
 // So `useRef<TextInput>()` and `Text` as a type keep working in the files that use them.
 export type Text = RNText;

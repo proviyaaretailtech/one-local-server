@@ -43,7 +43,7 @@ function SmartSearchScreen() {
   };
   const products = result?.product_ids.flatMap(id => data?.products.filter(p => p.id === id) || []) || [];
   return <ScrollView testID="smart-search-screen" contentContainerStyle={styles.content}>
-    <View style={styles.header}><Pressable testID="smart-search-back" accessibilityLabel={t('common.goBack')} style={styles.round} onPress={() => router.canGoBack() ? router.back() : router.replace('/search' as any)}><Icon name="arrow-back" size={19} color={colors.onSurface} /></Pressable><View style={styles.flex}><Text testID="smart-search-title" style={styles.title}>{voice ? t('search.smart.titleVoice') : t('search.smart.titleImage')}</Text><Text style={styles.subtitle}>{t('search.smart.subtitle')}</Text></View>
+    <View style={styles.header}><Pressable testID="smart-search-back" accessibilityLabel={t('common.goBack')} style={styles.round} onPress={() => router.canGoBack() ? router.back() : router.replace('/search')}><Icon name="arrow-back" size={19} color={colors.onSurface} /></Pressable><View style={styles.flex}><Text testID="smart-search-title" style={styles.title}>{voice ? t('search.smart.titleVoice') : t('search.smart.titleImage')}</Text><Text style={styles.subtitle}>{t('search.smart.subtitle')}</Text></View>
       <View style={styles.aiTag}><Icon name="sparkles-outline" size={13} color={colors.forest} />
         <Text style={styles.tagText}>AI</Text>{/* i18n-ignore: the acronym stays Latin in every language */}
       </View></View>

@@ -37,7 +37,7 @@ export function ComingSoonBrand({ name, logo, line }: { name: string; logo: stri
     <View style={s.printer}><View style={s.slot}><View style={s.lip} /></View></View>
     <View style={s.clip}><Animated.View style={paper}><Receipt item={{ name, logo: logoKey(logo), line }} width={276} city={city} /></Animated.View></View>
     <Text style={s.note}>{t('popups.comingSoon.menuSoon', { name })}</Text>
-    <Tap testID="brand-coming-soon-explore" accessibilityRole="button" onPress={() => router.navigate('/food' as never)} radius={24} style={s.cta}>
+    <Tap testID="brand-coming-soon-explore" accessibilityRole="button" onPress={() => router.navigate('/food')} radius={24} style={s.cta}>
       <Text style={s.ctaText}>{t('popups.comingSoon.explore')}</Text>
     </Tap>
   </ScrollView>;

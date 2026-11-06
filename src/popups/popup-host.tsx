@@ -10,7 +10,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useShowFirstRun } from '@/src/i18n/first-run';
 import { InteractionManager, Modal, Pressable, StyleSheet, View } from 'react-native';
 import { Text } from '@/src/ui/text';
-import { usePathname, useRouter } from 'expo-router';
+import { type Href, usePathname, useRouter } from 'expo-router';
 import { Image } from 'expo-image';
 import { useQuery } from '@tanstack/react-query';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -143,7 +143,7 @@ export function PopupHost() {
     sendPopupEvent(p.id, 'tap');
     set(null);
     const route = contentFor(p, lang).cta_route;
-    if (route && route.startsWith('/') && !route.startsWith('//')) router.push(route as never);
+    if (route && route.startsWith('/') && !route.startsWith('//')) router.push(route as Href);
   };
   return <>
     {strip && <PopupStrip popup={strip} lang={lang} motion={motion} onClose={() => close(strip, setStrip)} onOpen={() => open(strip, setStrip)} />}

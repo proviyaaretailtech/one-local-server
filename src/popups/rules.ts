@@ -13,7 +13,31 @@ export const screenOf = (pathname: string) => (pathname.split('/').filter(Boolea
 // Per JavaScript runtime = per app session.
 // firstViewOf: the first view of each screen in this session. An app_open pop-up shows on that view only, so a
 // first-run detour (language, location) before home does not use up the app-open moment.
-export const session = { modalShown: false, viewIndex: 0, seenThisSession: new Set<string>(), firstViewOf: new Map<string, number>() };
+// arrived: when each pop-up id was first received this session (screen view index and time). A pop-up that went live
+// while the app was already open (it is refetched every 30 s) arrives late: it gets its own app-open moment on the view
+// it arrived in, and it may show even though another pop-up was already shown this session (never two at once).
+// modalShownAt: when the last modal pop-up was counted as seen (0 = none yet).
+export const session = {
+  modalShown: false, modalShownAt: 0, viewIndex: 0, seenThisSession: new Set<string>(), firstViewOf: new Map<string, number>(),
+  arrived: new Map<string, { view: number; at: number }>(),
+};
+
+// Remember when ids were first received; a refetch that brings nothing new changes nothing.
+export function noteArrivals(ids: readonly string[], viewIndex: number, now = Date.now()) {
+  for (const id of ids) if (!session.arrived.has(id)) session.arrived.set(id, { view: viewIndex, at: now });
+}
+
+// Went live after the screen's first view this session, so its app-open moment never came.
+export function arrivedAfterFirstView(id: string, screen: string): boolean {
+  const a = session.arrived.get(id); const first = session.firstViewOf.get(screen);
+  return !!a && first !== undefined && a.view > first;
+}
+
+// Received after the last modal pop-up was seen: the one-pop-up-per-session rule does not hold it back.
+export const arrivedAfterLastModal = (id: string) => {
+  const a = session.arrived.get(id);
+  return !!a && session.modalShownAt > 0 && a.at > session.modalShownAt;
+};
 
 const SEEN_KEY = 'onecity.popups.seen.v1';
 // popup id -> last shown (ms), or { at, n } once it also counts how many times (older entries are a plain number).
@@ -48,7 +72,7 @@ export async function allowedByFrequency(p: Popup): Promise<boolean> {
 
 export async function markShown(p: Popup): Promise<void> {
   session.seenThisSession.add(p.id);
-  if (p.format !== 'strip') session.modalShown = true;
+  if (p.format !== 'strip') { session.modalShown = true; session.modalShownAt = Date.now(); }
   const before = await readSeen();
   const seen: Seen = { ...before, [p.id]: { at: Date.now(), n: timesShown(before[p.id]) + 1 } };
   // Only the pop-ups still worth remembering: a year is longer than any campaign.

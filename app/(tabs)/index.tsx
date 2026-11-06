@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react';
-import { View, ScrollView, Pressable, StyleSheet } from 'react-native';
-import { Text } from '@/src/ui/text';
-import { Image } from 'expo-image';
-import { useRouter } from 'expo-router';
-import Icon from '@react-native-vector-icons/ionicons';
-import { colors } from '@/src/theme';
-import { api, Store } from '@/src/api';
-import { useCatalog } from '@/src/use-catalog';
-import { useFollowedStores } from '@/src/followed';
-import { useSavedProducts } from '@/src/customer';
-import { HomeHero } from '@/src/components/home-hero';
-import { OrderAgain } from '@/src/components/order-again';
-import { StoreRail } from '@/src/components/store-rail';
+import { startTransition, useCallback, useMemo, useState } from 'react';
+import { View, StyleSheet, Platform, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
+import { colors, radius } from '@/src/theme';
+import { useBrowseCatalog } from '@/src/use-catalog';
+import { useStores } from '@/src/use-stores';
+import { useRevealed } from '@/src/use-revealed';
+import { HOME_HERO_OVERLAP, HomeHero } from '@/src/components/home-hero';
 import { CityScroll } from '@/src/motion';
-import { BrandRail, CategoryRail, EventRail, LoadState, ProductGrid as ProductRail, SectionTitle } from '@/src/components/catalog-sections';
+import { LoadState, ProductRail, SectionTitle } from '@/src/components/catalog-sections';
+import { ShopList } from '@/src/components/shop-section';
 import { ExploreTown } from '@/src/components/explore-town';
+import { byShop } from '@/src/shop-categories';
 import { useDeliveryLocation } from '@/src/delivery-location';
-import { useFormat, useTranslation } from '@/src/i18n';
-import { logoSize, logoTile } from '@/src/logo-tile';
-import { isHiddenListing } from '@/src/hidden-listings';
+import { useTranslation } from '@/src/i18n';
+
+// Sponsored placements. Products carry no sponsored flag yet, so this hand-picked list stands in until the server sends them.
+const SPOTLIGHT = ['audio1', 'b2', 'f5', 'sneak1', 'sp1', 'sc3', 'f2', 'sf6', 'sn2', 'home1', 'sp6', 'se6'];
+// Shops drawn with the page, then a few more just after, then more whenever a scroll settles near the end: mounting
+// every shop at once (hundreds of cards and photos) froze the first scroll. The web has no scroll-end events, so there
+// all of them follow the first frame, as before.
+const FIRST_SHOPS = 3;
+const MORE_SHOPS = 6;
 
 export default function HomeScreen() {
   // Outside our delivery cities, home becomes the town's real local places.
@@ -28,59 +29,32 @@ export default function HomeScreen() {
 }
 
 function LiveHome() {
-  const { data, isLoading, isError, refetch } = useCatalog();
-  const router = useRouter();
-  const { isFollowing } = useFollowedStores(); const { t } = useTranslation(); const fmt = useFormat(); const { saved } = useSavedProducts();
-  const [stores, setStores] = useState<Store[]>([]);
-  useEffect(() => { api<Store[]>('/stores').then(list => setStores(list.filter(s => !isHiddenListing(s.name)))).catch(() => {}); }, []);
+  const { data, isLoading, isError, refetch } = useBrowseCatalog(); const stores = useStores(); const { t } = useTranslation(); const revealed = useRevealed();
+  const [count, setCount] = useState(FIRST_SHOPS + MORE_SHOPS);
+  const more = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const { layoutMeasurement, contentOffset, contentSize } = e.nativeEvent;
+    if (contentOffset.y + layoutMeasurement.height * 3 > contentSize.height) startTransition(() => setCount(c => c + MORE_SHOPS));
+  }, []);
+  // Worked out only when the catalogue or the shops change, so a re-render of the page (a tab switch, fresh data
+  // elsewhere) hands the memoised sections the same arrays.
+  const spotlight = useMemo(() => data ? SPOTLIGHT.flatMap(id => data.products.filter(p => p.id === id)) : [], [data]);
+  // Each shop's items best rated first (products carry no order counts yet); its card shows the first few of what is picked.
+  const shops = useMemo(() => data ? byShop([...data.products].sort((a, b) => b.rating - a.rating), stores) : [], [data, stores]);
   if (isLoading || !data) return <LoadState error={isError} retry={refetch} />;
   // A delivery city with no stores in the catalogue yet: show what's around instead of empty rails.
   if (!data.products.length) return <ExploreTown empty />;
-  const followed = stores.filter(s => isFollowing(s.id));
-  const go = (route: string) => () => router.navigate(route as any);
-  const selected = (ids: string[]) => ids.flatMap(id => data.products.filter(p => p.id === id));
-  const favourites = selected(saved).slice(0, 6); // the customer's own saved items, first on the page
-  return <CityScroll testID="home-screen" bleed showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
-    <HomeHero catalog={data} />
-    {followed.length > 0 && <><SectionTitle id="followed" title={t('home.followedTitle')} subtitle={t('home.followedSubtitle')} /><ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.stores}>{followed.map(s => <Pressable testID={`followed-store-${s.id}`} key={s.id} style={styles.store} onPress={go(`/store/${s.id}`)}><View style={styles.storeLogoTile}><Image source={s.logo} style={styles.storeImage} contentFit="contain" /></View><Text style={styles.storeName} numberOfLines={1}>{s.name}</Text><Icon name="heart" size={13} color={colors.forest} /></Pressable>)}</ScrollView></>}
+  const shown = !revealed ? FIRST_SHOPS : Platform.OS === 'web' ? shops.length : count;
+  return <CityScroll testID="home-screen" bleed showsVerticalScrollIndicator={false} contentContainerStyle={styles.content} onScrollEndDrag={more} onMomentumScrollEnd={more}>
+    <HomeHero />
+    {/* Solid white, rising over the hero's bottom edge so its rounded top corners are drawn on the backdrop. */}
     <View style={styles.sheet}>
-    <OrderAgain />
-    {favourites.length > 0 && <><SectionTitle id="home-favourites" title={t('home.favouritesTitle')} subtitle={t('home.favouritesSubtitle')} onPress={go('/wishlist')} /><ProductRail products={favourites} scope="favourites-home" /></>}
-    <SectionTitle id="home-shop-by-store" title={t('home.storesTitle')} subtitle={t('home.storesSubtitle')} onPress={go('/categories')} />
-    <StoreRail stores={data.themed_stores || []} scope="home" />
-    <SectionTitle id="trending" title={t('home.trendingTitle')} subtitle={t('home.trendingSubtitle')} onPress={go('/search?collection=trending')} />
-    <ProductRail products={selected(['f1', 'f5', 'b1', 'f3', 'p3', 'a1'])} scope="trending-home" />
-    <SectionTitle id="top-picks" title={t('home.picksTitle')} subtitle={t('home.picksSubtitle')} onPress={go('/search?collection=picks')} />
-    <ProductRail products={selected(['p3', 'f3', 'b1', 'p4', 'f6', 'a1'])} scope="picks" />
-    <View style={styles.rule} />
-    <SectionTitle id="home-food" title={t('home.foodTitle')} subtitle={t('home.foodSubtitle')} onPress={go('/food')} />
-    <BrandRail brands={data.brands.filter(b => b.department === 'food')} scope="home-food" />
-    <View style={styles.railSpace}><ProductRail products={selected(['f4', 'f2', 'f5'])} scope="food-home" /></View>
-    <SectionTitle id="home-grocery" title={t('home.groceryTitle')} subtitle={t('home.grocerySubtitle')} onPress={go('/grocery')} />
-    <CategoryRail categories={data.categories.filter(c => c.department === 'grocery').slice(0, 6)} scope="grocery-home" />
-    <SectionTitle id="home-shops" title={t('home.shopsTitle')} subtitle={t('home.shopsSubtitle')} onPress={go('/shops')} />
-    <BrandRail brands={data.brands.filter(b => b.department === 'shops')} scope="home-shops" />
-    <View style={styles.railSpace}><ProductRail products={selected(['sneak1', 'audio1', 'home1'])} scope="shops-home" /></View>
-    <SectionTitle id="home-pharmacy" title={t('home.pharmacyTitle')} subtitle={t('home.pharmacySubtitle')} onPress={go('/care')} />
-    <BrandRail brands={data.brands.filter(b => b.department === 'pharmacy')} scope="home-pharmacy" />
-    <View style={styles.railSpace}><ProductRail products={selected(['h2', 'h1', 'h3'])} scope="pharmacy-home" /></View>
-    <SectionTitle id="home-beauty" title={t('home.beautyTitle')} subtitle={t('home.beautySubtitle')} onPress={go('/care')} />
-    <BrandRail brands={data.brands.filter(b => b.department === 'beauty')} scope="home-beauty" />
-    <View style={styles.railSpace}><ProductRail products={selected(['b2', 'b3', 'b4'])} scope="beauty-home" /></View>
-    <SectionTitle id="home-book" title={t('home.bookTitle')} subtitle={t('home.bookSubtitle')} onPress={go('/book-it')} />
-    <EventRail events={data.events} scope="home-book" />
-    <SectionTitle id="home-stores" title={t('home.neighbourhoodTitle')} subtitle={t('home.neighbourhoodSubtitle')} />
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.stores}>{stores.filter(s => s.id.startsWith('s') || s.id.startsWith('org-')).map(s => <Pressable testID={`store-card-${s.id}`} key={s.id} style={styles.store} onPress={go(`/store/${s.id}`)}><View style={styles.storeLogoTile}><Image source={s.logo} style={styles.storeImage} contentFit="contain" /></View><View><Text style={styles.storeName} numberOfLines={1}>{s.name}</Text><Text style={styles.meta}>{t('home.storeMeta', { time: fmt.deliveryTime(s.delivery_time), rating: fmt.number(s.rating, { maxFractionDigits: 2 }) })}</Text></View></Pressable>)}</ScrollView>
-    <SectionTitle id="home-budget" title={t('home.budgetTitle')} subtitle={t('home.budgetSubtitle', { amount: fmt.money(99) })} onPress={go('/search?collection=budget')} /><ProductRail products={data.products.filter(p => p.price < 99).slice(-10)} scope="home-budget" />
-    <SectionTitle id="home-brand-discovery" title={t('home.brandsTitle')} subtitle={t('home.brandsSubtitle', { value: fmt.number(data.brands.length) })} /><BrandRail brands={data.brands.slice(16)} scope="home-new-brands" />
-    <View style={styles.footer}><Text style={styles.footerTitle}>{t('home.footerTitle')}</Text><Text style={styles.footerSub}>{t('home.footerSub')}</Text><Text testID="sample-catalog-notice" style={styles.notice}>{t('home.sampleNotice')}</Text></View>
+      <SectionTitle id="home-spotlight" title={t('home.spotlight.title')} subtitle={t('home.spotlight.subtitle')} />
+      <ProductRail products={spotlight} scope="spotlight" rows={2} />
+      <ShopList shops={shops.slice(0, shown)} categories={data.categories} scope="home-shop" />
     </View>
   </CityScroll>;
 }
+
 const styles = StyleSheet.create({
-  content: { paddingBottom: 20 }, sheet: { backgroundColor: colors.glassBright, borderTopLeftRadius: 34, borderTopRightRadius: 34, paddingTop: 1, overflow: 'hidden' }, rule: { height: 7, backgroundColor: colors.cream, marginTop: 26 }, railSpace: { marginTop: 18 },
-  stores: { paddingHorizontal: 20, gap: 12 }, store: { padding: 12, borderRadius: 16, backgroundColor: colors.cream, flexDirection: 'row', alignItems: 'center', gap: 10 },
-  storeLogoTile: logoTile(48), storeImage: { width: logoSize(48), height: logoSize(48) }, storeName: { color: colors.onSurface, fontSize: 12, fontWeight: '700', maxWidth: 140 }, meta: { color: colors.muted, fontSize: 10, marginTop: 4 },
-  footer: { marginTop: 38, paddingHorizontal: 24, paddingVertical: 30, backgroundColor: colors.limeSoft }, footerTitle: { color: colors.forest, fontSize: 25, letterSpacing: -1, fontWeight: '700', maxWidth: 250 },
-  footerSub: { color: colors.forest, fontSize: 12, marginTop: 10 }, notice: { color: colors.muted, fontSize: 9, lineHeight: 15, marginTop: 22 },
+  content: { paddingBottom: 20 }, sheet: { marginTop: -HOME_HERO_OVERLAP, backgroundColor: colors.surface, borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, paddingTop: 1, overflow: 'hidden' },
 });

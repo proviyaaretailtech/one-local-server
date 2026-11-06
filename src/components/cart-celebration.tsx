@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Animated, View, Pressable, StyleSheet } from 'react-native';
 import { Text } from '@/src/ui/text';
 import { Image } from 'expo-image';
@@ -14,7 +14,7 @@ const session = globalThis as unknown as { __onecityCelebrated?: boolean };
 
 export function CartCelebration({ top }: { top: number }) {
   const { t } = useTranslation(); const fmt = useFormat(); const { lastAdded, totalItems } = useCart(); const router = useRouter(); const path = usePathname(); const motion = useMotionAllowed();
-  const progress = useRef(new Animated.Value(0)).current; const [visible, setVisible] = useState(false);
+  const [progress] = useState(() => new Animated.Value(0)); const [visible, setVisible] = useState(false);
   useEffect(() => { setVisible(false); }, [path]);
   useEffect(() => {
     if (!lastAdded || session.__onecityCelebrated) return;

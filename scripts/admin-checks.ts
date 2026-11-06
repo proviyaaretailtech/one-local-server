@@ -60,6 +60,26 @@ async function main() {
   check('signed in but not a platform admin: 403 with { detail, code }', notAdmin.status === 403 && typeof notAdmin.body.detail === 'string' && notAdmin.body.code === 'not_platform_admin', notAdmin);
   const master = await call(me, 'GET', 'admin/me', { token: MASTER });
   check('master_admin: me says role and can_write', master.status === 200 && master.body.role === 'master_admin' && master.body.can_write === true && !!master.body.user_id, master.body);
+
+  // ---------- The Master server's own key (INTERNAL_KEY_MASTER) ----------
+  delete process.env.INTERNAL_KEY_MASTER;
+  check('no INTERNAL_KEY_MASTER set: the staff session alone is enough (today\'s behaviour)', master.status === 200);
+  const masterKey = 'k'.repeat(64);
+  process.env.INTERNAL_KEY_MASTER = masterKey;
+  const noKey = await call(me, 'GET', 'admin/me', { token: MASTER });
+  check('INTERNAL_KEY_MASTER set, no x-internal-key: 401 master_key_required', noKey.status === 401 && noKey.body.code === 'master_key_required', noKey.body);
+  const wrongKey = await call(me, 'GET', 'admin/me', { token: MASTER, headers: { 'x-internal-key': 'w'.repeat(64) } });
+  check('INTERNAL_KEY_MASTER set, wrong key: 401 master_key_required', wrongKey.status === 401 && wrongKey.body.code === 'master_key_required', wrongKey.body);
+  check('the refusal never echoes the key', !JSON.stringify(wrongKey.body).includes(masterKey) && !JSON.stringify(noKey.body).includes(masterKey));
+  const rightKey = await call(me, 'GET', 'admin/me', { token: MASTER, headers: { 'x-internal-key': masterKey } });
+  check('INTERNAL_KEY_MASTER set, right key + staff session: 200', rightKey.status === 200 && rightKey.body.role === 'master_admin', rightKey.body);
+  const keyNoSession = await call(me, 'GET', 'admin/me', { headers: { 'x-internal-key': masterKey } });
+  check('the right key without a staff session: still 401 (the key is not a sign-in)', keyNoSession.status === 401 && keyNoSession.body.code === 'not_signed_in', keyNoSession.body);
+  const keyNotAdmin = await call(me, 'GET', 'admin/me', { token: USER, headers: { 'x-internal-key': masterKey } });
+  check('the right key with a non-admin session: still 403', keyNotAdmin.status === 403, keyNotAdmin.body);
+  const evilWithKey = await call(me, 'GET', 'admin/me', { token: MASTER, origin: EVIL, headers: { 'x-internal-key': masterKey } });
+  check('the right key does not lift the origin check: 403 origin_not_allowed', evilWithKey.status === 403 && evilWithKey.body.code === 'origin_not_allowed', evilWithKey.body);
+  delete process.env.INTERNAL_KEY_MASTER;
   const sales = await call(me, 'GET', 'admin/me', { token: SALES });
   check('sales_executive: reads, cannot write', sales.status === 200 && sales.body.can_write === false, sales.body);
   check('read-only role can list listings', (await call(listings, 'GET', 'admin/listings', { token: SALES })).status === 200);

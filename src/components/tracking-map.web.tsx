@@ -17,7 +17,6 @@ import { TrackingSchematic } from './tracking-schematic';
 export type { TrackingMapProps } from './tracking-parts';
 
 const KEY: string | undefined = Constants.expoConfig?.extra?.googleMapsBrowserKey;
-export const trackingMapAvailable = !!KEY;
 
 // Advanced markers (custom HTML pins) need a map id. This is Google's own placeholder id for exactly this case: it
 // works with any key and carries no cloud styling.

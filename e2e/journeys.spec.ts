@@ -37,18 +37,17 @@ test('shop: home → department → category → product → cart → LATUR10 �
   let orderId = ''; let totalBefore = 0; let totalTimeline: string[] = [];
   const money = (t: string) => Number(t.replace(/[^\d.]/g, ''));
   await j.step('open home', async () => { await openRoute(page, '/', '[data-testid="home-screen"]'); });
-  await j.step('tap the Groceries department', async () => {
+  await j.step('tap the Groceries service', async () => {
     await tapId(page, 'department-grocery');
-    await expect(page).toHaveURL(/\/grocery$/);
-    await expect(byId(page, 'department-screen-grocery')).toBeVisible();
+    await expect(page).toHaveURL(/\/categories$/);
+    await expect(byId(page, 'categories-screen')).toBeVisible();
   });
-  await j.step('tap the Fruits & Veggies category', async () => {
-    await tapId(page, 'grocery-page-category-c1');
-    await expect(page).toHaveURL(/\/category\/c1$/);
+  await j.step('open the Fruits & Veggies category', async () => {
+    await openRoute(page, '/category/c1', '[data-testid="category-screen"]');
     await expect(byId(page, 'category-title')).toHaveText(/Fruits/);
   });
   await j.step('open the Fresh Tomatoes product page', async () => {
-    await tapId(page, 'category-product-name-open-p1');
+    await tapId(page, 'product-name-open-category-p1');
     await expect(page).toHaveURL(/\/product\/p1$/);
     await expect(byId(page, 'pd-add-btn')).toBeVisible();
   });
@@ -137,9 +136,9 @@ test('search by text from the home header', async ({ page }, testInfo) => {
 
 test('product page back button returns to the previous screen', async ({ page }, testInfo) => {
   const m = monitor(page); const j = journey('product-back', page, m, testInfo);
-  await j.step('open Groceries and a product', async () => {
-    await openRoute(page, '/grocery', '[data-testid="department-screen-grocery"]');
-    await tapId(page, 'product-name-open-grocery-p1');
+  await j.step('open Fruits & Veggies and a product', async () => {
+    await openRoute(page, '/category/c1', '[data-testid="category-screen"]');
+    await tapId(page, 'product-name-open-category-p1');
     await expect(page).toHaveURL(/\/product\/p1$/);
   });
   await j.step('tap the back arrow (top-left)', async () => {
@@ -150,17 +149,17 @@ test('product page back button returns to the previous screen', async ({ page },
     await page.waitForTimeout(1_200);
     const savedAfter = await page.evaluate(() => localStorage.getItem('onecity.saved-products.v1'));
     expect(savedAfter, 'tapping "back" changed the wishlist instead (the heart sits on top of the back arrow)').toBe(saved);
-    await expect(page).toHaveURL(/\/grocery$/);
+    await expect(page).toHaveURL(/\/category\/c1$/);
   });
   j.save();
 });
 
 test('wishlist: save from a product card, see it in Wishlist, remove it', async ({ page }, testInfo) => {
   const m = monitor(page); const j = journey('wishlist', page, m, testInfo);
-  await j.step('open Groceries', async () => { await openRoute(page, '/grocery', '[data-testid="department-screen-grocery"]'); });
+  await j.step('open Fruits & Veggies', async () => { await openRoute(page, '/category/c1', '[data-testid="category-screen"]'); });
   await j.step('tap the heart on Fresh Tomatoes', async () => {
-    await tapId(page, 'save-product-grocery-p1');
-    await expect(byId(page, 'save-product-grocery-p1')).toHaveAttribute('aria-label', /^Unsave/);
+    await tapId(page, 'save-product-category-p1');
+    await expect(byId(page, 'save-product-category-p1')).toHaveAttribute('aria-label', /^Unsave/);
   });
   await j.step('open Wishlist from the profile', async () => {
     await scrollMain(page, 'top');
@@ -183,9 +182,9 @@ test('wishlist: save from a product card, see it in Wishlist, remove it', async 
 
 test('store page: open from home, filter, follow, add, back', async ({ page }, testInfo) => {
   const m = monitor(page); const j = journey('store', page, m, testInfo);
-  await j.step('open home and the Latur Fresh Mart store card', async () => {
+  await j.step('open home and the first shop card', async () => {
     await openRoute(page, '/', '[data-testid="home-screen"]');
-    await tapId(page, 'store-card-s1');
+    await tapId(page, 'home-shop-s1-open');
     await expect(page).toHaveURL(/\/store\/s1$/);
     await expect(byId(page, 'store-screen')).toBeVisible();
   });
@@ -208,21 +207,17 @@ test('store page: open from home, filter, follow, add, back', async ({ page }, t
     await add.scrollIntoViewIfNeeded(); await add.tap();
     await expect(page.locator('[data-testid^="stepper-"]').filter({ visible: true }).first()).toBeVisible();
   });
-  await j.step('back returns home, where the followed store now appears first', async () => {
+  await j.step('back returns home', async () => {
     await tapId(page, 'back-btn');
     await expect(byId(page, 'home-screen')).toBeVisible();
-    await scrollMain(page, 'top');
-    await expect(byId(page, 'followed-store-s1')).toBeVisible();
   });
   j.save();
 });
 
-test('brand page: open from home rail, follow brand, open its store profile', async ({ page }, testInfo) => {
+test('brand page: follow brand, open its store profile', async ({ page }, testInfo) => {
   const m = monitor(page); const j = journey('brand', page, m, testInfo);
-  await j.step('open home and tap the boAt brand tile', async () => {
-    await openRoute(page, '/', '[data-testid="home-screen"]');
-    await tapId(page, 'home-shops-brand-boat');
-    await expect(page).toHaveURL(/\/brand\/boat$/);
+  await j.step('open the boAt brand page', async () => {
+    await openRoute(page, '/brand/boat', '[data-testid="brand-screen-boat"]');
     await expect(byId(page, 'brand-screen-boat')).toContainText('boAt');
   });
   await j.step('follow the brand', async () => {
@@ -236,11 +231,6 @@ test('brand page: open from home rail, follow brand, open its store profile', as
     // The store follow button is an icon only; its state is the saved follow list.
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('onelatur.followed.v1') || '[]'))).toContain('boat');
   });
-  await j.step('home lists the followed brand under “Your local favourites”', async () => {
-    await openRoute(page, '/', '[data-testid="home-screen"]');
-    await expect(byId(page, 'followed-heading')).toBeVisible();
-    await expect(byId(page, 'followed-store-boat')).toBeVisible();
-  });
   j.save();
 });
 
@@ -251,9 +241,9 @@ test('Book It: enquiry form validates, saves, and appears in My Bookings', async
     await tapId(page, 'tab-book-it');
     await expect(byId(page, 'department-screen-book-it')).toBeVisible();
   });
+  // Book It's options are all coming soon for now, so the movie's booking page is opened directly.
   await j.step('open a movie', async () => {
-    await tapId(page, 'book-movies-event-e1');
-    await expect(page).toHaveURL(/\/booking\/e1$/);
+    await openRoute(page, '/booking/e1', '[data-testid="booking-event-title"]');
     await expect(byId(page, 'booking-event-title')).toBeVisible();
   });
   await j.step('submitting empty shows a validation message', async () => {

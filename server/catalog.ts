@@ -46,7 +46,8 @@ async function loadFromDb(): Promise<CatalogData> {
     client.from('ol_coupons').select('*').eq('active', true),
     client.from('ol_events').select('*').order('sort_order'),
     client.from('ol_themed_stores').select('*').order('sort_order'),
-    client.from('ol_reels').select('*').order('sort_order'),
+    // Deleted reels never leave the database; paused ones and the window are worked out per request in reelsFor.
+    client.from('ol_reels').select('*').is('deleted_at', null).order('sort_order'),
   ]);
   const first = [categories, brands, stores, products, banners, chips, coupons, events, themed, reels].find(r => r.error);
   if (first?.error) { console.error('[catalog] load failed:', first.error.message); throw new HttpError(503, 'The catalogue is not available right now.'); }
@@ -66,7 +67,11 @@ async function loadFromDb(): Promise<CatalogData> {
     brands: (brands.data ?? []).map(b => ({ id: b.id, name: b.name, department: b.department, logo: b.logo, image: b.image, tagline: b.tagline, city_id: b.city_id })),
     events: (events.data ?? []).map(e => ({ id: e.id, title: e.title, kind: e.kind, subtitle: e.subtitle, venue: e.venue, price: num(e.price), image: e.image, tag: e.tag, slots: e.slots ?? [], city_id: e.city_id })),
     themed_stores: (themed.data ?? []).map(t => t.data),
-    reels: (reels.data ?? []).map(r => ({ id: r.id, product_id: r.product_id, brand_id: r.brand_id, video: r.video, caption: r.caption, creator: r.creator, likes: r.likes, tag: r.tag, city_id: r.city_id })),
+    reels: (reels.data ?? []).map(r => ({
+      id: r.id, product_id: r.product_id, brand_id: r.brand_id, video: r.video, caption: r.caption, creator: r.creator, likes: r.likes, tag: r.tag, city_id: r.city_id,
+      // migration 0642 (Master Admin -> Reels); absent before it, which reads as an active, always-on sample reel
+      poster: r.poster ?? null, video_web: r.video_web ?? null, status: r.status ?? 'active', starts_at: r.starts_at ?? null, ends_at: r.ends_at ?? null, is_demo: r.is_demo ?? true,
+    })),
   } as unknown as CatalogData, (stores.data ?? []) as StoreRow[]);
 }
 
@@ -204,12 +209,30 @@ export async function applyCoupon(rawCode: string, subtotal: number): Promise<Co
 export const deliveryFee = (subtotal: number) => (subtotal >= 199 || subtotal === 0 ? 0 : 15);
 
 // ---------- Reels ----------
+// What Master Admin -> Reels writes (migration 0642). The bundled sample has none of these fields: it reads as active, always on.
+type ReelRow = (typeof jsonFallback.reels)[number] & {
+  brand_id?: string | null; poster?: string | null; video_web?: string | null; status?: string; starts_at?: string | null; ends_at?: string | null; is_demo?: boolean;
+};
+
+// The reels customers see now, in order: active, inside their window, and linked to a product or brand this city still has. A reel
+// whose product has gone stays as a brand reel when it has a brand, and is left out otherwise (the app needs one or the other).
 export async function reelsFor(city: string) {
   const data = await getCatalog();
-  return inCity(data.reels, city).map(r => ({
-    ...r,
-    video_web: `${r.video}-webm`,
-    product: data.products.find(p => p.id === r.product_id),
-    brand: data.brands.find(b => b.id === r.brand_id),
-  }));
+  const now = Date.now();
+  const products = inCity(data.products, city), brands = inCity(data.brands, city);
+  return (inCity(data.reels, city) as ReelRow[]).flatMap(r => {
+    if ((r.status ?? 'active') !== 'active') return [];
+    if (r.starts_at && new Date(r.starts_at).getTime() > now) return [];
+    if (r.ends_at && new Date(r.ends_at).getTime() <= now) return [];
+    const product = r.product_id ? products.find(p => p.id === r.product_id) : undefined;
+    const brand = brands.find(b => b.id === (r.brand_id || product?.brand_id));
+    if (!product && !(r.brand_id && brand)) return [];
+    return [{
+      id: r.id, product_id: r.product_id ?? null, brand_id: brand?.id ?? null, city_id: city,
+      video: r.video, caption: r.caption, creator: r.creator || brand?.name || '', likes: r.likes, tag: r.tag,
+      // The sample reels keep a '<video>-webm' copy next to the MP4; an uploaded reel plays its own file unless a web copy was uploaded.
+      video_web: r.video_web || (r.video.startsWith('/api/media/') ? `${r.video}-webm` : r.video),
+      poster: r.poster || null, is_demo: r.is_demo ?? true, product, brand,
+    }];
+  });
 }

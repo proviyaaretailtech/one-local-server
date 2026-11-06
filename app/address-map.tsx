@@ -1,5 +1,5 @@
 // Drop the pin: move the map under a fixed pin; the address card below follows it.
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Animated, Pressable, StyleSheet, View } from 'react-native';
 import { Text } from '@/src/ui/text';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -21,14 +21,14 @@ export default function AddressMap() {
   const router = useRouter(); const insets = useSafeAreaInsets(); const delivery = useDeliveryLocation();
   const { t } = useTranslation(); const fmt = useFormat(); const message = useErrorMessage();
   const params = useLocalSearchParams<{ lat?: string; lng?: string; id?: string }>();
-  const start = useRef<Point>(params.lat && params.lng ? { lat: Number(params.lat), lng: Number(params.lng) } : delivery.point ?? CITY_CENTER).current;
+  const [start] = useState<Point>(() => params.lat && params.lng ? { lat: Number(params.lat), lng: Number(params.lng) } : delivery.point ?? CITY_CENTER);
   const [center, setCenter] = useState<Point>(start);
   const [moveTo, setMoveTo] = useState<(Point & { at: number }) | null>(null);
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
   const [hint, setHint] = useState(true); const [locating, setLocating] = useState(false); const [locError, setLocError] = useState('');
   const [here, setHere] = useState<Point | null>(null);
   const [moving, setMoving] = useState(false);
-  const lift = useRef(new Animated.Value(0)).current;
+  const [lift] = useState(() => new Animated.Value(0));
 
   // Where the phone is, only if already allowed (never prompts); used for the "this is X away" note.
   useEffect(() => { knownPoint().then(p => p && setHere(p)); }, []);
@@ -80,7 +80,7 @@ export default function AddressMap() {
     if (place && streetKnown) { q.set('locality', place.locality); q.set('formatted', place.formatted); q.set('pincode', place.pincode); }
     else { q.set('manual', '1'); if (place?.locality || place?.city) q.set('locality', place.locality || place.city); }
     if (params.id) q.set('id', params.id);
-    router.push(`/address-form?${q.toString()}` as never);
+    router.push(`/address-form?${q.toString()}`);
   };
 
   const pinStyle = { transform: [{ translateY: lift.interpolate({ inputRange: [0, 1], outputRange: [0, -14] }) }] };

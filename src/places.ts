@@ -1,6 +1,7 @@
 // Address search and map positions for the location flow. All Google calls go through our
 // own API (app/api/places, app/api/geocode) so the Maps key never ships in the app.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
 import * as Location from 'expo-location';
 import { apiGet, apiPost } from './api';
 import { consentGranted } from './privacy';
@@ -52,6 +53,20 @@ export async function currentPoint(): Promise<Point> {
     ?? (await Location.getLastKnownPositionAsync({ maxAge: 30 * 60_000 }).catch(() => null));
   if (!pos) throw new LocationUnavailableError();
   return { lat: pos.coords.latitude, lng: pos.coords.longitude };
+}
+
+// The area a point is in, named by the phone's own map service (Apple Maps on iPhone, Google on Android): finer than
+// our town list, which names the nearest town centre (Baner, Pune, not Pimpri-Chinchwad). Null on the web, or when the
+// service has no answer, so the caller falls back to the town.
+export async function areaName(p: Point): Promise<string | null> {
+  if (Platform.OS === 'web') return null;
+  try {
+    const [a] = await Location.reverseGeocodeAsync({ latitude: p.lat, longitude: p.lng });
+    if (!a?.city) return null;
+    return [a.district, a.city, a.region].filter((part, i, all): part is string => !!part && all.indexOf(part) === i).join(', ');
+  } catch {
+    return null;
+  }
 }
 
 // Only if the customer already allowed location: never prompts. Reading it without being asked is

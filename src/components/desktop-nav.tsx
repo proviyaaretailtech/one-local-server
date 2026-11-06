@@ -17,29 +17,29 @@ const tabs = [
   { id: 'discover', path: '/discover', route: '/(tabs)/discover' },
   { id: 'food', path: '/food', route: '/(tabs)/food' },
   { id: 'book-it', path: '/book-it', route: '/(tabs)/book-it' },
-];
+] as const;
 
 export function DesktopNav() {
   const path = usePathname(); const router = useRouter(); const { t } = useTranslation(); const { totalItems } = useCart();
   const labels: Record<string, string> = { home: t('nav.home'), categories: t('nav.categories'), discover: t('nav.discover'), food: departmentName(t, 'food'), 'book-it': departmentName(t, 'book-it') };
   const selected = (id: string, route: string) => path === route || (id === 'categories' && (path.startsWith('/collection/') || path.startsWith('/category/')));
   return <View testID="desktop-nav" style={s.bar}>
-    <Tap testID="desktop-nav-brand" accessibilityLabel={t('nav.home')} glow={false} haptic={false} onPress={() => router.navigate('/(tabs)' as never)}><BrandLogo tone="light" height={26} /></Tap>
+    <Tap testID="desktop-nav-brand" accessibilityLabel={t('nav.home')} glow={false} haptic={false} onPress={() => router.navigate('/(tabs)')}><BrandLogo tone="light" height={26} /></Tap>
     <View accessibilityRole="tablist" style={s.tabs}>
       {tabs.map(tab => {
         const on = selected(tab.id, tab.path);
-        return <Tap key={tab.id} testID={`desktop-tab-${tab.id}`} accessibilityRole="tab" accessibilityLabel={labels[tab.id]} accessibilityState={{ selected: on }} glow={false} haptic={false} onPress={() => router.navigate(tab.route as never)} style={[s.tab, on && s.tabOn]}>
+        return <Tap key={tab.id} testID={`desktop-tab-${tab.id}`} accessibilityRole="tab" accessibilityLabel={labels[tab.id]} accessibilityState={{ selected: on }} glow={false} haptic={false} onPress={() => router.navigate(tab.route)} style={[s.tab, on && s.tabOn]}>
           <Text style={[s.label, on && s.labelOn]}>{labels[tab.id]}</Text>
         </Tap>;
       })}
     </View>
     <View style={s.actions}>
-      <Tap testID="desktop-search" accessibilityLabel={t('shell.searchProducts')} glow={false} haptic={false} onPress={() => router.navigate('/search' as never)} style={s.icon}><Icon name="search-outline" size={20} color={colors.onSurface} /></Tap>
-      <Tap testID="desktop-cart" accessibilityLabel={t('shell.cart')} glow={false} haptic={false} onPress={() => router.navigate('/cart' as never)} style={s.icon}>
+      <Tap testID="desktop-search" accessibilityLabel={t('shell.searchProducts')} glow={false} haptic={false} onPress={() => router.navigate('/search')} style={s.icon}><Icon name="search-outline" size={20} color={colors.onSurface} /></Tap>
+      <Tap testID="desktop-cart" accessibilityLabel={t('shell.cart')} glow={false} haptic={false} onPress={() => router.navigate('/cart')} style={s.icon}>
         <Icon name="bag-handle-outline" size={20} color={colors.onSurface} />
         {totalItems > 0 && <View style={s.badge}><Text style={s.badgeText}>{totalItems}</Text></View>}
       </Tap>
-      <Tap testID="desktop-account" accessibilityLabel={t('shell.profile')} glow={false} haptic={false} onPress={() => router.navigate('/account' as never)} style={s.icon}><Icon name="person-outline" size={20} color={colors.onSurface} /></Tap>
+      <Tap testID="desktop-account" accessibilityLabel={t('shell.profile')} glow={false} haptic={false} onPress={() => router.navigate('/account')} style={s.icon}><Icon name="person-outline" size={20} color={colors.onSurface} /></Tap>
     </View>
   </View>;
 }

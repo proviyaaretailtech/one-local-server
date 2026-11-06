@@ -101,7 +101,7 @@ export function formatDeliveryTime(raw: unknown, ctx: FormatContext): string {
   return m[2] ? formatEtaRange(Number(m[1]), Number(m[2]), ctx) : formatEta(Number(m[1]), ctx);
 }
 
-export type DateStyle = 'short' | 'medium' | 'long' | 'time' | 'dateTime' | 'weekday' | 'weekdayShort';
+export type DateStyle = 'short' | 'medium' | 'long' | 'time' | 'dateTime' | 'weekday' | 'weekdayShort' | 'month' | 'day';
 const DATE_OPTIONS: Record<DateStyle, Intl.DateTimeFormatOptions> = {
   short: { day: 'numeric', month: 'short' },
   medium: { day: 'numeric', month: 'short', year: 'numeric' },
@@ -110,6 +110,8 @@ const DATE_OPTIONS: Record<DateStyle, Intl.DateTimeFormatOptions> = {
   dateTime: { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true },
   weekday: { weekday: 'short', day: 'numeric', month: 'short' },
   weekdayShort: { weekday: 'short' }, // "Tue" / "मंगल"
+  month: { month: 'short' }, // "Nov" — a calendar page's band
+  day: { day: 'numeric' }, // "6" — and its date
 };
 
 const toDate = (value: Date | string | number): Date => (value instanceof Date ? value : new Date(value));

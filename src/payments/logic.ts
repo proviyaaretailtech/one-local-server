@@ -129,7 +129,6 @@ export function payEnabled(o: { row: MethodRow | undefined; busy: boolean; mode?
 // ── Outcomes ───────────────────────────────────────────────────────────────────────────────────────────
 // What the progress screen shows. Only GET /payments/status decides it (rule 1 of the contract).
 export type Phase = 'starting' | 'awaiting' | 'confirming' | 'paid' | 'failed' | 'dropped' | 'stuck';
-export const FINAL_PHASES: Phase[] = ['paid', 'failed', 'dropped'];
 
 export function phaseFromStatus(s: Pick2<StatusAnswer, 'outcome' | 'payment_status'>): 'paid' | 'confirming' | 'failed' | 'dropped' {
   switch (s.outcome) {

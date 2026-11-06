@@ -1,7 +1,10 @@
 // iOS add-in layer: order notifications, the order Live Activity (lock screen + Dynamic Island)
 // and the home-screen widget (targets/widget). Every native module is loaded lazily and every call
 // is best-effort, so Expo Go, Android and the web simply skip what they can't do.
-import { Platform } from 'react-native';
+// Not 'react-native': Metro caches a bare import's resolution per folder, and this folder holds the react-native wrapper
+// (src/native/react-native.tsx), which must get the real package. Resolving 'react-native' here first handed the
+// wrapper itself to the wrapper on iOS (a require cycle, 'Cannot read property OS of undefined' at start).
+import { Platform } from 'expo-modules-core';
 import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { t } from '@/src/i18n';
 

@@ -13,6 +13,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "@react-native-vector-icons/ionicons";
 import { haptic } from "@/src/haptics";
 import { RollingNumber } from "@/src/components/motion/rolling-number";
+import Reanimated, { FadeOut, LinearTransition } from "react-native-reanimated";
+import { useMotionAllowed } from "@/src/motion";
+import { duration, reEasing } from "@/src/motion-tokens";
 import { SlideToConfirm } from "@/src/components/motion/slide-to-confirm";
 import { colors, radius, spacing } from "@/src/theme";
 import { logoSize, logoTile } from "@/src/logo-tile";
@@ -48,7 +51,7 @@ let payAfterSignIn: PaymentChoice | null = null;
 type FailureFallback = 'cart.bill.error' | 'checkout.error.place' | 'checkout.error.confirm';
 
 export default function CartScreen() {
-  const insets = useSafeAreaInsets();
+  const insets = useSafeAreaInsets(); const motion = useMotionAllowed();
   const router = useRouter();
   const { t, i18n } = useTranslation();
   const fmt = useFormat();
@@ -249,7 +252,7 @@ export default function CartScreen() {
     setApplied(null);
     setCouponCode("");
     setCouponMsg(null);
-    router.replace(`/order/${orderId}` as any);
+    router.replace(`/order/${orderId}`);
   };
   const say = (error: unknown, fallback: FailureFallback) => setCheckoutError({ error, fallback });
 
@@ -260,7 +263,7 @@ export default function CartScreen() {
     if (!hasAddress) { setSheet(false); setNeedAddress(true); haptic.warning(); return; }
     // 2. A signed-in customer (when this build has sign-in at all). The cart stays saved on the
     //    phone; once they are back from sign-in this screen carries on paying by itself.
-    if (supabase && !(await accessToken())) { payAfterSignIn = pick; setSheet(false); router.push('/sign-in?next=checkout' as never); return; }
+    if (supabase && !(await accessToken())) { payAfterSignIn = pick; setSheet(false); router.push('/sign-in?next=checkout'); return; }
     setPlacing(true);
     try {
       haptic.commit(); // the order is on its way to being placed; success lands when it is confirmed
@@ -356,7 +359,8 @@ export default function CartScreen() {
   };
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: colors.surfaceSecondary }} testID="cart-screen">
+    // Padding on every platform: Android draws edge to edge, so its window no longer shrinks for the keyboard.
+    <KeyboardAvoidingView behavior="padding" style={{ flex: 1, backgroundColor: colors.surfaceSecondary }} testID="cart-screen">
       <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
         <View style={styles.cartTop}><Pressable testID="cart-back" accessibilityLabel={t('common.goBack')} style={styles.back} onPress={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')}><Icon name="chevron-back" size={20} color={colors.onSurface} /></Pressable><Text testID="cart-title" style={styles.title}>{t('cart.title')}</Text><Text testID="cart-total-items" style={styles.subtitle}>{t('cart.itemCount', { count: totalItems })}</Text></View>
         {both && <>
@@ -416,7 +420,8 @@ export default function CartScreen() {
                 {categoryGroups(g.items).map(cg => <View key={cg.id} testID={`cart-category-${cg.id || 'other'}`}>
                 {!!cg.name && <Text style={styles.catHead}>{cg.name}</Text>}
                 {cg.items.map((it) => (
-                  <View key={it.id} style={styles.row}>
+                  // A row taken out fades away and the rows below close up.
+                  <Reanimated.View key={it.id} exiting={motion ? FadeOut.duration(duration.quick) : undefined} layout={motion ? LinearTransition.duration(duration.base).easing(reEasing.standard) : undefined} style={styles.row}>
                     <Image source={it.image} style={styles.itemImg} contentFit="cover" />
                     <View style={{ flex: 1 }}>
                       <Text style={styles.itemName} numberOfLines={2}>{it.name}</Text>
@@ -432,7 +437,7 @@ export default function CartScreen() {
                         <Text style={styles.stepText}>+</Text>
                       </TouchableOpacity>
                     </View>
-                  </View>
+                  </Reanimated.View>
                 ))}
                 </View>)}
                 {!!gb && gb.amount_to_free_delivery > 0 && (
@@ -681,7 +686,6 @@ const styles = StyleSheet.create({
   title: { fontSize: 20, fontWeight: "700", color: colors.onSurface, flex: 1 },
   subtitle: { fontSize: 13, color: colors.muted, marginTop: 2 },
   emptyWrap: { flex: 1, alignItems: "center", justifyContent: "center", padding: spacing.xl },
-  emptyEmoji: { fontSize: 64, marginBottom: spacing.md },
   emptyTitle: { fontSize: 18, fontWeight: "800", color: colors.onSurface },
   emptySub: { fontSize: 13, color: colors.muted, marginTop: 4 },
   browseBtn: { marginTop: spacing.lg, backgroundColor: colors.brandPrimary, paddingHorizontal: 20, paddingVertical: 12, borderRadius: radius.pill },

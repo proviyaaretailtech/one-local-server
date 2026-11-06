@@ -3,19 +3,20 @@
 //   - scrub to magnify: slide a finger along the dock and the icon under it swells while its
 //     neighbours lean in, a detent tick plays as the finger crosses each icon, and letting go opens
 //     the one under the finger (phones have no hover, so the finger is the cursor);
-//   - a launch hop: the tab you land on jumps twice, squashing on each landing, and its dot lights
-//     as it first touches down;
+//   - a launch hop: the tab you land on jumps twice, squashing on each landing;
+//   - a soft white fade under it, so the dock never melts into busy content scrolling behind it;
 //   - plain taps still work exactly as before.
 // Reduce Motion: no magnify or hop; scrub-to-open and the ticks remain.
 import { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'expo-router';
-import { View, StyleSheet, LayoutChangeEvent } from 'react-native';
+import { View, StyleSheet, LayoutChangeEvent, Platform } from 'react-native';
 import { Text } from '@/src/ui/text';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { Easing, interpolate, type SharedValue, useAnimatedStyle, useSharedValue, withDelay, withSequence, withSpring, withTiming } from 'react-native-reanimated';
+import Animated, { Easing, interpolate, type SharedValue, useAnimatedStyle, useSharedValue, withSequence, withSpring, withTiming } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
 import { BlurView } from 'expo-blur';
+import { LinearGradient } from 'expo-linear-gradient';
 import { House, LayoutGrid, Play, Ticket, UtensilsCrossed, type LucideIcon } from 'lucide-react-native';
 import { Tap } from './tap';
 import { colors } from '../theme';
@@ -26,6 +27,7 @@ import { departmentName } from '../departments';
 import { haptic } from '../haptics';
 import { useMotionAllowed } from '../motion';
 import { useIsDesktop } from '../layout';
+import { duration } from '../motion-tokens';
 
 const tabs = [
   { id: 'home', path: '/', icon: House },
@@ -40,7 +42,10 @@ const REACH = 1.6;   // how many slots away an icon still feels the pull
 // Light and slightly underdamped: keeps up with a fast finger and settles with a small wobble.
 const SIZE_SPRING = { mass: 0.25, stiffness: 320, damping: 16 };
 export const DOCK_HEIGHT = 66;
-export const dockBottom = (insetBottom: number) => Math.max(insetBottom, 10) + 6;
+const SIDE_GAP = 20; // the bar is 90% wide: 5% each side, about 20pt on a phone
+// iOS: the same gap below the dock as beside it. It may sit inside the bottom safe area, which only the home indicator's
+// thin strip at the very bottom actually uses. Android's inset can be a row of system buttons, so there it stays above it.
+export const dockBottom = (insetBottom: number) => Platform.OS === 'ios' ? SIDE_GAP : Math.max(insetBottom, 10) + 6;
 /** Room a screen must leave at its bottom so nothing hides under the floating dock. */
 export const dockSpace = (insetBottom: number) => dockBottom(insetBottom) + DOCK_HEIGHT + 8;
 
@@ -75,27 +80,46 @@ export function BottomNavigation() {
       if (success && i >= 0) { scrubbed.value = 1; scheduleOnRN(scrubOpen, i); }
     });
   const onLayout = (e: LayoutChangeEvent) => { slot.value = e.nativeEvent.layout.width / tabs.length; };
+  // The product sheet (app/product/[id].tsx) floats over the page with its own add-to-cart bar, so the dock fades away.
+  const away = path.startsWith('/product/');
+  const fade = useAnimatedStyle(() => ({ opacity: withTiming(away ? 0 : 1, { duration: duration.base }) }), [away]);
 
-  // Full-screen flows. Product pages keep the dock: their sticky add-to-bag bar sits just above it.
+  // Once the app has settled, the other tabs are built in the background, one at a time while JavaScript is idle, so the
+  // first tap on each finds it ready instead of building it then. Not Discover: building it starts its videos.
+  useEffect(() => {
+    if (desktop) return;
+    const queue = tabs.filter(tab => tab.id !== 'home' && tab.id !== 'discover').map(tab => `/(tabs)/${tab.id}`);
+    const g = globalThis as { requestIdleCallback?: (fn: () => void, o?: { timeout: number }) => number; cancelIdleCallback?: (id: number) => void };
+    let idle: number | undefined; let timer: ReturnType<typeof setTimeout>;
+    const schedule = () => { if (g.requestIdleCallback) idle = g.requestIdleCallback(next, { timeout: 4000 }); else timer = setTimeout(next, 800); };
+    const next = () => { const href = queue.shift(); if (!href) return; router.prefetch(href as never); schedule(); };
+    timer = setTimeout(schedule, 2000);
+    return () => { clearTimeout(timer); if (idle !== undefined) g.cancelIdleCallback?.(idle); };
+  }, [desktop, router]);
+
+  // Full-screen flows.
   if (desktop || ['/location', '/address-map', '/address-form', '/sign-in', '/welcome'].includes(path)) return null;
-  return <View pointerEvents="box-none" style={[styles.float, { bottom: dockBottom(insets.bottom) }]}>
-    <GestureDetector gesture={pan}>
-      <View testID="bottom-navigation" onLayout={onLayout} style={[styles.bar, dark && styles.dark]}>
-        {/* Frosted glass: the page stays readable through the dock without competing with the icons. */}
-        <BlurView pointerEvents="none" intensity={60} tint={dark ? 'dark' : 'light'} style={[StyleSheet.absoluteFill, styles.glass]} />
-        {tabs.map((tab, i) => tab.id === 'discover'
-          ? <View key={tab.id} style={styles.item}><View style={[styles.center, dark && styles.darkCenter]}><OneButton selected={path === '/discover' || dark} onDiscover={() => router.navigate('/(tabs)/discover')} onAssistant={() => router.push('/assistant')} /></View><Text testID="discover-tab-label" style={[styles.label, dark && styles.light]}>{labels.discover}</Text></View>
-          : <Tap key={tab.id} testID={`tab-${tab.id}`} accessibilityRole="tab" accessibilityLabel={labels[tab.id]} accessibilityState={{ selected: selected(tab.id, tab.path) }} glow={false}
-              onPress={() => { if (!scrubbed.value) open(i); }} style={styles.item}>
-              <DockIcon index={i} finger={finger} slot={slot} motion={motion} selected={selected(tab.id, tab.path)}>
-                <tab.icon size={21} strokeWidth={selected(tab.id, tab.path) ? 2.2 : 1.7} color={selected(tab.id, tab.path) ? palette.forest : dark ? colors.surface : colors.muted} />
-              </DockIcon>
-              <Text testID={`tab-label-${tab.id}`} style={[styles.label, selected(tab.id, tab.path) && styles.active, selected(tab.id, tab.path) && { color: palette.forest }, dark && styles.light]}>{labels[tab.id]}</Text>
-              <RunningLight on={selected(tab.id, tab.path)} color={palette.forest} motion={motion} />
-            </Tap>)}
-      </View>
-    </GestureDetector>
-  </View>;
+  return <Animated.View pointerEvents={away ? 'none' : 'box-none'} style={[StyleSheet.absoluteFill, fade]}>
+    {/* Starts clear well above the dock (the Discover button pokes up ~30pt) and turns white towards the screen edge. */}
+    {!dark && <LinearGradient pointerEvents="none" colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.9)']} style={[styles.fade, { height: dockBottom(insets.bottom) + DOCK_HEIGHT + 40 }]} />}
+    <View pointerEvents="box-none" style={[styles.float, { bottom: dockBottom(insets.bottom) }]}>
+      <GestureDetector gesture={pan}>
+        <View testID="bottom-navigation" onLayout={onLayout} style={[styles.bar, dark && styles.dark]}>
+          {/* Frosted glass: the page stays readable through the dock without competing with the icons. */}
+          <BlurView pointerEvents="none" intensity={60} tint={dark ? 'dark' : 'light'} style={[StyleSheet.absoluteFill, styles.glass]} />
+          {tabs.map((tab, i) => tab.id === 'discover'
+            ? <View key={tab.id} style={styles.item}><View style={[styles.center, dark && styles.darkCenter]}><OneButton selected={path === '/discover' || dark} onDiscover={() => router.navigate('/(tabs)/discover')} onAssistant={() => router.push('/assistant')} /></View><Text testID="discover-tab-label" style={[styles.label, styles.discoverLabel, dark && styles.light]}>{labels.discover}</Text></View>
+            : <Tap key={tab.id} testID={`tab-${tab.id}`} accessibilityRole="tab" accessibilityLabel={labels[tab.id]} accessibilityState={{ selected: selected(tab.id, tab.path) }} glow={false}
+                onPress={() => { if (!scrubbed.value) open(i); }} style={styles.item}>
+                <DockIcon index={i} finger={finger} slot={slot} motion={motion} selected={selected(tab.id, tab.path)}>
+                  <tab.icon size={21} strokeWidth={selected(tab.id, tab.path) ? 2.2 : 1.7} color={selected(tab.id, tab.path) ? palette.forest : dark ? colors.surface : colors.muted} />
+                </DockIcon>
+                <Text testID={`tab-label-${tab.id}`} style={[styles.label, selected(tab.id, tab.path) && styles.active, selected(tab.id, tab.path) && { color: palette.forest }, dark && styles.light]}>{labels[tab.id]}</Text>
+              </Tap>)}
+        </View>
+      </GestureDetector>
+    </View>
+  </Animated.View>;
 }
 
 function DockIcon({ index, finger, slot, motion, selected, children }: { index: number; finger: SharedValue<number>; slot: SharedValue<number>; motion: boolean; selected: boolean; children: React.ReactNode }) {
@@ -123,20 +147,15 @@ function DockIcon({ index, finger, slot, motion, selected, children }: { index: 
   return <Animated.View style={st}>{children}</Animated.View>;
 }
 
-// The dot under the open tab comes on as the hop first lands, not on the tap.
-function RunningLight({ on, color, motion }: { on: boolean; color: string; motion: boolean }) {
-  const v = useSharedValue(on ? 1 : 0);
-  useEffect(() => { v.value = on ? withDelay(motion ? 270 : 0, withTiming(1, { duration: 200 })) : withTiming(0, { duration: 150 }); }, [on, motion, v]);
-  const st = useAnimatedStyle(() => ({ opacity: v.value, transform: [{ scale: 0.5 + 0.5 * v.value }] }));
-  return <Animated.View pointerEvents="none" style={[styles.dot, { backgroundColor: color }, st]} />;
-}
-
 const styles = StyleSheet.create({
+  fade: { position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 49 },
   float: { position: 'absolute', left: 0, right: 0, alignItems: 'center', zIndex: 50 },
-  bar: { width: '92%', maxWidth: 440, height: DOCK_HEIGHT, flexDirection: 'row', paddingTop: 11, backgroundColor: 'rgba(255,255,255,0.9)', borderWidth: 1, borderColor: colors.glassLine, borderRadius: 33,
+  bar: { width: '90%', maxWidth: 440, height: DOCK_HEIGHT, flexDirection: 'row', paddingTop: 11, backgroundColor: 'rgba(255,255,255,0.9)', borderWidth: 1, borderColor: colors.glassLine, borderRadius: 33,
     boxShadow: [{ offsetX: 0, offsetY: 10, blurRadius: 28, color: 'rgba(16,59,43,0.18)' }, { offsetX: 0, offsetY: 2, blurRadius: 6, color: 'rgba(16,59,43,0.08)' }] },
   glass: { borderRadius: 33, overflow: 'hidden' },
   item: { flex: 1, minHeight: 45, alignItems: 'center', gap: 5 }, label: { fontSize: 10, fontWeight: '500', color: colors.muted }, active: { color: colors.forest, fontWeight: '700' },
-  center: { marginTop: -30, marginBottom: -5, borderWidth: 6, borderColor: colors.surface, borderRadius: 40, backgroundColor: colors.surface }, dot: { position: 'absolute', bottom: -6, width: 4, height: 4, borderRadius: 2 },
+  center: { marginTop: -30, marginBottom: -5, borderWidth: 6, borderColor: colors.surface, borderRadius: 40, backgroundColor: colors.surface },
+  // Up over the button's white ring (the dock's own white), as close to the other labels as it goes clear of the button.
+  discoverLabel: { marginTop: -8 },
   dark: { backgroundColor: 'rgba(26,26,26,0.92)', borderColor: 'rgba(255,255,255,0.08)' }, darkCenter: { borderColor: colors.brandPrimary, backgroundColor: colors.brandPrimary }, light: { color: colors.surface },
 });

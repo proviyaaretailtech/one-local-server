@@ -17,11 +17,9 @@ export const GET = route(async (request, { id }) => {
   const reel = catalog.reels.find(r => r.product_id === product.id) ?? null;
   const storeVideo = store?.media.find(m => m.type === 'video') ?? null;
 
-  const gallery = [...new Set([
-    product.image,
-    ...(store?.media ?? []).filter(m => m.type === 'image').map(m => m.url),
-    brand?.image, category?.image,
-  ].filter((u): u is string => !!u))].slice(0, 6);
+  // The product's own photo only; the brand's picture stands in when it has none. Store and category photos made a
+  // badminton set show dumbbells (founder, 2026-11-01).
+  const gallery = [product.image || brand?.image].filter((u): u is string => !!u);
 
   const video = reel
     ? { url: reel.video, web: `${reel.video}-webm`, poster: product.image, label: 'Watch it in action' }

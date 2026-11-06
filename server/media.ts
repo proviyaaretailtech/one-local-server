@@ -1,11 +1,13 @@
 /// <reference types="node" />
 // /api/media/<key>: catalogue images and videos.
-// 1. Published (data/media.json, key -> public Supabase Storage URL): redirect there.
+// 1. Published (data/media.json, key -> public Supabase Storage URL): fetched here and passed on, never a redirect,
+//    because phones on Jio, Airtel and ACT cannot reach Supabase (see supabase-relay.ts).
 // 2. Development only: serve the file rebuilt by backend/scripts/rebuild_media.py.
 import fs from 'node:fs';
 import path from 'node:path';
 import published from './data/media.json';
 import { fail } from './http';
+import { relayFile } from './supabase-relay';
 
 const PUBLISHED = published as Record<string, string>;
 const LOCAL_DIR = path.resolve(process.cwd(), '../backend/.media_build');
@@ -19,9 +21,9 @@ function localManifest() {
 
 const TYPES: Record<string, string> = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.mp4': 'video/mp4', '.webm': 'video/webm' };
 
-export function serveMedia(request: Request, key: string): Response {
+export function serveMedia(request: Request, key: string): Response | Promise<Response> {
   if (!/^[\w.-]{1,120}$/.test(key)) return fail(404, 'Image not found');
-  if (PUBLISHED[key]) return new Response(null, { status: 302, headers: { Location: PUBLISHED[key], 'Cache-Control': 'public, max-age=3600' } });
+  if (PUBLISHED[key]) return relayFile(request, PUBLISHED[key]);
   if (process.env.NODE_ENV === 'production') return fail(404, 'Image not found');
 
   const entry = localManifest()[key];

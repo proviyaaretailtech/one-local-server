@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'; // not '../i18n': that index imp
 import { Text } from '../ui/text';
 import { colors } from '../theme';
 import { haptic } from '../haptics';
-import { useMotionAllowed } from '../motion';
+import { useDecorativeMotion, useMotionAllowed } from '../motion';
 import { duration, reEasing, reSpring } from '../motion-tokens';
 import { EmergencyHelplines } from './emergency-helplines';
 
@@ -29,7 +29,7 @@ export function OneGlyph({ size = 36 }: { size?: number }) {
   return <Svg width={size * 62 / 80} height={size} viewBox="0 0 62 80"><Defs><LinearGradient id={`one-face-${id}`} x1="0" y1="0" x2="1" y2="1"><Stop offset="0" stopColor={colors.electricLime} /><Stop offset="1" stopColor={colors.lime} /></LinearGradient><LinearGradient id={`one-fold-${id}`}><Stop offset="0" stopColor={colors.electricLime} /><Stop offset="1" stopColor={colors.forest} /></LinearGradient></Defs><Path d="M26 0 L0 25 L26 25 Z" fill={`url(#one-fold-${id})`} /><Path d="M26 0 H48 V80 H26 Z" fill={`url(#one-face-${id})`} /></Svg>;
 }
 export function OneButton({ onDiscover, onAssistant, selected }: { onDiscover: () => void; onAssistant: () => void; selected: boolean }) {
-  const motion = useMotionAllowed(); const { t } = useTranslation(); const [sos, setSos] = useState(false);
+  const motion = useMotionAllowed(); const loop = useDecorativeMotion(); const { t } = useTranslation(); const [sos, setSos] = useState(false);
   const glow = useSharedValue(0);   // halo: breathes while Discover is open, flashes on a tap
   const press = useSharedValue(0);  // finger down
   const lift = useSharedValue(0);   // 0 docked, 1 lifted; the siren comes and goes with it
@@ -39,10 +39,11 @@ export function OneButton({ onDiscover, onAssistant, selected }: { onDiscover: (
   const over = useSharedValue(0);   // 1 while the button sits over the siren
   const inside = useSharedValue(false);
   useEffect(() => {
-    if (!motion || !selected) { glow.value = 0; return; }
+    // The selected button's endless glow is decorative motion, which is off (see useDecorativeMotion).
+    if (!loop || !selected) { glow.value = 0; return; }
     glow.value = withRepeat(withTiming(1, { duration: duration.story }), -1, true);
     return () => cancelAnimation(glow);
-  }, [motion, selected, glow]);
+  }, [loop, selected, glow]);
 
   const flash = () => { if (motion) glow.set(withSequence(withTiming(1, { duration: 120 }), withTiming(0, { duration: 600 }))); haptic.select(); };
   const discover = () => { flash(); onDiscover(); };

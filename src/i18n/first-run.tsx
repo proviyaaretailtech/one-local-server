@@ -64,9 +64,11 @@ const s = StyleSheet.create({
   screen: { ...StyleSheet.absoluteFill, zIndex: 900, backgroundColor: '#050605' },
   screenLight: { backgroundColor: '#F8F9F5' },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  toggle: { flexDirection: 'row', padding: 3, gap: 2, borderRadius: 999, backgroundColor: 'rgba(255,255,255,0.10)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.14)' },
+  // The lit side fills its whole half of the pill, edge to edge (founder, 2026-11-01: it showed as a small square);
+  // the pill clips it, so its outer end always follows the round edge.
+  toggle: { flexDirection: 'row', borderRadius: 999, overflow: 'hidden', backgroundColor: 'rgba(255,255,255,0.10)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.14)' },
   toggleLight: { backgroundColor: 'rgba(5,6,5,0.05)', borderColor: 'rgba(5,6,5,0.10)' },
-  toggleSide: { width: 36, height: 30, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
+  toggleSide: { width: 44, height: 36, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
   toggleOn: { backgroundColor: colors.electricLime },
   titleLight: { color: '#0B1F16' },
   noteLight: { color: 'rgba(11,31,22,0.6)' },

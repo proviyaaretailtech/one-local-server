@@ -3,13 +3,13 @@ import { Animated, View, StyleSheet } from 'react-native';
 import Icon from '@react-native-vector-icons/ionicons';
 import Svg, { Circle, Ellipse, G, Path } from 'react-native-svg';
 import { colors } from '../theme';
-import { nativeDriver, useMotionAllowed } from '../motion';
+import { nativeDriver, useDecorativeMotion } from '../motion';
 import { storePalette } from '../store-palettes';
 function Rangoli({ ink }: { ink: string }) {
   return <Svg width={250} height={250} viewBox="0 0 200 200"><G>{Array.from({ length: 12 }, (_, i) => <G key={i} transform={`rotate(${i * 30} 100 100)`}><Ellipse cx="100" cy="48" rx="12" ry="33" fill="none" stroke={ink} strokeWidth="1" /><Circle cx="100" cy="13" r="3" fill={ink} /></G>)}<Circle cx="100" cy="100" r="25" stroke={ink} strokeWidth="1" fill="none" /></G></Svg>;
 }
 export function StoreAtmosphere({ id, festival, active = true }: { id: string; festival: string; active?: boolean }) {
-  const [progress] = useState(() => new Animated.Value(0)); const motion = useMotionAllowed(); const palette = storePalette(id, festival);
+  const [progress] = useState(() => new Animated.Value(0)); const motion = useDecorativeMotion(); const palette = storePalette(id, festival);
   useEffect(() => {
     if (!motion || !active) { progress.setValue(0.4); return; }
     const animation = Animated.loop(Animated.sequence([Animated.timing(progress, { toValue: 1, duration: 5200, useNativeDriver: nativeDriver }), Animated.timing(progress, { toValue: 0, duration: 5200, useNativeDriver: nativeDriver })]));

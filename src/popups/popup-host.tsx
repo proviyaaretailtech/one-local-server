@@ -6,6 +6,8 @@
 //    cannot be fetched the pop-up waits for the next opportunity;
 //  - one fade / slide on the UI thread (none with reduce motion); close always visible; back and tap outside close.
 // If the API fails (or on web without a backend) nothing is shown.
+// Pop-ups are refetched every 30 s while the app is in the foreground and as soon as it comes back (src/query-client.ts
+// wires focus to AppState), so one scheduled for later shows on the screen the customer is on, without a relaunch.
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useShowFirstRun } from '@/src/i18n/first-run';
 import { InteractionManager, Modal, Pressable, StyleSheet, View } from 'react-native';
@@ -23,22 +25,26 @@ import { colors, radius, spacing } from '../theme';
 import { contentFor, fetchPopups, imageUrl, sendPopupEvent } from './api';
 import { ComingSoonReceipts } from './coming-soon-receipt';
 import { useDeliveryLocation } from '../delivery-location';
-import { allowedByFrequency, isBlockedPath, markShown, screenOf, session } from './rules';
-import type { Popup } from './types';
+import { allowedByFrequency, arrivedAfterFirstView, arrivedAfterLastModal, isBlockedPath, markShown, noteArrivals, screenOf, session } from './rules';
+import type { Popup, PopupFormat } from './types';
 import { COMING_SOON_ALL } from '../coming-soon-mode';
 import { useAuth } from '../auth';
 import { LetterPopup } from './letter-popup';
+import { CarouselPopup } from './carousel-popup';
 
 const SETTLE_MS = 1000;
 const SEEN_AFTER_MS = 1200;
 const INTERACTIONS_CAP_MS = 1500;
+const REFETCH_MS = 30_000;
+// Coming-soon build: only letters (welcome and announcements), coming-soon receipts (they list the stores on the way and
+// have no button) and carousels (swipeable image campaigns); other promo pop-ups' "See offers" buttons lead nowhere yet.
+const COMING_SOON_FORMATS: readonly PopupFormat[] = ['letter', 'coming_soon', 'carousel'];
 const introShowing = () => !!(globalThis as { __onecityIntroShowing?: boolean }).__onecityIntroShowing;
 
 export function PopupHost() {
   const pathname = usePathname() ?? '/';
   // No pop-up over the first-run language chooser either.
   const firstRun = useShowFirstRun();
-  // Coming-soon build: only letters (welcome and announcements); other promo pop-ups' "See offers" buttons lead nowhere yet.
   const blocked = isBlockedPath(pathname) || firstRun;
   const screen = screenOf(pathname);
   // The town the pop-ups were fetched for, printed on coming-soon receipts. PopupHost sits outside the shell, so this is
@@ -52,9 +58,13 @@ export function PopupHost() {
   const userId = useAuth().session?.user?.id ?? '';
   const { data } = useQuery({
     queryKey: ['popups', screen, lang, hasCart, userId],
-    queryFn: async () => (await fetchPopups(screen, lang, hasCart)).filter(p => !COMING_SOON_ALL || p.format === 'letter'),
+    queryFn: async () => (await fetchPopups(screen, lang, hasCart)).filter(p => !COMING_SOON_ALL || COMING_SOON_FORMATS.includes(p.format)),
     enabled: !blocked, staleTime: 60_000, retry: false,
+    refetchInterval: REFETCH_MS, refetchOnWindowFocus: 'always',
   });
+  // Which pop-ups the server sent; the choice below runs again only when this changes (a refetch with the same pop-ups
+  // does not restart a pending wait).
+  const idsKey = (data ?? []).map(p => p.id).sort().join(',');
   const dataRef = useRef<Popup[] | undefined>(data);
   // Kept current after each commit, not during render: React may render and throw a render away, and a ref written there would leak it.
   useLayoutEffect(() => { dataRef.current = data; });
@@ -81,6 +91,11 @@ export function PopupHost() {
     if (blocked || !ready) return;
     const v = view.current;
     if (!session.firstViewOf.has(screen)) session.firstViewOf.set(screen, v.index);
+    noteArrivals((dataRef.current ?? []).map(p => p.id), v.index);
+    // A modal may be chosen when none is on screen and either this view and session had none yet, or this pop-up went
+    // live after the last one was seen. Never two at once.
+    const modalAllowed = (p: Popup) => onScreen.current.modal === undefined
+      && ((!v.modalDone && !session.modalShown) || arrivedAfterLastModal(p.id));
     let cancelled = false;
     const timers: ReturnType<typeof setTimeout>[] = [];
     const tasks: { cancel: () => void }[] = [];
@@ -88,7 +103,9 @@ export function PopupHost() {
     const pick = async (wantStrip: boolean): Promise<Popup | null> => {
       for (const p of dataRef.current ?? []) {
         if ((p.format === 'strip') !== wantStrip || !p.screens.includes(screen)) continue;
-        if (p.trigger === 'app_open' && session.firstViewOf.get(screen) !== v.index) continue;
+        if (!wantStrip && !modalAllowed(p)) continue;
+        // app_open: the screen's first view this session, or the view it arrived in when it went live later.
+        if (p.trigger === 'app_open' && session.firstViewOf.get(screen) !== v.index && !arrivedAfterFirstView(p.id, screen)) continue;
         if (p.trigger === 'scroll_depth') continue;   // needs the screen's scroll position; not wired yet
         // first_sign_in: the server sends it only to a signed-in new account; it shows on the first screen it fits (once ever).
         if (await allowedByFrequency(p)) return p;
@@ -105,7 +122,9 @@ export function PopupHost() {
         timers.push(setTimeout(async () => {
           while (!cancelled && introShowing()) await new Promise(r => setTimeout(r, 300));   // wait for the intro to finish
           if (cancelled || !stillAllowed()) return;
-          const url = p.format === 'letter' ? imageUrl(p.media?.type === 'photo' ? p.media.key : p.media?.poster_key) : imageUrl(contentFor(p, lang).image);
+          const url = p.format === 'letter' ? imageUrl(p.media?.type === 'photo' ? p.media.key : p.media?.poster_key)
+            : p.format === 'carousel' ? imageUrl(contentFor(p, lang).slides?.[0]?.image)
+            : imageUrl(contentFor(p, lang).image);
           if (url) {
             const ok = await Image.prefetch(url).catch(() => false);
             if (!ok) return;   // not on the phone: try again at the next opportunity
@@ -114,10 +133,11 @@ export function PopupHost() {
           show(p);
           // Counted as seen only once it has really been on screen for a moment: on a first launch the app moves on to
           // choosing a location right after the language step, and a pop-up closed by that move must not use up its turn.
-          timers.push(setTimeout(() => {
-            if (cancelled || !stillOnScreen(p.id)) return;
+          // Not cancelled with the rest: a refetch that re-runs this choice must not lose the impression of what is showing.
+          setTimeout(() => {
+            if (!stillOnScreen(p.id)) return;
             void markShown(p); sendPopupEvent(p.id, 'impression');
-          }, SEEN_AFTER_MS));
+          }, SEEN_AFTER_MS);
         }, wait));
       });
       tasks.push(InteractionManager.runAfterInteractions(run));
@@ -125,31 +145,36 @@ export function PopupHost() {
     };
 
     (async () => {
-      if (!v.modalDone && !session.modalShown) {
-        const p = await pick(false);
-        if (p && !cancelled) schedule(p, x => { v.modalDone = true; setModal(x); }, () => !v.modalDone && !session.modalShown);
-      }
+      const p = await pick(false);
+      if (p && !cancelled) schedule(p, x => { v.modalDone = true; setModal(x); }, () => modalAllowed(p));
       if (!v.stripDone) {
         const p = await pick(true);
         if (p && !cancelled) schedule(p, x => { v.stripDone = true; setStrip(x); }, () => !v.stripDone);
       }
     })();
-    return () => { cancelled = true; timers.forEach(clearTimeout); tasks.forEach(t => t.cancel()); };
-  }, [pathname, blocked, ready, screen, lang]);  // data is read through dataRef so a refetch does not restart the wait
+    return () => {
+      cancelled = true; timers.forEach(clearTimeout); tasks.forEach(t => t.cancel());
+      // Left before anything could show (on a first launch the one-time sign-in offer opens over home at once): the next
+      // view of this screen gets the app-open moment instead.
+      if (!v.modalDone && !v.stripDone && session.firstViewOf.get(screen) === v.index) session.firstViewOf.delete(screen);
+    };
+  }, [pathname, blocked, ready, screen, lang, idsKey]);  // data is read through dataRef; only a new set of pop-ups restarts the wait
 
   if (blocked) return null;
   const close = (p: Popup, set: (v: null) => void) => { sendPopupEvent(p.id, 'close'); set(null); };
-  const open = (p: Popup, set: (v: null) => void) => {
+  // Routing a tap: strip / modal / letter use the pop-up's single cta_route; a carousel passes the current slide's route.
+  const openRoute = (p: Popup, set: (v: null) => void, route?: string) => {
     sendPopupEvent(p.id, 'tap');
     set(null);
-    const route = contentFor(p, lang).cta_route;
     if (route && route.startsWith('/') && !route.startsWith('//')) router.push(route as Href);
   };
+  const open = (p: Popup, set: (v: null) => void) => openRoute(p, set, contentFor(p, lang).cta_route);
   return <>
     {strip && <PopupStrip popup={strip} lang={lang} motion={motion} onClose={() => close(strip, setStrip)} onOpen={() => open(strip, setStrip)} />}
     {modal && modal.format === 'coming_soon' && !!contentFor(modal, lang).items?.length
       ? <ComingSoonReceipts title={contentFor(modal, lang).title} items={contentFor(modal, lang).items!} city={city} motion={motion} onClose={() => close(modal, setModal)} />
       : modal && modal.format === 'letter' ? <LetterPopup popup={modal} lang={lang} motion={motion} onClose={() => close(modal, setModal)} onOpen={() => open(modal, setModal)} />
+      : modal && modal.format === 'carousel' ? <CarouselPopup popup={modal} lang={lang} motion={motion} onClose={() => close(modal, setModal)} onOpen={route => openRoute(modal, setModal, route)} />
       : modal && modal.format !== 'coming_soon' && <PopupModal popup={modal} lang={lang} motion={motion} onClose={() => close(modal, setModal)} onOpen={() => open(modal, setModal)} />}
   </>;
 }

@@ -29,6 +29,12 @@ export function useMotionAllowed() {
 }
 /** The same answer, read at the moment it is needed (a press) without subscribing: every button on every kept tab
  *  subscribing made each trip to the background and back re-render all of them. */
+// Decorative motion that never stops (floating heroes, drifting store backdrops, a pulsing Discover button) is off:
+// the founder found it distracting (2026-11-01). Those pieces hold the still look Reduce Motion gives them; taps,
+// screen changes and progress still move.
+export function useDecorativeMotion() {
+  return false;
+}
 export function motionAllowedNow() { watchMotion(); return motionSnapshot(); }
 type ScrollContextValue = { y: Animated.Value; scrollRef: React.RefObject<ScrollView | null> };
 const ScrollContext = createContext<ScrollContextValue | null>(null);

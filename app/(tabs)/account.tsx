@@ -155,7 +155,9 @@ export default function AccountScreen() {
           <View style={a.flex}><Text style={s.toggleLabel}>{profile.name || t('account.yourAccount')}</Text><Text testID="account-session-who" style={s.sub} numberOfLines={1}>{who}</Text></View>
         </View>
         <Button testID="sign-out-btn" variant="quiet" tone="danger" icon="log-out-outline" title={t('account.signOut')} onPress={() => { setSignOutError(''); setConfirm(true); }} />
-      </View> : <View testID="account-guest-card" style={a.card}>
+        {/* App stores require account deletion to be easy to find: one tap from Account straight to the confirm step. */}
+        <Button testID="account-delete-btn" variant="quiet" title={t('account.deleteAccount')} onPress={() => router.push({ pathname: '/privacy', params: { open: 'delete' } } as never)} />
+      </View> :<View testID="account-guest-card" style={a.card}>
         <Message id="signed-out-notice" text={signedOut ? t('account.signedOutNotice') : ''} />
         <Text style={a.hint}>{t('account.guestPitch')}</Text>
         <Button testID="account-sign-in-bottom" title={t('account.signInOrCreate')} onPress={signIn} />
